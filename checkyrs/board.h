@@ -15,11 +15,18 @@
 
 class Board {
   int m_size;
-  std::vector<std::vector<Piece> > m_board;
+  std::vector<std::vector<Piece*> > m_board;
   
 public:
   Board(int size=8);
-  int getSize();
+  
+  int getSize(){return m_size;}
+  
+  bool SquareIsOccupied(int x, int y);
+  
+  void AddPiece(int x, int y);
+  void MovePiece(int oldx, int oldy, int newx, int newy);
+  
 };
 
 #endif /* defined(__checkyrs__board__) */

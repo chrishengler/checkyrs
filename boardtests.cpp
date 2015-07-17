@@ -11,6 +11,27 @@
 
 TEST_CASE("Board can be created"){
   
-  Board newboard;
-  REQUIRE(&newboard!=0);
+  Board board;
+  REQUIRE(&board!=0);
+}
+
+TEST_CASE("Board has correct size"){
+  Board board(6);
+  REQUIRE(board.getSize()==6);
+}
+
+TEST_CASE("Piece can be placed on board"){
+  
+  Board board;
+  board.AddPiece(1,1);
+  REQUIRE(board.SquareIsOccupied(1,1));
+  
+}
+
+TEST_CASE("Piece can be moved"){
+  Board board;
+  board.AddPiece(1, 1);
+  board.MovePiece(1,1,2,2);
+  REQUIRE(board.SquareIsOccupied(2, 2) == true);
+  REQUIRE(board.SquareIsOccupied(1,1) == false);
 }
