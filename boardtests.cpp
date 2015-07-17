@@ -35,3 +35,14 @@ TEST_CASE("Piece can be moved"){
   REQUIRE(board.SquareIsOccupied(2, 2) == true);
   REQUIRE(board.SquareIsOccupied(1,1) == false);
 }
+
+TEST_CASE("Exception thrown if piece added off board"){
+  Board board;
+  REQUIRE_THROWS_AS(board.AddPiece(-2,-2),std::out_of_range);
+}
+
+TEST_CASE("Out of range exception thrown if piece moved off board"){
+  Board board;
+  board.AddPiece(1, 1);
+  REQUIRE_THROWS_AS(board.MovePiece(1, 1, -2, -2), std::out_of_range);
+}

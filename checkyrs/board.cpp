@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
+#include <string>
 #include "board.h"
 
 Board::Board(int size){
@@ -26,10 +27,28 @@ bool Board::SquareIsOccupied(int x, int y){
 }
 
 void Board::AddPiece(int x, int y){
-  m_board[x][y] = new Piece();
+  if(x>=0 && x<=m_size && y>=0 && y<=m_size){
+    m_board[x][y] = new Piece();
+  }
+  else{
+    std::string errmsg("Attempted to add piece out of bounds:");
+    errmsg+=x;
+    errmsg+=",";
+    errmsg+=y;
+    throw std::out_of_range(errmsg);
+  }
 }
 
 void Board::MovePiece(int oldx, int oldy, int newx, int newy){
-  m_board[newx][newy]=m_board[oldx][oldy];
-  m_board[oldx][oldy]=NULL;
+  if(newx>=0 && newx <= m_size && newy>=0 && newy<=m_size){
+    m_board[newx][newy]=m_board[oldx][oldy];
+    m_board[oldx][oldy]=NULL;
+  }
+  else{
+    std::string errmsg("Attempted to move piece out of bounds:");
+    errmsg+=newx;
+    errmsg+=",";
+    errmsg+=newy;
+    throw std::out_of_range(errmsg);
+  }
 }
