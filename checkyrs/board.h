@@ -23,8 +23,10 @@ public:
   
   int getSize(){return m_size;}
   
-  bool isValidPosition(const Position &p);
+  bool PositionExists(const Position &p);
   bool SquareIsOccupied(const Position &p);
+  
+  std::vector<Position> getMovesFrom(const Position &p);
   
   void AddPiece(const Position &p);
   void MovePiece(const Position &oldp, const Position &newp);

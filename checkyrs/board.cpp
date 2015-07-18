@@ -22,7 +22,7 @@ Board::Board(int size){
   }
 }
 
-bool Board::isValidPosition(const Position &p){
+bool Board::PositionExists(const Position &p){
   if(p._x < 0 || p._x >=m_size || p._y < 0 || p._y >= m_size){
     return false;
   }
@@ -32,7 +32,7 @@ bool Board::isValidPosition(const Position &p){
 bool Board::SquareIsOccupied(const Position &p){
   int x = p._x;
   int y = p._y;
-  if(!isValidPosition(p)){
+  if(!PositionExists(p)){
     std::string errmsg("Trying to check occupation of invalid position:");
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
@@ -40,10 +40,23 @@ bool Board::SquareIsOccupied(const Position &p){
   else return (m_board[x][y]!=NULL);
 }
 
+std::vector<Position> Board::getMovesFrom(const Position &p){
+  std::vector<Position> possibleMoves;
+  Position newp(p._x+1,p._y+1);
+  if(PositionExists(newp) && !SquareIsOccupied(newp)){
+    possibleMoves.push_back(newp);
+  }
+  newp = Position(p._x+1,p._y-1);
+  if(PositionExists(newp) && !SquareIsOccupied(newp)){
+    possibleMoves.push_back(newp);
+  }
+  return possibleMoves;
+}
+
 void Board::AddPiece(const Position &p){
   int x = p._x;
   int y = p._y;
-  if(!isValidPosition(p) || !isValidPosition(p)){
+  if(!PositionExists(p) || !PositionExists(p)){
     std::string errmsg("Attempted to add piece out of bounds:");
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
