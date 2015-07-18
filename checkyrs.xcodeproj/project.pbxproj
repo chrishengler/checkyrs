@@ -104,7 +104,8 @@
 				8335C9581B5992F40017EB5F /* boardtests.cpp */,
 			);
 			name = Tests;
-			sourceTree = "<group>";
+			path = /Users/chris/Documents/Programming/checkyrs/Tests;
+			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 
@@ -357,6 +358,7 @@
 				8335C9541B598F060017EB5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
