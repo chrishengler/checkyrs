@@ -11,11 +11,13 @@
 
 #include <stdio.h>
 class Piece {
-  int player;
-  bool isKing;
+  int _player;
+  bool _isKing;
 
 public:
-  Piece(){}
+  Piece(){_player=1; _isKing=false;}
+  Piece(int p, bool k=false){_player=p; _isKing=k;}
   
+  bool isKing(){return _isKing;}
 };
 #endif /* defined(__checkyrs__piece__) */

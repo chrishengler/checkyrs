@@ -52,6 +52,13 @@ TEST_CASE("Out of range exception thrown if piece moved off board"){
   REQUIRE_THROWS_AS(board.MovePiece(initial,destination), std::out_of_range);
 }
 
+TEST_CASE("Can check for occupation of square"){
+  Board board;
+  Position p(0,0);
+  board.AddPiece(p);
+  REQUIRE(board.SquareIsOccupied(p) == true);
+}
+
 TEST_CASE("Cannot add piece to occupied square"){
   Board board;
   Position p(0,0);
@@ -79,7 +86,7 @@ TEST_CASE("Can get list of possible moves"){
   Board board;
   Position firstpiece(0,0);
   board.AddPiece(firstpiece);
-  REQUIRE(board.getMovesFrom(firstpiece).size() == 1);
+  REQUIRE(board.getMovesFrom(firstpiece).size() > 0);
 }
 
 TEST_CASE("List only includes positions on board"){

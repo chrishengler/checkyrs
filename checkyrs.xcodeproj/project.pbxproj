@@ -95,8 +95,8 @@
 				8335C95A1B5994130017EB5F /* board.cpp */,
 				8335C95B1B5994130017EB5F /* board.h */,
 				8335C95D1B59987B0017EB5F /* piece.cpp */,
-				837163041B5A49D1008D1D99 /* position.h */,
 				8335C95E1B59987B0017EB5F /* piece.h */,
+				837163041B5A49D1008D1D99 /* position.h */,
 			);
 			path = checkyrs;
 			sourceTree = "<group>";

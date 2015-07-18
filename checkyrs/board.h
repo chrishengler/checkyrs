@@ -26,6 +26,7 @@ public:
   bool PositionExists(const Position &p);
   bool SquareIsOccupied(const Position &p);
   
+  bool SquareHasKing(const Position &p);
   std::vector<Position> getMovesFrom(const Position &p);
   
   void AddPiece(const Position &p);
