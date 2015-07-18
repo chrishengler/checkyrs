@@ -27,15 +27,18 @@ bool Board::SquareIsOccupied(int x, int y){
 }
 
 void Board::AddPiece(int x, int y){
-  if(x>=0 && x<=m_size && y>=0 && y<=m_size){
-    m_board[x][y] = new Piece();
+  if(x<0 || x>=m_size || y<0 || y>=m_size){
+    std::string errmsg("Attempted to add piece out of bounds:");
+    errmsg+=x;  errmsg+=",";  errmsg+=y;
+    throw std::out_of_range(errmsg);
+  }
+  else if(this->SquareIsOccupied(x, y)){
+    std::string errmsg("Square is occupied:");
+    errmsg+=x;  errmsg+=",";  errmsg+=y;
+    throw std::runtime_error(errmsg);
   }
   else{
-    std::string errmsg("Attempted to add piece out of bounds:");
-    errmsg+=x;
-    errmsg+=",";
-    errmsg+=y;
-    throw std::out_of_range(errmsg);
+    m_board[x][y] = new Piece();
   }
 }
 

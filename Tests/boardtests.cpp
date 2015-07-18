@@ -46,3 +46,9 @@ TEST_CASE("Out of range exception thrown if piece moved off board"){
   board.AddPiece(1, 1);
   REQUIRE_THROWS_AS(board.MovePiece(1, 1, -2, -2), std::out_of_range);
 }
+
+TEST_CASE("Cannot add piece to occupied square"){
+  Board board;
+  board.AddPiece(1,1);
+  REQUIRE_THROWS_AS(board.AddPiece(1,1),std::runtime_error);
+}
