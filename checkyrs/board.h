@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include "piece.h"
+#include "position.h"
 
 class Board {
   int m_size;
@@ -22,10 +23,11 @@ public:
   
   int getSize(){return m_size;}
   
-  bool SquareIsOccupied(int x, int y);
+  bool isValidPosition(const Position &p);
+  bool SquareIsOccupied(const Position &p);
   
-  void AddPiece(int x, int y);
-  void MovePiece(int oldx, int oldy, int newx, int newy);
+  void AddPiece(const Position &p);
+  void MovePiece(const Position &oldp, const Position &newp);
   
 };
 

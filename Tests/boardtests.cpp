@@ -23,32 +23,54 @@ TEST_CASE("Board has correct size"){
 TEST_CASE("Piece can be placed on board"){
   
   Board board;
-  board.AddPiece(1,1);
-  REQUIRE(board.SquareIsOccupied(1,1));
+  Position p(1,1);
+  board.AddPiece(p);
+  REQUIRE(board.SquareIsOccupied(p));
   
 }
 
 TEST_CASE("Piece can be moved"){
   Board board;
-  board.AddPiece(1, 1);
-  board.MovePiece(1,1,2,2);
-  REQUIRE(board.SquareIsOccupied(2, 2) == true);
-  REQUIRE(board.SquareIsOccupied(1,1) == false);
+  Position initial(1,1);
+  Position destination(2,2);
+  board.AddPiece(initial);
+  board.MovePiece(initial,destination);
+  REQUIRE(board.SquareIsOccupied(destination) == true);
+  REQUIRE(board.SquareIsOccupied(initial) == false);
 }
 
 TEST_CASE("Exception thrown if piece added off board"){
   Board board;
-  REQUIRE_THROWS_AS(board.AddPiece(-2,-2),std::out_of_range);
+  REQUIRE_THROWS_AS(board.AddPiece(Position(-2,-2)),std::out_of_range);
 }
 
 TEST_CASE("Out of range exception thrown if piece moved off board"){
   Board board;
-  board.AddPiece(1, 1);
-  REQUIRE_THROWS_AS(board.MovePiece(1, 1, -2, -2), std::out_of_range);
+  Position initial(1,1);
+  board.AddPiece(initial);
+  Position destination(-2,-2);
+  REQUIRE_THROWS_AS(board.MovePiece(initial,destination), std::out_of_range);
 }
 
 TEST_CASE("Cannot add piece to occupied square"){
   Board board;
-  board.AddPiece(1,1);
-  REQUIRE_THROWS_AS(board.AddPiece(1,1),std::runtime_error);
+  Position p(1,1);
+  board.AddPiece(p);
+  REQUIRE_THROWS_AS(board.AddPiece(p),std::runtime_error);
+}
+
+TEST_CASE("Cannot move piece that does not exist"){
+  Board board;
+  Position initial(1,1);
+  Position destination(2,2);
+  REQUIRE_THROWS_AS(board.MovePiece(initial,destination),std::runtime_error);
+}
+
+TEST_CASE("Cannot move piece to occupied square"){
+  Board board;
+  Position firstpiece(1,1);
+  board.AddPiece(firstpiece);
+  Position secondpiece(2,2);
+  board.AddPiece(secondpiece);
+  REQUIRE_THROWS_AS(board.MovePiece(firstpiece,secondpiece),std::runtime_error);
 }

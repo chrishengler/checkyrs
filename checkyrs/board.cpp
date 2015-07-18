@@ -22,19 +22,35 @@ Board::Board(int size){
   }
 }
 
-bool Board::SquareIsOccupied(int x, int y){
-  return (m_board[x][y]!=NULL);
+bool Board::isValidPosition(const Position &p){
+  if(p._x < 0 || p._x >=m_size || p._y < 0 || p._y >= m_size){
+    return false;
+  }
+  else return true;
 }
 
-void Board::AddPiece(int x, int y){
-  if(x<0 || x>=m_size || y<0 || y>=m_size){
-    std::string errmsg("Attempted to add piece out of bounds:");
-    errmsg+=x;  errmsg+=",";  errmsg+=y;
+bool Board::SquareIsOccupied(const Position &p){
+  int x = p._x;
+  int y = p._y;
+  if(!isValidPosition(p)){
+    std::string errmsg("Trying to check occupation of invalid position:");
+    errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  else if(this->SquareIsOccupied(x, y)){
+  else return (m_board[x][y]!=NULL);
+}
+
+void Board::AddPiece(const Position &p){
+  int x = p._x;
+  int y = p._y;
+  if(!isValidPosition(p) || !isValidPosition(p)){
+    std::string errmsg("Attempted to add piece out of bounds:");
+    errmsg+=p.toString();
+    throw std::out_of_range(errmsg);
+  }
+  else if(this->SquareIsOccupied(p)){
     std::string errmsg("Square is occupied:");
-    errmsg+=x;  errmsg+=",";  errmsg+=y;
+    errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
   else{
@@ -42,16 +58,23 @@ void Board::AddPiece(int x, int y){
   }
 }
 
-void Board::MovePiece(int oldx, int oldy, int newx, int newy){
-  if(newx>=0 && newx <= m_size && newy>=0 && newy<=m_size){
-    m_board[newx][newy]=m_board[oldx][oldy];
-    m_board[oldx][oldy]=NULL;
+void Board::MovePiece(const Position &oldp, const Position &newp){
+  int oldx = oldp._x;
+  int oldy = oldp._y;
+  int newx = newp._x;
+  int newy = newp._y;
+  if(!(this->SquareIsOccupied(oldp))){
+    std::string errmsg("Tried to move non-existent piece:");
+    errmsg+=oldp.toString();
+    throw std::runtime_error(errmsg);
+  }
+  else if(this->SquareIsOccupied(newp)){
+    std::string errmsg("Tried to move to occupied square:");
+    errmsg+=newp.toString();
+    throw std::runtime_error(errmsg);
   }
   else{
-    std::string errmsg("Attempted to move piece out of bounds:");
-    errmsg+=newx;
-    errmsg+=",";
-    errmsg+=newy;
-    throw std::out_of_range(errmsg);
+    m_board[newx][newy]=m_board[oldx][oldy];
+    m_board[oldx][oldy]=NULL;
   }
 }
