@@ -9,6 +9,8 @@
 #ifndef checkyrs_position_h
 #define checkyrs_position_h
 
+#include <string>
+
 struct Position {
   int _x;
   int _y;

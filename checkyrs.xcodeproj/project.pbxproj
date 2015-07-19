@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		8302EAC41B5BC4BF00CD0CA4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */; };
 		8335C9421B598C0A0017EB5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9411B598C0A0017EB5F /* main.cpp */; };
 		8335C9571B598FC90017EB5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9561B598FC90017EB5F /* main.cpp */; };
 		8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9581B5992F40017EB5F /* boardtests.cpp */; };
@@ -39,6 +42,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8302EAC11B5BC4BF00CD0CA4 /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
+		8302EAC21B5BC4BF00CD0CA4 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
+		8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gametests.cpp; sourceTree = "<group>"; };
 		8335C93E1B598C0A0017EB5F /* checkyrs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = checkyrs; sourceTree = BUILT_PRODUCTS_DIR; };
 		8335C9411B598C0A0017EB5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8335C94E1B598F060017EB5F /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +100,8 @@
 				8335C9411B598C0A0017EB5F /* main.cpp */,
 				8335C95A1B5994130017EB5F /* board.cpp */,
 				8335C95B1B5994130017EB5F /* board.h */,
+				8302EAC11B5BC4BF00CD0CA4 /* game.cpp */,
+				8302EAC21B5BC4BF00CD0CA4 /* game.h */,
 				8335C95D1B59987B0017EB5F /* square.cpp */,
 				8335C95E1B59987B0017EB5F /* square.h */,
 				837163041B5A49D1008D1D99 /* position.h */,
@@ -106,6 +114,7 @@
 			children = (
 				8335C9561B598FC90017EB5F /* main.cpp */,
 				8335C9581B5992F40017EB5F /* boardtests.cpp */,
+				8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */,
 				837163051B5A99BD008D1D99 /* positiontests.cpp */,
 			);
 			name = Tests;
@@ -192,6 +201,7 @@
 				8335C95C1B5994130017EB5F /* board.cpp in Sources */,
 				8335C9421B598C0A0017EB5F /* main.cpp in Sources */,
 				8335C95F1B59987B0017EB5F /* square.cpp in Sources */,
+				8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +212,10 @@
 				8335C9611B599B830017EB5F /* square.cpp in Sources */,
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
+				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
+				8302EAC41B5BC4BF00CD0CA4 /* game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

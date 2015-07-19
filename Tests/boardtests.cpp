@@ -21,7 +21,6 @@ TEST_CASE("Board has correct size"){
 }
 
 TEST_CASE("Piece can be placed on board"){
-  
   Board board;
   Position p(0,0);
   board.AddPiece(p);
@@ -80,27 +79,4 @@ TEST_CASE("Cannot move piece to occupied square"){
   Position secondpiece(1,1);
   board.AddPiece(secondpiece);
   REQUIRE_THROWS_AS(board.MovePiece(firstpiece,secondpiece),std::runtime_error);
-}
-
-TEST_CASE("Can get list of possible moves"){
-  Board board;
-  Position firstpiece(0,0);
-  board.AddPiece(firstpiece);
-  REQUIRE(board.getMovesFrom(firstpiece).size() > 0);
-}
-
-TEST_CASE("List only includes positions on board"){
-  Board board;
-  Position firstpiece(0,0);
-  board.AddPiece(firstpiece);
-  REQUIRE(board.getMovesFrom(firstpiece).size() == 1);
-}
-
-TEST_CASE("Movelist does not include occupied squares"){
-  Board board;
-  Position firstpiece(0,0);
-  board.AddPiece(firstpiece);
-  Position secondpiece(1,1);
-  board.AddPiece(secondpiece);
-  REQUIRE(board.getMovesFrom(firstpiece).size()==0);
 }
