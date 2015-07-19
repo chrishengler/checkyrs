@@ -27,10 +27,11 @@ public:
   bool SquareIsOccupied(const Position &p);
   
   bool SquareHasKing(const Position &p);
-  std::vector<Position> getMovesFrom(const Position &p);
-  
+
   void AddPiece(const Position &p,const int &player=1, const bool &isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
+  
+  Square getPiece(const Position &p);
   
 };
 

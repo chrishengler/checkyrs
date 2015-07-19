@@ -19,29 +19,22 @@ void Game::MovePiece(const Position &oldp, const Position &newp){
 
 std::vector<Position> Game::getMovesFrom(const Position &p){
   std::vector<Position> possibleMoves;
-  for(int ii=-2;ii<=2;ii++){
-    if(ii==0) continue;
-    for(int jj = -1*fabs(ii); jj<=(fabs(ii)); jj++){
-      if( (jj<0 || fabs(jj)>1) && !_board.SquareHasKing(p)){
-        continue;
+  for(int ii=-1;ii<=1;ii+=2){
+    if(ii<0 && !_board.SquareHasKing(p)) continue;
+    for(int jj=-1;jj<=1;jj+=2){
+      Position newpos(p._x+ii,p._y+jj);
+      if(!_board.PositionExists(newpos)) continue;
+      if(!_board.SquareIsOccupied(newpos)){
+        possibleMoves.push_back(newpos);
       }
-      if(fabs(jj)!=fabs(ii)) continue;
-      Position p(ii,jj);
-      possibleMoves.push_back(p);
+      else{
+        if(_board.getPiece(newpos).getPlayer()==_board.getPiece(p).getPlayer()) continue;
+        newpos=Position(p._x+(2*ii),p._y+(2*jj));
+        if(!_board.PositionExists(newpos)) continue;
+        if(_board.SquareIsOccupied(newpos)) continue;
+        possibleMoves.push_back(newpos);
+      }
     }
-  }
-  for(std::vector<Position>::iterator pos=possibleMoves.begin();pos!=possibleMoves.end();){
-    //no auto increment in for loop because vector.erase() already returns iterator pointing to next element
-    if(!_board.PositionExists(*pos) || _board.SquareIsOccupied(*pos)){
-      //printf("erasing %s from movelist\n",(*pos).toString().c_str());
-      pos = possibleMoves.erase(pos);
-      continue;
-    }
-    else pos++;
-  }
-  //printf("accepted moves:\n");
-  for(std::vector<Position>::iterator pos=possibleMoves.begin();pos!=possibleMoves.end();pos++){
-    //printf("%s\n",(*pos).toString().c_str());
   }
   return possibleMoves;
 }

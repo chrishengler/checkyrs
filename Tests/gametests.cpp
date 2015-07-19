@@ -34,3 +34,11 @@ TEST_CASE("Movelist does not include occupied squares"){
   REQUIRE(game.getMovesFrom(firstpiece).size()==0);
 }
 
+TEST_CASE("Can jump over neighbouring pieces"){
+  Game game;
+  Position p1(0,0);
+  game.AddPiece(p1);
+  Position p2(1,1);
+  game.AddPiece(p2,2,false);
+  REQUIRE(game.getMovesFrom(p1).size()==1);
+}
