@@ -18,7 +18,7 @@ Board::Board(int size){
   for(int ii=0;ii<size;ii++){
     m_board[ii].resize(size);
     for(int jj=0;jj<size;jj++){
-      m_board[ii][jj] = NULL;
+      m_board[ii][jj] = Square::Square();
     }
   }
 }
@@ -38,7 +38,7 @@ bool Board::SquareIsOccupied(const Position &p){
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  else return (m_board[x][y]!=NULL);
+  else return (m_board[x][y].isOccupied());
 }
 
 bool Board::SquareHasKing(const Position &p){
@@ -52,7 +52,7 @@ bool Board::SquareHasKing(const Position &p){
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  return m_board[p._x][p._y]->isKing();
+  return m_board[p._x][p._y].isKing();
 }
 
 std::vector<Position> Board::getMovesFrom(const Position &p){
@@ -71,34 +71,35 @@ std::vector<Position> Board::getMovesFrom(const Position &p){
   for(std::vector<Position>::iterator pos=possibleMoves.begin();pos!=possibleMoves.end();){
     //no auto increment in for loop because vector.erase() already returns iterator pointing to next element
     if(!PositionExists(*pos) || SquareIsOccupied(*pos)){
-      printf("erasing %s from movelist\n",(*pos).toString().c_str());
+      //printf("erasing %s from movelist\n",(*pos).toString().c_str());
       pos = possibleMoves.erase(pos);
       continue;
     }
     else pos++;
   }
-  printf("accepted moves:\n");
+  //printf("accepted moves:\n");
   for(std::vector<Position>::iterator pos=possibleMoves.begin();pos!=possibleMoves.end();pos++){
-    printf("%s\n",(*pos).toString().c_str());
+    //printf("%s\n",(*pos).toString().c_str());
   }
   return possibleMoves;
 }
 
-void Board::AddPiece(const Position &p){
-  int x = p._x;
-  int y = p._y;
-  if(!PositionExists(p) || !PositionExists(p)){
+void Board::AddPiece(const Position &pos,const int &player, const bool &isKing){
+  int x = pos._x;
+  int y = pos._y;
+  if(!PositionExists(pos) || !PositionExists(pos)){
     std::string errmsg("Attempted to add piece out of bounds:");
-    errmsg+=p.toString();
+    errmsg+=pos.toString();
     throw std::out_of_range(errmsg);
   }
-  else if(this->SquareIsOccupied(p)){
+  else if(SquareIsOccupied(pos)){
     std::string errmsg("Square is occupied:");
-    errmsg+=p.toString();
+    errmsg+=pos.toString();
     throw std::runtime_error(errmsg);
   }
   else{
-    m_board[x][y] = new Piece();
+    Square newpiece(player,isKing);
+    m_board[x][y] = newpiece;
   }
 }
 
@@ -107,18 +108,18 @@ void Board::MovePiece(const Position &oldp, const Position &newp){
   int oldy = oldp._y;
   int newx = newp._x;
   int newy = newp._y;
-  if(!(this->SquareIsOccupied(oldp))){
+  if(!(SquareIsOccupied(oldp))){
     std::string errmsg("Tried to move non-existent piece:");
     errmsg+=oldp.toString();
     throw std::runtime_error(errmsg);
   }
-  else if(this->SquareIsOccupied(newp)){
+  else if(SquareIsOccupied(newp)){
     std::string errmsg("Tried to move to occupied square:");
     errmsg+=newp.toString();
     throw std::runtime_error(errmsg);
   }
   else{
     m_board[newx][newy]=m_board[oldx][oldy];
-    m_board[oldx][oldy]=NULL;
+    m_board[oldx][oldy]=Square::Square();
   }
 }

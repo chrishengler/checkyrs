@@ -11,12 +11,12 @@
 
 #include <stdio.h>
 #include <vector>
-#include "piece.h"
+#include "square.h"
 #include "position.h"
 
 class Board {
   int m_size;
-  std::vector<std::vector<Piece*> > m_board;
+  std::vector<std::vector<Square> > m_board;
   
 public:
   Board(int size=8);
@@ -29,7 +29,7 @@ public:
   bool SquareHasKing(const Position &p);
   std::vector<Position> getMovesFrom(const Position &p);
   
-  void AddPiece(const Position &p);
+  void AddPiece(const Position &p,const int &player=1, const bool &isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
   
 };

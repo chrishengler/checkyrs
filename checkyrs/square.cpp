@@ -6,4 +6,4 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#include "piece.h"
+#include "square.h"
