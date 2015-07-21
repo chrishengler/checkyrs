@@ -10,6 +10,7 @@
 #define checkyrs_position_h
 
 #include <string>
+#include <math.h>
 
 struct Position {
   int _x;
@@ -24,5 +25,6 @@ struct Position {
   }
 
 };
+
   
 #endif

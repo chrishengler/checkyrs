@@ -10,7 +10,7 @@
 #include <math.h>
 #include "board.h"
 
-Board::Board(int size){
+Board::Board(const int &size){
   
   m_size=size;
   

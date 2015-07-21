@@ -13,15 +13,21 @@
 #include "board.h"
 
 class Game {
-  Board _board;
+  Board m_board;
+  
+  std::vector<Position> getJumpsFrom(const Position &p);
+  std::vector<Position> getSingleMovesFrom(const Position &p);
 
 public:
-  Game(){_board=Board::Board();}
+  Game(){m_board=Board::Board();}
+  Game(const Board &board){m_board=board;};
+  
+  Board getBoard(){return m_board;}
   
   void AddPiece(const Position &pos,const int &player=1, const bool &isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
 
-  std::vector<Position> getMovesFrom(const Position &p);
+  std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool &alreadyMoved=false);
 };
 
 

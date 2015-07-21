@@ -19,7 +19,8 @@ class Board {
   std::vector<std::vector<Square> > m_board;
   
 public:
-  Board(int size=8);
+  Board(const Board &board){m_size=board.m_size; m_board=board.m_board;}
+  Board(const int &size=8);
   
   int getSize(){return m_size;}
   
