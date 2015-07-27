@@ -17,7 +17,9 @@ class Game {
   
   std::vector<Position> getJumpsFrom(const Position &p);
   std::vector<Position> getSingleMovesFrom(const Position &p);
-
+  std::vector<std::vector<Position> > ExtendMove(const std::vector<Position> &p);
+  void RemovePiece(const Position &p);
+  
 public:
   Game(){m_board=Board::Board();}
   Game(const Board &board){m_board=board;};
@@ -28,6 +30,8 @@ public:
   void MovePiece(const Position &oldp, const Position &newp);
 
   std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool &alreadyMoved=false);
+  
+  std::vector<Position> getJumpedSquares(const std::vector<Position> &p); 
 };
 
 

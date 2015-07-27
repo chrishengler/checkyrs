@@ -24,5 +24,6 @@ public:
   bool isOccupied(){return _isOccupied;}
   bool isKing(){return _isKing;}
   int getPlayer(){return _player;}
+  void removePiece(){_isOccupied=false; _player=0; _isKing=false;}
 };
 #endif /* defined(__checkyrs__square__) */

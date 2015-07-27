@@ -38,15 +38,26 @@ TEST_CASE("Can jump over neighbouring pieces"){
   game.AddPiece(p1);
   Position p2(1,1);
   game.AddPiece(p2,2,false);
-  REQUIRE(game.getMovesFrom(p1).at(0).size()==1);
+  REQUIRE(game.getMovesFrom(p1).at(0).size()==2);
 }
 
-TEST_CASE("Can only jump over pieces of opponent"){
+TEST_CASE("Cannot jump over own pieces"){
   Game game;
   Position p1(0,0);
   game.AddPiece(p1);
   Position p2(1,1);
   game.AddPiece(p2,1,false);
   REQUIRE(game.getMovesFrom(p1).size()==0);
+}
+
+TEST_CASE("Can make multiple jumps in one move"){
+  Game game;
+  Position p1(0,0);
+  game.AddPiece(p1);
+  Position p2_1(1,1);
+  Position p2_2(3,3);
+  game.AddPiece(p2_1,2);
+  game.AddPiece(p2_2,2);
+  REQUIRE(game.getMovesFrom(p1).at(0).size()==3);
 }
 

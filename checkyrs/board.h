@@ -26,13 +26,16 @@ public:
   
   bool PositionExists(const Position &p);
   bool SquareIsOccupied(const Position &p);
+  Position getJump(const Position &p1, const Position &p2);
   
   bool SquareHasKing(const Position &p);
 
   void AddPiece(const Position &p,const int &player=1, const bool &isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
+  void RemovePiece(const Position &p);
   
   Square getPiece(const Position &p);
+
   
 };
 

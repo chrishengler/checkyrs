@@ -30,6 +30,27 @@ bool Board::PositionExists(const Position &p){
   else return true;
 }
 
+
+Position Board::getJump(const Position &p1, const Position &p2){
+  if(!PositionExists(p1)){
+    std::string errmsg("Position does not exist: ");
+    errmsg+=p1.toString();
+    throw std::logic_error(errmsg);
+  }
+  else if(!PositionExists(p2)){
+    std::string errmsg("Position does not exist: ");
+    errmsg+=p2.toString();
+    throw std::logic_error(errmsg);
+  }
+  else if(p1._x%2 != p2._x%2 || p1._y%2 != p2._y%2){
+    std::string errmsg("jump is not valid: ");
+    errmsg+=p1.toString(); errmsg+=" to "; errmsg+=p2.toString();
+    throw std::runtime_error(errmsg);
+  }
+  return Position( (p1._x+p2._x)/2 , (p1._y+p2._y)/2 );
+}
+
+
 bool Board::SquareIsOccupied(const Position &p){
   int x = p._x;
   int y = p._y;
@@ -109,3 +130,18 @@ Square Board::getPiece(const Position &p){
   }
   else return m_board[p._x][p._y];
 }
+
+void Board::RemovePiece(const Position &p){
+  if(!PositionExists(p)){
+    std::string errmsg("Tried to remove piece from non-existent square");
+    errmsg+=p.toString();
+    throw std::runtime_error(errmsg);
+  }
+  if(!SquareIsOccupied(p)){
+    std::string errmsg("Tried to remove piece from empty square");
+    errmsg+=p.toString();
+    throw std::runtime_error(errmsg);
+  }
+  else m_board[p._x][p._y].removePiece();
+}
+
