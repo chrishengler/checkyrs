@@ -61,3 +61,12 @@ TEST_CASE("Can make multiple jumps in one move"){
   REQUIRE(game.getMovesFrom(p1).at(0).size()==3);
 }
 
+TEST_CASE("player 2 pieces move opposite direction"){
+  Game game;
+  Position p1(0,0);
+  game.AddPiece(p1);
+  Position p2(6,6);
+  game.AddPiece(p2,2);
+  REQUIRE( game.getMovesFrom(p2).at(0).at(1)._y==5);
+}
+
