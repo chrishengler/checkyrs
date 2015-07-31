@@ -46,7 +46,6 @@ std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const 
       possibleMoves.push_back(thismove);
     }
   }
-  
   return possibleMoves;
 }
 

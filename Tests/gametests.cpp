@@ -70,3 +70,4 @@ TEST_CASE("player 2 pieces move opposite direction"){
   REQUIRE( game.getMovesFrom(p2).at(0).at(1)._y==5);
 }
 
+
