@@ -9,6 +9,7 @@
 #include "game.h"
 #include <math.h>
 
+
 void Game::AddPiece(const Position &pos, const int &player, const bool &isKing){
   m_board.AddPiece(pos,player,isKing);
 }
@@ -90,7 +91,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p){
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
       if(jj<0 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
-      if(jj>1 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
+      if(jj>1 && m_board.getPlayer(p)==2 && !m_board.SquareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj); //the square to jump over
       if(!m_board.PositionExists(newpos)) continue;
       else if(m_board.SquareIsOccupied(newpos)){ //can't jump over empty square
@@ -127,4 +128,12 @@ std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p){
   return jumped;
 }
 
+void Game::ExecuteMove(const std::vector<Position> &move){
+  for(int ii=0;ii<move.size()-1;ii++){
+    if(fabs(move.at(ii)._y - move.at(ii+1)._y) != 1){
+      RemovePiece(m_board.getJump(move.at(ii),move.at(ii+1)));
+    }
+    MovePiece(move.at(ii), move.at(ii+1));
+  }
+}
 

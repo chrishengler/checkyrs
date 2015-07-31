@@ -12,18 +12,19 @@
 #include <stdio.h>
 class Square {
   
-  bool _isOccupied;
+  bool m_isOccupied;
   
-  int _player;
-  bool _isKing;
+  int m_player;
+  bool m_isKing;
 
 public:
-  Square(){_isOccupied=false; _player=0; _isKing=false;}
-  Square(const int &p, const bool &k=false){_isOccupied=true; _player=p; _isKing=k;}
+  Square(){m_isOccupied=false; m_player=0; m_isKing=false;}
+  Square(const int &p, const bool &k=false){m_isOccupied=true; m_player=p; m_isKing=k;}
+  Square(const Square &s);
   
-  bool isOccupied(){return _isOccupied;}
-  bool isKing(){return _isKing;}
-  int getPlayer(){return _player;}
-  void removePiece(){_isOccupied=false; _player=0; _isKing=false;}
+  bool isOccupied(){return m_isOccupied;}
+  bool isKing(){return m_isKing;}
+  int getPlayer(){return m_player;}
+  void removePiece(){m_isOccupied=false; m_player=0; m_isKing=false;}
 };
 #endif /* defined(__checkyrs__square__) */

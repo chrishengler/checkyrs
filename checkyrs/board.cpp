@@ -13,12 +13,28 @@
 Board::Board(const int &size){
   
   m_size=size;
+  m_piecesp1=0;
+  m_piecesp2=0;
   
   m_board.resize(size);
   for(int ii=0;ii<size;ii++){
     m_board[ii].resize(size);
     for(int jj=0;jj<size;jj++){
       m_board[ii][jj] = Square::Square();
+    }
+  }
+}
+
+Board::Board(const Board &board){
+  m_size=board.m_size;
+  m_piecesp1=board.m_piecesp1;
+  m_piecesp2=board.m_piecesp2;
+  
+  m_board.resize(m_size);
+  for(int ii=0;ii<m_size;ii++){
+    m_board[ii].resize(m_size);
+    for(int jj=0;jj<m_size;jj++){
+      m_board[ii][jj] = Square::Square(board.m_board[ii][jj]);
     }
   }
 }
@@ -103,10 +119,10 @@ void Board::AddPiece(const Position &pos,const int &player, const bool &isKing){
     errmsg+=pos.toString();
     throw std::runtime_error(errmsg);
   }
-  else{
-    Square newpiece(player,isKing);
-    m_board[x][y] = newpiece;
-  }
+  Square newpiece(player,isKing);
+  m_board[x][y] = newpiece;
+  player==1 ? m_piecesp1++ : m_piecesp2++;
+  
 }
 
 void Board::MovePiece(const Position &oldp, const Position &newp){
@@ -141,7 +157,7 @@ Square Board::getPiece(const Position &p){
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  else return m_board[p._x][p._y];
+  return m_board[p._x][p._y];
 }
 
 void Board::RemovePiece(const Position &p){
@@ -155,6 +171,7 @@ void Board::RemovePiece(const Position &p){
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  else m_board[p._x][p._y].removePiece();
+  getPlayer(p) == 1 ? m_piecesp1-- : m_piecesp2--;
+  m_board[p._x][p._y].removePiece();
 }
 

@@ -7,3 +7,9 @@
 //
 
 #include "square.h"
+
+Square::Square(const Square &s){
+  m_isKing = s.m_isKing;
+  m_isOccupied = s.m_isOccupied;
+  m_player = s.m_player;
+}

@@ -79,4 +79,19 @@ TEST_CASE("Get a player's move options for multiple pieces"){
   REQUIRE( game.getMovesForPlayer(1).size()==3);
 }
 
+TEST_CASE("Executing move removes taken pieces"){
+  Game game;
+  Position p1(0,0);
+  game.AddPiece(p1);
+  Position p2(1,1);
+  game.AddPiece(p2,2);
+  REQUIRE( game.getNumPiecesPlayer(1)==1);
+  REQUIRE( game.getNumPiecesPlayer(2)==1);
+  std::vector<std::vector<Position> > possibleMoves = game.getMovesForPlayer(1);
+  REQUIRE( game.getMovesForPlayer(1).size()==1);
+  game.ExecuteMove( possibleMoves.at(0) );
+  REQUIRE( game.getNumPiecesPlayer(1)==1);
+  REQUIRE( game.getNumPiecesPlayer(2)==0);
+}
+
 

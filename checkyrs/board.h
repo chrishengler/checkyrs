@@ -16,10 +16,11 @@
 
 class Board {
   int m_size;
+  int m_piecesp1, m_piecesp2;
   std::vector<std::vector<Square> > m_board;
   
 public:
-  Board(const Board &board){m_size=board.m_size; m_board=board.m_board;}
+  Board(const Board &board);
   Board(const int &size=8);
   
   int getSize(){return m_size;}
@@ -36,8 +37,7 @@ public:
   void RemovePiece(const Position &p);
   
   Square getPiece(const Position &p);
-
-  
+  int getNumPiecesPlayer(const int &player){return player==1 ? m_piecesp1 : m_piecesp2;}
 };
 
 #endif /* defined(__checkyrs__board__) */
