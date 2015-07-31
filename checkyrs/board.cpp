@@ -68,14 +68,13 @@ Position Board::getJump(const Position &p1, const Position &p2){
 
 
 bool Board::SquareIsOccupied(const Position &p){
-  int x = p._x;
-  int y = p._y;
+
   if(!PositionExists(p)){
     std::string errmsg("Trying to check occupation of invalid position:");
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  else return (m_board[x][y].isOccupied());
+  else return (m_board[p._x][p._y].isOccupied());
 }
 
 bool Board::SquareHasKing(const Position &p){
@@ -107,8 +106,6 @@ int Board::getPlayer(const Position &p){
 }
 
 void Board::AddPiece(const Position &pos,const int &player, const bool &isKing){
-  int x = pos._x;
-  int y = pos._y;
   if(!PositionExists(pos) || !PositionExists(pos)){
     std::string errmsg("Attempted to add piece out of bounds:");
     errmsg+=pos.toString();
@@ -120,16 +117,12 @@ void Board::AddPiece(const Position &pos,const int &player, const bool &isKing){
     throw std::runtime_error(errmsg);
   }
   Square newpiece(player,isKing);
-  m_board[x][y] = newpiece;
+  m_board[pos._x][pos._y] = newpiece;
   player==1 ? m_piecesp1++ : m_piecesp2++;
   
 }
 
 void Board::MovePiece(const Position &oldp, const Position &newp){
-  int oldx = oldp._x;
-  int oldy = oldp._y;
-  int newx = newp._x;
-  int newy = newp._y;
   if(!(SquareIsOccupied(oldp))){
     std::string errmsg("Tried to move non-existent piece:");
     errmsg+=oldp.toString();
@@ -141,8 +134,8 @@ void Board::MovePiece(const Position &oldp, const Position &newp){
     throw std::runtime_error(errmsg);
   }
   else{
-    m_board[newx][newy]=m_board[oldx][oldy];
-    m_board[oldx][oldy]=Square::Square();
+    m_board[newp._x][newp._y]=m_board[oldp._x][oldp._y];
+    m_board[oldp._x][oldp._y]=Square::Square();
   }
 }
 
