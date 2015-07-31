@@ -76,6 +76,19 @@ bool Board::SquareHasKing(const Position &p){
   return m_board[p._x][p._y].isKing();
 }
 
+int Board::getPlayer(const Position &p){
+  if(!PositionExists(p)){
+    std::string errmsg("Checking owner of non-existent position:");
+    errmsg+=p.toString();
+    throw std::out_of_range(errmsg);
+  }
+  if(!SquareIsOccupied(p)){
+    std::string errmsg("Checking owner of empty square:");
+    errmsg+=p.toString();
+    throw std::runtime_error(errmsg);
+  }
+  return m_board[p._x][p._y].getPlayer();
+}
 
 void Board::AddPiece(const Position &pos,const int &player, const bool &isKing){
   int x = pos._x;
