@@ -70,4 +70,13 @@ TEST_CASE("player 2 pieces move opposite direction"){
   REQUIRE( game.getMovesFrom(p2).at(0).at(1)._y==5);
 }
 
+TEST_CASE("Get a player's move options for multiple pieces"){
+  Game game;
+  Position p1(0,0);
+  game.AddPiece(p1);
+  Position p2(2,0);
+  game.AddPiece(p2);
+  REQUIRE( game.getMovesForPlayer(1).size()==3);
+}
+
 

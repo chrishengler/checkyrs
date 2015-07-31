@@ -30,6 +30,7 @@ public:
   void MovePiece(const Position &oldp, const Position &newp);
 
   std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool &alreadyMoved=false);
+  std::vector<std::vector<Position> > getMovesForPlayer(const int &player);
   
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p); 
 };
