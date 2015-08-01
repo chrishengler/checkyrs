@@ -22,6 +22,11 @@ void Game::RemovePiece(const Position &p){
   m_board.RemovePiece(p);
 }
 
+std::pair<bool,int> Game::gameOver(){
+  if(!m_gameover) return std::make_pair(false, 0);
+  return std::make_pair(true,m_winner);
+}
+
 std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool &alreadyMoved){
   std::vector<std::vector<Position> > possibleMoves;
   
@@ -134,6 +139,14 @@ void Game::ExecuteMove(const std::vector<Position> &move){
       RemovePiece(m_board.getJump(move.at(ii),move.at(ii+1)));
     }
     MovePiece(move.at(ii), move.at(ii+1));
+  }
+  if(getNumPiecesPlayer(1)==0){
+    m_gameover = true;
+    m_winner = 2;
+  }
+  else if(getNumPiecesPlayer(2)==0){
+    m_gameover = true;
+    m_winner = 1;
   }
 }
 
