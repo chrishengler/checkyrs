@@ -94,4 +94,15 @@ TEST_CASE("Executing move removes taken pieces"){
   REQUIRE( game.getNumPiecesPlayer(2)==0);
 }
 
+TEST_CASE("Game ends when team has no pieces left"){
+  Game game;
+  Position p1(0,0);
+  game.AddPiece(p1);
+  Position p2(1,1);
+  game.AddPiece(p2,2);
+  std::vector<std::vector<Position> > possibleMoves = game.getMovesForPlayer(1);
+  game.ExecuteMove(possibleMoves.at(0));
+  REQUIRE(game.gameOver().first  == true);
+  REQUIRE(game.gameOver().second == 1);
+}
 
