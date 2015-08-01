@@ -106,3 +106,14 @@ TEST_CASE("Game ends when team has no pieces left"){
   REQUIRE(game.gameOver().second == 1);
 }
 
+TEST_CASE("If jumps available, non-jumping moves not possible"){
+  Game game;
+  Position p1(2,2);
+  game.AddPiece(p1);
+  Position p2(3,3);
+  game.AddPiece(p2,2);
+  REQUIRE(game.getMovesFrom(p1).size() == 1);
+  Position p3(5,3);
+  game.AddPiece(p3);
+  REQUIRE(game.getMovesForPlayer(1).size() == 1);
+}
