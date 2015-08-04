@@ -28,6 +28,7 @@ public:
   bool PositionExists(const Position &p);
   bool SquareIsOccupied(const Position &p);
   int getPlayer(const Position &p);
+  bool wasJump(const Position &p1, const Position &p2);
   Position getJump(const Position &p1, const Position &p2);
   
   bool SquareHasKing(const Position &p);

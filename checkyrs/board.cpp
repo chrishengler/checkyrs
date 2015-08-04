@@ -46,6 +46,9 @@ bool Board::PositionExists(const Position &p){
   else return true;
 }
 
+bool Board::wasJump(const Position &p1, const Position &p2){
+  return ( fabs(p1._x - p2._x) == 2 && fabs(p1._y - p2._y) == 2 );
+}
 
 Position Board::getJump(const Position &p1, const Position &p2){
   if(!PositionExists(p1)){
@@ -58,7 +61,7 @@ Position Board::getJump(const Position &p1, const Position &p2){
     errmsg+=p2.toString();
     throw std::logic_error(errmsg);
   }
-  else if(p1._x%2 != p2._x%2 || p1._y%2 != p2._y%2){
+  else if(!wasJump(p1,p2)){
     std::string errmsg("jump is not valid: ");
     errmsg+=p1.toString(); errmsg+=" to "; errmsg+=p2.toString();
     throw std::runtime_error(errmsg);

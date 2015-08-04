@@ -80,3 +80,23 @@ TEST_CASE("Cannot move piece to occupied square"){
   board.AddPiece(secondpiece);
   REQUIRE_THROWS_AS(board.MovePiece(firstpiece,secondpiece),std::runtime_error);
 }
+
+TEST_CASE("Can check if move involves jump"){
+  Board board;
+  Position p1(0,0);
+  Position p2(1,1);
+  Position p3(2,2);
+  REQUIRE(board.wasJump(p1,p2) == false);
+  REQUIRE(board.wasJump(p1,p3) == true);
+}
+
+TEST_CASE("Can check which square was jumped"){
+  Board board;
+  Position p1(0,0);
+  Position p2(1,1);
+  Position p3(2,2);
+  REQUIRE_THROWS(board.getJump(p1,p2));
+  REQUIRE(board.getJump(p1,p3)._x == 1);
+  REQUIRE(board.getJump(p1,p3)._y ==1);
+}
+
