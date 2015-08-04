@@ -113,12 +113,25 @@ std::vector<Position> Game::getJumpsFrom(const Position &p){
 
 std::vector<std::vector<Position> > Game::getMovesForPlayer(const int &player){
   std::vector<std::vector<Position> > possibleMoves;
+  bool jumpFound = false;
   for(int ii=0;ii<m_board.getSize();ii++){
     for(int jj=0;jj<m_board.getSize();jj++){
       Position p(ii,jj);
       if(m_board.SquareIsOccupied(p) && m_board.getPlayer(p)==player){
         std::vector<std::vector<Position> > thispiece = getMovesFrom(p);
-        possibleMoves.insert(possibleMoves.end(),thispiece.begin(),thispiece.end());
+        if(jumpFound){
+          if(m_board.wasJump(thispiece.at(0).at(0),thispiece.at(0).at(1))){
+            possibleMoves.insert(possibleMoves.end(),thispiece.begin(),thispiece.end());
+          }
+          else continue;
+        }
+        else{
+          if(m_board.wasJump(thispiece.at(0).at(0),thispiece.at(0).at(1))){
+            possibleMoves.clear();
+            jumpFound = true;
+          }
+          possibleMoves.insert(possibleMoves.end(),thispiece.begin(),thispiece.end());
+        }
       }
     }
   }
