@@ -117,3 +117,17 @@ TEST_CASE("If jumps available, non-jumping moves not possible"){
   game.AddPiece(p3);
   REQUIRE(game.getMovesForPlayer(1).size() == 1);
 }
+
+TEST_CASE("Get all moves for player 2"){
+  Game game;
+  Position p1(6,6);
+  game.AddPiece(p1,2);
+  Position p2(4,6);
+  game.AddPiece(p2,2);
+  Position p3(5,5);
+  game.AddPiece(p3);
+  Position p4(2,6);
+  game.AddPiece(p4,2);
+  REQUIRE(game.getMovesForPlayer(2).size()==2);
+  REQUIRE(game.getMovesForPlayer(2).at(0).at(1)._y == 4);
+}
