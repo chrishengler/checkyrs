@@ -22,9 +22,9 @@ public:
   Square(const int &p, const bool &k=false){m_isOccupied=true; m_player=p; m_isKing=k;}
   Square(const Square &s);
   
-  bool isOccupied(){return m_isOccupied;}
-  bool isKing(){return m_isKing;}
-  int getPlayer(){return m_player;}
+  bool isOccupied() const{return m_isOccupied;}
+  bool isKing() const{return m_isKing;}
+  int getPlayer() const{return m_player;}
   void removePiece(){m_isOccupied=false; m_player=0; m_isKing=false;}
 };
 #endif /* defined(__checkyrs__square__) */

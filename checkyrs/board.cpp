@@ -39,18 +39,18 @@ Board::Board(const Board &board){
   }
 }
 
-bool Board::PositionExists(const Position &p){
+bool Board::PositionExists(const Position &p) const{
   if(p._x < 0 || p._x >=m_size || p._y < 0 || p._y >= m_size){
     return false;
   }
   else return true;
 }
 
-bool Board::wasJump(const Position &p1, const Position &p2){
+bool Board::wasJump(const Position &p1, const Position &p2) const{
   return ( fabs(p1._x - p2._x) == 2 && fabs(p1._y - p2._y) == 2 );
 }
 
-Position Board::getJump(const Position &p1, const Position &p2){
+Position Board::getJump(const Position &p1, const Position &p2) const{
   if(!PositionExists(p1)){
     std::string errmsg("Position does not exist: ");
     errmsg+=p1.toString();
@@ -70,8 +70,7 @@ Position Board::getJump(const Position &p1, const Position &p2){
 }
 
 
-bool Board::SquareIsOccupied(const Position &p){
-
+bool Board::SquareIsOccupied(const Position &p) const{
   if(!PositionExists(p)){
     std::string errmsg("Trying to check occupation of invalid position:");
     errmsg+=p.toString();
@@ -80,7 +79,7 @@ bool Board::SquareIsOccupied(const Position &p){
   else return (m_board[p._x][p._y].isOccupied());
 }
 
-bool Board::SquareHasKing(const Position &p){
+bool Board::SquareHasKing(const Position &p) const{
   if(!PositionExists(p)){
     std::string errmsg("Checking kinghood of non-existent position:");
     errmsg+=p.toString();
@@ -94,7 +93,7 @@ bool Board::SquareHasKing(const Position &p){
   return m_board[p._x][p._y].isKing();
 }
 
-int Board::getPlayer(const Position &p){
+int Board::getPlayer(const Position &p) const{
   if(!PositionExists(p)){
     std::string errmsg("Checking owner of non-existent position:");
     errmsg+=p.toString();
@@ -142,7 +141,7 @@ void Board::MovePiece(const Position &oldp, const Position &newp){
   }
 }
 
-Square Board::getPiece(const Position &p){
+Square Board::getPiece(const Position &p) const{
   if(!PositionExists(p)){
     std::string errmsg("Tried to get piece from non-existent square");
     errmsg+=p.toString();

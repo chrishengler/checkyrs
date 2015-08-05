@@ -7,6 +7,7 @@
 //
 
 #include "game.h"
+
 #include <math.h>
 
 
@@ -22,12 +23,12 @@ void Game::RemovePiece(const Position &p){
   m_board.RemovePiece(p);
 }
 
-std::pair<bool,int> Game::gameOver(){
+std::pair<bool,int> Game::gameOver() const{
   if(!m_gameover) return std::make_pair(false, 0);
   return std::make_pair(true,m_winner);
 }
 
-std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool &alreadyMoved){
+std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool &alreadyMoved) const{
   std::vector<std::vector<Position> > possibleMoves;
   
   std::vector<Position> moveStarts = getJumpsFrom(p);
@@ -55,7 +56,7 @@ std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const 
   return possibleMoves;
 }
 
-std::vector<std::vector<Position> > Game::ExtendMove(const std::vector<Position> &p){
+std::vector<std::vector<Position> > Game::ExtendMove(const std::vector<Position> &p) const{
   std::vector<std::vector<Position> > possibleMoves;
   std::vector<Position> extensions = getJumpsFrom(p.back());
   if(extensions.size()==0){
@@ -76,7 +77,7 @@ std::vector<std::vector<Position> > Game::ExtendMove(const std::vector<Position>
 }
 
 
-std::vector<Position> Game::getSingleMovesFrom(const Position &p){
+std::vector<Position> Game::getSingleMovesFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
@@ -91,7 +92,7 @@ std::vector<Position> Game::getSingleMovesFrom(const Position &p){
   return possibleMoves;
 }
 
-std::vector<Position> Game::getJumpsFrom(const Position &p){
+std::vector<Position> Game::getJumpsFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
@@ -111,7 +112,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p){
   return possibleMoves;
 }
 
-std::vector<std::vector<Position> > Game::getMovesForPlayer(const int &player){
+std::vector<std::vector<Position> > Game::getMovesForPlayer(const int &player) const{
   std::vector<std::vector<Position> > possibleMoves;
   bool jumpFound = false;
   for(int ii=0;ii<m_board.getSize();ii++){
@@ -138,7 +139,7 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int &player){
   return possibleMoves;
 }
 
-std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p){
+std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p) const{
   std::vector<Position> jumped;
   for(int ii=0;ii<p.size()-1;ii++){
     jumped.push_back(m_board.getJump(p.at(ii), p.at(ii+1)));

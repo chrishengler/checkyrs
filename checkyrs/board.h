@@ -23,22 +23,22 @@ public:
   Board(const Board &board);
   Board(const int &size=8);
   
-  int getSize(){return m_size;}
+  int getSize() const{return m_size;}
   
-  bool PositionExists(const Position &p);
-  bool SquareIsOccupied(const Position &p);
-  int getPlayer(const Position &p);
-  bool wasJump(const Position &p1, const Position &p2);
-  Position getJump(const Position &p1, const Position &p2);
+  bool PositionExists(const Position &p) const;
+  bool SquareIsOccupied(const Position &p) const;
+  int getPlayer(const Position &p) const;
+  bool wasJump(const Position &p1, const Position &p2) const;
+  Position getJump(const Position &p1, const Position &p2) const;
   
-  bool SquareHasKing(const Position &p);
+  bool SquareHasKing(const Position &p) const;
 
   void AddPiece(const Position &p,const int &player=1, const bool &isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
   void RemovePiece(const Position &p);
   
-  Square getPiece(const Position &p);
-  int getNumPiecesPlayer(const int &player){return player==1 ? m_piecesp1 : m_piecesp2;}
+  Square getPiece(const Position &p) const;
+  int getNumPiecesPlayer(const int &player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
 };
 
 #endif /* defined(__checkyrs__board__) */

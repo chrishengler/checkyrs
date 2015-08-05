@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
-		8302EAC41B5BC4BF00CD0CA4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
 		8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */; };
 		8335C9421B598C0A0017EB5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9411B598C0A0017EB5F /* main.cpp */; };
 		8335C9571B598FC90017EB5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9561B598FC90017EB5F /* main.cpp */; };
@@ -17,7 +16,12 @@
 		8335C95F1B59987B0017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
 		8335C9601B599B7E0017EB5F /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
 		8335C9611B599B830017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
+		8368F87F1B7153DF00E60CDC /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		837041C41B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
+		837041C51B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
+		838AE7711B7207310010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
+		838AE7721B7207320010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +58,11 @@
 		8335C95B1B5994130017EB5F /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		8335C95D1B59987B0017EB5F /* square.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = square.cpp; sourceTree = "<group>"; };
 		8335C95E1B59987B0017EB5F /* square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = square.h; sourceTree = "<group>"; };
+		837041BB1B714DC2009E5A7B /* gamerunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamerunner.cpp; sourceTree = "<group>"; };
+		837041BC1B714DC2009E5A7B /* gamerunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gamerunner.h; sourceTree = "<group>"; };
+		837041BF1B714E58009E5A7B /* ai.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ai.cpp; sourceTree = "<group>"; };
+		837041C01B714E58009E5A7B /* ai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ai.h; sourceTree = "<group>"; };
+		837041C31B714EE0009E5A7B /* aitests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aitests.cpp; sourceTree = "<group>"; };
 		837163041B5A49D1008D1D99 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		837163051B5A99BD008D1D99 /* positiontests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = positiontests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				8335C9411B598C0A0017EB5F /* main.cpp */,
+				837041BB1B714DC2009E5A7B /* gamerunner.cpp */,
+				837041BC1B714DC2009E5A7B /* gamerunner.h */,
+				837041BF1B714E58009E5A7B /* ai.cpp */,
+				837041C01B714E58009E5A7B /* ai.h */,
 				8335C95A1B5994130017EB5F /* board.cpp */,
 				8335C95B1B5994130017EB5F /* board.h */,
 				8302EAC11B5BC4BF00CD0CA4 /* game.cpp */,
@@ -115,6 +128,7 @@
 				8335C9561B598FC90017EB5F /* main.cpp */,
 				8335C9581B5992F40017EB5F /* boardtests.cpp */,
 				8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */,
+				837041C31B714EE0009E5A7B /* aitests.cpp */,
 				837163051B5A99BD008D1D99 /* positiontests.cpp */,
 			);
 			name = Tests;
@@ -202,6 +216,8 @@
 				8335C9421B598C0A0017EB5F /* main.cpp in Sources */,
 				8335C95F1B59987B0017EB5F /* square.cpp in Sources */,
 				8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */,
+				837041C41B714EE0009E5A7B /* aitests.cpp in Sources */,
+				838AE7711B7207310010107B /* ai.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,11 +227,13 @@
 			files = (
 				8335C9611B599B830017EB5F /* square.cpp in Sources */,
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
+				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
 				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
+				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
-				8302EAC41B5BC4BF00CD0CA4 /* game.cpp in Sources */,
+				837041C51B714EE0009E5A7B /* aitests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
