@@ -11,6 +11,11 @@
 
 #include <stdio.h>
 #include "board.h"
+#include "game.h"
+#include "position.h"
+
+typedef std::pair<std::vector<Position>,double> moveEval;
+
 
 class CheckyrsAI {
   double m_aggression;
@@ -21,6 +26,7 @@ public:
   CheckyrsAI(){m_aggression=5;m_possession=5;m_player=1;}
   CheckyrsAI(double agg,double pos,int player){m_aggression=agg,m_possession=pos;m_player=player;}
   
-  double eval(const Board &b);
+  double eval(const Board &b) const;
+  std::vector<moveEval> evalMoves(const Board &b, const std::vector<std::vector<Position> >p, const bool opp=false);
 };
 #endif /* defined(__checkyrs__ai__) */

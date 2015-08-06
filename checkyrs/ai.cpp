@@ -8,7 +8,12 @@
 
 #include "ai.h"
 
-double CheckyrsAI::eval(const Board &b){
+
+bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
+  return lhs.second < rhs.second;
+}
+
+double CheckyrsAI::eval(const Board &b) const{
   double value=0;
   
   for(int ii=0;ii<b.getSize();ii++){
@@ -26,3 +31,17 @@ double CheckyrsAI::eval(const Board &b){
   }
   return value;
 }
+
+std::vector<moveEval> CheckyrsAI::evalMoves(const Board &b, const std::vector<std::vector<Position> > p, const bool opp){
+  std::vector<moveEval> evals;
+  for(std::vector<std::vector<Position> >::const_iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+    double value=0;
+    Game newstate(b);
+    newstate.ExecuteMove(*p_iter);
+    value=eval(newstate.getBoard());
+    evals.push_back(std::make_pair(*p_iter, value));
+  }
+  std::sort(evals.begin(),evals.end(),sortMoveEvals);
+  return evals;
+}
+
