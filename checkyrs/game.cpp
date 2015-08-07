@@ -23,11 +23,6 @@ void Game::RemovePiece(const Position &p){
   m_board.RemovePiece(p);
 }
 
-std::pair<bool,int> Game::gameOver() const{
-  if(!m_gameover) return std::make_pair(false, 0);
-  return std::make_pair(true,m_winner);
-}
-
 std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool &alreadyMoved) const{
   std::vector<std::vector<Position> > possibleMoves;
   
@@ -82,7 +77,7 @@ std::vector<Position> Game::getSingleMovesFrom(const Position &p) const{
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
       if(jj<0 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
-      if(jj>1 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
+      if(jj>0 && m_board.getPlayer(p)==-1 && !m_board.SquareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj);
       if(!m_board.PositionExists(newpos)) continue;
       if(m_board.SquareIsOccupied(newpos)) continue;
@@ -97,7 +92,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p) const{
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
       if(jj<0 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
-      if(jj>1 && m_board.getPlayer(p)==2 && !m_board.SquareHasKing(p)) continue;
+      if(jj>1 && m_board.getPlayer(p)==-1 && !m_board.SquareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj); //the square to jump over
       if(!m_board.PositionExists(newpos)) continue;
       else if(m_board.SquareIsOccupied(newpos)){ //can't jump over empty square
@@ -136,6 +131,10 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int &player) c
       }
     }
   }
+  if(possibleMoves.size()==0){
+    m_gameover=true;  //if player has no legal moves, opponent has won
+    m_winner = player*-1;
+  }
   return possibleMoves;
 }
 
@@ -156,9 +155,9 @@ void Game::ExecuteMove(const std::vector<Position> &move){
   }
   if(getNumPiecesPlayer(1)==0){
     m_gameover = true;
-    m_winner = 2;
+    m_winner = -1;
   }
-  else if(getNumPiecesPlayer(2)==0){
+  else if(getNumPiecesPlayer(-1)==0){
     m_gameover = true;
     m_winner = 1;
   }
