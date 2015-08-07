@@ -33,12 +33,12 @@ public:
   
   bool SquareHasKing(const Position &p) const;
 
-  void AddPiece(const Position &p,const int &player=1, const bool &isKing=false);
+  void AddPiece(const Position &p,const int player=1, const bool isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
   void RemovePiece(const Position &p);
   
   Square getPiece(const Position &p) const;
-  int getNumPiecesPlayer(const int &player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
+  int getNumPiecesPlayer(const int player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
 };
 
 #endif /* defined(__checkyrs__board__) */

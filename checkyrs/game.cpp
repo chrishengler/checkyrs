@@ -11,7 +11,7 @@
 #include <math.h>
 
 
-void Game::AddPiece(const Position &pos, const int &player, const bool &isKing){
+void Game::AddPiece(const Position &pos, const int player, const bool isKing){
   m_board.AddPiece(pos,player,isKing);
 }
 
@@ -23,7 +23,7 @@ void Game::RemovePiece(const Position &p){
   m_board.RemovePiece(p);
 }
 
-std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool &alreadyMoved) const{
+std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool alreadyMoved) const{
   std::vector<std::vector<Position> > possibleMoves;
   
   std::vector<Position> moveStarts = getJumpsFrom(p);
@@ -107,7 +107,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p) const{
   return possibleMoves;
 }
 
-std::vector<std::vector<Position> > Game::getMovesForPlayer(const int &player) const{
+std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) const{
   std::vector<std::vector<Position> > possibleMoves;
   bool jumpFound = false;
   for(int ii=0;ii<m_board.getSize();ii++){

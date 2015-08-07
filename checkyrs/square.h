@@ -19,7 +19,7 @@ class Square {
 
 public:
   Square(){m_isOccupied=false; m_player=0; m_isKing=false;}
-  Square(const int &p, const bool &k=false){m_isOccupied=true; m_player=p; m_isKing=k;}
+  Square(const int p, const bool k=false){m_isOccupied=true; m_player=p; m_isKing=k;}
   Square(const Square &s);
   
   bool isOccupied() const{return m_isOccupied;}

@@ -30,16 +30,17 @@ public:
   
   Board getBoard() const{return m_board;}
   
-  void AddPiece(const Position &pos,const int &player=1, const bool &isKing=false);
+  void AddPiece(const Position &pos,const int player=1, const bool isKing=false);
+  void AddPieces(const std::vector<Position> &pos, const int player=1, const bool isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
   void ExecuteMove(const std::vector<Position> &move);
   bool gameOver() const{ return m_gameover; }
   int getWinner() const{ return m_winner; }
   
-  int getNumPiecesPlayer(const int &player) const{ return m_board.getNumPiecesPlayer(player); }
+  int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
 
-  std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool &alreadyMoved=false) const;
-  std::vector<std::vector<Position> > getMovesForPlayer(const int &player) const;
+  std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool alreadyMoved=false) const;
+  std::vector<std::vector<Position> > getMovesForPlayer(const int player) const;
   
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p) const;
 };

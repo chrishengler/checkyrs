@@ -107,7 +107,7 @@ int Board::getPlayer(const Position &p) const{
   return m_board[p._x][p._y].getPlayer();
 }
 
-void Board::AddPiece(const Position &pos,const int &player, const bool &isKing){
+void Board::AddPiece(const Position &pos,const int player, const bool isKing){
   if(!PositionExists(pos) || !PositionExists(pos)){
     std::string errmsg("Attempted to add piece out of bounds:");
     errmsg+=pos.toString();
