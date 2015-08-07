@@ -25,7 +25,16 @@ TEST_CASE("Piece can be placed on board"){
   Position p(0,0);
   board.AddPiece(p);
   REQUIRE(board.SquareIsOccupied(p));
-  
+}
+
+TEST_CASE("Can add multiple pieces at once"){
+  Board board;
+  Position p(0,0);
+  Position p2(1,1);
+  std::vector<Position> pieces = {p,p2};
+  board.AddPieces(pieces);
+  REQUIRE(board.SquareIsOccupied(p));
+  REQUIRE(board.SquareIsOccupied(p2));
 }
 
 TEST_CASE("Piece can be moved"){

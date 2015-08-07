@@ -34,6 +34,7 @@ public:
   bool SquareHasKing(const Position &p) const;
 
   void AddPiece(const Position &p,const int player=1, const bool isKing=false);
+  void AddPieces(const std::vector<Position> &p, const int player=1, const bool isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
   void RemovePiece(const Position &p);
   

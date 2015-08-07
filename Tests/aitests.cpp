@@ -35,12 +35,12 @@ TEST_CASE("eval prefers fewer opposition pieces"){
   Position p3(7,7);
   Position p4(6,6);
   CheckyrsAI ai;
-  g1.AddPiece(p1);
-  g1.AddPiece(p2);
-  g1.AddPiece(p3,-1);
-  g1.AddPiece(p4,-1);
-  g2.AddPiece(p1);
-  g2.AddPiece(p2);
+  std::vector<Position> player1 = {p1,p2};
+  std::vector<Position> player2 = {p3,p4};
+  g1.AddPieces(player1);
+  g1.AddPieces(player2,-1);
+  
+  g2.AddPieces(player1);
   g2.AddPiece(p3,-1);
   REQUIRE( ai.eval(g1.getBoard()) < ai.eval(g2.getBoard()));
 }
@@ -72,14 +72,10 @@ TEST_CASE("can look ahead"){
   Position p6(6,6);
   Position p7(7,7);
   Position p8(2,4);
-  g1.AddPiece(p1);
-  g1.AddPiece(p2);
-  g1.AddPiece(p3);
-  g1.AddPiece(p4,-1);
-  g1.AddPiece(p5,-1);
-  g1.AddPiece(p6,-1);
-  g1.AddPiece(p7,-1);
-  g1.AddPiece(p8,-1);
+  std::vector<Position> player1 = {p1,p2,p3};
+  std::vector<Position> player2 = {p4,p5,p6,p7,p8};
+  g1.AddPieces(player1);
+  g1.AddPieces(player2,-1);
   CheckyrsAI ai;
   moveEval bestMove = ai.rootNegamax(g1,2);
   REQUIRE( bestMove.first.size() == 2 );

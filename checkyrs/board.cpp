@@ -121,7 +121,12 @@ void Board::AddPiece(const Position &pos,const int player, const bool isKing){
   Square newpiece(player,isKing);
   m_board[pos._x][pos._y] = newpiece;
   player==1 ? m_piecesp1++ : m_piecesp2++;
-  
+}
+
+void Board::AddPieces(const std::vector<Position> &p,const int player, const bool isKing){
+  for(std::vector<Position>::const_iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+    AddPiece(*p_iter,player,isKing);
+  }
 }
 
 void Board::MovePiece(const Position &oldp, const Position &newp){
