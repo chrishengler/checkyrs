@@ -14,5 +14,5 @@ TEST_CASE("Can append Position to string"){
   Position p(1,1);
   std::string str("Hello ");
   str+=p.toString();
-  REQUIRE(str == "Hello 1,1");
+  REQUIRE(str == "Hello b2");
 }

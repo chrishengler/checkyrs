@@ -17,9 +17,10 @@ struct Position {
   int _y;
   
   Position(int x,int y){ _x = x; _y = y;}
+
   std::string toString() const{
     char buf[10];
-    sprintf(buf, "%d,%d",_x,_y);
+    sprintf(buf, "%c%d", "abcdefghijklmnopqrstuvwxyz"[_x] ,(_y+1));
     std::string str(buf);
     return str;
   }
