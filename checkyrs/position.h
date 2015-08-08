@@ -24,9 +24,16 @@ struct Position {
     std::string str(buf);
     return str;
   }
-
+  
+  bool operator==(const Position &p) const{
+    return (_x == p._x && _y == p._y);
+  }
+  
+  bool operator!=(const Position &p) const{
+    return !(*this==p);
+  }
+  
 };
-
 
 
   
