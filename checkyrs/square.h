@@ -24,6 +24,7 @@ public:
   
   bool isOccupied() const{return m_isOccupied;}
   bool isKing() const{return m_isKing;}
+  void setKing(const bool isKing=true){ m_isKing=isKing; }
   int getPlayer() const{return m_player;}
   void removePiece(){m_isOccupied=false; m_player=0; m_isKing=false;}
 };

@@ -32,6 +32,7 @@ public:
   Position getJump(const Position &p1, const Position &p2) const;
   
   bool SquareHasKing(const Position &p) const;
+  void setKing(const Position &p, const bool isKing=true){ m_board[p._x][p._y].setKing(isKing); }
 
   void AddPiece(const Position &p,const int player=1, const bool isKing=false);
   void AddPieces(const std::vector<Position> &p, const int player=1, const bool isKing=false);

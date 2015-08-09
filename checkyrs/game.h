@@ -17,6 +17,7 @@ class Game {
   Board m_board;
   mutable bool m_gameover;
   mutable int m_winner;
+  int m_currentplayer;
   
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
@@ -24,9 +25,14 @@ class Game {
   void RemovePiece(const Position &p);
   
 public:
-  Game(){m_board=Board::Board();m_gameover=false;m_winner=0;}
-  Game(const Board &board){m_board=board;m_gameover=false;m_winner=0;};
-  Game(const Game &g){ m_board = g.getBoard(); m_gameover=g.gameOver(); m_winner=g.getWinner();};
+  Game(){m_board=Board::Board();m_gameover=false;m_winner=0;m_currentplayer=1;}
+  Game(const Board &board){m_board=board;m_gameover=false;m_winner=0;m_currentplayer=1;};
+  Game(const Game &g){
+    m_board         = g.getBoard();
+    m_gameover      = g.gameOver();
+    m_winner        = g.getWinner();
+    m_currentplayer = g.getCurrentPlayer();
+  };
   
   Board getBoard() const{return m_board;}
   
@@ -37,6 +43,7 @@ public:
   void ExecuteMove(const std::vector<Position> &move);
   bool gameOver() const{ return m_gameover; }
   int getWinner() const{ return m_winner; }
+  int getCurrentPlayer() const{ return m_currentplayer; }
   
   int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
 

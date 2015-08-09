@@ -159,6 +159,16 @@ void Game::ExecuteMove(const std::vector<Position> &move){
       RemovePiece(m_board.getJump(move.at(ii),move.at(ii+1)));
     }
     MovePiece(move.at(ii), move.at(ii+1));
+    if( m_currentplayer == 1 ){
+      if(move.at(ii+1)._y == m_board.getSize()-1){
+        m_board.setKing(move.at(ii+1));
+      }
+    }
+    else{
+      if(move.at(ii+1)._y == 0){
+        m_board.setKing(move.at(ii+1));
+      }
+    }
   }
   if(getNumPiecesPlayer(1)==0){
     m_gameover = true;
@@ -168,5 +178,6 @@ void Game::ExecuteMove(const std::vector<Position> &move){
     m_gameover = true;
     m_winner = 1;
   }
+  m_currentplayer *= -1;
 }
 
