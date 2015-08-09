@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 
-class <#class name#> {
-  <#instance variables#>
+class Gamerunner {
+  Game m_game;
 
 public:
   <#member functions#>

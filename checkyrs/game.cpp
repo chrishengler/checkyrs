@@ -42,8 +42,7 @@ std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const 
       thismove.push_back(p);
       thismove.push_back(moveStarts.at(ii));
       Game newstate(*this);
-      newstate.RemovePiece(m_board.getJump(p,moveStarts.at(ii)));
-      newstate.MovePiece(p,moveStarts.at(ii));
+      newstate.ExecuteMove(thismove);
       std::vector<std::vector<Position> > extendedMoves = newstate.ExtendMove(thismove);
       possibleMoves.insert(possibleMoves.end(), extendedMoves.begin(), extendedMoves.end());
     }

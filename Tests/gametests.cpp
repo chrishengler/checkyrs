@@ -147,3 +147,18 @@ TEST_CASE("pieces reaching final rank get kinged"){
   REQUIRE( game.getBoard().SquareHasKing(p1target) == true );
   REQUIRE( game.getBoard().SquareHasKing(p2target) == true );
 }
+
+TEST_CASE("mid-move king promotion"){
+  Game game;
+  Position p1(5,5);
+  Position p2(4,6);
+  Position p3(2,6);
+  game.AddPiece(p1);
+  game.AddPiece(p2,-1);
+  game.AddPiece(p3,-1);
+  std::vector<Position> move = game.getMovesForPlayer(1).at(0);
+  REQUIRE( move.size() == 3 );
+  game.ExecuteMove(move);
+  REQUIRE( game.gameOver() == true );
+  REQUIRE( game.getWinner() == 1 );
+}

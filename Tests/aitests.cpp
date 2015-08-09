@@ -91,6 +91,6 @@ TEST_CASE("look ahead terminates correctly when game is won"){
   g1.AddPieces(player1,player2);
   CheckyrsAI ai;
   moveEval bestMove;
-  REQUIRE_NOTHROW( bestMove = ai.rootNegamax(g1,10) );
-  REQUIRE( bestMove.first.at(0)._x == 4 );
+  REQUIRE_NOTHROW( bestMove = ai.rootNegamax(g1,10) ); //ensure no exceptions when iterating deeper than remaining game path
+  REQUIRE( bestMove.first.at(0)._x == 4 ); //ensure early termination doesn't mess up move selection
 }
