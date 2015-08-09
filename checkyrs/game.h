@@ -32,6 +32,7 @@ public:
   
   void AddPiece(const Position &pos,const int player=1, const bool isKing=false);
   void AddPieces(const std::vector<Position> &pos, const int player=1, const bool isKing=false);
+  void AddPieces(const std::vector<Position> &p1, const std::vector<Position> &p2, const bool isKing=false);
   void MovePiece(const Position &oldp, const Position &newp);
   void ExecuteMove(const std::vector<Position> &move);
   bool gameOver() const{ return m_gameover; }

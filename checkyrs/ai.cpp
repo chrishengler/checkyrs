@@ -53,7 +53,7 @@ moveEval CheckyrsAI::evalNode(const Game &g, const bool opp){
 moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth){
   std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
   double best = -2*likeabillion;
-  double value = -3*likeabillion;
+  double value = -3*likeabillion; 
   moveEval bestMove;
   for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
     Game newstate(g);
@@ -68,7 +68,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth){
 }
 
 double CheckyrsAI::negamax(const Game &g, const int depth, const bool ownTurn){
-  if(depth<=0){
+  if(depth<=0 ){
     return evalNode(g).second;
   }
   double best = -2*likeabillion;

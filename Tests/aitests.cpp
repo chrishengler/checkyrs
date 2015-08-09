@@ -35,8 +35,7 @@ TEST_CASE("eval prefers fewer opposition pieces"){
   CheckyrsAI ai;
   std::vector<Position> player1 = {p1,p2};
   std::vector<Position> player2 = {p3,p4};
-  g1.AddPieces(player1);
-  g1.AddPieces(player2,-1);
+  g1.AddPieces(player1,player2);
   
   g2.AddPieces(player1);
   g2.AddPiece(p3,-1);
@@ -53,8 +52,7 @@ TEST_CASE("can evaluate all available moves, taking multiple pieces preferred to
   CheckyrsAI ai;
   std::vector<Position> player1 = {p1,p3};
   std::vector<Position> player2 = {p2,p4,p5};
-  g1.AddPieces(player1);
-  g1.AddPieces(player2,-1);
+  g1.AddPieces(player1,player2);
   std::vector<std::vector<Position> > possibleMoves = g1.getMovesForPlayer(1);
   REQUIRE( ai.evalNode(g1,false).first.size()==3);
 }
@@ -71,8 +69,7 @@ TEST_CASE("can look ahead"){
   Position p8(2,4);
   std::vector<Position> player1 = {p1,p2,p3};
   std::vector<Position> player2 = {p4,p5,p6,p7,p8};
-  g1.AddPieces(player1);
-  g1.AddPieces(player2,-1);
+  g1.AddPieces(player1,player2);
   CheckyrsAI ai;
   moveEval bestMove = ai.rootNegamax(g1,2);
   REQUIRE( bestMove.first.size() == 2 );
@@ -80,4 +77,20 @@ TEST_CASE("can look ahead"){
   REQUIRE( bestMove.first.at(0)._y==3 );
   REQUIRE( bestMove.first.at(1)._x==1 );
   REQUIRE( bestMove.first.at(1)._y==5 );
+}
+
+TEST_CASE("look ahead terminates correctly when game is won"){
+  Game g1;
+  Position p1(2,0);
+  Position p2(4,0);
+  Position p3(2,2);
+  Position p4(5,1);
+  Position p5(5,3);
+  std::vector<Position> player1 = {p1,p2};
+  std::vector<Position> player2 = {p3,p4,p5};
+  g1.AddPieces(player1,player2);
+  CheckyrsAI ai;
+  moveEval bestMove;
+  REQUIRE_NOTHROW( bestMove = ai.rootNegamax(g1,10) );
+  REQUIRE( bestMove.first.at(0)._x == 4 );
 }
