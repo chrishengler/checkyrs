@@ -26,7 +26,7 @@ double CheckyrsAI::eval(const Board &b) const{
     for(int jj=0;jj<b.getSize();jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position(7-ii,7-jj)); //loop rows in reverse order if p2
       if(b.SquareIsOccupied(p)){
-        value += b.getPlayer(p)*(b.SquareHasKing(p) ? jj*2*m_possession : jj*m_possession);
+        value += b.getPlayer(p)*(10+(b.SquareHasKing(p) ? jj*2*m_possession : jj*m_possession));
       }
     }
   }

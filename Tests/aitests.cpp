@@ -18,12 +18,10 @@ TEST_CASE("eval prefers advanced pieces"){
   Position p3(2,2);
   Position p4(2,0);
   CheckyrsAI ai;
-  g1.AddPiece(p1);
-  g1.AddPiece(p2);
-  g1.AddPiece(p4);
-  g2.AddPiece(p1);
-  g2.AddPiece(p2);
-  g2.AddPiece(p3);
+  std::vector<Position> home = {p1,p2,p4};
+  std::vector<Position> advanced = {p1,p2,p3};
+  g1.AddPieces(home);
+  g2.AddPieces(advanced);
   REQUIRE( ai.eval(g1.getBoard()) < ai.eval(g2.getBoard()));
 }
 
@@ -53,11 +51,10 @@ TEST_CASE("can evaluate all available moves, taking multiple pieces preferred to
   Position p4(5,3);
   Position p5(5,5);
   CheckyrsAI ai;
-  g1.AddPiece(p1);
-  g1.AddPiece(p2,-1);
-  g1.AddPiece(p3);
-  g1.AddPiece(p4,-1);
-  g1.AddPiece(p5,-1);
+  std::vector<Position> player1 = {p1,p3};
+  std::vector<Position> player2 = {p2,p4,p5};
+  g1.AddPieces(player1);
+  g1.AddPieces(player2,-1);
   std::vector<std::vector<Position> > possibleMoves = g1.getMovesForPlayer(1);
   REQUIRE( ai.evalNode(g1,false).first.size()==3);
 }

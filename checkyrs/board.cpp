@@ -40,10 +40,7 @@ Board::Board(const Board &board){
 }
 
 bool Board::PositionExists(const Position &p) const{
-  if(p._x < 0 || p._x >=m_size || p._y < 0 || p._y >= m_size){
-    return false;
-  }
-  else return true;
+  return (p._x >= 0 && p._x < m_size && p._y >=0 && p._y < m_size);
 }
 
 bool Board::wasJump(const Position &p1, const Position &p2) const{

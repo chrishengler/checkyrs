@@ -34,7 +34,5 @@ struct Position {
   }
   
 };
-
-
   
 #endif

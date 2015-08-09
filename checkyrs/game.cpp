@@ -80,8 +80,7 @@ std::vector<Position> Game::getSingleMovesFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
-      if(jj<0 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
-      if(jj>0 && m_board.getPlayer(p)==-1 && !m_board.SquareHasKing(p)) continue;
+      if( (jj*m_board.getPlayer(p))<0 && !m_board.SquareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj);
       if(!m_board.PositionExists(newpos)) continue;
       if(m_board.SquareIsOccupied(newpos)) continue;
@@ -95,8 +94,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
-      if(jj<0 && m_board.getPlayer(p)==1 && !m_board.SquareHasKing(p)) continue;
-      if(jj>1 && m_board.getPlayer(p)==-1 && !m_board.SquareHasKing(p)) continue;
+      if( (jj*m_board.getPlayer(p))<0 && !m_board.SquareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj); //the square to jump over
       if(!m_board.PositionExists(newpos)) continue;
       else if(m_board.SquareIsOccupied(newpos)){ //can't jump over empty square
@@ -123,7 +121,6 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) co
           if(m_board.wasJump(thispiece.at(0).at(0),thispiece.at(0).at(1))){
             possibleMoves.insert(possibleMoves.end(),thispiece.begin(),thispiece.end());
           }
-          else continue;
         }
         else{
           if(m_board.wasJump(thispiece.at(0).at(0),thispiece.at(0).at(1))){
