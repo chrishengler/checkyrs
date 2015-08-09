@@ -32,6 +32,20 @@ void Game::RemovePiece(const Position &p){
   m_board.RemovePiece(p);
 }
 
+void Game::PrepareBoard(){
+  std::vector<Position> p1, p2;
+  for(int ii=0;ii<m_board.getSize();ii++){
+    for(int jj=0;jj<3;jj++){
+      if(ii%2==jj%2){
+        p1.push_back(Position(ii,jj));
+        p2.push_back(Position(m_board.getSize()-(ii+1),m_board.getSize()-(jj+1)));
+      }
+    }
+  }
+  AddPieces(p1);
+  AddPieces(p2,-1);
+}
+
 std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool alreadyMoved) const{
   std::vector<std::vector<Position> > possibleMoves;
   

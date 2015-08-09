@@ -162,3 +162,13 @@ TEST_CASE("mid-move king promotion"){
   REQUIRE( game.gameOver() == true );
   REQUIRE( game.getWinner() == 1 );
 }
+
+TEST_CASE("prepare board"){
+  Game game;
+  game.PrepareBoard();
+  REQUIRE( game.getBoard().SquareIsOccupied(Position(1,1)) == true );
+  REQUIRE( game.getBoard().getPlayer(Position(1,1)) == 1 );
+  REQUIRE( game.getBoard().SquareIsOccupied(Position(6,6)) == true );
+  REQUIRE( game.getBoard().getPlayer(Position(6,6)) == -1 );
+  REQUIRE_FALSE( game.getBoard().SquareIsOccupied(Position(4,4)) );
+}

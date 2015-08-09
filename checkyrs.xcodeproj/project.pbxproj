@@ -20,11 +20,14 @@
 		837041C41B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837041C51B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
+		837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
+		837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
+		837BCE7B1B77D8D000DCA768 /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
 		838AE7711B7207310010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 		838AE7721B7207320010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 		83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
-		83B61E861B75187300DBD0BB /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* display.cpp */; };
+		83B61E861B75187300DBD0BB /* displaytests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* displaytests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,9 +71,10 @@
 		837041C31B714EE0009E5A7B /* aitests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aitests.cpp; sourceTree = "<group>"; };
 		837163041B5A49D1008D1D99 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		837163051B5A99BD008D1D99 /* positiontests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = positiontests.cpp; sourceTree = "<group>"; };
+		837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamerunnertests.cpp; sourceTree = "<group>"; };
 		83B61E811B7517A200DBD0BB /* clinterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clinterface.cpp; sourceTree = "<group>"; };
 		83B61E821B7517A200DBD0BB /* clinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clinterface.h; sourceTree = "<group>"; };
-		83B61E851B75187300DBD0BB /* display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
+		83B61E851B75187300DBD0BB /* displaytests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displaytests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +142,8 @@
 				8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */,
 				837041C31B714EE0009E5A7B /* aitests.cpp */,
 				837163051B5A99BD008D1D99 /* positiontests.cpp */,
-				83B61E851B75187300DBD0BB /* display.cpp */,
+				83B61E851B75187300DBD0BB /* displaytests.cpp */,
+				837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */,
 			);
 			name = Tests;
 			path = /Users/chris/Documents/Programming/checkyrs/Tests;
@@ -224,6 +229,7 @@
 				8335C95C1B5994130017EB5F /* board.cpp in Sources */,
 				8335C9421B598C0A0017EB5F /* main.cpp in Sources */,
 				8335C95F1B59987B0017EB5F /* square.cpp in Sources */,
+				837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */,
 				8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */,
 				83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */,
 				837041C41B714EE0009E5A7B /* aitests.cpp in Sources */,
@@ -236,16 +242,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8335C9611B599B830017EB5F /* square.cpp in Sources */,
+				837BCE7B1B77D8D000DCA768 /* gamerunnertests.cpp in Sources */,
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
-				83B61E861B75187300DBD0BB /* display.cpp in Sources */,
+				83B61E861B75187300DBD0BB /* displaytests.cpp in Sources */,
 				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
 				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
 				83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */,
 				837041C51B714EE0009E5A7B /* aitests.cpp in Sources */,
+				837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
