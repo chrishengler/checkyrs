@@ -20,7 +20,7 @@ struct Position {
 
   std::string toString() const{
     char buf[10];
-    sprintf(buf, "%c%d", "abcdefghijklmnopqrstuvwxyz"[_x] ,(_y+1));
+    sprintf(buf, "%c%d", "abcdefghijklmnopqrstuvwxyz"[_x] ,(_y+1)); //let's allow more than 8 in case we want oversized games at some point. 
     std::string str(buf);
     return str;
   }

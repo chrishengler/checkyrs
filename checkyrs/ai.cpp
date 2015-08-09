@@ -51,6 +51,8 @@ moveEval CheckyrsAI::evalNode(const Game &g, const bool opp){
 }
 
 moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth){
+  //this method will find optimum move based on looking depth moves ahead from current position
+  //finds all possible moves then calls negamax() method for each to determine value
   std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
   double best = -2*likeabillion;
   double value = -3*likeabillion; 
@@ -68,6 +70,8 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth){
 }
 
 double CheckyrsAI::negamax(const Game &g, const int depth, const bool ownTurn){
+  //negamax recursively calls itself, iterating a tree of all possible game paths for the next depth moves
+  //find path with best outcome for AI, assuming opponent always chooses their best move
   if(depth<=0){
     return evalNode(g).second;
   }

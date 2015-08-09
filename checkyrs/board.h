@@ -21,7 +21,7 @@ class Board {
   
 public:
   Board(const Board &board);
-  Board(const int &size=8);
+  Board(const int &size=8); //default 8x8 board, but let's leave the prospect of other sizes available
   
   int getSize() const{return m_size;}
   
