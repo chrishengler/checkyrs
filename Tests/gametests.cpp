@@ -131,3 +131,19 @@ TEST_CASE("Get all moves for player 2"){
   REQUIRE(game.getMovesForPlayer(-1).size()==2);
   REQUIRE(game.getMovesForPlayer(-1).at(0).at(1)._y == 4);
 }
+
+TEST_CASE("pieces reaching final rank get kinged"){
+  Game game;
+  Position p1(6,6);
+  Position p1target(7,7);
+  Position p2(1,1);
+  Position p2target(0,0);
+  game.AddPiece(p1);
+  game.AddPiece(p2,-1);
+  std::vector<Position> p1move = {p1,p1target};
+  std::vector<Position> p2move = {p2,p2target};
+  game.ExecuteMove(p1move);
+  game.ExecuteMove(p2move);
+  REQUIRE( game.getBoard().SquareHasKing(p1target) == true );
+  REQUIRE( game.getBoard().SquareHasKing(p2target) == true );
+}
