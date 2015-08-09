@@ -122,6 +122,7 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) co
       Position p(ii,jj);
       if(m_board.SquareIsOccupied(p) && m_board.getPlayer(p)==player){
         std::vector<std::vector<Position> > thispiece = getMovesFrom(p);
+        if(thispiece.size()==0) continue;
         if(jumpFound){
           if(m_board.wasJump(thispiece.at(0).at(0),thispiece.at(0).at(1))){
             possibleMoves.insert(possibleMoves.end(),thispiece.begin(),thispiece.end());
