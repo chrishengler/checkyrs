@@ -7,3 +7,7 @@
 //
 
 #include "clinterface.h"
+
+void CLInterface::printBoard(){
+  
+}
