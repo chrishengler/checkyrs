@@ -48,3 +48,33 @@ TEST_CASE("print board"){
   
   REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
 }
+
+TEST_CASE("print board at game start"){
+  CLInterface interface;
+  Game g;
+  g.PrepareBoard();
+  REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
+}
+
+TEST_CASE("correctly print oversized board"){
+  CLInterface interface;
+  Game g(12);
+  g.PrepareBoard();
+  
+  REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
+}
+
+TEST_CASE("print move"){
+  CLInterface interface;
+  Game g;
+  g.PrepareBoard();
+  REQUIRE_NOTHROW( interface.printMove( g.getMovesForPlayer(1).at(0)));
+}
+
+TEST_CASE("print all possible moves for piece/player"){
+  CLInterface interface;
+  Game g;
+  g.PrepareBoard();
+  REQUIRE_NOTHROW( interface.printMoves(g.getMovesFrom(Position(0,2))));
+  REQUIRE_NOTHROW( interface.printMoves(g.getMovesForPlayer(1)));
+}
