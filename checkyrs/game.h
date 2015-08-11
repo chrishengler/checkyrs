@@ -26,6 +26,7 @@ class Game {
   
 public:
   Game(){m_board=Board::Board();m_gameover=false;m_winner=0;m_currentplayer=1;}
+  Game(const int size){m_board=Board::Board(size);m_gameover=false;m_winner=0;m_currentplayer=1;}
   Game(const Board &board){m_board=board;m_gameover=false;m_winner=0;m_currentplayer=1;};
   Game(const Game &g){
     m_board         = g.getBoard();

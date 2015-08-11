@@ -172,3 +172,10 @@ TEST_CASE("prepare board"){
   REQUIRE( game.getBoard().getPlayer(Position(6,6)) == -1 );
   REQUIRE_FALSE( game.getBoard().SquareIsOccupied(Position(4,4)) );
 }
+
+TEST_CASE("make and prepare game nonstandard size"){
+  Game game(12);
+  REQUIRE_NOTHROW( game.getBoard().getSquare(Position(10,10)) );
+  game.PrepareBoard();
+  REQUIRE( game.getBoard().SquareIsOccupied(Position(11,11)) == true );
+}

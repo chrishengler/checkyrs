@@ -51,9 +51,10 @@ void CLInterface::printBoard(const Board &b) const{
     }
     printf("\n\n");
   }
-  printf(" ");
+  printf("");
   for(int ii=0;ii<b.getSize();ii++){
     printf( (ii>=9 ? "  %d" : "   %d") , ii+1 );
   }
+  printf("\n");
   return;
 }
