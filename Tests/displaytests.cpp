@@ -31,3 +31,20 @@ TEST_CASE("print square"){
   REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p5), false));
   REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p6), true));
 }
+
+TEST_CASE("print board"){
+  CLInterface interface;
+  Game g;
+  Position p1(0,0);
+  Position p2(1,1);
+  Position p3(2,2);
+  Position p4(3,3);
+  Position p5(1,0);
+  Position p6(2,0);
+  g.AddPiece(p1);
+  g.AddPiece(p2,1,true);
+  g.AddPiece(p3,-1);
+  g.AddPiece(p4,-1,true);
+  
+  REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
+}

@@ -39,3 +39,21 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
   printf( "%s" , (col+"o"+RESET).c_str() );
   return;
 }
+
+void CLInterface::printBoard(const Board &b) const{
+  printf("\n\n\n"); //make sure we have a little clear space
+  for(int ii=b.getSize()-1;ii>=0;ii--){ // prefer player 1 to have home at bottom of board
+    printf( "%c  " , "abcdefghijklmnopqrstuvwxyz"[ii] );
+    for(int jj=0;jj<b.getSize();jj++){
+      Position p(jj,ii); //use outer loop as y
+      printSquare( b.getSquare(p) , (ii%2==jj%2) );
+      printf("   ");
+    }
+    printf("\n\n");
+  }
+  printf(" ");
+  for(int ii=0;ii<b.getSize();ii++){
+    printf( (ii>=9 ? "  %d" : "   %d") , ii+1 );
+  }
+  return;
+}

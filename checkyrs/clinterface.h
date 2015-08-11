@@ -27,7 +27,7 @@ class CLInterface {
 public:
   void printSquare(const Square &s, const bool bs) const;
   
-  void printBoard() const;
+  void printBoard(const Board &b) const;
   
   void printMoves() const;
   
