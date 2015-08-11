@@ -143,17 +143,17 @@ void Board::MovePiece(const Position &oldp, const Position &newp){
   }
 }
 
-Square Board::getPiece(const Position &p) const{
+Square Board::getSquare(const Position &p) const{
   if(!PositionExists(p)){
     std::string errmsg("Tried to get piece from non-existent square");
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  if(!SquareIsOccupied(p)){
+  /*if(!SquareIsOccupied(p)){
     std::string errmsg("Tried to get piece from empty square");
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
-  }
+  }*/
   return m_board[p._x][p._y];
 }
 

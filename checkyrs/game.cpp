@@ -116,7 +116,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p) const{
       Position newpos(p._x+ii,p._y+jj); //the square to jump over
       if(!m_board.PositionExists(newpos)) continue;
       else if(m_board.SquareIsOccupied(newpos)){ //can't jump over empty square
-        if(m_board.getPiece(newpos).getPlayer()==m_board.getPiece(p).getPlayer()) continue;
+        if(m_board.getSquare(newpos).getPlayer()==m_board.getSquare(p).getPlayer()) continue;
         newpos=Position(p._x+(2*ii),p._y+(2*jj));
         if(!m_board.PositionExists(newpos)) continue;
         if(m_board.SquareIsOccupied(newpos)) continue;

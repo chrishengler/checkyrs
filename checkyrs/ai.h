@@ -27,8 +27,8 @@ public:
   CheckyrsAI(double agg,double pos,int player){m_aggression=agg,m_possession=pos;m_player=player;}
   
   double eval(const Board &b) const;
-  moveEval evalNode(const Game &g, const bool opp=false);
-  moveEval rootNegamax(const Game &g, const int depth);
-  double negamax(const Game &g, const int depth, const bool ownTurn);
+  moveEval evalNode(const Game &g, const bool opp=false) const;
+  moveEval rootNegamax(const Game &g, const int depth) const;
+  double negamax(const Game &g, const int depth, const bool ownTurn) const;
 };
 #endif /* defined(__checkyrs__ai__) */

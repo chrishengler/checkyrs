@@ -33,7 +33,7 @@ double CheckyrsAI::eval(const Board &b) const{
   return value*m_player;
 }
 
-moveEval CheckyrsAI::evalNode(const Game &g, const bool opp){
+moveEval CheckyrsAI::evalNode(const Game &g, const bool opp) const{
   std::vector<std::vector<Position> > p = g.getMovesForPlayer( opp ? m_player*-1 : m_player);
   std::vector<moveEval> evals;
   for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
@@ -50,7 +50,7 @@ moveEval CheckyrsAI::evalNode(const Game &g, const bool opp){
   return evals.at(0);
 }
 
-moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth){
+moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   //this method will find optimum move based on looking depth moves ahead from current position
   //finds all possible moves then calls negamax() method for each to determine value
   std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
@@ -69,7 +69,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth){
   return bestMove;
 }
 
-double CheckyrsAI::negamax(const Game &g, const int depth, const bool ownTurn){
+double CheckyrsAI::negamax(const Game &g, const int depth, const bool ownTurn) const{
   //negamax recursively calls itself, iterating a tree of all possible game paths for the next depth moves
   //find path with best outcome for AI, assuming opponent always chooses their best move
   if(depth<=0){

@@ -23,11 +23,13 @@
 #define RESET "\033[0m"
 
 class CLInterface {
-
-public:
-  void printBoard();
   
-  void printMoves();
+public:
+  void printSquare(const Square &s, const bool bs) const;
+  
+  void printBoard() const;
+  
+  void printMoves() const;
   
 };
 #endif /* defined(__checkyrs__clinterface__) */

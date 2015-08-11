@@ -39,7 +39,7 @@ public:
   void MovePiece(const Position &oldp, const Position &newp);
   void RemovePiece(const Position &p);
   
-  Square getPiece(const Position &p) const;
+  Square getSquare(const Position &p) const;
   int getNumPiecesPlayer(const int player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
 };
 
