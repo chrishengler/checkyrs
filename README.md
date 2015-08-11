@@ -1,5 +1,7 @@
 # checkyrs
 
-A command-line game of Draughts, written in C++. 
+A command-line game of Draughts, written in C++. Built in OSX Mavericks, other OSX/*nix systems untested but should work in principle. GUI may or may not follow.
 
-Initial version will allow for games between two human-controlled sides. Some level of AI will follow.
+Will allow Human vs. Human, Human vs. AI, AI vs. AI. 
+
+AI based on Negamax algorithm. Variable depth lookahead and configurable aggression/defensiveness to come.
