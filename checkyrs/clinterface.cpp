@@ -43,7 +43,7 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
 void CLInterface::printBoard(const Board &b) const{
   printf("\n\n\n"); //make sure we have a little clear space
   for(int ii=b.getSize()-1;ii>=0;ii--){ // prefer player 1 to have home at bottom of board
-    printf( ( ii>=9 ? "%i    " : "%i     ") , ii+1 );
+    std::cout << (ii+1) << (ii>=9 ? "    " : "     ");
     for(int jj=0;jj<b.getSize();jj++){
       Position p(jj,ii); //use outer loop as y
       printSquare( b.getSquare(p) , (ii%2==jj%2) );
@@ -55,25 +55,25 @@ void CLInterface::printBoard(const Board &b) const{
   for(int ii=0;ii<b.getSize();ii++){
     std::cout << "abcdefghijklmnopqrstuvwxyz"[ii] << "   ";
   }
-  printf("\n");
+  std::cout << "\n";
   return;
 }
 
 void CLInterface::printMove(const std::vector<Position> &p) const{
   for(std::vector<Position>::const_iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
-    printf( "%s " , (*p_iter).toString().c_str() );
+    std::cout << (*p_iter).toString() << " ";
   }
-  printf("\n");
+  std::cout << "\n";
   return;
 }
 
 void CLInterface::printMoves(const std::vector<std::vector<Position> > &p) const{
   if(p.size()==0){
-    printf( "No possible moves!\n" );
+    std::cout << "No possible moves!\n";
     return;
   }
   for(int ii=0;ii<p.size();ii++){
-    printf( "\nMove %i:" , ii+1);
+    std::cout << "\nMove " << ii+1 << ": ";
     printMove(p.at(ii));
   }
   return;
