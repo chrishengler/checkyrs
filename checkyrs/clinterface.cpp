@@ -78,3 +78,37 @@ void CLInterface::printMoves(const std::vector<std::vector<Position> > &p) const
   }
   return;
 }
+
+Position CLInterface::interpretSquare(std::string &s) const{
+  int x=-1;
+  int y;
+  if(s.size()==0){
+    std::string err("trying to intepret string as square, but string is empty!");
+    throw std::runtime_error(err);
+  }
+  else if(s.size()==1){
+    std::string err("trying to interpret string as square, but string only has one character!");
+    throw std::runtime_error(err);
+  }
+  for(int ii=0;ii<26;ii++){
+    if(s.at(0) == "abcdefghijklmnopqrstuvwxyz"[ii]){
+      x = ii;
+      break;
+    }
+  }
+  if(x==-1){
+    std::string err("could not understand ");
+    err+=s.at(0);
+    err+=" as file";
+    throw std::runtime_error(err);
+  }
+  s.erase(0,1);
+  try{
+    y = (std::stoi(s) - 1);
+    if(y<0) throw std::runtime_error(std::string("invalid position: negative rank"));
+  }
+  catch(std::exception &e){
+    throw e;
+  }
+  return Position(x,y);
+}

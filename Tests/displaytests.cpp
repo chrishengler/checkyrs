@@ -78,3 +78,17 @@ TEST_CASE("print all possible moves for piece/player"){
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesFrom(Position(0,2))));
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesForPlayer(1)));
 }
+
+TEST_CASE("interpret square"){
+  CLInterface interface;
+  std::string a2("a2");
+  std::string e5("e5");
+  std::string ea("ea");
+  std::string numfirst("6d");
+  std::string empty("");
+  REQUIRE( interface.interpretSquare(a2).toString() == Position(0,1).toString() );
+  REQUIRE( interface.interpretSquare(e5).toString() == Position(4,4).toString() );
+  REQUIRE_THROWS( interface.interpretSquare(ea) );
+  REQUIRE_THROWS( interface.interpretSquare(numfirst) );
+  REQUIRE_THROWS( interface.interpretSquare(empty) );
+}

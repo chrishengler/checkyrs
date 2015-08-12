@@ -21,5 +21,6 @@ public:
   void printMove(const std::vector<Position> &p) const;
   void printMoves(const std::vector<std::vector<Position> > &p) const;
   
+  Position interpretSquare(std::string &s) const;
 };
 #endif /* defined(__checkyrs__clinterface__) */
