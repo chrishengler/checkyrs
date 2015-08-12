@@ -29,14 +29,14 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
     col = (bs ? KBLU : KWHT );
   }
   if(!s.isOccupied()){
-    printf( "%s" , (col+"."+RESET).c_str() );
+    std::cout << col << "." << RESET;
     return;
   }
   if(s.isKing()){
-    std::printf( "%s" , (col+"O"+RESET).c_str() );
+    std::cout << col << "O" << RESET ;
     return;
   }
-  printf( "%s" , (col+"o"+RESET).c_str() );
+  std::cout << col << "o" << RESET;
   return;
 }
 
@@ -47,13 +47,13 @@ void CLInterface::printBoard(const Board &b) const{
     for(int jj=0;jj<b.getSize();jj++){
       Position p(jj,ii); //use outer loop as y
       printSquare( b.getSquare(p) , (ii%2==jj%2) );
-      printf("   ");
+      std::cout << "   ";
     }
-    printf("\n\n");
+    std::cout << "\n\n";
   }
-  printf("\n      ");
+  std::cout << "\n      ";
   for(int ii=0;ii<b.getSize();ii++){
-    printf( "%c   " , "abcdefghijklmnopqrstuvwxyz"[ii] );
+    std::cout << "abcdefghijklmnopqrstuvwxyz"[ii] << "   ";
   }
   printf("\n");
   return;
