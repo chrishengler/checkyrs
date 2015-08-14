@@ -27,7 +27,7 @@
 		838AE7721B7207320010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 		83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
-		83B61E861B75187300DBD0BB /* displaytests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* displaytests.cpp */; };
+		83B61E861B75187300DBD0BB /* interfacetests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* interfacetests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,7 +74,7 @@
 		837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamerunnertests.cpp; sourceTree = "<group>"; };
 		83B61E811B7517A200DBD0BB /* clinterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clinterface.cpp; sourceTree = "<group>"; };
 		83B61E821B7517A200DBD0BB /* clinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clinterface.h; sourceTree = "<group>"; };
-		83B61E851B75187300DBD0BB /* displaytests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displaytests.cpp; sourceTree = "<group>"; };
+		83B61E851B75187300DBD0BB /* interfacetests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interfacetests.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 				8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */,
 				837041C31B714EE0009E5A7B /* aitests.cpp */,
 				837163051B5A99BD008D1D99 /* positiontests.cpp */,
-				83B61E851B75187300DBD0BB /* displaytests.cpp */,
+				83B61E851B75187300DBD0BB /* interfacetests.cpp */,
 				837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */,
 			);
 			name = Tests;
@@ -246,7 +246,7 @@
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
-				83B61E861B75187300DBD0BB /* displaytests.cpp in Sources */,
+				83B61E861B75187300DBD0BB /* interfacetests.cpp in Sources */,
 				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
 				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
