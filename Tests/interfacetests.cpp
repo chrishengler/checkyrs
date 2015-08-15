@@ -92,3 +92,21 @@ TEST_CASE("interpret square"){
   REQUIRE_THROWS( interface.interpretSquare(numfirst) );
   REQUIRE_THROWS( interface.interpretSquare(empty) );
 }
+
+TEST_CASE("interpret single move"){
+  CLInterface interface;
+  std::string validmove("a1 b2");
+  std::string nospace("a1b2");
+  std::string invalidpos("a1 bd");
+  std::string invalidchar("!1 b2");
+  std::string invalidnum("a! b2");
+  std::string empty("");
+  REQUIRE( interface.interpretMove(validmove).size() == 2 );
+  REQUIRE( interface.interpretMove(validmove).at(0) == Position(0,0));
+  REQUIRE( interface.interpretMove(validmove).at(1) == Position(1,1));
+  REQUIRE_THROWS( interface.interpretMove(nospace) );
+  REQUIRE_THROWS( interface.interpretMove(invalidpos) );
+  REQUIRE_THROWS( interface.interpretMove(invalidchar) );
+  REQUIRE_THROWS( interface.interpretMove(invalidnum) );
+  REQUIRE_THROWS( interface.interpretMove(empty) );
+}

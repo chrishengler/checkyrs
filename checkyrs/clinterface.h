@@ -10,6 +10,7 @@
 #define __checkyrs__clinterface__
 
 #include <stdio.h>
+#include <boost/tokenizer.hpp>
 #include "game.h"
 
 class CLInterface {
@@ -22,5 +23,6 @@ public:
   void printMoves(const std::vector<std::vector<Position> > &p) const;
   
   Position interpretSquare(std::string &s) const;
+  std::vector<Position> interpretMove(const std::string &s) const;
 };
 #endif /* defined(__checkyrs__clinterface__) */

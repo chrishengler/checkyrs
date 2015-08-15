@@ -99,7 +99,7 @@ Position CLInterface::interpretSquare(std::string &s) const{
   if(x==-1){
     std::string err("could not understand ");
     err+=s.at(0);
-    err+=" as file";
+    err+=" as column";
     throw std::runtime_error(err);
   }
   s.erase(0,1);
@@ -112,3 +112,32 @@ Position CLInterface::interpretSquare(std::string &s) const{
   }
   return Position(x,y);
 }
+
+std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
+  std::vector<Position> move;
+  
+  boost::tokenizer<> tok(s);
+
+  for(boost::tokenizer<>::iterator t_iter=tok.begin(); t_iter!=tok.end(); t_iter++){
+    try{
+      std::string p(*t_iter);
+      move.push_back(interpretSquare(p));
+    }catch(std::exception &e){
+      std::string errmsg("unable to interpret move:\n");
+      errmsg+=e.what();
+      throw std::runtime_error( errmsg );
+    }
+  }
+  if(move.size()<2){
+    std::string errmsg("invalid move: must specify at least two squares. Input: \"");
+    errmsg+=s;
+    errmsg+="\"\nInterpretation: \"";
+    for(int ii=0;ii<move.size();ii++){
+      errmsg+=move.at(ii).toString();
+    }
+    errmsg+="\"";
+    throw std::runtime_error(errmsg);
+  }
+  return move;
+}
+
