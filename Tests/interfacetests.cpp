@@ -86,8 +86,8 @@ TEST_CASE("interpret square"){
   std::string ea("ea");
   std::string numfirst("6d");
   std::string empty("");
-  REQUIRE( interface.interpretSquare(a2).toString() == Position(0,1).toString() );
-  REQUIRE( interface.interpretSquare(e5).toString() == Position(4,4).toString() );
+  REQUIRE( interface.interpretSquare(a2) == Position(0,1) );
+  REQUIRE( interface.interpretSquare(e5) == Position(4,4) );
   REQUIRE_THROWS( interface.interpretSquare(ea) );
   REQUIRE_THROWS( interface.interpretSquare(numfirst) );
   REQUIRE_THROWS( interface.interpretSquare(empty) );
@@ -109,4 +109,18 @@ TEST_CASE("interpret single move"){
   REQUIRE_THROWS( interface.interpretMove(invalidchar) );
   REQUIRE_THROWS( interface.interpretMove(invalidnum) );
   REQUIRE_THROWS( interface.interpretMove(empty) );
+}
+
+TEST_CASE("interpret validity of move"){
+  CLInterface interface;
+  Game g1;
+  g1.PrepareBoard();
+  std::string singlemove("a3 b4");
+  std::string jumpmove("a3 c5");
+  std::string invalidmove("a1 a3");
+  REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == true);
+  REQUIRE( interface.validateMove(interface.interpretMove(invalidmove),g1) == false);
+  g1.AddPiece( Position(1,3) , -1 );
+  REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == false);
+  REQUIRE( interface.validateMove(interface.interpretMove(jumpmove),g1) == true );
 }

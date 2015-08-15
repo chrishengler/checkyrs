@@ -24,5 +24,6 @@ public:
   
   Position interpretSquare(std::string &s) const;
   std::vector<Position> interpretMove(const std::string &s) const;
+  bool validateMove(const std::vector<Position> &p, const Game &g) const;
 };
 #endif /* defined(__checkyrs__clinterface__) */

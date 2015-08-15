@@ -141,3 +141,15 @@ std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
   return move;
 }
 
+bool CLInterface::validateMove(const std::vector<Position> &p, const Game &g) const{
+  std::vector<std::vector<Position> > legalmoves = g.getMovesForPlayer(g.getCurrentPlayer());
+  if(legalmoves.size()==0){
+    std::string errmsg("no legal moves!");
+    throw std::runtime_error(errmsg);
+  }
+  for(int ii=0;ii<legalmoves.size();ii++){
+    if(legalmoves.at(ii) == p) return true;
+  }
+  return false;
+}
+
