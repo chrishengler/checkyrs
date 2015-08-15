@@ -168,13 +168,12 @@ std::vector<Position> CLInterface::getMove(const Game &g) const{
     std::getline(std::cin,input);
     try{
       move = interpretMove(input);
-      valid = validateMove(move,g);
+      if( !validateMove(move,g) ){
+        std::cout << "not a valid move\n";
+      }
     }
     catch(std::exception &e){
       std::cout << e.what();
-    }
-    if(!valid){
-      std::cout << "not a valid move\n";
     }
   }while(!valid);
   return move;
