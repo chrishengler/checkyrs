@@ -97,15 +97,21 @@ Position CLInterface::interpretSquare(std::string &s) const{
     }
   }
   if(x==-1){
-    std::string err("could not understand ");
+    std::string err("could not understand \"");
     err+=s.at(0);
-    err+=" as column";
+    err+="\" as column\n";
     throw std::runtime_error(err);
   }
   s.erase(0,1);
   try{
     y = (std::stoi(s) - 1);
     if(y<0) throw std::runtime_error(std::string("invalid position: negative rank"));
+  }
+  catch(std::invalid_argument){
+    std::string errmsg("could not understand \"");
+    errmsg+=s;
+    errmsg+="\" as row number\n";
+    throw std::invalid_argument(errmsg);
   }
   catch(std::exception &e){
     throw e;
@@ -135,7 +141,7 @@ std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
     for(int ii=0;ii<move.size();ii++){
       errmsg+=move.at(ii).toString();
     }
-    errmsg+="\"";
+    errmsg+="\"\n";
     throw std::runtime_error(errmsg);
   }
   return move;
@@ -144,7 +150,7 @@ std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
 bool CLInterface::validateMove(const std::vector<Position> &p, const Game &g) const{
   std::vector<std::vector<Position> > legalmoves = g.getMovesForPlayer(g.getCurrentPlayer());
   if(legalmoves.size()==0){
-    std::string errmsg("no legal moves!");
+    std::string errmsg("no legal moves!\n");
     throw std::runtime_error(errmsg);
   }
   for(int ii=0;ii<legalmoves.size();ii++){
@@ -153,3 +159,23 @@ bool CLInterface::validateMove(const std::vector<Position> &p, const Game &g) co
   return false;
 }
 
+std::vector<Position> CLInterface::getMove(const Game &g) const{
+  std::string input;
+  std::vector<Position> move;
+  bool valid=false;
+  do{
+    std::cout << "input move for player " << (g.getCurrentPlayer()==1 ? "1" : "2" ) << "\n";
+    std::getline(std::cin,input);
+    try{
+      move = interpretMove(input);
+      valid = validateMove(move,g);
+    }
+    catch(std::exception &e){
+      std::cout << e.what();
+    }
+    if(!valid){
+      std::cout << "not a valid move\n";
+    }
+  }while(!valid);
+  return move;
+}

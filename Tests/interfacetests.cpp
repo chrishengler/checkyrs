@@ -124,3 +124,13 @@ TEST_CASE("interpret validity of move"){
   REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == false);
   REQUIRE( interface.validateMove(interface.interpretMove(jumpmove),g1) == true );
 }
+
+TEST_CASE("get user input for move"){
+  CLInterface interface;
+  Game g1;
+  g1.PrepareBoard();
+  interface.printBoard(g1.getBoard());
+  REQUIRE_NOTHROW( interface.getMove(g1) );
+}
+
+
