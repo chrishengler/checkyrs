@@ -200,7 +200,10 @@ void Game::ExecuteMove(const std::vector<Position> &move){
     m_gameover = true;
     m_winner = -1*m_currentplayer;
   }
-  if(stale && !m_gameover){
+  if(!stale){
+    m_staleness=0;
+  }
+  else if(!m_gameover){
     m_staleness++;
   }
   if(m_staleness>=m_maxstaleness){
