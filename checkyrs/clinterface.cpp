@@ -33,7 +33,7 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
     return;
   }
   if(s.isKing()){
-    std::cout << col << "O" << RESET ;
+    std::cout << col << "0" << RESET ;
     return;
   }
   std::cout << col << "o" << RESET;
@@ -168,7 +168,7 @@ std::vector<Position> CLInterface::getMove(const Game &g) const{
     std::getline(std::cin,input);
     try{
       move = interpretMove(input);
-      if( !validateMove(move,g) ){
+      if( !(valid = validateMove(move,g) ) ){
         std::cout << "not a valid move\n";
       }
     }
