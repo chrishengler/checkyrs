@@ -7,9 +7,13 @@
 //
 
 #include <iostream>
+#include "gamerunner.h"
 
 int main(int argc, const char * argv[]) {
   // insert code here...
-  std::cout << "Hello, World!\n";
-    return 0;
+  Gamerunner gr(0);
+  gr.initialise();
+  while(gr.continueGame()){};
+
+  return 0;
 }

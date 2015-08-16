@@ -17,14 +17,21 @@
 		8335C9601B599B7E0017EB5F /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
 		8335C9611B599B830017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
 		8368F87F1B7153DF00E60CDC /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
-		837041C41B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837041C51B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
 		837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
-		837BCE7B1B77D8D000DCA768 /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
+		8387E8EB1B80959C008D26AF /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
+		8387E8FC1B80991A008D26AF /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
+		8387E8FD1B80991D008D26AF /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
+		8387E8FE1B809921008D26AF /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
+		8387E8FF1B809924008D26AF /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
+		8387E9001B809927008D26AF /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		8387E9011B809929008D26AF /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
+		8387E9021B8099F1008D26AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9561B598FC90017EB5F /* main.cpp */; };
 		838AE7711B7207310010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 		838AE7721B7207320010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
+		83AFC85A1B80A82200253C85 /* aidebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AFC8581B80A81D00253C85 /* aidebug.cpp */; };
 		83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E861B75187300DBD0BB /* interfacetests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* interfacetests.cpp */; };
@@ -41,6 +48,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		8335C94C1B598F060017EB5F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		8387E8EE1B8095B1008D26AF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -72,6 +88,8 @@
 		837163041B5A49D1008D1D99 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		837163051B5A99BD008D1D99 /* positiontests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = positiontests.cpp; sourceTree = "<group>"; };
 		837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamerunnertests.cpp; sourceTree = "<group>"; };
+		8387E8F01B8095B1008D26AF /* AIdebug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AIdebug; sourceTree = BUILT_PRODUCTS_DIR; };
+		83AFC8581B80A81D00253C85 /* aidebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = aidebug.cpp; path = Tests/aidebug.cpp; sourceTree = SOURCE_ROOT; };
 		83B61E811B7517A200DBD0BB /* clinterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clinterface.cpp; sourceTree = "<group>"; };
 		83B61E821B7517A200DBD0BB /* clinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clinterface.h; sourceTree = "<group>"; };
 		83B61E851B75187300DBD0BB /* interfacetests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interfacetests.cpp; sourceTree = "<group>"; };
@@ -92,6 +110,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8387E8ED1B8095B1008D26AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -100,6 +125,7 @@
 			children = (
 				8335C9551B598FB10017EB5F /* Tests */,
 				8335C9401B598C0A0017EB5F /* checkyrs */,
+				8387E8F11B8095B1008D26AF /* AIdebug */,
 				8335C93F1B598C0A0017EB5F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +135,7 @@
 			children = (
 				8335C93E1B598C0A0017EB5F /* checkyrs */,
 				8335C94E1B598F060017EB5F /* UnitTests */,
+				8387E8F01B8095B1008D26AF /* AIdebug */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +176,14 @@
 			path = /Users/chris/Documents/Programming/checkyrs/Tests;
 			sourceTree = "<absolute>";
 		};
+		8387E8F11B8095B1008D26AF /* AIdebug */ = {
+			isa = PBXGroup;
+			children = (
+				83AFC8581B80A81D00253C85 /* aidebug.cpp */,
+			);
+			path = AIdebug;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,6 +221,23 @@
 			productReference = 8335C94E1B598F060017EB5F /* UnitTests */;
 			productType = "com.apple.product-type.tool";
 		};
+		8387E8EF1B8095B1008D26AF /* AIdebug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8387E8F41B8095B1008D26AF /* Build configuration list for PBXNativeTarget "AIdebug" */;
+			buildPhases = (
+				8387E8EC1B8095B1008D26AF /* Sources */,
+				8387E8ED1B8095B1008D26AF /* Frameworks */,
+				8387E8EE1B8095B1008D26AF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AIdebug;
+			productName = AIdebug;
+			productReference = 8387E8F01B8095B1008D26AF /* AIdebug */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -199,6 +251,9 @@
 						CreatedOnToolsVersion = 6.2;
 					};
 					8335C94D1B598F060017EB5F = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					8387E8EF1B8095B1008D26AF = {
 						CreatedOnToolsVersion = 6.2;
 					};
 				};
@@ -217,6 +272,7 @@
 			targets = (
 				8335C93D1B598C0A0017EB5F /* checkyrs */,
 				8335C94D1B598F060017EB5F /* UnitTests */,
+				8387E8EF1B8095B1008D26AF /* AIdebug */,
 			);
 		};
 /* End PBXProject section */
@@ -232,7 +288,6 @@
 				837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */,
 				8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */,
 				83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */,
-				837041C41B714EE0009E5A7B /* aitests.cpp in Sources */,
 				838AE7711B7207310010107B /* ai.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8335C9611B599B830017EB5F /* square.cpp in Sources */,
-				837BCE7B1B77D8D000DCA768 /* gamerunnertests.cpp in Sources */,
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
@@ -252,8 +306,24 @@
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
 				83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */,
+				8387E8EB1B80959C008D26AF /* gamerunnertests.cpp in Sources */,
 				837041C51B714EE0009E5A7B /* aitests.cpp in Sources */,
 				837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8387E8EC1B8095B1008D26AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8387E8FD1B80991D008D26AF /* clinterface.cpp in Sources */,
+				8387E9011B809929008D26AF /* square.cpp in Sources */,
+				8387E9001B809927008D26AF /* game.cpp in Sources */,
+				8387E8FF1B809924008D26AF /* board.cpp in Sources */,
+				8387E8FC1B80991A008D26AF /* gamerunner.cpp in Sources */,
+				83AFC85A1B80A82200253C85 /* aidebug.cpp in Sources */,
+				8387E9021B8099F1008D26AF /* main.cpp in Sources */,
+				8387E8FE1B809921008D26AF /* ai.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +363,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"~/Documents/Programming/Catch/include",
+					/usr/local/cellar/boost/1.58.0/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -328,6 +404,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"~/Documents/Programming/Catch/include",
+					/usr/local/cellar/boost/1.58.0/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -341,6 +423,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"~/Documents/Programming/Catch/include",
+					/usr/local/cellar/boost/1.58.0/include,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -353,6 +436,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"~/Documents/Programming/Catch/include",
+					/usr/local/cellar/boost/1.58.0/include,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -399,6 +483,34 @@
 			};
 			name = Release;
 		};
+		8387E8F51B8095B1008D26AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"~/Documents/Programming/Catch/include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8387E8F61B8095B1008D26AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"~/Documents/Programming/Catch/include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -425,6 +537,15 @@
 			buildConfigurations = (
 				8335C9531B598F060017EB5F /* Debug */,
 				8335C9541B598F060017EB5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8387E8F41B8095B1008D26AF /* Build configuration list for PBXNativeTarget "AIdebug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8387E8F51B8095B1008D26AF /* Debug */,
+				8387E8F61B8095B1008D26AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

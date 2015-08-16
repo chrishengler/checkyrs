@@ -33,7 +33,7 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
     return;
   }
   if(s.isKing()){
-    std::cout << col << "0" << RESET ;
+    std::cout << col << "\u25CF" << RESET ;
     return;
   }
   std::cout << col << "o" << RESET;

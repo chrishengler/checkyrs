@@ -8,6 +8,7 @@
 
 #define likeabillion 1000000000
 
+#include <iostream>
 #include "ai.h"
 
 
@@ -26,7 +27,7 @@ double CheckyrsAI::eval(const Board &b) const{
     for(int jj=0;jj<b.getSize();jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position(7-ii,7-jj)); //loop rows in reverse order if p2
       if(b.SquareIsOccupied(p)){
-        value += b.getPlayer(p)*(10+(b.SquareHasKing(p) ? jj*2*m_possession : jj*m_possession));
+        value += b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
       }
     }
   }
@@ -34,60 +35,77 @@ double CheckyrsAI::eval(const Board &b) const{
 }
 
 moveEval CheckyrsAI::evalNode(const Game &g, const bool opp) const{
-  std::vector<std::vector<Position> > p = g.getMovesForPlayer( opp ? m_player*-1 : m_player);
-  std::vector<moveEval> evals;
-  for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
-    double value=0;
-    Game newstate(g);
-    newstate.ExecuteMove(*p_iter);
-    value=eval(newstate.getBoard());
-    evals.push_back(std::make_pair(*p_iter, value));
+  try{
+    std::vector<std::vector<Position> > p = g.getMovesForPlayer( opp ? m_player*-1 : m_player);
+    std::vector<moveEval> evals;
+    for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+      double value=0;
+      Game newstate(g);
+      newstate.ExecuteMove(*p_iter);
+      value=eval(newstate.getBoard());
+      evals.push_back(std::make_pair(*p_iter, value));
+    }
+    if(opp){
+      std::sort(evals.begin(),evals.end(),sortMoveEvalsReverse); //sort reverse, assume opponent makes best move
+    }
+    else std::sort(evals.begin(),evals.end(),sortMoveEvals); //if not opponent, pick our best move
+    return evals.at(0);
+  }catch(std::exception &e){
+    throw e;
   }
-  if(opp){
-    std::sort(evals.begin(),evals.end(),sortMoveEvalsReverse); //sort reverse, assume opponent makes best move
-  }
-  else std::sort(evals.begin(),evals.end(),sortMoveEvals); //if not opponent, pick our best move
-  return evals.at(0);
 }
 
 moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   //this method will find optimum move based on looking depth moves ahead from current position
   //finds all possible moves then calls negamax() method for each to determine value
-  std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
-  double best = -2*likeabillion;
-  double value = -3*likeabillion; 
   moveEval bestMove;
-  for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
-    Game newstate(g);
-    newstate.ExecuteMove((*p_iter));
-    value = negamax(newstate, depth-1, true);
-    if(value>best){
-      best = value;
-      bestMove = std::make_pair((*p_iter),value);
+  try{
+    std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
+    std::cout << "AI player " << (m_player==1? "1" : "2") << " is thinking: " << p.size() << " initial moves from this point\n";
+    double best = -2*likeabillion;
+    double value = -3*likeabillion;
+    for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+      Game newstate(g);
+      newstate.ExecuteMove((*p_iter));
+      value = negamax(newstate, depth-1, true);
+      if(value>best){
+        best = value;
+        bestMove = std::make_pair((*p_iter),value);
+      }
     }
+  }
+  catch(std::exception &e){
+    throw e;
   }
   return bestMove;
 }
 
-double CheckyrsAI::negamax(const Game &g, const int depth, const bool ownTurn) const{
+double CheckyrsAI::negamax(Game g, const int depth, const bool ownTurn) const{
   //negamax recursively calls itself, iterating a tree of all possible game paths for the next depth moves
   //find path with best outcome for AI, assuming opponent always chooses their best move
-  if(depth<=0){
-    return evalNode(g).second;
-  }
-  double best = -2*likeabillion;
-  double value = -3*likeabillion;;
-  std::vector<std::vector<Position> > p = g.getMovesForPlayer( ownTurn ? m_player : m_player*-1 );
-  if(g.gameOver()){
-    return evalNode(g).second;
-  }
-  for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
-    Game newstate(g);
-    newstate.ExecuteMove(*p_iter);
-    value = negamax(newstate,depth-1,!ownTurn);
-    if(value > best){
-      best = value;
+  try{
+    if(depth<=0){
+      if(g.gameOver()){
+        return (g.getWinner()==m_player) ? likeabillion : -likeabillion;
+      }
+      else return evalNode(g).second;
     }
+    double best = -2*likeabillion;
+    double value = -3*likeabillion;;
+    std::vector<std::vector<Position> > p = g.getMovesForPlayer( ownTurn ? m_player : m_player*-1 );
+    if(g.gameOver()){
+      return (g.getWinner()==m_player) ? likeabillion+depth : -(likeabillion+depth);
+    }
+    for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+      Game newstate(g);
+      newstate.ExecuteMove(*p_iter);
+      value = negamax(newstate,depth-1,!ownTurn);
+      if(value > best){
+        best = value;
+      }
+    }
+    return best;
+  }catch(std::exception &e){
+    throw e;
   }
-  return best;
 }

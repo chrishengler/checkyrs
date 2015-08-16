@@ -21,15 +21,18 @@ class Gamerunner {
   CheckyrsAI m_ai2;
   bool m_p1ai;
   bool m_p2ai;
-  CLInterface cli;
+  CLInterface m_cli;
   
 public:
-  Gamerunner(const int np=1);
+  Gamerunner(const int np=1){m_players=np;}
+  
+  const Game getGame() const{return m_game;}
+  bool playerIsAI(const int p){ if(p==1) return m_p1ai; return m_p2ai; }
   
   void initialise();
   
-  void getNextPlayerMove();
-  
+  std::vector<Position> getNextPlayerMove() const;
+  bool continueGame();
 };
 
 #endif /* defined(__checkyrs__gamerunner__) */

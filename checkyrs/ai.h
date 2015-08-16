@@ -29,6 +29,6 @@ public:
   double eval(const Board &b) const;
   moveEval evalNode(const Game &g, const bool opp=false) const;
   moveEval rootNegamax(const Game &g, const int depth) const;
-  double negamax(const Game &g, const int depth, const bool ownTurn) const;
+  double negamax(Game g, const int depth, const bool ownTurn) const;
 };
 #endif /* defined(__checkyrs__ai__) */
