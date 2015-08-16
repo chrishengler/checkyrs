@@ -16,7 +16,7 @@ void Gamerunner::initialise(){
   
   if(m_players==0){
     m_p1ai = true; m_p2ai = true;
-    m_ai1 = CheckyrsAI(5, 5, 1);
+    m_ai1 = CheckyrsAI(3, 7, 1);
     m_ai2 = CheckyrsAI(7, 3, -1);
   }
   else if(m_players==2){
@@ -57,8 +57,8 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
 bool Gamerunner::continueGame(){
   if(m_game.gameOver()){
     std::cout << "\n\ngame over\nresult: ";
-    if(m_game.getWinner()==0) std::cout << "draw";
-    else std::cout << "player " << (m_game.getWinner()==1 ? "1" : "2") << " won";
+    if(m_game.getWinner()==0) std::cout << "draw\n";
+    else std::cout << "player " << (m_game.getWinner()==1 ? "1" : "2") << " won\n";
     std::cout << "final board:\n";
     m_cli.printBoard(m_game.getBoard());
     return false;

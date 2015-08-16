@@ -27,21 +27,30 @@ double CheckyrsAI::eval(const Board &b) const{
     for(int jj=0;jj<b.getSize();jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position(7-ii,7-jj)); //loop rows in reverse order if p2
       if(b.SquareIsOccupied(p)){
-        value += b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
+        if(b.getPlayer(p) == m_player){
+          value += b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
+        }
+        else{
+          value += b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_aggression*10 : jj+5*m_aggression));
+        }
       }
     }
   }
   return value*m_player;
 }
 
-moveEval CheckyrsAI::evalNode(const Game &g, const bool opp) const{
+double CheckyrsAI::evalNode(const Game &g, const bool opp) const{
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( opp ? m_player*-1 : m_player);
     std::vector<moveEval> evals;
+    if(p.size()==0){
+      return opp ? likeabillion : -likeabillion;
+    }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       double value=0;
       Game newstate(g);
       newstate.ExecuteMove(*p_iter);
+
       value=eval(newstate.getBoard());
       evals.push_back(std::make_pair(*p_iter, value));
     }
@@ -49,7 +58,8 @@ moveEval CheckyrsAI::evalNode(const Game &g, const bool opp) const{
       std::sort(evals.begin(),evals.end(),sortMoveEvalsReverse); //sort reverse, assume opponent makes best move
     }
     else std::sort(evals.begin(),evals.end(),sortMoveEvals); //if not opponent, pick our best move
-    return evals.at(0);
+    //std::cout << evals.size() << " possible moves at final branch node\n";
+    return evals.at(0).second;
   }catch(std::exception &e){
     throw e;
   }
@@ -88,7 +98,7 @@ double CheckyrsAI::negamax(Game g, const int depth, const bool ownTurn) const{
       if(g.gameOver()){
         return (g.getWinner()==m_player) ? likeabillion : -likeabillion;
       }
-      else return evalNode(g).second;
+      else return evalNode(g);
     }
     double best = -2*likeabillion;
     double value = -3*likeabillion;;
