@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#include "game.h"
-
+#include <iostream>
 #include <math.h>
 
+#include "game.h"
 
 void Game::AddPiece(const Position &pos, const int player, const bool isKing){
   m_board.AddPiece(pos,player,isKing);
@@ -167,19 +167,23 @@ std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p) con
 }
 
 void Game::ExecuteMove(const std::vector<Position> &move){
+  bool stale=true;
   for(int ii=0;ii<move.size()-1;ii++){
     if(fabs(move.at(ii)._y - move.at(ii+1)._y) != 1){
       RemovePiece(m_board.getJump(move.at(ii),move.at(ii+1)));
+      stale = false;
     }
     MovePiece(move.at(ii), move.at(ii+1));
     if( m_currentplayer == 1 ){
       if(move.at(ii+1)._y == m_board.getSize()-1){
         m_board.setKing(move.at(ii+1));
+        stale = false;
       }
     }
     else{
       if(move.at(ii+1)._y == 0){
         m_board.setKing(move.at(ii+1));
+        stale = false;
       }
     }
   }
@@ -195,6 +199,13 @@ void Game::ExecuteMove(const std::vector<Position> &move){
   if(getMovesForPlayer(m_currentplayer).size()==0){
     m_gameover = true;
     m_winner = -1*m_currentplayer;
+  }
+  if(stale && !m_gameover){
+    m_staleness++;
+  }
+  if(m_staleness>=m_maxstaleness){
+    m_gameover = true;
+    m_stale = true;
   }
 }
 

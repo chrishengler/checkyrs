@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
       Gamerunner gr;
       gr.initialise();
       while(gr.continueGame()){};
-      play = cli.yn("\n\nnew game?");
+      play = cli.yn("\n\nnew game? (y/n)\n");
     }
     catch(std::exception &e){
       std::cout << "unexpected exception in main: " << e.what();

@@ -40,9 +40,14 @@ void Gamerunner::initialise(){
 std::vector<Position> Gamerunner::getNextPlayerMove() const{
   m_cli.printBoard(m_game.getBoard());
   try{
+    int evaldepth;
+    int piecesremaining = m_game.getNumPiecesPlayer(1) + m_game.getNumPiecesPlayer(-1);
+    if(piecesremaining < 5) evaldepth=6;
+    else if(piecesremaining < 10) evaldepth=5;
+    else evaldepth=4;
     if(m_game.getCurrentPlayer() == 1){
       if(m_p1ai){
-        return m_ai1.rootNegamax(m_game, 4).first;
+        return m_ai1.rootNegamax(m_game, evaldepth).first;
       }
       else{
         return m_cli.getMove(m_game);
@@ -50,7 +55,7 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
     }
     else if(m_game.getCurrentPlayer() == -1){
       if(m_p2ai){
-        return m_ai2.rootNegamax(m_game, 4).first;
+        return m_ai2.rootNegamax(m_game, evaldepth).first;
       }
       else{
         return m_cli.getMove(m_game);
@@ -69,7 +74,12 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
 bool Gamerunner::continueGame(){
   if(m_game.gameOver()){
     std::cout << "\n\ngame over\nresult: ";
-    if(m_game.getWinner()==0) std::cout << "draw\n";
+    if(m_game.getWinner()==0){
+      if(m_game.isStale()){
+        std::cout << "draw declared due to no pieces being taken or crowned in last " << m_game.getMaxStaleness() << " moves\n";
+      }
+      std::cout << "draw\n";
+    }
     else std::cout << "player " << (m_game.getWinner()==1 ? "1" : "2") << " won\n";
     std::cout << "final board:\n";
     m_cli.printBoard(m_game.getBoard());

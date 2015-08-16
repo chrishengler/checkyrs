@@ -18,6 +18,9 @@ class Game {
   mutable bool m_gameover;
   mutable int m_winner;
   int m_currentplayer;
+  int m_staleness;
+  int m_maxstaleness;
+  bool m_stale;
   
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
@@ -25,14 +28,41 @@ class Game {
   void RemovePiece(const Position &p);
   
 public:
-  Game(){m_board=Board::Board();m_gameover=false;m_winner=0;m_currentplayer=1;}
-  Game(const int size){m_board=Board::Board(size);m_gameover=false;m_winner=0;m_currentplayer=1;}
-  Game(const Board &board){m_board=board;m_gameover=false;m_winner=0;m_currentplayer=1;};
+  Game(){
+    m_board=Board::Board();
+    m_gameover=false;
+    m_winner=0;
+    m_currentplayer=1;
+    m_staleness=0;
+    m_maxstaleness=50;
+    m_stale=false;
+  }
+  Game(const int size){
+    m_board=Board::Board(size);
+    m_gameover=false;
+    m_winner=0;
+    m_currentplayer=1;
+    m_staleness=0;
+    m_maxstaleness=50;
+    m_stale = false;
+  }
+  Game(const Board &board){
+    m_board=board;
+    m_gameover=false;
+    m_winner=0;
+    m_currentplayer=1;
+    m_staleness=0;
+    m_maxstaleness=50;
+    m_stale = false;
+  };
   Game(const Game &g){
-    m_board         = g.getBoard();
-    m_gameover      = g.gameOver();
-    m_winner        = g.getWinner();
-    m_currentplayer = g.getCurrentPlayer();
+    m_board         = g.m_board;
+    m_gameover      = g.m_gameover;
+    m_winner        = g.m_winner;
+    m_currentplayer = g.m_currentplayer;
+    m_staleness     = g.m_staleness;
+    m_maxstaleness  = g.m_maxstaleness;
+    m_stale         = g.m_stale;
   };
   
   Board getBoard() const{return m_board;}
@@ -43,9 +73,14 @@ public:
   void MovePiece(const Position &oldp, const Position &newp);
   void PrepareBoard();
   void ExecuteMove(const std::vector<Position> &move);
+  
   bool gameOver() const{ return m_gameover; }
   int getWinner() const{ return m_winner; }
   int getCurrentPlayer() const{ return m_currentplayer; }
+  
+  int getStaleness() const{ return m_staleness; }
+  int getMaxStaleness() const{ return m_maxstaleness; }
+  bool isStale() const{ return m_stale; }
   
   int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
 
