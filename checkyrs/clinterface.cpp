@@ -164,9 +164,9 @@ std::vector<Position> CLInterface::getMove(const Game &g) const{
   std::vector<Position> move;
   bool valid=false;
   do{
-    std::cout << "input move for player " << (g.getCurrentPlayer()==1 ? "1" : "2" ) << "\n";
-    std::getline(std::cin,input);
     try{
+      std::cout << "input move for player " << (g.getCurrentPlayer()==1 ? "1" : "2" ) << "\n";
+      std::getline(std::cin,input);
       move = interpretMove(input);
       if( !(valid = validateMove(move,g) ) ){
         std::cout << "not a valid move\n";

@@ -24,8 +24,6 @@ class Gamerunner {
   CLInterface m_cli;
   
 public:
-  Gamerunner(const int np=1){m_players=np;}
-  
   const Game getGame() const{return m_game;}
   bool playerIsAI(const int p){ if(p==1) return m_p1ai; return m_p2ai; }
   

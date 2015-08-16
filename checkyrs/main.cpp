@@ -11,7 +11,7 @@
 
 int main(int argc, const char * argv[]) {
   // insert code here...
-  Gamerunner gr(0);
+  Gamerunner gr;
   gr.initialise();
   while(gr.continueGame()){};
 

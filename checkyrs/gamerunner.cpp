@@ -10,18 +10,80 @@
 #include "gamerunner.h"
 
 void Gamerunner::initialise(){
-  m_game = Game();
-  m_game.PrepareBoard();
-  m_cli = CLInterface();
+
+  std::string input;
+  std::cout << "Setting up game\nHow many human players? (0,1,2)\n";
   
+  m_players=-1;
+  do{
+    try{
+      std::cin >> input;
+      m_players=stoi(input);
+    }
+    catch(std::invalid_argument &e){
+      std::cout << "could not interpret \"" << input << "\" as integer, try again:\n";
+      continue;
+    }
+    catch(std::exception &e){
+      std::cout << "unexpected exception: " << e.what();
+      throw e;
+    }
+    if(m_players>2){
+      std::cout << "draughts is a two player game, idiot. Enter something better this time.\n";
+    }
+    else if(m_players<0){
+      std::cout << "I don't know what you think negative players means but it's Not A Thing\u2122, try again\n";
+    }
+  }while(m_players<0 || m_players>2);
+    
   if(m_players==0){
+    std::cout << "preparing AI vs. AI game\n";
     m_p1ai = true; m_p2ai = true;
     m_ai1 = CheckyrsAI(3, 7, 1);
     m_ai2 = CheckyrsAI(7, 3, -1);
   }
   else if(m_players==2){
+    std::cout << "preparing human vs. human game\n";
     m_p1ai = false; m_p2ai = false;
   }
+  else if(m_players==1){
+    std::cout << "preparing human vs. AI game\n";
+    std::cout << "which player is human? (1,2)\n";
+    int human=-1;
+    bool valid=false;
+    do{
+      try{
+        std::cin >> input;
+        human = stoi(input);
+      }
+      catch(std::invalid_argument &e){
+        std::cout << "could not interpret \"" << input << "\" as int, try again:\n";
+        continue;
+      }
+      catch(std::exception &e){
+        std::cout << "unexpected exception: " << e.what() << "\n";
+      }
+      if(human==1){
+        valid = true;
+        m_p1ai = false;
+        m_p2ai = true;
+        m_ai2  = CheckyrsAI(5,5,-1);
+      }
+      else if(human==2){
+        valid = true;
+        m_p1ai = true;
+        m_p2ai = false;
+        m_ai1  = CheckyrsAI(5,5,-1);
+      }
+      else{
+        std::cout << "not an option, idiot, try again:\n";
+      }
+    }while(!valid);
+  }
+  
+  m_game = Game();
+  m_game.PrepareBoard();
+  m_cli = CLInterface();
   
 }
 
