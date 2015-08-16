@@ -65,7 +65,7 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
 }
 
 void CLInterface::printBoard(const Board &b) const{
-  printf("\n\n\n"); //make sure we have a little clear space
+  printf("\n\n"); //make sure we have a little clear space
   for(int ii=b.getSize()-1;ii>=0;ii--){ // prefer player 1 to have home at bottom of board
     std::cout << (ii+1) << (ii>=9 ? "    " : "     ");
     for(int jj=0;jj<b.getSize();jj++){

@@ -85,6 +85,7 @@ bool Gamerunner::continueGame(){
     m_cli.printBoard(m_game.getBoard());
     return false;
   }
+  std::cout << "\n\nmoves since last piece taken or crowned: " << m_game.getStaleness() << " (draw at " << m_game.getMaxStaleness() << ")\n";
   std::vector<Position> move;
   try{
     move = getNextPlayerMove();
