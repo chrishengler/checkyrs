@@ -10,10 +10,23 @@
 #include "gamerunner.h"
 
 int main(int argc, const char * argv[]) {
-  // insert code here...
-  Gamerunner gr;
-  gr.initialise();
-  while(gr.continueGame()){};
 
+  std::cout << "\n\n\n\n C H E C K Y R S \n\n\n";
+  
+  CLInterface cli;
+  bool play=true;
+  while(play){
+    try{
+      Gamerunner gr;
+      gr.initialise();
+      while(gr.continueGame()){};
+      play = cli.yn("\n\nnew game?");
+    }
+    catch(std::exception &e){
+      std::cout << "unexpected exception in main: " << e.what();
+      return -1;
+    }
+  }
+  
   return 0;
 }

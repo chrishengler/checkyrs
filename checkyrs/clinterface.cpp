@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "clinterface.h"
+#include "boost/algorithm/string.hpp"
 
 #define KNRM   "\x1B[0m"
 #define KRED   "\x1B[31m"
@@ -19,6 +20,30 @@
 #define KWHT   "\x1B[37m"
 #define RESET  "\033[0m"
 
+bool CLInterface::yn(const std::string &s) const{
+  std::cout << s;
+  bool valid = false;
+  bool retval = false;
+  try{
+    while(!valid){
+      std::string input;
+      std::cin >> input;
+      std::cin.ignore();
+      if(strncmp(input.c_str(),"y",1)==0){
+        valid = true;
+        return true;
+      }
+      else if(strncmp(input.c_str(),"n",1)==0){
+        valid = true;
+      }
+      if(!valid) std::cout << "invalid response, provide \"y\" or \"n\"\n";
+    }
+  }
+  catch(std::exception &e){
+    std::cout << "unexpected exception while trying to get answer to y/n question: " << e.what() << "\n";
+  }
+  return retval;
+}
 
 void CLInterface::printSquare(const Square &s, const bool bs) const{
   std::string col;

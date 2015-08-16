@@ -16,6 +16,9 @@
 class CLInterface {
   
 public:
+
+  bool yn(const std::string &s) const;
+  
   void printSquare(const Square &s, const bool bs) const;
   void printBoard(const Board &b) const;
   
