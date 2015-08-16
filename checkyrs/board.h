@@ -25,8 +25,9 @@ public:
   
   int getSize() const{return m_size;}
   
-  bool PositionExists(const Position &p) const;
+  bool SquareExists(const Position &p) const;
   bool SquareIsOccupied(const Position &p) const;
+  bool SquareIsThreatened(const Position &p) const;
   int getPlayer(const Position &p) const;
   bool wasJump(const Position &p1, const Position &p2) const;
   Position getJump(const Position &p1, const Position &p2) const;

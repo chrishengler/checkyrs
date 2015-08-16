@@ -29,3 +29,13 @@ TEST_CASE("exception"){
   REQUIRE_NOTHROW( ai.rootNegamax(g, 3) );
   REQUIRE_NOTHROW( ai.rootNegamax(g, 4) );
 }
+
+TEST_CASE("ai player 2 first move"){
+  Game g;
+  g.PrepareBoard();
+  CLInterface cli;
+  CheckyrsAI ai(7,3,-1);
+  std::vector<Position> move = { Position(2,2) , Position(3,3) };
+  g.ExecuteMove(move);
+  REQUIRE_NOTHROW(ai.rootNegamax(g, 4));
+}

@@ -22,17 +22,21 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
 
 double CheckyrsAI::eval(const Board &b) const{
   double value=0;
-  
+  double thissquare=0;
   for(int ii=0;ii<b.getSize();ii++){
     for(int jj=0;jj<b.getSize();jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position(7-ii,7-jj)); //loop rows in reverse order if p2
       if(b.SquareIsOccupied(p)){
         if(b.getPlayer(p) == m_player){
-          value += b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
+          thissquare = b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
         }
         else{
-          value += b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_aggression*10 : jj+5*m_aggression));
+          thissquare = b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_aggression*10 : jj+5*m_aggression));
         }
+        if(b.SquareIsThreatened(p)){
+          value += thissquare/3; //factor three is entirely arbitrary, just like all other numbers in here.
+        }
+        else value += thissquare;
       }
     }
   }

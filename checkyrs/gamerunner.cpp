@@ -18,6 +18,7 @@ void Gamerunner::initialise(){
   do{
     try{
       std::cin >> input;
+      std::cin.ignore();
       m_players=stoi(input);
     }
     catch(std::invalid_argument &e){
@@ -54,6 +55,7 @@ void Gamerunner::initialise(){
     do{
       try{
         std::cin >> input;
+        std::cin.ignore();
         human = stoi(input);
       }
       catch(std::invalid_argument &e){
@@ -73,7 +75,7 @@ void Gamerunner::initialise(){
         valid = true;
         m_p1ai = true;
         m_p2ai = false;
-        m_ai1  = CheckyrsAI(5,5,-1);
+        m_ai1  = CheckyrsAI(5,5,1);
       }
       else{
         std::cout << "not an option, idiot, try again:\n";
