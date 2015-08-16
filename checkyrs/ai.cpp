@@ -29,14 +29,14 @@ double CheckyrsAI::eval(const Board &b) const{
       if(b.SquareIsOccupied(p)){
         if(b.getPlayer(p) == m_player){
           thissquare = b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
+          if(b.SquareIsThreatened(p)){
+            thissquare*=-0.5;
+          }
         }
         else{
           thissquare = b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_aggression*10 : jj+5*m_aggression));
         }
-        if(b.SquareIsThreatened(p)){
-          value += thissquare/3; //factor three is entirely arbitrary, just like all other numbers in here.
-        }
-        else value += thissquare;
+        value += thissquare;
       }
     }
   }
