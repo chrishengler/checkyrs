@@ -13,6 +13,7 @@
 
 void Game::AddPiece(const Position &pos, const int player, const bool isKing){
   m_board.AddPiece(pos,player,isKing);
+  
 }
 
 void Game::AddPieces(const std::vector<Position> &pos, const int player, const bool isKing){

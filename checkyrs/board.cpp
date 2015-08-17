@@ -16,6 +16,8 @@ Board::Board(const int &size){
   m_size=size;
   m_piecesp1=0;
   m_piecesp2=0;
+  m_kingsp1=0;
+  m_kingsp2=0;
   
   m_board.resize(size);
   for(int ii=0;ii<size;ii++){
@@ -30,6 +32,8 @@ Board::Board(const Board &board){
   m_size=board.m_size;
   m_piecesp1=board.m_piecesp1;
   m_piecesp2=board.m_piecesp2;
+  m_kingsp1=board.m_kingsp1;
+  m_kingsp2=board.m_kingsp2;
   
   m_board.resize(m_size);
   for(int ii=0;ii<m_size;ii++){
@@ -67,6 +71,24 @@ Position Board::getJump(const Position &p1, const Position &p2) const{
   return Position( (p1._x+p2._x)/2 , (p1._y+p2._y)/2 );
 }
 
+void Board::setKing(const Position &p, const bool isKing){
+  if(!SquareExists(p)){
+    std::string errmsg("Position does not exist: ");
+    errmsg+=p.toString();
+    throw std::logic_error(errmsg);
+  }
+  if(isKing == SquareHasKing(p)){
+    return;
+  }
+  m_board[p._x][p._y].setKing();
+  if(isKing){
+    getPlayer(p) == 1 ? m_kingsp1++ : m_kingsp2++;
+  }
+  else{
+    getPlayer(p) == 1 ? m_kingsp1-- : m_kingsp2--;
+  }
+  return;
+}
 
 bool Board::SquareIsOccupied(const Position &p) const{
   if(!SquareExists(p)){
@@ -130,6 +152,7 @@ void Board::AddPiece(const Position &pos,const int player, const bool isKing){
   Square newpiece(player,isKing);
   m_board[pos._x][pos._y] = newpiece;
   player==1 ? m_piecesp1++ : m_piecesp2++;
+  if(isKing) player==1 ? m_kingsp1++ : m_kingsp2++;
 }
 
 void Board::AddPieces(const std::vector<Position> &p,const int player, const bool isKing){
@@ -181,6 +204,9 @@ void Board::RemovePiece(const Position &p){
     throw std::runtime_error(errmsg);
   }
   getPlayer(p) == 1 ? m_piecesp1-- : m_piecesp2--;
+  if(SquareHasKing(p)){
+    getPlayer(p) == 1 ? m_kingsp1-- : m_kingsp2--;
+  }
   m_board[p._x][p._y].removePiece();
 }
 

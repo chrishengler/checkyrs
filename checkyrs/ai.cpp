@@ -41,8 +41,9 @@ double CheckyrsAI::eval(const Game &g) const{
           thissquare *= 1.2;
         }
         if(g.PieceIsThreatened(p)){
-          thissquare *= -0.8;
+          thissquare *= -1;
         }
+        thissquare *= 1+0.1*( (g.PieceDefence(p)<2 ? g.PieceDefence(p) : 2) );
         value += thissquare;
         thissquare = 0;
       }

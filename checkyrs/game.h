@@ -83,6 +83,7 @@ public:
   bool isStale() const{ return m_stale; }
   
   int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
+  int getNumKingsPlayer(const int player) const{ return m_board.getNumKingsPlayer(player); }
   
   bool PieceIsThreatened(const Position &p) const;
   int PieceDefence(const Position &p) const;

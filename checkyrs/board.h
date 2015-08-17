@@ -16,7 +16,7 @@
 
 class Board {
   int m_size;
-  int m_piecesp1, m_piecesp2;
+  int m_piecesp1, m_piecesp2, m_kingsp1, m_kingsp2;
   std::vector<std::vector<Square> > m_board;
   
 public:
@@ -33,7 +33,7 @@ public:
   Position getJump(const Position &p1, const Position &p2) const;
   
   bool SquareHasKing(const Position &p) const;
-  void setKing(const Position &p, const bool isKing=true){ m_board[p._x][p._y].setKing(isKing); }
+  void setKing(const Position &p, const bool isKing=true);
 
   void AddPiece(const Position &p,const int player=1, const bool isKing=false);
   void AddPieces(const std::vector<Position> &p, const int player=1, const bool isKing=false);
@@ -42,6 +42,7 @@ public:
   
   Square getSquare(const Position &p) const;
   int getNumPiecesPlayer(const int player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
+  int getNumKingsPlayer(const int player) const{return player==1 ? m_kingsp1 : m_kingsp2;}
 };
 
 #endif /* defined(__checkyrs__board__) */

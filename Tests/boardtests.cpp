@@ -109,3 +109,18 @@ TEST_CASE("Can check which square was jumped"){
   REQUIRE(board.getJump(p1,p3)._y ==1);
 }
 
+TEST_CASE("check number of kings"){
+  Board board;
+  REQUIRE( board.getNumKingsPlayer(1) == 0 );
+  REQUIRE( board.getNumKingsPlayer(-1) == 0);
+  Position p1(0,0);
+  Position p2(2,2);
+  Position p3(4,6);
+  board.AddPiece(p1);
+  board.AddPiece(p2,1,true);
+  board.AddPiece(p3,-1,true);
+  REQUIRE( board.getNumKingsPlayer(1) == 1 );
+  REQUIRE( board.getNumKingsPlayer(-1) == 1);
+  board.RemovePiece(p3);
+  REQUIRE( board.getNumKingsPlayer(-1) == 0);
+}
