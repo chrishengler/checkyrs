@@ -87,6 +87,7 @@ public:
   
   bool PieceIsThreatened(const Position &p) const;
   int PieceDefence(const Position &p) const;
+  bool PieceCanCrown(const Position &p) const;
 
   std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool alreadyMoved=false) const;
   std::vector<std::vector<Position> > getMovesForPlayer(const int player) const;

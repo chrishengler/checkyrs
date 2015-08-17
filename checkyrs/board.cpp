@@ -113,14 +113,15 @@ bool Board::SquareHasKing(const Position &p) const{
   return m_board[p._x][p._y].isKing();
 }
 
-bool Board::SquareNearEdge(const Position &p) const{
+int Board::DistanceToEdge(const Position &p) const{
   if(!SquareExists(p)){
-    std::string errmsg("Checking kinghood of non-existent position:");
+    std::string errmsg("Checking distance to edge from non-existent position:");
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  else if(p._x < 2 || m_size-p._x<3) return true;
-  else return false;
+  int left = p._x;
+  int right = (m_size-1)-p._x;
+  return ( left>right ? right : left );
 }
 
 

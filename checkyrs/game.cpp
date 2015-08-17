@@ -94,6 +94,24 @@ int Game::PieceDefence(const Position &p) const{
   }
 }
 
+bool Game::PieceCanCrown(const Position &p) const{
+  try{
+    if(!m_board.SquareExists(p)) return false;
+    if(!m_board.SquareIsOccupied(p)) return false;
+    if(!m_board.SquareHasKing(p)) return false;
+    std::vector<std::vector<Position> > moves = getMovesFrom(p);
+    for(int ii=0;ii<moves.size();ii++){
+      for(int jj=0;jj<moves.at(ii).size();jj++){
+        if(moves.at(ii).at(jj)._y == (m_board.getPlayer(p) == 1 ? m_board.getSize()-1 : 0)) return true;
+      }
+    }
+  }
+  catch(std::exception &e){
+    std::cout << "unexpected exception when checking if square " << p.toString() << " can be crowned\n" << e.what();
+  }
+  return false;
+}
+
 std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool alreadyMoved) const{
   std::vector<std::vector<Position> > possibleMoves;
   
@@ -222,16 +240,18 @@ void Game::ExecuteMove(const std::vector<Position> &move){
       stale = false;
     }
     MovePiece(move.at(ii), move.at(ii+1));
-    if( m_currentplayer == 1 ){
-      if(move.at(ii+1)._y == m_board.getSize()-1){
-        m_board.setKing(move.at(ii+1));
-        stale = false;
+    if( !m_board.SquareHasKing(move.at(ii+1)) ){
+      if( m_currentplayer == 1 ){
+        if(move.at(ii+1)._y == m_board.getSize()-1){
+          m_board.setKing(move.at(ii+1));
+          stale = false;
+        }
       }
-    }
-    else{
-      if(move.at(ii+1)._y == 0){
-        m_board.setKing(move.at(ii+1));
-        stale = false;
+      else{
+        if(move.at(ii+1)._y == 0){
+          m_board.setKing(move.at(ii+1));
+          stale = false;
+        }
       }
     }
   }

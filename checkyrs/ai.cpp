@@ -23,10 +23,11 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
 double CheckyrsAI::eval(const Game &g) const{
   Board b=g.getBoard();
   double kingweight = 2000;
-  double normweight = 1000;
+  double normweight = 1500;
   double value = 0;
   double thissquare = 0;
   int boardsize = b.getSize();
+  bool limitedthreat = true;
   for(int ii=0;ii<boardsize;ii++){
     for(int jj=0;jj<boardsize;jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position( (boardsize-1)-ii , (boardsize-1)-jj )); //loop rows in reverse order if p2
@@ -37,11 +38,20 @@ double CheckyrsAI::eval(const Game &g) const{
         else{
           thissquare = -1*(b.SquareHasKing(p) ? kingweight : normweight+(10*m_possession*(boardsize-1)-jj) );
         }
-        if(b.SquareNearEdge(p)){
-          thissquare *= 1.2;
-        }
+        thissquare *= (1.2 - 0.1*b.DistanceToEdge(p));
         if(g.PieceIsThreatened(p)){
-          thissquare *= -1;
+          if(limitedthreat && (g.getCurrentPlayer() == b.getPlayer(p)) ){
+            if(g.getMovesFrom(p).size()>0){
+              limitedthreat = false;
+            }
+            else thissquare *= -1;
+          }
+          else{
+            thissquare *= -1;
+          }
+        }
+        else if(g.PieceCanCrown(p)){
+          thissquare *= 1.2;
         }
         thissquare *= 1+0.1*( (g.PieceDefence(p)<2 ? g.PieceDefence(p) : 2) );
         value += thissquare;
