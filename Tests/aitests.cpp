@@ -54,7 +54,7 @@ TEST_CASE("can evaluate all available moves, taking multiple pieces preferred to
   std::vector<Position> player2 = {p2,p4,p5};
   g1.AddPieces(player1,player2);
   std::vector<std::vector<Position> > possibleMoves = g1.getMovesForPlayer(1);
-  REQUIRE( ai.evalNode(g1,false).first.size()==3);
+  REQUIRE( ai.rootNegamax(g1,1).first.size()==3);
 }
 
 TEST_CASE("can look ahead"){

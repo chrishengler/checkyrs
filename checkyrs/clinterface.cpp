@@ -115,7 +115,7 @@ Position CLInterface::interpretSquare(std::string &s) const{
     throw std::runtime_error(err);
   }
   for(int ii=0;ii<26;ii++){
-    if(s.at(0) == "abcdefghijklmnopqrstuvwxyz"[ii]){
+    if(std::tolower(s.at(0)) == "abcdefghijklmnopqrstuvwxyz"[ii]){
       x = ii;
       break;
     }

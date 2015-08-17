@@ -82,11 +82,13 @@ TEST_CASE("print all possible moves for piece/player"){
 TEST_CASE("interpret square"){
   CLInterface interface;
   std::string a2("a2");
+  std::string a2upper("A2");
   std::string e5("e5");
   std::string ea("ea");
   std::string numfirst("6d");
   std::string empty("");
   REQUIRE( interface.interpretSquare(a2) == Position(0,1) );
+  REQUIRE( interface.interpretSquare(a2upper) == Position(0,1) );
   REQUIRE( interface.interpretSquare(e5) == Position(4,4) );
   REQUIRE_THROWS( interface.interpretSquare(ea) );
   REQUIRE_THROWS( interface.interpretSquare(numfirst) );
