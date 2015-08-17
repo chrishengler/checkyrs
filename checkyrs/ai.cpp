@@ -21,26 +21,30 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
 }
 
 double CheckyrsAI::eval(const Board &b) const{
-  double value=0;
-  double thissquare=0;
-  for(int ii=0;ii<b.getSize();ii++){
-    for(int jj=0;jj<b.getSize();jj++){
-      Position p = (m_player==1 ? Position(ii,jj) : Position(7-ii,7-jj)); //loop rows in reverse order if p2
+  double kingweight = 2000;
+  double normweight = 1000;
+  double value = 0;
+  double thissquare = 0;
+  int boardsize = b.getSize();
+  for(int ii=0;ii<boardsize;ii++){
+    for(int jj=0;jj<boardsize;jj++){
+      Position p = (m_player==1 ? Position(ii,jj) : Position( (boardsize-1)-ii , (boardsize-1)-jj )); //loop rows in reverse order if p2
       if(b.SquareIsOccupied(p)){
         if(b.getPlayer(p) == m_player){
-          thissquare = b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_possession*10 : jj+5*m_possession));
+          thissquare = (b.SquareHasKing(p) ? kingweight : normweight+(10*m_aggression*jj) );
           if(b.SquareIsThreatened(p)){
-            thissquare*=-0.5;
+            thissquare *= -0.5;
           }
         }
         else{
-          thissquare = b.getPlayer(p)*(25+(b.SquareHasKing(p) ? m_aggression*10 : jj+5*m_aggression));
+          thissquare = -1*(b.SquareHasKing(p) ? kingweight : normweight+(10*m_aggression*jj) );
         }
         value += thissquare;
+        thissquare = 0;
       }
     }
   }
-  return value*m_player;
+  return value;
 }
 
 double CheckyrsAI::evalNode(const Game &g, const bool opp) const{

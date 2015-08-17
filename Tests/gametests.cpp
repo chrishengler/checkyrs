@@ -179,3 +179,21 @@ TEST_CASE("make and prepare game nonstandard size"){
   game.PrepareBoard();
   REQUIRE( game.getBoard().SquareIsOccupied(Position(11,11)) == true );
 }
+
+TEST_CASE("check if piece is threatened"){
+  Game game;
+  game.AddPiece(Position(0,0));
+  game.AddPiece(Position(1,1),-1);
+  game.AddPiece(Position(2,0));
+  game.AddPiece(Position(0,2));
+  game.AddPiece(Position(2,2));
+  game.AddPiece(Position(3,3),-1,true);
+  game.AddPiece(Position(2,4));
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(0,0)) == false );
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(1,1)) == false );
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(2,0)) == false );
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(0,2)) == false );
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(2,2)) == false );
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(3,3)) == true  );
+  REQUIRE( game.getBoard().SquareIsThreatened(Position(2,4)) == true  );
+}

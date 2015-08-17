@@ -21,7 +21,6 @@
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
 		837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
-		8387E8EB1B80959C008D26AF /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
 		8387E8FC1B80991A008D26AF /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		8387E8FD1B80991D008D26AF /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		8387E8FE1B809921008D26AF /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
@@ -34,7 +33,6 @@
 		83AFC85A1B80A82200253C85 /* aidebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AFC8581B80A81D00253C85 /* aidebug.cpp */; };
 		83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
-		83B61E861B75187300DBD0BB /* interfacetests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* interfacetests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -300,13 +298,11 @@
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
-				83B61E861B75187300DBD0BB /* interfacetests.cpp in Sources */,
 				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
 				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
 				83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */,
-				8387E8EB1B80959C008D26AF /* gamerunnertests.cpp in Sources */,
 				837041C51B714EE0009E5A7B /* aitests.cpp in Sources */,
 				837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */,
 			);

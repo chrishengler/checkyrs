@@ -100,7 +100,7 @@ bool Board::SquareIsThreatened(const Position &p) const{
         if(!SquareExists(testpos)) continue;
         if(!SquareIsOccupied(testpos)) continue;
         else if(getPlayer(testpos)!=getPlayer(p)){
-          if(yy/getPlayer(testpos) == 1){
+          if(yy/getPlayer(testpos) == -1 || SquareHasKing(testpos)){
             Position jumptarget(p._x-xx,p._y-yy);
             if(!SquareExists(jumptarget)) continue;
             if(!SquareIsOccupied(jumptarget)) return true;
