@@ -22,7 +22,7 @@ TEST_CASE("eval prefers advanced pieces"){
   std::vector<Position> advanced = {p1,p2,p3};
   g1.AddPieces(home);
   g2.AddPieces(advanced);
-  REQUIRE( ai.eval(g1.getBoard()) < ai.eval(g2.getBoard()));
+  REQUIRE( ai.eval(g1) < ai.eval(g2) );
 }
 
 TEST_CASE("eval prefers fewer opposition pieces"){
@@ -39,7 +39,7 @@ TEST_CASE("eval prefers fewer opposition pieces"){
   
   g2.AddPieces(player1);
   g2.AddPiece(p3,-1);
-  REQUIRE( ai.eval(g1.getBoard()) < ai.eval(g2.getBoard()));
+  REQUIRE( ai.eval(g1) < ai.eval(g2) );
 }
 
 TEST_CASE("can evaluate all available moves, taking multiple pieces preferred to taking one"){

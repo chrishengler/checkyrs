@@ -91,30 +91,16 @@ bool Board::SquareHasKing(const Position &p) const{
   return m_board[p._x][p._y].isKing();
 }
 
-bool Board::SquareIsThreatened(const Position &p) const{
-  try{
-    if(!SquareIsOccupied(p)) return false;
-    for(int yy=-1;yy<2;yy+=2){
-      for(int xx=-1;xx<2;xx+=2){
-        Position testpos(p._x+xx, p._y+yy);
-        if(!SquareExists(testpos)) continue;
-        if(!SquareIsOccupied(testpos)) continue;
-        else if(getPlayer(testpos)!=getPlayer(p)){
-          if(yy/getPlayer(testpos) == -1 || SquareHasKing(testpos)){
-            Position jumptarget(p._x-xx,p._y-yy);
-            if(!SquareExists(jumptarget)) continue;
-            if(!SquareIsOccupied(jumptarget)) return true;
-          }
-        }
-      }
-    }
-    return false;
+bool Board::SquareNearEdge(const Position &p) const{
+  if(!SquareExists(p)){
+    std::string errmsg("Checking kinghood of non-existent position:");
+    errmsg+=p.toString();
+    throw std::out_of_range(errmsg);
   }
-  catch(std::exception &e){
-    std::cout << "unexpected exception when checking if square " << p.toString() << " is threatened\n" << e.what();
-    throw e;
-  }
+  else if(p._x < 2 || m_size-p._x<3) return true;
+  else return false;
 }
+
 
 int Board::getPlayer(const Position &p) const{
   if(!SquareExists(p)){

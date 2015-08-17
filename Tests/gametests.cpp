@@ -189,11 +189,26 @@ TEST_CASE("check if piece is threatened"){
   game.AddPiece(Position(2,2));
   game.AddPiece(Position(3,3),-1,true);
   game.AddPiece(Position(2,4));
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(0,0)) == false );
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(1,1)) == false );
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(2,0)) == false );
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(0,2)) == false );
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(2,2)) == false );
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(3,3)) == true  );
-  REQUIRE( game.getBoard().SquareIsThreatened(Position(2,4)) == true  );
+  REQUIRE( game.PieceIsThreatened(Position(0,0)) == false );
+  REQUIRE( game.PieceIsThreatened(Position(1,1)) == false );
+  REQUIRE( game.PieceIsThreatened(Position(2,0)) == false );
+  REQUIRE( game.PieceIsThreatened(Position(0,2)) == false );
+  REQUIRE( game.PieceIsThreatened(Position(2,2)) == false );
+  REQUIRE( game.PieceIsThreatened(Position(3,3)) == true  );
+  REQUIRE( game.PieceIsThreatened(Position(2,4)) == true  );
+}
+
+TEST_CASE("check piece defence"){
+  Game game;
+  game.AddPiece(Position(0,0));
+  game.AddPiece(Position(1,1));
+  game.AddPiece(Position(2,2));
+  game.AddPiece(Position(0,2));
+  game.AddPiece(Position(6,6));
+  game.AddPiece(Position(3,3),-1);
+  REQUIRE( game.PieceDefence(Position(0,0)) == 1 );
+  REQUIRE( game.PieceDefence(Position(1,1)) == 3 );
+  REQUIRE( game.PieceDefence(Position(2,2)) == 1 );
+  REQUIRE( game.PieceDefence(Position(0,2)) == 1 );
+  REQUIRE( game.PieceDefence(Position(6,6)) == 0 );
 }

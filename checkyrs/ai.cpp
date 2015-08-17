@@ -20,7 +20,8 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
   return lhs.second > rhs.second;
 }
 
-double CheckyrsAI::eval(const Board &b) const{
+double CheckyrsAI::eval(const Game &g) const{
+  Board b=g.getBoard();
   double kingweight = 2000;
   double normweight = 1000;
   double value = 0;
@@ -32,12 +33,15 @@ double CheckyrsAI::eval(const Board &b) const{
       if(b.SquareIsOccupied(p)){
         if(b.getPlayer(p) == m_player){
           thissquare = (b.SquareHasKing(p) ? kingweight : normweight+(10*m_aggression*jj) );
-          if(b.SquareIsThreatened(p)){
-            thissquare *= -0.5;
-          }
         }
         else{
-          thissquare = -1*(b.SquareHasKing(p) ? kingweight : normweight+(10*m_aggression*jj) );
+          thissquare = -1*(b.SquareHasKing(p) ? kingweight : normweight+(10*m_possession*(boardsize-1)-jj) );
+        }
+        if(b.SquareNearEdge(p)){
+          thissquare *= 1.2;
+        }
+        if(g.PieceIsThreatened(p)){
+          thissquare *= -0.8;
         }
         value += thissquare;
         thissquare = 0;

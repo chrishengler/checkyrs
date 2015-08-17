@@ -26,7 +26,7 @@ public:
   CheckyrsAI(){m_aggression=5;m_possession=5;m_player=1;}
   CheckyrsAI(double agg,double pos,int player){m_aggression=agg,m_possession=pos;m_player=player;}
   
-  double eval(const Board &b) const;
+  double eval(const Game &g) const;
   double evalNode(const Game &g, const bool opp=false) const;
   moveEval rootNegamax(const Game &g, const int depth) const;
   double negamax(Game g, const int depth, const bool ownTurn) const;

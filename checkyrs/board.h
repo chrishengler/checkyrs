@@ -27,7 +27,7 @@ public:
   
   bool SquareExists(const Position &p) const;
   bool SquareIsOccupied(const Position &p) const;
-  bool SquareIsThreatened(const Position &p) const;
+  bool SquareNearEdge(const Position &p) const;
   int getPlayer(const Position &p) const;
   bool wasJump(const Position &p1, const Position &p2) const;
   Position getJump(const Position &p1, const Position &p2) const;

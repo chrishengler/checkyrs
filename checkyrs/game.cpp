@@ -46,6 +46,53 @@ void Game::PrepareBoard(){
   AddPieces(p2,-1);
 }
 
+bool Game::PieceIsThreatened(const Position &p) const{
+  try{
+    if(!m_board.SquareIsOccupied(p)) return false;
+    for(int yy=-1;yy<2;yy+=2){
+      for(int xx=-1;xx<2;xx+=2){
+        Position testpos(p._x+xx, p._y+yy);
+        if(!m_board.SquareExists(testpos)) continue;
+        if(!m_board.SquareIsOccupied(testpos)) continue;
+        else if(m_board.getPlayer(testpos)!=m_board.getPlayer(p)){
+          if(yy/m_board.getPlayer(testpos) == -1 || m_board.SquareHasKing(testpos)){
+            Position jumptarget(p._x-xx,p._y-yy);
+            if(!m_board.SquareExists(jumptarget)) continue;
+            if(!m_board.SquareIsOccupied(jumptarget)) return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+  catch(std::exception &e){
+    std::cout << "unexpected exception when checking if square " << p.toString() << " is threatened\n" << e.what();
+    throw e;
+  }
+}
+
+int Game::PieceDefence(const Position &p) const{
+  try{
+    int def=0;
+    if(!m_board.SquareIsOccupied(p)) return false;
+    for(int yy=-1;yy<2;yy+=2){
+      for(int xx=-1;xx<2;xx+=2){
+        Position testpos(p._x+xx, p._y+yy);
+        if(!m_board.SquareExists(testpos)) continue;
+        if(!m_board.SquareIsOccupied(testpos)) continue;
+        else if(m_board.getPlayer(testpos)==m_board.getPlayer(p)){
+          def++;
+        }
+      }
+    }
+    return def;
+  }
+  catch(std::exception &e){
+    std::cout << "unexpected exception when checking if square " << p.toString() << " is defended\n" << e.what();
+    throw e;
+  }
+}
+
 std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const bool alreadyMoved) const{
   std::vector<std::vector<Position> > possibleMoves;
   
