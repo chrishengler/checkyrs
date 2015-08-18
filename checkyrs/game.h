@@ -22,6 +22,8 @@ class Game {
   int m_maxstaleness;
   bool m_stale;
   
+  int m_turn;
+  
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
   std::vector<std::vector<Position> > ExtendMove(const std::vector<Position> &p) const;
@@ -36,6 +38,7 @@ public:
     m_staleness=0;
     m_maxstaleness=50;
     m_stale=false;
+    m_turn=0;
   }
   Game(const int size){
     m_board=Board::Board(size);
@@ -45,6 +48,7 @@ public:
     m_staleness=0;
     m_maxstaleness=50;
     m_stale = false;
+    m_turn = 0;
   }
   Game(const Board &board){
     m_board=board;
@@ -54,6 +58,7 @@ public:
     m_staleness=0;
     m_maxstaleness=50;
     m_stale = false;
+    m_turn = 0;
   };
   Game(const Game &g){
     m_board         = g.m_board;
@@ -63,6 +68,7 @@ public:
     m_staleness     = g.m_staleness;
     m_maxstaleness  = g.m_maxstaleness;
     m_stale         = g.m_stale;
+    m_turn          = g.m_turn;
   };
   
   Board getBoard() const{return m_board;}
@@ -77,6 +83,7 @@ public:
   bool gameOver() const{ return m_gameover; }
   int getWinner() const{ return m_winner; }
   int getCurrentPlayer() const{ return m_currentplayer; }
+  int getCurrentTurn() const{ return m_turn; }
   
   int getStaleness() const{ return m_staleness; }
   int getMaxStaleness() const{ return m_maxstaleness; }
@@ -87,6 +94,7 @@ public:
   
   bool PieceIsThreatened(const Position &p) const;
   int PieceDefence(const Position &p) const;
+  bool PieceCanCapture(const Position &p) const;
   bool PieceCanCrown(const Position &p) const;
 
   std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool alreadyMoved=false) const;

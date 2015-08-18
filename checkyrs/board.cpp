@@ -113,9 +113,9 @@ bool Board::SquareHasKing(const Position &p) const{
   return m_board[p._x][p._y].isKing();
 }
 
-int Board::DistanceToEdge(const Position &p) const{
+int Board::DistanceToSide(const Position &p) const{
   if(!SquareExists(p)){
-    std::string errmsg("Checking distance to edge from non-existent position:");
+    std::string errmsg("Checking distance to side from non-existent position:");
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
@@ -124,6 +124,22 @@ int Board::DistanceToEdge(const Position &p) const{
   return ( left>right ? right : left );
 }
 
+int Board::DistanceToEnd(const Position &p) const{
+  if(!SquareExists(p)){
+    std::string errmsg("Checking distance to end from non-existent position:");
+    errmsg+=p.toString();
+    throw std::out_of_range(errmsg);
+  }
+  int bottom = p._x;
+  int top = (m_size-1)-p._y;
+  return ( top>bottom ? bottom : top );
+}
+
+int Board::DistanceToEdge(const Position &p) const{
+  int lateral = DistanceToSide(p);
+  int longitudinal = DistanceToEnd(p);
+  return ( lateral>longitudinal ? longitudinal : lateral );
+}
 
 int Board::getPlayer(const Position &p) const{
   if(!SquareExists(p)){

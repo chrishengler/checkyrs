@@ -17,7 +17,7 @@
 typedef std::pair<std::vector<Position>,double> moveEval;
 
 
-class CheckyrsAI {
+class CheckyrsAI { //CheckyrsArtificialIdiot
   double m_aggression;
   double m_possession;
   int m_player;

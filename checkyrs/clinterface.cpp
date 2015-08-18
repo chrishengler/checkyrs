@@ -79,7 +79,7 @@ void CLInterface::printBoard(const Board &b) const{
   for(int ii=0;ii<b.getSize();ii++){
     std::cout << "abcdefghijklmnopqrstuvwxyz"[ii] << "   ";
   }
-  std::cout << "\n";
+  std::cout << "\n\n\n";
   return;
 }
 

@@ -79,7 +79,10 @@ int Game::PieceDefence(const Position &p) const{
     for(int yy=-1;yy<2;yy+=2){
       for(int xx=-1;xx<2;xx+=2){
         Position testpos(p._x+xx, p._y+yy);
-        if(!m_board.SquareExists(testpos)) continue;
+        if(!m_board.SquareExists(testpos)){
+          def++;
+          continue;
+        }
         if(!m_board.SquareIsOccupied(testpos)) continue;
         else if(m_board.getPlayer(testpos)==m_board.getPlayer(p)){
           def++;
@@ -105,6 +108,20 @@ bool Game::PieceCanCrown(const Position &p) const{
         if(moves.at(ii).at(jj)._y == (m_board.getPlayer(p) == 1 ? m_board.getSize()-1 : 0)) return true;
       }
     }
+  }
+  catch(std::exception &e){
+    std::cout << "unexpected exception when checking if square " << p.toString() << " can be crowned\n" << e.what();
+  }
+  return false;
+}
+
+bool Game::PieceCanCapture(const Position &p) const{
+  try{
+    if(!m_board.SquareExists(p)) return false;
+    if(!m_board.SquareIsOccupied(p)) return false;
+    std::vector<std::vector<Position> > moves = getMovesFrom(p);
+    if(moves.size()!=0 && fabs(moves.at(0).at(0)._y - moves.at(0).at(1)._y)!=1) return true;
+    else return false;
   }
   catch(std::exception &e){
     std::cout << "unexpected exception when checking if square " << p.toString() << " can be crowned\n" << e.what();
@@ -278,5 +295,6 @@ void Game::ExecuteMove(const std::vector<Position> &move){
     m_gameover = true;
     m_stale = true;
   }
+  m_turn++;
 }
 
