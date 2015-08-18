@@ -139,4 +139,9 @@ TEST_CASE("get user input for move"){
   REQUIRE_NOTHROW( interface.getMove(g1) );
 }
 
+TEST_CASE("display help"){
+  CLInterface interface;
+  REQUIRE_NOTHROW( interface.showMenuHelp() );
+}
+
 

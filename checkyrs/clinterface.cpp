@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "boost/algorithm/string.hpp"
 #include "clinterface.h"
 
 #define KNRM   "\x1B[0m"
@@ -17,10 +18,11 @@
 #define KMAG   "\x1B[35m"
 #define KCYN   "\x1B[36m"
 #define KWHT   "\x1B[37m"
+#define BOLD   "\e[1m"
 #define RESET  "\033[0m"
 
 bool CLInterface::yn(const std::string &s) const{
-  std::cout << s;
+  std::cout << s << "\n> ";
   bool valid = false;
   bool retval = false;
   try{
@@ -28,20 +30,84 @@ bool CLInterface::yn(const std::string &s) const{
       std::string input;
       std::cin >> input;
       std::cin.ignore();
-      if(strncmp(input.c_str(),"y",1)==0){
+      boost::algorithm::to_lower(input);
+      if(!strncmp(input.c_str(),"help",4)){
+        showMenuHelp();
+        std::cout << s << "\n> ";
+        continue;
+      }
+      if(!strncmp(input.c_str(),"y",1)){
         valid = true;
         return true;
       }
-      else if(strncmp(input.c_str(),"n",1)==0){
+      else if(!strncmp(input.c_str(),"n",1)){
         valid = true;
       }
-      if(!valid) std::cout << "invalid response, provide \"y\" or \"n\"\n";
+      if(!valid) std::cout << "invalid response, provide \"y\" or \"n\"\n> ";
     }
   }
   catch(std::exception &e){
     std::cout << "unexpected exception while trying to get answer to y/n question: " << e.what() << "\n";
   }
   return retval;
+}
+
+void CLInterface::pauseDisplay() const{
+  std::cout << "\npush enter to continue";
+  std::cin.get();
+  return;
+}
+
+void CLInterface::showMenuHelp() const{
+  std::cout << "\n\nHelp for Checkyrs menu screens:\n\n";
+  std::cout << "Follow the instructions on screen to set up a game.\n";
+  std::cout << "Type 'y' or 'n' for yes/no questions, and input numbers with the number keys.\n\n";
+  if(yn("Show game instructions? (y/n)")){
+    showGameHelp();
+  }
+  std::cout << "type 'help' at any input prompt to show this message again\n";
+}
+
+void CLInterface::showGameHelp() const{
+  Game g(5);
+  g.AddPiece(Position(0,0));
+  g.AddPiece(Position(3,1));
+  g.AddPiece(Position(4,2),-1,true);
+  Board b(3);
+  Position p1p(1,0);
+  Position p1k(1,1);
+  Position p2p(2,0);
+  Position p2k(2,1);
+  b.AddPiece(p1p);
+  b.AddPiece(p1k,1,true);
+  b.AddPiece(p2p,-1);
+  b.AddPiece(p2k,-1,true);
+  std::cout << "\nThe board is displayed on screen at the start of each move\n";
+  std::cout << "Empty squares are displayed as blue or white dots.\n";
+  std::cout << "Player 1's pieces are displayed in cyan, and player 2's pieces are displayed in red\n";
+  pauseDisplay();
+  std::cout << "Normal pieces look like this: ";
+  printSquare(b.getSquare(p1p));
+  std::cout << " and like this: ";
+  printSquare(b.getSquare(p2p));
+  std::cout << "\nKings look like this: ";
+  printSquare(b.getSquare(p1k));
+  std::cout << " and like this: ";
+  printSquare(b.getSquare(p2k));
+  pauseDisplay();
+  std::cout << "\nMoves are input in the following format:\n";
+  std::cout << BOLD << "<current square> <target square>\n" << RESET;
+  std::cout << "for example: \n";
+  printBoard(g.getBoard());
+  std::cout << "player 1: " << BOLD << "a1 b2" << RESET << "\n";
+  g.ExecuteMove(interpretMove("a1 b2"));
+  printBoard(g.getBoard());
+  pauseDisplay();
+  std::cout << "\nTo make longer moves when capturing multiple pieces, include all subsequent squares in the same single input. For example:";
+  printBoard(g.getBoard());
+  std::cout << "player 2: " << BOLD << "e3 c1 a3\n" << RESET;
+  g.ExecuteMove(interpretMove("e3 c1 a3"));
+  printBoard(g.getBoard());
 }
 
 void CLInterface::printSquare(const Square &s, const bool bs) const{
@@ -189,11 +255,17 @@ std::vector<Position> CLInterface::getMove(const Game &g) const{
   bool valid=false;
   do{
     try{
-      std::cout << "input move for player " << (g.getCurrentPlayer()==1 ? "1" : "2" ) << "\n";
+      std::cout << "Input move for player " << (g.getCurrentPlayer()==1 ? "1" : "2" ) << "\n:> ";
       std::getline(std::cin,input);
+      boost::algorithm::to_lower(input);
+      if(!strncmp(input.c_str(),"help",4)){
+        showMenuHelp();
+        std::cout << "\n";
+        continue;
+      }
       move = interpretMove(input);
       if( !(valid = validateMove(move,g) ) ){
-        std::cout << "not a valid move\n";
+        std::cout << "Not a valid move!\n";
       }
     }
     catch(std::exception &e){

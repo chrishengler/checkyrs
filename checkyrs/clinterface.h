@@ -18,8 +18,11 @@ class CLInterface {
 public:
 
   bool yn(const std::string &s) const;
+  void showMenuHelp() const;
+  void showGameHelp() const;
+  void pauseDisplay() const;
   
-  void printSquare(const Square &s, const bool bs) const;
+  void printSquare(const Square &s, const bool bs=true) const;
   void printBoard(const Board &b) const;
   
   void printMove(const std::vector<Position> &p) const;

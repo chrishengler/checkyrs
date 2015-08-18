@@ -15,7 +15,7 @@ void Gamerunner::initialise(){
   std::string input;
   std::cout << "Setting up game\n";
   
-  if(m_cli.yn("player one human? (y/n)\n")){
+  if(m_cli.yn("player one human? (y/n)")){
     m_p1ai=false;
   }
   else{
@@ -23,7 +23,7 @@ void Gamerunner::initialise(){
     m_ai1 = CheckyrsAI(5,5,1);
   }
   
-  if(m_cli.yn("player two human? (y/n)\n")){
+  if(m_cli.yn("player two human? (y/n)")){
     m_p2ai=false;
   }
   else{
@@ -47,7 +47,10 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
     else evaldepth=4;
     if(m_game.getCurrentPlayer() == 1){
       if(m_p1ai){
-        return m_ai1.rootNegamax(m_game, evaldepth).first;
+        std::vector<Position> move = m_ai1.rootNegamax(m_game, evaldepth).first;
+        std::cout << "AI player 1 move:\n";
+        m_cli.printMove(move);
+        return move;
       }
       else{
         return m_cli.getMove(m_game);
@@ -55,7 +58,10 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
     }
     else if(m_game.getCurrentPlayer() == -1){
       if(m_p2ai){
-        return m_ai2.rootNegamax(m_game, evaldepth).first;
+        std::vector<Position> move = m_ai2.rootNegamax(m_game, evaldepth).first;
+        std::cout << "AI player 2 move:\n";
+        m_cli.printMove(move);
+        return move;
       }
       else{
         return m_cli.getMove(m_game);
@@ -97,9 +103,10 @@ bool Gamerunner::continueGame(){
     std::cout << "could not continue\n\n\n";
     return false;
   }
-  m_game.ExecuteMove(move);
   if(move.size()<2){
-    std::cout << "no valid move found\n";
+    std::cout << "No valid move found\n";
   }
+  m_game.ExecuteMove(move);
+
   return true;
 }
