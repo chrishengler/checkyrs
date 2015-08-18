@@ -98,12 +98,16 @@ TEST_CASE("interpret square"){
 TEST_CASE("interpret single move"){
   CLInterface interface;
   std::string validmove("a1 b2");
+  std::string comma("a1, b2");
   std::string nospace("a1b2");
   std::string invalidpos("a1 bd");
   std::string invalidchar("!1 b2");
   std::string invalidnum("a! b2");
   std::string empty("");
   REQUIRE( interface.interpretMove(validmove).size() == 2 );
+  REQUIRE( interface.interpretMove(validmove).at(0) == Position(0,0));
+  REQUIRE( interface.interpretMove(validmove).at(1) == Position(1,1));
+  REQUIRE( interface.interpretMove(comma).size() == 2 );
   REQUIRE( interface.interpretMove(validmove).at(0) == Position(0,0));
   REQUIRE( interface.interpretMove(validmove).at(1) == Position(1,1));
   REQUIRE_THROWS( interface.interpretMove(nospace) );

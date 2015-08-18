@@ -33,6 +33,7 @@
 		83AFC85A1B80A82200253C85 /* aidebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AFC8581B80A81D00253C85 /* aidebug.cpp */; };
 		83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
+		83F05AF91B8333FF0018520F /* interfacetests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* interfacetests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -301,6 +302,7 @@
 				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
 				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
+				83F05AF91B8333FF0018520F /* interfacetests.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
 				83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */,
 				837041C51B714EE0009E5A7B /* aitests.cpp in Sources */,

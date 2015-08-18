@@ -206,9 +206,9 @@ TEST_CASE("check piece defence"){
   game.AddPiece(Position(0,2));
   game.AddPiece(Position(6,6));
   game.AddPiece(Position(3,3),-1);
-  REQUIRE( game.PieceDefence(Position(0,0)) == 1 );
+  REQUIRE( game.PieceDefence(Position(0,0)) == 4 );
   REQUIRE( game.PieceDefence(Position(1,1)) == 3 );
   REQUIRE( game.PieceDefence(Position(2,2)) == 1 );
-  REQUIRE( game.PieceDefence(Position(0,2)) == 1 );
+  REQUIRE( game.PieceDefence(Position(0,2)) == 3 );
   REQUIRE( game.PieceDefence(Position(6,6)) == 0 );
 }
