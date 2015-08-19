@@ -21,9 +21,42 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
   return lhs.second > rhs.second;
 }
 
+void CheckyrsAI::randomiseDoubles(std::vector<double> &vars, const double min, const double max){
+  for(int ii=0;ii<vars.size();ii++){
+    randomiseDouble(vars.at(0),min,max);
+  }
+}
+
+void CheckyrsAI::randomiseInts(std::vector<int> &vars, const int min, const int max){
+  for(int ii=0;ii<vars.size();ii++){
+    randomiseInt(vars.at(0),min,max);
+  }
+}
+
+void CheckyrsAI::randomOrderedIntPair(std::pair<int, int> &vars, const int min, const int max){
+  int x,y;
+  randomiseInt(x,min,max);
+  randomiseInt(y,min,max);
+  if(x < y){
+    vars.first=x; vars.second=y;
+  }
+  else{
+    vars.first=y; vars.second=x;
+  };
+  
+}
+
+
 CheckyrsAI::CheckyrsAI(const int player){
   m_player=player;
-  
+}
+
+void CheckyrsAI::Initialise(bool random){
+  if(random){
+    randomiseAI();
+    return;
+  }
+
   m_aggression=5;
   m_possession=5;
   
@@ -43,7 +76,7 @@ CheckyrsAI::CheckyrsAI(const int player){
   m_adv_offset=0;
   m_side_offset=0.9;
   m_end_offset=0.9;
-  m_corner_offset=0;
+  m_corner_offset=1;
   
   m_adv_min=0;
   m_adv_max=8;
@@ -63,6 +96,38 @@ CheckyrsAI::CheckyrsAI(const int player){
   m_defweight=0.025;
   m_def_offset=1;
   m_def_max=2;
+}
+
+void CheckyrsAI::randomiseAI(){
+  std::vector<double> ap_params = {m_aggression,m_possession};
+  std::vector<double> multi_offsets = {m_push_offset, m_side_offset, m_end_offset, m_corner_offset, m_def_offset};
+  std::vector<double> multi_weights = {m_pushweight, m_sideweight, m_endweight, m_cornerweight, m_defweight};
+  std::vector<double> threatened_weights = {m_threatweight_cancapture,m_threatweight_limited,m_threatweight,m_threatweight_extreme};
+  std::pair<int,int> adv_bounds = std::make_pair(m_adv_min, m_adv_max);
+  std::pair<int,int> side_bounds = std::make_pair(m_side_min, m_side_max);
+  std::pair<int,int> end_bounds = std::make_pair(m_end_min, m_end_max);
+  std::pair<int,int> corner_bounds = std::make_pair(m_corner_min,m_corner_max);
+  
+  randomiseDoubles( ap_params, 0, 10 );
+  randomiseInt(m_pushmen,0,100);
+  
+  randomiseDouble(m_adv_offset,0,1000);
+  randomiseDouble(m_advweight,0,1000);
+  
+  randomiseDoubles(multi_offsets,0.5,2);
+  randomiseDoubles(multi_weights,-0.5,0.5);
+  
+  randomOrderedIntPair(adv_bounds);
+  randomOrderedIntPair(side_bounds);
+  randomOrderedIntPair(end_bounds);
+  randomOrderedIntPair(corner_bounds);
+  
+  randomiseDoubles(threatened_weights);
+  randomiseDouble(m_captureweight,1,5);
+  randomiseDouble(m_crownweight,0,2000);
+  
+  randomiseInt(m_def_max);
+  
 }
 
 double CheckyrsAI::eval(const Game &g) const{

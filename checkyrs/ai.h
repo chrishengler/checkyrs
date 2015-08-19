@@ -65,7 +65,7 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   double m_crownweight;
   double m_defweight;
   double m_def_offset;
-  double m_def_max;
+  int m_def_max;
   
   double m_material_bonus;
   double m_king_bonus;
@@ -73,9 +73,21 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
 public:
   CheckyrsAI(const int player=1);
   
+  void Initialise(bool random=false);
+  
+  void randomiseAI();
+  
   double eval(const Game &g) const;
   double evalNode(const Game &g, const bool opp=false) const;
   moveEval rootNegamax(const Game &g, const int depth) const;
   double negamax(Game g, const int depth, const bool ownTurn) const;
+  
+  void randomiseDouble(double &var, const double min=-1, const double max=1){ var = min+(rand()*max); }
+  void randomiseDoubles(std::vector<double> &vars, const double min=-1, const double max=1);
+  
+  void randomiseInt(int &var, const int min=0, const int max=7){ var = min+(ceil(rand()*max)); }
+  void randomiseInts(std::vector<int> &vars, const int min=0, const int max=7);
+  void randomOrderedIntPair(std::pair<int,int> &vars, const int min=0, const int max=7);
+  
 };
 #endif /* defined(__checkyrs__ai__) */

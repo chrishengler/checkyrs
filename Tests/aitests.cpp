@@ -18,6 +18,7 @@ TEST_CASE("eval prefers advanced pieces"){
   Position p3(2,2);
   Position p4(2,0);
   CheckyrsAI ai;
+  ai.Initialise(false);
   std::vector<Position> home = {p1,p2,p4};
   std::vector<Position> advanced = {p1,p2,p3};
   g1.AddPieces(home);
@@ -33,6 +34,7 @@ TEST_CASE("eval prefers fewer opposition pieces"){
   Position p3(7,7);
   Position p4(6,6);
   CheckyrsAI ai;
+  ai.Initialise(false);
   std::vector<Position> player1 = {p1,p2};
   std::vector<Position> player2 = {p3,p4};
   g1.AddPieces(player1,player2);
@@ -50,6 +52,7 @@ TEST_CASE("can evaluate all available moves, taking multiple pieces preferred to
   Position p4(5,3);
   Position p5(5,5);
   CheckyrsAI ai;
+  ai.Initialise(false);
   std::vector<Position> player1 = {p1,p3};
   std::vector<Position> player2 = {p2,p4,p5};
   g1.AddPieces(player1,player2);
@@ -71,6 +74,7 @@ TEST_CASE("can look ahead"){
   std::vector<Position> player2 = {p4,p5,p6,p7,p8};
   g1.AddPieces(player1,player2);
   CheckyrsAI ai;
+  ai.Initialise();
   moveEval bestMove = ai.rootNegamax(g1,2);
   REQUIRE( bestMove.first.size() == 2 );
   REQUIRE( bestMove.first.at(0)._x==3 );
@@ -90,9 +94,25 @@ TEST_CASE("look ahead terminates correctly when game is won"){
   std::vector<Position> player2 = {p3,p4,p5};
   g1.AddPieces(player1,player2);
   CheckyrsAI ai1(1);
+  ai1.Initialise();
   CheckyrsAI ai2(-1);
+  ai2.Initialise();
   moveEval bestMove;
   REQUIRE_NOTHROW( bestMove = ai1.rootNegamax(g1,10) ); //ensure no exceptions when iterating deeper than remaining game path
   REQUIRE( bestMove.first.at(0)._x == 4 ); //ensure early termination doesn't mess up move selection
   REQUIRE_NOTHROW( bestMove = ai2.rootNegamax(g1,10) ); //same test for losing player
+}
+
+TEST_CASE("create default and randomised AIs"){
+  Game g1;
+  g1.PrepareBoard();
+  
+  CheckyrsAI ai1;
+  REQUIRE_NOTHROW( ai1.Initialise(true) );
+  
+  CheckyrsAI ai2;
+  REQUIRE_NOTHROW( ai2.Initialise(false) );
+  
+  REQUIRE_NOTHROW( g1.ExecuteMove(ai1.rootNegamax(g1, 4).first) );
+  REQUIRE_NOTHROW( g1.ExecuteMove(ai2.rootNegamax(g1, 4).first) );
 }
