@@ -89,8 +89,8 @@ TEST_CASE("look ahead terminates correctly when game is won"){
   std::vector<Position> player1 = {p1,p2};
   std::vector<Position> player2 = {p3,p4,p5};
   g1.AddPieces(player1,player2);
-  CheckyrsAI ai1(5,5,1);
-  CheckyrsAI ai2(5,5,-1);
+  CheckyrsAI ai1(1);
+  CheckyrsAI ai2(-1);
   moveEval bestMove;
   REQUIRE_NOTHROW( bestMove = ai1.rootNegamax(g1,10) ); //ensure no exceptions when iterating deeper than remaining game path
   REQUIRE( bestMove.first.at(0)._x == 4 ); //ensure early termination doesn't mess up move selection

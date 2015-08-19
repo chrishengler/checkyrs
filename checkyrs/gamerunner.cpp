@@ -20,7 +20,7 @@ void Gamerunner::initialise(){
   }
   else{
     m_p1ai=true;
-    m_ai1 = CheckyrsAI(5,5,1);
+    m_ai1 = CheckyrsAI(1);
   }
   
   if(m_cli.yn("player two human? (y/n)")){
@@ -28,7 +28,7 @@ void Gamerunner::initialise(){
   }
   else{
     m_p2ai=true;
-    m_ai2 = CheckyrsAI(5,5,-1);
+    m_ai2 = CheckyrsAI(-1);
   }
   
   m_game = Game();

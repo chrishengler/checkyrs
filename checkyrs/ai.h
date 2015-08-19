@@ -18,13 +18,60 @@ typedef std::pair<std::vector<Position>,double> moveEval;
 
 
 class CheckyrsAI { //CheckyrsArtificialIdiot
+  int m_player;
+  
+  //preference for attacking opponent's pieces vs maintaining own pieces
   double m_aggression;
   double m_possession;
-  int m_player;
 
+  //point in game at which to encourage moving men forward/weight & offset for doing so
+  int m_pushmen;
+  double m_pushweight;
+  double m_push_offset;
+  int m_push_max; //point at which to no longer force that
+  
+  //weight for kings vs normal pieces
+  double m_kingweight;
+  double m_normweight;
+
+  //weights for position: advancement, distance from sides/ends/corner of board
+  double m_advweight;
+  double m_sideweight;
+  double m_endweight;
+  double m_cornerweight;
+  
+  //offsets for each of the above weights
+  double m_adv_offset;
+  double m_side_offset;
+  double m_end_offset;
+  double m_corner_offset;
+  
+  //thresholds for where position bonuses are applied
+  int m_adv_max;
+  int m_adv_min;
+  int m_side_min;
+  int m_side_max;
+  int m_end_min;
+  int m_end_max;
+  int m_corner_min;
+  int m_corner_max;
+  
+  //weights for situational bonuses/maluses
+  double m_threatweight_cancapture;
+  double m_threatweight_limited;
+  double m_threatweight;
+  double m_threatweight_extreme;
+  double m_captureweight;
+  double m_crownweight;
+  double m_defweight;
+  double m_def_offset;
+  double m_def_max;
+  
+  double m_material_bonus;
+  double m_king_bonus;
+  
 public:
-  CheckyrsAI(){m_aggression=5;m_possession=5;m_player=1;}
-  CheckyrsAI(double agg,double pos,int player){m_aggression=agg,m_possession=pos;m_player=player;}
+  CheckyrsAI(const int player=1);
   
   double eval(const Game &g) const;
   double evalNode(const Game &g, const bool opp=false) const;

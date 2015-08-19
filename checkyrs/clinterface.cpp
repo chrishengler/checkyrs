@@ -37,7 +37,6 @@ bool CLInterface::yn(const std::string &s) const{
         continue;
       }
       if(!strncmp(input.c_str(),"y",1)){
-        valid = true;
         return true;
       }
       else if(!strncmp(input.c_str(),"n",1)){

@@ -21,11 +21,52 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
   return lhs.second > rhs.second;
 }
 
+CheckyrsAI::CheckyrsAI(const int player){
+  m_player=player;
+  
+  m_aggression=5;
+  m_possession=5;
+  
+  //set default values as used in initial 'hand-tuned' AI
+  m_pushmen=30;
+  m_push_offset=1;
+  m_pushweight=0.1;
+  
+  m_kingweight=3000;
+  m_normweight=1250;
+  
+  m_advweight=50;
+  m_sideweight=0.05;
+  m_endweight=0.05;
+  m_cornerweight=0.05;
+  
+  m_adv_offset=0;
+  m_side_offset=0.9;
+  m_end_offset=0.9;
+  m_corner_offset=0;
+  
+  m_adv_min=0;
+  m_adv_max=8;
+  m_side_min=1;
+  m_side_max=4;
+  m_end_min=0;
+  m_end_max=4;
+  m_corner_min=0;
+  m_corner_max=4;
+  
+  m_threatweight_cancapture=-0.2;
+  m_threatweight_limited=-0.7;
+  m_threatweight=-1.3;
+  m_threatweight_extreme=-2;
+  m_captureweight=1.5;
+  m_crownweight=500;
+  m_defweight=0.025;
+  m_def_offset=1;
+  m_def_max=2;
+}
+
 double CheckyrsAI::eval(const Game &g) const{
   Board b=g.getBoard();
-  int pushmen = 30; //after this number of turns, add incentive to move men away from home row
-  double kingweight = 3000;
-  double normweight = 1250;
   double value = 0;
   double thissquare = 0;
   
@@ -40,65 +81,76 @@ double CheckyrsAI::eval(const Game &g) const{
         bool isKing = b.SquareHasKing(p);
         bool isCurrentPlayer = (b.getPlayer(p) == g.getCurrentPlayer());
         bool isAI = (b.getPlayer(p) == m_player);
-        int ai_adv = jj+1; //how advanced an AI pawn is
-        int opp_adv = boardsize-jj; //opponent
+        int adv = (isCurrentPlayer ? jj+1 : boardsize-jj); //how advanced an AI pawn is
         int distanceToSide = b.DistanceToSide(p);
         int distanceToEnd = b.DistanceToEnd(p);
+        int distanceToCorner = (distanceToSide>distanceToEnd ? distanceToSide : distanceToEnd);
         bool isThreatened = g.PieceIsThreatened(p);
         bool canCapture = g.PieceCanCapture(p);
         bool canCrown = g.PieceCanCrown(p);
         int def = g.PieceDefence(p);
         
+        //correct values where a min/max is set:
+        if(adv>m_adv_max) adv=m_adv_max;
+        else if(adv<m_adv_min) adv=m_adv_min;
+    
+        if(def>m_def_max) def=m_def_max;
+        
+        if(distanceToSide<m_side_min) distanceToSide=m_side_min;
+        else if(distanceToSide>m_side_max) distanceToSide=m_side_max;
+        
+        if(distanceToEnd<m_end_min) distanceToEnd=m_end_min;
+        else if(distanceToEnd>m_end_max) distanceToEnd=m_end_max;
+        
+        if(distanceToCorner<m_corner_min) distanceToCorner=m_corner_min;
+        else if(distanceToCorner>m_corner_max) distanceToCorner=m_corner_max;
+        
         if(isCurrentPlayer){
-          thissquare = (isKing ? m_possession*kingweight : m_possession*(normweight+(50*ai_adv)) );
+          if(isKing) thissquare = m_possession*m_kingweight;
+          else thissquare = m_possession*(m_normweight+(m_advweight*adv)) ;
         }
         else{
-          thissquare = -1*(isKing ? m_aggression*kingweight : m_aggression*(normweight+(50*opp_adv)) );
+          if(isKing) thissquare = -1*(m_aggression*m_kingweight);
+          else thissquare = -1*(m_aggression*(m_normweight+(m_advweight*adv)) );
         }
-        if( g.getCurrentTurn()>pushmen && !isKing && (isAI ? ai_adv<boardsize/2 : opp_adv<boardsize/2) ){
-          if(isAI){
-            thissquare *= 1-(0.1 * ai_adv/boardsize);
-          }
-          else thissquare *= 1-(0.1 * opp_adv/boardsize);
+        if( g.getCurrentTurn()>m_pushmen && !isKing && m_push_max ){
+            thissquare *= (m_push_offset - m_pushweight*adv/boardsize);
         }
-        if(jj>0 && jj<boardsize-1){ //AI had tendency to never move pieces out of corner square
-          thissquare *= (0.9 + 0.05*(distanceToSide>3 ? 3 : distanceToSide)); //prevent edge bonus being applied there
-        }
-        if(distanceToSide>1){ //try to control board centre
-          thissquare *= (0.9 + 0.05*distanceToEnd);
-        }
+        thissquare *= (m_side_offset + m_sideweight*distanceToSide);
+        thissquare *= (m_end_offset + m_endweight*distanceToEnd);
+        thissquare *= (m_corner_offset + m_cornerweight*distanceToCorner);
         if(isThreatened){ //occasional suicidal moves with no apparent benefit, let's apply heavy penalties
           if(limitedthreat && isCurrentPlayer ){
             if(canCapture){ //under threat, but can capture another piece right now
               limitedthreat = false;
-              thissquare *= -0.2;
+              thissquare *= m_threatweight_cancapture;
             }
             else if(g.getMovesFrom(p).size()>0){ //can't capture but can be captured if not moved
               limitedthreat = false;
-              thissquare *= -0.7;
+              thissquare *= m_threatweight_limited;
             }
-            else thissquare *= -1.3; //under threat, no possibility to capture or move to safety
+            else thissquare *= m_threatweight; //under threat, no possibility to capture or move to safety
           }
           else{
-            thissquare *= -2; //highly penalise multiple threatened pieces/threatened pieces when opponent to move
+            thissquare *= m_threatweight_extreme; //highly penalise multiple threatened pieces/threatened pieces when opponent to move
           }
         }
         else if(canCapture){
           if(isCurrentPlayer || !isThreatened){//no bonus for capture chance if it'll be taken before doing so
-            thissquare *= 1.5;
+            thissquare *= m_captureweight;
           }
         }
         if(canCrown){
-          thissquare += (isAI ? 500 : -500);
+          thissquare += (isAI ? m_crownweight : -m_crownweight);
         }
-        thissquare *= 1+0.025*( def>2 ? 2 : def);
+        thissquare *= m_def_offset+(m_defweight*def);
         value += thissquare;
         thissquare = 0;
       }
     }
   }
-  value += m_player*200*(g.getNumPiecesPlayer(1)-g.getNumPiecesPlayer(-1));
-  value += m_player*200*(g.getNumKingsPlayer(1)-g.getNumKingsPlayer(-1));
+  value += m_player*m_material_bonus*(g.getNumPiecesPlayer(1)-g.getNumPiecesPlayer(-1));
+  value += m_player*m_king_bonus*(g.getNumKingsPlayer(1)-g.getNumKingsPlayer(-1));
 
   double staleness = g.getStaleness()/g.getMaxStaleness();
   if(staleness > 0.33 && (g.getNumPiecesPlayer(m_player)-g.getNumPiecesPlayer(-1*m_player))<2 ){
