@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#define likeabillion 1000000000
+#define likeatrillion 1000000000000
 
 #include <iostream>
 #include "math.h"
@@ -141,7 +141,7 @@ void CheckyrsAI::randomiseAI(){
   randomiseDouble(&m_advweight,-1000,1000);
   
   randomiseDoubles(multi_offsets,-2,2);
-  randomiseDoubles(multi_weights,-0.5,0.5);
+  randomiseDoubles(multi_weights,-1,1);
   
   randomOrderedIntPair(adv_bounds);
   randomOrderedIntPair(side_bounds);
@@ -153,7 +153,7 @@ void CheckyrsAI::randomiseAI(){
   randomiseDouble(&m_crownweight,-1000,1000);
   randomiseDoubles(material_weights,-1000,1000);
   
-  randomiseInt(&m_def_max);
+  randomiseInt(&m_def_max,0,4);
   
 }
 
@@ -165,6 +165,7 @@ double CheckyrsAI::eval(const Game &g) const{
   int boardsize = b.getSize();
   
   bool limitedthreat = true; //player to move doesn't need to be overly concerned if they only have one takeable piece - just move it
+ 
   for(int ii=0;ii<boardsize;ii++){
     for(int jj=0;jj<boardsize;jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position( (boardsize-1)-ii , (boardsize-1)-jj )); //loop rows in reverse order if p2
@@ -243,11 +244,21 @@ double CheckyrsAI::eval(const Game &g) const{
       }
     }
   }
-  value += m_player*m_material_bonus*(g.getNumPiecesPlayer(1)-g.getNumPiecesPlayer(-1));
-  value += m_player*m_king_bonus*(g.getNumKingsPlayer(1)-g.getNumKingsPlayer(-1));
+  
+  int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
+  int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
+  
+  int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
+  int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
+  
+  double matratio = (double)ai_mat/opp_mat; //don't check for zero as method won't be called with gameover
+  double kingratio = opp_kings==0? ai_kings+1 : (double)ai_kings/opp_kings;
+  
+  value += m_player*m_material_bonus*(matratio);
+  value += m_player*m_king_bonus*(kingratio);
 
   double staleness = g.getStaleness()/g.getMaxStaleness();
-  if(staleness > 0.25 && (g.getNumPiecesPlayer(m_player)-g.getNumPiecesPlayer(-1*m_player))<2 ){
+  if(staleness > 0.25 && matratio > 0.5 ){
     //if a draw is approaching and this AI doesn't have significantly fewer pieces than opponent, risk trying something new
     if(staleness > 0.33){
       if(staleness > 0.66){
@@ -265,7 +276,7 @@ double CheckyrsAI::evalNode(const Game &g, const bool opp) const{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( opp ? m_player*-1 : m_player);
     std::vector<moveEval> evals;
     if(p.size()==0){
-      return opp ? likeabillion : -likeabillion;
+      return opp ? likeatrillion : -likeatrillion;
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       double value=0;
@@ -293,13 +304,13 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
     std::cout << "AI player " << (m_player==1? "1" : "2") << " is thinking: " << p.size() << " initial moves from this point\n";
-    double best = -2*likeabillion;
-    double value = -3*likeabillion;
-    if(p.size()==1) return std::make_pair(p.at(0),likeabillion); //don't waste time evaluating tree if there's only one branch
+    double best = -2*likeatrillion;
+    double value = -3*likeatrillion;
+    if(p.size()==1) return std::make_pair(p.at(0),likeatrillion); //don't waste time evaluating tree if there's only one branch
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
       newstate.ExecuteMove((*p_iter));
-      value = negamax(newstate, depth-1, false);
+      value = negamax(newstate, depth-1);
       if(value>best){
         best = value;
         bestMove = std::make_pair((*p_iter),value);
@@ -312,26 +323,26 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   return bestMove;
 }
 
-double CheckyrsAI::negamax(Game g, const int depth, const bool ownTurn) const{
+double CheckyrsAI::negamax(Game g, const int depth) const{
   //negamax recursively calls itself, iterating a tree of all possible game paths for the next depth moves
   //find path with best outcome for AI, assuming opponent always chooses their best move
   try{
     if(depth<=0){
       if(g.gameOver()){
-        return (g.getWinner()==m_player) ? likeabillion : -likeabillion;
+        return (g.getWinner()==m_player) ? likeatrillion : -likeatrillion;
       }
       else return evalNode(g);
     }
-    double best = -2*likeabillion;
-    double value = -3*likeabillion;;
-    std::vector<std::vector<Position> > p = g.getMovesForPlayer( ownTurn ? m_player : m_player*-1 );
+    double best = -2*likeatrillion;
+    double value = -3*likeatrillion;;
+    std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     if(g.gameOver()){
-      return (g.getWinner()==m_player) ? likeabillion+depth : -(likeabillion+depth);
+      return (g.getWinner()==m_player) ? likeatrillion+depth : -(likeatrillion+depth);
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
       newstate.ExecuteMove(*p_iter);
-      value = negamax(newstate,depth-1,!ownTurn);
+      value = negamax(newstate,depth-1);
       if(value > best){
         best = value;
       }
