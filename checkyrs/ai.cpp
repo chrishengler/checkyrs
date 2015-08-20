@@ -116,6 +116,9 @@ void CheckyrsAI::Initialise(bool random){
   m_defweight=0.025;
   m_def_offset=1;
   m_def_max=2;
+  
+  m_material_bonus=200;
+  m_king_bonus=200;
 }
 
 void CheckyrsAI::randomiseAI(){
@@ -125,6 +128,7 @@ void CheckyrsAI::randomiseAI(){
   std::vector<double*> multi_offsets = {&m_push_offset, &m_side_offset, &m_end_offset, &m_corner_offset, &m_def_offset};
   std::vector<double*> multi_weights = {&m_pushweight, &m_sideweight, &m_endweight, &m_cornerweight, &m_defweight};
   std::vector<double*> threatened_weights = {&m_threatweight_cancapture, &m_threatweight_limited, &m_threatweight, &m_threatweight_extreme};
+  std::vector<double*> material_weights = {&m_material_bonus, &m_king_bonus};
   std::pair<int*,int*> adv_bounds = std::make_pair(&m_adv_min, &m_adv_max);
   std::pair<int*,int*> side_bounds = std::make_pair(&m_side_min, &m_side_max);
   std::pair<int*,int*> end_bounds = std::make_pair(&m_end_min, &m_end_max);
@@ -147,6 +151,7 @@ void CheckyrsAI::randomiseAI(){
   randomiseDoubles(threatened_weights,-5,5);
   randomiseDouble(&m_captureweight,-5,5);
   randomiseDouble(&m_crownweight,-1000,1000);
+  randomiseDoubles(material_weights,-1000,1000);
   
   randomiseInt(&m_def_max);
   
