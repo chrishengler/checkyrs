@@ -10,12 +10,14 @@
 #define __checkyrs__ai__
 
 #include <stdio.h>
+#include "boost/random.hpp"
+
 #include "board.h"
 #include "game.h"
 #include "position.h"
 
 typedef std::pair<std::vector<Position>,double> moveEval;
-
+typedef boost::mt19937 boost_rng;
 
 class CheckyrsAI { //CheckyrsArtificialIdiot
   int m_player;
@@ -70,6 +72,8 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   double m_material_bonus;
   double m_king_bonus;
   
+  boost_rng m_rng;
+  
 public:
   CheckyrsAI(const int player=1);
   
@@ -82,12 +86,12 @@ public:
   moveEval rootNegamax(const Game &g, const int depth) const;
   double negamax(Game g, const int depth, const bool ownTurn) const;
   
-  void randomiseDouble(double &var, const double min=-1, const double max=1){ var = min+(rand()*max); }
-  void randomiseDoubles(std::vector<double> &vars, const double min=-1, const double max=1);
+  void randomiseDouble(double *var, const double min=-1, const double max=1);
+  void randomiseDoubles(std::vector<double*> &vars, const double min=-1, const double max=1);
   
-  void randomiseInt(int &var, const int min=0, const int max=7){ var = min+(ceil(rand()*max)); }
-  void randomiseInts(std::vector<int> &vars, const int min=0, const int max=7);
-  void randomOrderedIntPair(std::pair<int,int> &vars, const int min=0, const int max=7);
+  void randomiseInt(int *var, const int min=0, const int max=7);
+  void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
+  void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
   
 };
 #endif /* defined(__checkyrs__ai__) */
