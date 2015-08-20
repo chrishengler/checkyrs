@@ -9,6 +9,7 @@
 #include "catch.hpp"
 #include "game.h"
 #include "ai.h"
+#include "clinterface.h"
 
 TEST_CASE("eval prefers advanced pieces"){
   Game g1;
@@ -73,9 +74,11 @@ TEST_CASE("can look ahead"){
   std::vector<Position> player1 = {p1,p2,p3};
   std::vector<Position> player2 = {p4,p5,p6,p7,p8};
   g1.AddPieces(player1,player2);
-  CheckyrsAI ai;
-  ai.Initialise();
+  CheckyrsAI ai(1);
+  ai.Initialise(false);
   moveEval bestMove = ai.rootNegamax(g1,2);
+  CLInterface m_cli;
+  m_cli.printBoard(g1.getBoard());
   REQUIRE( bestMove.first.size() == 2 );
   REQUIRE( bestMove.first.at(0)._x==3 );
   REQUIRE( bestMove.first.at(0)._y==3 );
@@ -94,9 +97,9 @@ TEST_CASE("look ahead terminates correctly when game is won"){
   std::vector<Position> player2 = {p3,p4,p5};
   g1.AddPieces(player1,player2);
   CheckyrsAI ai1(1);
-  ai1.Initialise();
+  ai1.Initialise(false);
   CheckyrsAI ai2(-1);
-  ai2.Initialise();
+  ai2.Initialise(false);
   moveEval bestMove;
   REQUIRE_NOTHROW( bestMove = ai1.rootNegamax(g1,10) ); //ensure no exceptions when iterating deeper than remaining game path
   REQUIRE( bestMove.first.at(0)._x == 4 ); //ensure early termination doesn't mess up move selection
@@ -107,10 +110,10 @@ TEST_CASE("create default and randomised AIs"){
   Game g1;
   g1.PrepareBoard();
   
-  CheckyrsAI ai1;
+  CheckyrsAI ai1(1);
   REQUIRE_NOTHROW( ai1.Initialise(true) );
   
-  CheckyrsAI ai2;
+  CheckyrsAI ai2(-1);
   REQUIRE_NOTHROW( ai2.Initialise(false) );
   
   REQUIRE_NOTHROW( g1.ExecuteMove(ai1.rootNegamax(g1, 4).first) );

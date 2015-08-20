@@ -84,8 +84,8 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
   void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
 
-  double negamax(Game g, const int depth) const;
-  double evalNode(const Game &g, const bool opp=false) const;
+  double negamax(Game g, const int depth, double alpha, double beta) const;
+  double evalNode(const Game &g) const;
 
 public:
   CheckyrsAI(const int player=1);

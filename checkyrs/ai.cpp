@@ -12,7 +12,7 @@
 #include "math.h"
 #include "ai.h"
 
-
+//sort functions for moveEval
 bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
   return lhs.second < rhs.second;
 }
@@ -72,59 +72,59 @@ CheckyrsAI::CheckyrsAI(const int player){
 }
 
 void CheckyrsAI::Initialise(bool random){
-  if(random){
-    randomiseAI();
-    return;
+  if(!random){
+    m_aggression=5;
+    m_possession=5;
+    
+    //set default values as used in initial 'hand-tuned' AI
+    m_pushmen=30;
+    m_push_offset=1;
+    m_pushweight=0.1;
+    
+    m_kingweight=3000;
+    m_normweight=1250;
+    
+    m_advweight=50;
+    m_sideweight=0.05;
+    m_endweight=0.05;
+    m_cornerweight=0.05;
+    
+    m_adv_offset=0;
+    m_side_offset=0.9;
+    m_end_offset=0.9;
+    m_corner_offset=1;
+    
+    m_adv_min=0;
+    m_adv_max=8;
+    m_side_min=1;
+    m_side_max=4;
+    m_end_min=0;
+    m_end_max=4;
+    m_corner_min=0;
+    m_corner_max=4;
+    
+    m_threatweight_cancapture=0.4;
+    m_threatweight_limited=-0.5;
+    m_threatweight=-1.3;
+    m_threatweight_extreme=-2;
+    m_captureweight=1.5;
+    m_crownweight=500;
+    m_defweight=0.025;
+    m_def_offset=1;
+    m_def_max=2;
+    
+    m_material_bonus=200;
+    m_king_bonus=200;
   }
-
-  m_aggression=5;
-  m_possession=5;
-  
-  //set default values as used in initial 'hand-tuned' AI
-  m_pushmen=30;
-  m_push_offset=1;
-  m_pushweight=0.1;
-  
-  m_kingweight=3000;
-  m_normweight=1250;
-  
-  m_advweight=50;
-  m_sideweight=0.05;
-  m_endweight=0.05;
-  m_cornerweight=0.05;
-  
-  m_adv_offset=0;
-  m_side_offset=0.9;
-  m_end_offset=0.9;
-  m_corner_offset=1;
-  
-  m_adv_min=0;
-  m_adv_max=8;
-  m_side_min=1;
-  m_side_max=4;
-  m_end_min=0;
-  m_end_max=4;
-  m_corner_min=0;
-  m_corner_max=4;
-  
-  m_threatweight_cancapture=0.4;
-  m_threatweight_limited=-0.5;
-  m_threatweight=-1.3;
-  m_threatweight_extreme=-2;
-  m_captureweight=1.5;
-  m_crownweight=500;
-  m_defweight=0.025;
-  m_def_offset=1;
-  m_def_max=2;
-  
-  m_material_bonus=200;
-  m_king_bonus=200;
+  else randomiseAI();
 }
 
 void CheckyrsAI::randomiseAI(){
+  std::cout << "generating random AI:\n";
   m_rng = boost_rng((uint)std::time(0));
   
   std::vector<double*> ap_params = {&m_aggression, &m_possession};
+  std::vector<double*> piece_weights = {&m_kingweight, &m_normweight};
   std::vector<double*> multi_offsets = {&m_push_offset, &m_side_offset, &m_end_offset, &m_corner_offset, &m_def_offset};
   std::vector<double*> multi_weights = {&m_pushweight, &m_sideweight, &m_endweight, &m_cornerweight, &m_defweight};
   std::vector<double*> threatened_weights = {&m_threatweight_cancapture, &m_threatweight_limited, &m_threatweight, &m_threatweight_extreme};
@@ -136,6 +136,7 @@ void CheckyrsAI::randomiseAI(){
   
   randomiseDoubles( ap_params, 0, 10 );
   randomiseInt(&m_pushmen,0,100);
+  randomiseDoubles(piece_weights);
   
   randomiseDouble(&m_adv_offset,-1000,1000);
   randomiseDouble(&m_advweight,-1000,1000);
@@ -148,10 +149,10 @@ void CheckyrsAI::randomiseAI(){
   randomOrderedIntPair(end_bounds);
   randomOrderedIntPair(corner_bounds);
   
-  randomiseDoubles(threatened_weights,-5,5);
-  randomiseDouble(&m_captureweight,-5,5);
-  randomiseDouble(&m_crownweight,-1000,1000);
-  randomiseDoubles(material_weights,-1000,1000);
+  randomiseDoubles(threatened_weights,0,5);
+  randomiseDouble(&m_captureweight,0,5);
+  randomiseDouble(&m_crownweight,-1000,0);
+  randomiseDoubles(material_weights,-1000,0);
   
   randomiseInt(&m_def_max,0,4);
   
@@ -251,7 +252,7 @@ double CheckyrsAI::eval(const Game &g) const{
   int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
   int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
   
-  double matratio = (double)ai_mat/opp_mat; //don't check for zero as method won't be called with gameover
+  double matratio = opp_mat==0? ai_mat+1 : (double)ai_mat/opp_mat; //check for zero only for unit tests, method won't be called with gameover in actual usage
   double kingratio = opp_kings==0? ai_kings+1 : (double)ai_kings/opp_kings;
   
   value += m_player*m_material_bonus*(matratio);
@@ -262,7 +263,7 @@ double CheckyrsAI::eval(const Game &g) const{
     //if a draw is approaching and this AI doesn't have significantly fewer pieces than opponent, risk trying something new
     if(staleness > 0.33){
       if(staleness > 0.66){
-        value *= getRandomDouble(0.3,3); //very close to draw, think about doing something crazy
+        value *= getRandomDouble(-3,3); //very close to draw, think about doing something crazy
       }
       else value *= getRandomDouble(0.5,2); //getting close to draw, introduce bigger fluctuations
     }
@@ -271,12 +272,12 @@ double CheckyrsAI::eval(const Game &g) const{
   return value;
 }
 
-double CheckyrsAI::evalNode(const Game &g, const bool opp) const{
+double CheckyrsAI::evalNode(const Game &g) const{
   try{
-    std::vector<std::vector<Position> > p = g.getMovesForPlayer( opp ? m_player*-1 : m_player);
+    std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     std::vector<moveEval> evals;
-    if(p.size()==0){
-      return opp ? likeatrillion : -likeatrillion;
+    if(g.gameOver()){
+      return (g.getWinner()==m_player) ? likeatrillion : -likeatrillion;
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       double value=0;
@@ -286,11 +287,10 @@ double CheckyrsAI::evalNode(const Game &g, const bool opp) const{
       value=eval(newstate.getBoard());
       evals.push_back(std::make_pair(*p_iter, value));
     }
-    if(opp){
+    if(g.getCurrentPlayer()!=m_player){
       std::sort(evals.begin(),evals.end(),sortMoveEvalsReverse); //sort reverse, assume opponent makes best move
     }
     else std::sort(evals.begin(),evals.end(),sortMoveEvals); //if not opponent, pick our best move
-    //std::cout << evals.size() << " possible moves at final branch node\n";
     return evals.at(0).second;
   }catch(std::exception &e){
     throw e;
@@ -301,16 +301,17 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   //this method will find optimum move based on looking depth moves ahead from current position
   //finds all possible moves then calls negamax() method for each to determine value
   moveEval bestMove;
+  double alpha = -INFINITY;
+  double beta = INFINITY;
+  double best = -INFINITY;
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
     std::cout << "AI player " << (m_player==1? "1" : "2") << " is thinking: " << p.size() << " initial moves from this point\n";
-    double best = -2*likeatrillion;
-    double value = -3*likeatrillion;
     if(p.size()==1) return std::make_pair(p.at(0),likeatrillion); //don't waste time evaluating tree if there's only one branch
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
       newstate.ExecuteMove((*p_iter));
-      value = negamax(newstate, depth-1);
+      double value = -negamax(newstate, depth-1, -beta, -alpha);
       if(value>best){
         best = value;
         bestMove = std::make_pair((*p_iter),value);
@@ -323,7 +324,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   return bestMove;
 }
 
-double CheckyrsAI::negamax(Game g, const int depth) const{
+double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) const{
   //negamax recursively calls itself, iterating a tree of all possible game paths for the next depth moves
   //find path with best outcome for AI, assuming opponent always chooses their best move
   try{
@@ -333,8 +334,6 @@ double CheckyrsAI::negamax(Game g, const int depth) const{
       }
       else return evalNode(g);
     }
-    double best = -2*likeatrillion;
-    double value = -3*likeatrillion;;
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     if(g.gameOver()){
       return (g.getWinner()==m_player) ? likeatrillion+depth : -(likeatrillion+depth);
@@ -342,12 +341,10 @@ double CheckyrsAI::negamax(Game g, const int depth) const{
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
       newstate.ExecuteMove(*p_iter);
-      value = negamax(newstate,depth-1);
-      if(value > best){
-        best = value;
-      }
+      alpha = fmax(alpha,-negamax(newstate,depth-1, -beta, -alpha));
+      if(alpha>=beta) break;
     }
-    return best;
+    return alpha;
   }catch(std::exception &e){
     throw e;
   }

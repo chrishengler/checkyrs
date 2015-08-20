@@ -11,6 +11,13 @@
 
 #include "game.h"
 
+//sort function to order moves by number of pieces taken
+bool sortMovesByLength(const std::vector<Position> &lhs, const std::vector<Position> &rhs){
+  if(lhs.size()>rhs.size()) return true;
+  if(rhs.size()>rhs.size()) return false;
+  else return ( fabs(lhs.at(0)._x - lhs.at(1)._x) > 1 );
+}
+
 void Game::AddPiece(const Position &pos, const int player, const bool isKing){
   m_board.AddPiece(pos,player,isKing);
   
@@ -238,6 +245,7 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) co
     m_gameover=true;  //if player has no legal moves, opponent has won
     m_winner = player*-1;
   }
+  std::sort(possibleMoves.begin(),possibleMoves.end(),sortMovesByLength);
   return possibleMoves;
 }
 
