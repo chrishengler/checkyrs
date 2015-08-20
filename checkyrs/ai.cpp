@@ -299,7 +299,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
       newstate.ExecuteMove((*p_iter));
-      value = negamax(newstate, depth-1, true);
+      value = negamax(newstate, depth-1, false);
       if(value>best){
         best = value;
         bestMove = std::make_pair((*p_iter),value);

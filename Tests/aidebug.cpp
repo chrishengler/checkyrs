@@ -13,10 +13,29 @@
 #include "clinterface.h"
 #include "position.h"
 
+//not real unit tests, but building specific game situations to inspect how evaluation function works
+
+TEST_CASE("sacrifice king for win"){
+  Game g;
+  CLInterface cli;
+  g.AddPiece(Position(1,1),-1,true);
+  g.AddPiece(Position(4,2),-1);
+  g.AddPiece(Position(5,3),-1,true);
+  g.AddPiece(Position(7,5),-1);
+  g.AddPiece(Position(7,7),-1);
+  g.AddPiece(Position(1,3),1,true);
+  CheckyrsAI ai(-1);
+  ai.Initialise(false);
+  cli.printBoard(g.getBoard());
+  moveEval chosenMove = ai.rootNegamax(g,4);
+  REQUIRE( chosenMove.first.at(1)._y == 2);
+  REQUIRE( chosenMove.first.at(1)._x == 2);
+}
+
 TEST_CASE("exception"){
   Game g = Game();
   CLInterface cli;
-  CheckyrsAI ai(7, 3, -1);
+  CheckyrsAI ai(-1);
   g.AddPiece(Position(1,1),-1);
   g.AddPiece(Position(2,2),-1,true);
   g.AddPiece(Position(5,1));
@@ -28,14 +47,4 @@ TEST_CASE("exception"){
   g.AddPiece(Position(5,7),1,true);
   REQUIRE_NOTHROW( ai.rootNegamax(g, 3) );
   REQUIRE_NOTHROW( ai.rootNegamax(g, 4) );
-}
-
-TEST_CASE("ai player 2 first move"){
-  Game g;
-  g.PrepareBoard();
-  CLInterface cli;
-  CheckyrsAI ai(7,3,-1);
-  std::vector<Position> move = { Position(2,2) , Position(3,3) };
-  g.ExecuteMove(move);
-  REQUIRE_NOTHROW(ai.rootNegamax(g, 4));
 }
