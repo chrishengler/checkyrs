@@ -244,13 +244,13 @@ double CheckyrsAI::eval(const Game &g) const{
   double staleness = g.getStaleness()/g.getMaxStaleness();
   if(staleness > 0.25 && (g.getNumPiecesPlayer(m_player)-g.getNumPiecesPlayer(-1*m_player))<2 ){
     //if a draw is approaching and this AI doesn't have significantly fewer pieces than opponent, risk trying something new
-    if(staleness > 0.5){
-      if(staleness > 0.75){
-        value *= getRandomDouble(0.5,2); //very close to draw, think about doing something crazy
+    if(staleness > 0.33){
+      if(staleness > 0.66){
+        value *= getRandomDouble(0.3,3); //very close to draw, think about doing something crazy
       }
-      else value *= getRandomDouble(0.7,1.4); //getting close to draw, introduce bigger fluctuations
+      else value *= getRandomDouble(0.5,2); //getting close to draw, introduce bigger fluctuations
     }
-    else value *= getRandomDouble(0.85,1.2); //plenty of time, only introduce small fuzziness
+    else value *= getRandomDouble(0.67,1.5); //plenty of time, only introduce small fuzziness
   }
   return value;
 }
