@@ -149,10 +149,10 @@ void CheckyrsAI::randomiseAI(){
   randomOrderedIntPair(end_bounds);
   randomOrderedIntPair(corner_bounds);
   
-  randomiseDoubles(threatened_weights,0,5);
-  randomiseDouble(&m_captureweight,0,5);
-  randomiseDouble(&m_crownweight,-1000,0);
-  randomiseDoubles(material_weights,-1000,0);
+  randomiseDoubles(threatened_weights,-5,5);
+  randomiseDouble(&m_captureweight,-5,5);
+  randomiseDouble(&m_crownweight,-1000,1000);
+  randomiseDoubles(material_weights,-1000,1000);
   
   randomiseInt(&m_def_max,0,4);
   
@@ -262,7 +262,7 @@ double CheckyrsAI::eval(const Game &g) const{
   if(staleness > 0.25 && matratio > 0.5 ){
     //if a draw is approaching and this AI doesn't have significantly fewer pieces than opponent, risk trying something new
     if(staleness > 0.33){
-      if(staleness > 0.66){
+      if(staleness > 0.5){
         value *= getRandomDouble(-3,3); //very close to draw, think about doing something crazy
       }
       else value *= getRandomDouble(0.5,2); //getting close to draw, introduce bigger fluctuations
