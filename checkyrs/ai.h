@@ -72,8 +72,21 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   double m_material_bonus;
   double m_king_bonus;
   
-  boost_rng m_rng;
+  mutable boost_rng m_rng;
   
+  double getRandomDouble(const double min=-1, const double max=1) const;
+  int getRandomInt(const int min=0, const int max=8) const;
+  
+  void randomiseDouble(double *var, const double min=-1, const double max=1);
+  void randomiseDoubles(std::vector<double*> &vars, const double min=-1, const double max=1);
+  
+  void randomiseInt(int *var, const int min=0, const int max=7);
+  void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
+  void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
+
+  double negamax(Game g, const int depth, const bool ownTurn) const;
+  double evalNode(const Game &g, const bool opp=false) const;
+
 public:
   CheckyrsAI(const int player=1);
   
@@ -82,16 +95,6 @@ public:
   void randomiseAI();
   
   double eval(const Game &g) const;
-  double evalNode(const Game &g, const bool opp=false) const;
   moveEval rootNegamax(const Game &g, const int depth) const;
-  double negamax(Game g, const int depth, const bool ownTurn) const;
-  
-  void randomiseDouble(double *var, const double min=-1, const double max=1);
-  void randomiseDoubles(std::vector<double*> &vars, const double min=-1, const double max=1);
-  
-  void randomiseInt(int *var, const int min=0, const int max=7);
-  void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
-  void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
-  
 };
 #endif /* defined(__checkyrs__ai__) */

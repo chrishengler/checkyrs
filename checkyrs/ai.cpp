@@ -21,10 +21,20 @@ bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
   return lhs.second > rhs.second;
 }
 
-void CheckyrsAI::randomiseDouble(double *var, const double min, const double max){
+double CheckyrsAI::getRandomDouble(const double min, const double max) const{
   boost::uniform_real<> real_dist(min,max);
   boost::variate_generator<boost_rng&, boost::uniform_real<> > gen(m_rng,real_dist);
-  *var = gen();
+  return gen();
+}
+
+int CheckyrsAI::getRandomInt(const int min, const int max) const{
+  boost::uniform_int<> int_dist(min,max);
+  boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+  return gen();
+}
+
+void CheckyrsAI::randomiseDouble(double *var, const double min, const double max){
+  *var = getRandomDouble(min, max);
 }
 
 void CheckyrsAI::randomiseDoubles(std::vector<double*> &vars, const double min, const double max){
@@ -34,9 +44,7 @@ void CheckyrsAI::randomiseDoubles(std::vector<double*> &vars, const double min, 
 }
 
 void CheckyrsAI::randomiseInt(int *var, const int min, const int max){
-  boost::uniform_int<> int_dist(min,max);
-  boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
-  *var = gen();
+  *var = getRandomInt(min,max);
 }
 
 void CheckyrsAI::randomiseInts(std::vector<int*> &vars, const int min, const int max){
@@ -99,8 +107,8 @@ void CheckyrsAI::Initialise(bool random){
   m_corner_min=0;
   m_corner_max=4;
   
-  m_threatweight_cancapture=-0.2;
-  m_threatweight_limited=-0.7;
+  m_threatweight_cancapture=0.4;
+  m_threatweight_limited=-0.5;
   m_threatweight=-1.3;
   m_threatweight_extreme=-2;
   m_captureweight=1.5;
@@ -200,21 +208,23 @@ double CheckyrsAI::eval(const Game &g) const{
         thissquare *= (m_corner_offset + m_cornerweight*distanceToCorner);
         if(isThreatened){ //occasional suicidal moves with no apparent benefit, let's apply heavy penalties
           if(limitedthreat && isCurrentPlayer ){
-            if(canCapture){ //under threat, but can capture another piece right now
+            if(canCapture){ //under threat, but can capture another piece right now, just reduce score
               limitedthreat = false;
               thissquare *= m_threatweight_cancapture;
             }
-            else if(g.getMovesFrom(p).size()>0){ //can't capture but can be captured if not moved
+            else if(g.getMovesFrom(p).size()>0){ //can't capture but can be captured if not moved: bad thing
               limitedthreat = false;
               thissquare *= m_threatweight_limited;
             }
             else thissquare *= m_threatweight; //under threat, no possibility to capture or move to safety
           }
           else{
+            limitedthreat = false;
             thissquare *= m_threatweight_extreme; //highly penalise multiple threatened pieces/threatened pieces when opponent to move
           }
         }
         else if(canCapture){
+          limitedthreat = false;
           if(isCurrentPlayer || !isThreatened){//no bonus for capture chance if it'll be taken before doing so
             thissquare *= m_captureweight;
           }
@@ -232,15 +242,15 @@ double CheckyrsAI::eval(const Game &g) const{
   value += m_player*m_king_bonus*(g.getNumKingsPlayer(1)-g.getNumKingsPlayer(-1));
 
   double staleness = g.getStaleness()/g.getMaxStaleness();
-  if(staleness > 0.33 && (g.getNumPiecesPlayer(m_player)-g.getNumPiecesPlayer(-1*m_player))<2 ){
+  if(staleness > 0.25 && (g.getNumPiecesPlayer(m_player)-g.getNumPiecesPlayer(-1*m_player))<2 ){
     //if a draw is approaching and this AI doesn't have significantly fewer pieces than opponent, risk trying something new
     if(staleness > 0.5){
       if(staleness > 0.75){
-        value *= (rand()-0.5); //very close to draw, think about doing something crazy
+        value *= getRandomDouble(0.5,2); //very close to draw, think about doing something crazy
       }
-      else value *= (rand()-0.5)/2; //getting close to draw, introduce bigger fluctuations
+      else value *= getRandomDouble(0.7,1.4); //getting close to draw, introduce bigger fluctuations
     }
-    else value *= (rand()-0.5)/4; //plenty of time, only introduce small fuzziness
+    else value *= getRandomDouble(0.85,1.2); //plenty of time, only introduce small fuzziness
   }
   return value;
 }
