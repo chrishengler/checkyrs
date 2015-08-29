@@ -14,11 +14,11 @@
 
 //sort functions for moveEval
 bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
-  return lhs.second > rhs.second;
+  return (lhs.second > rhs.second);
 }
 
 bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
-  return lhs.second < rhs.second;
+  return (lhs.second < rhs.second);
 }
 
 double CheckyrsAI::getRandomDouble(const double min, const double max) const{
@@ -266,7 +266,7 @@ double CheckyrsAI::evalNode(const Game &g) const{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     std::vector<moveEval> evals;
     if(g.gameOver()){
-      return (g.getWinner()==m_player) ? likeatrillion : -likeatrillion;
+      return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       double value=0;
@@ -336,13 +336,13 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
   try{
     if(depth<=0){
       if(g.gameOver()){
-        return (g.getWinner()==m_player) ? likeatrillion : -likeatrillion;
+        return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
       }
       else return evalNode(g);
     }
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     if(g.gameOver()){
-      return (g.getWinner()==m_player) ? likeatrillion+depth : -(likeatrillion+depth);
+      return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion+depth : -(likeatrillion+depth);
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);

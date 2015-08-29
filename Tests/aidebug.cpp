@@ -23,28 +23,14 @@ TEST_CASE("sacrifice king for win"){
   g.AddPiece(Position(5,3),-1,true);
   g.AddPiece(Position(7,5),-1);
   g.AddPiece(Position(7,7),-1);
-  g.AddPiece(Position(1,3),1,true);
+  g.AddPiece(Position(0,4),1,true);
+  std::vector<Position> m = {Position(0,4),Position(1,3)};
+  g.ExecuteMove(m);
   CheckyrsAI ai(-1);
   ai.Initialise(false);
   cli.printBoard(g.getBoard());
   moveEval chosenMove = ai.rootNegamax(g,4);
+  cli.printMove(chosenMove.first);
   REQUIRE( chosenMove.first.at(1)._y == 2);
   REQUIRE( chosenMove.first.at(1)._x == 2);
-}
-
-TEST_CASE("exception"){
-  Game g = Game();
-  CLInterface cli;
-  CheckyrsAI ai(-1);
-  g.AddPiece(Position(1,1),-1);
-  g.AddPiece(Position(2,2),-1,true);
-  g.AddPiece(Position(5,1));
-  g.AddPiece(Position(6,0));
-  g.AddPiece(Position(7,1));
-  g.AddPiece(Position(5,3));
-  g.AddPiece(Position(0,4),1,true);
-  g.AddPiece(Position(1,7),1,true);
-  g.AddPiece(Position(5,7),1,true);
-  REQUIRE_NOTHROW( ai.rootNegamax(g, 3) );
-  REQUIRE_NOTHROW( ai.rootNegamax(g, 4) );
 }

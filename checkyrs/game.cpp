@@ -288,6 +288,7 @@ void Game::ExecuteMove(const std::vector<Position> &move){
     m_gameover = true;
     m_winner = 1;
   }
+  
   m_currentplayer *= -1;
   if(getMovesForPlayer(m_currentplayer).size()==0){
     m_gameover = true;
