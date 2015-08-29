@@ -20,6 +20,7 @@ public:
   bool yn(const std::string &s) const;
   void showMenuHelp() const;
   void showGameHelp() const;
+  void showRules() const;
   void pauseDisplay() const;
   
   void printSquare(const Square &s, const bool bs=true) const;

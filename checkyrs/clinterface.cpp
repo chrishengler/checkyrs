@@ -109,6 +109,29 @@ void CLInterface::showGameHelp() const{
   printBoard(g.getBoard());
 }
 
+void CLInterface::showRules() const{
+  std::cout << "\n\nRules\n\n";
+  std::cout << "There are many variations on draughts/checkers.\n";
+  std::cout << "The rules used by Checkyrs are detailed here\n";
+  std::cout << "Each player starts with 12 pieces\n";
+  std::cout << "Their pieces start on the dark squares of the three rows closest to that player's home row\n";
+  std::cout << "At each turn, the player must move one of their pieces\n";
+  std::cout << "Pieces move diagonally, one square at a time\n";
+  std::cout << "Initially, pieces may only move towards the opponent's home row\n";
+  std::cout << "Once a piece reaches the opponent's home row, it is crowned and may move backwards\n";
+  std::cout << "An opposing piece is removed from the board by jumping over it\n";
+  std::cout << "This is only possible from a neighbouring square, and when the square immediately beyond the captured piece is unoccupied\n";
+  std::cout << "The capturing piece is then placed on the square immediately beyond the captured piece, thus moving two squares diagonally\n";
+  std::cout << "If a capturing piece lands in a location where one or more further captures can be made by the same piece, the move must be extended until the piece is no longer able to capture any opposing pieces\n";
+  std::cout << "If a player has moves available which capture one or more opposing pieces, one of those moves must be chosen\n";
+  std::cout << "It is " << BOLD << "not" << RESET << " necessary to select the longest of all possible moves, but the chosen move must be extended until the piece is in a position from which it can make no further captures\n";
+  std::cout << "Turns may not be skipped, the player is obliged to move when it is their turn\n";
+  std::cout << "\n\nEnd of the Game\n\n";
+  std::cout << "If a player captures all opposing pieces, they win the game\n";
+  std::cout << "If the current player has no legal moves available, they lose the game\n";
+  std::cout << "If no pieces are taken and no pieces are crowned for 50 turns, the game is declared a draw\n";
+}
+
 void CLInterface::printSquare(const Square &s, const bool bs) const{
   std::string col;
   if(s.isOccupied()){

@@ -14,11 +14,11 @@
 
 //sort functions for moveEval
 bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
-  return lhs.second < rhs.second;
+  return lhs.second > rhs.second;
 }
 
 bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
-  return lhs.second > rhs.second;
+  return lhs.second < rhs.second;
 }
 
 double CheckyrsAI::getRandomDouble(const double min, const double max) const{
@@ -258,17 +258,6 @@ double CheckyrsAI::eval(const Game &g) const{
   value += m_player*m_material_bonus*(matratio);
   value += m_player*m_king_bonus*(kingratio);
 
-  double staleness = g.getStaleness()/g.getMaxStaleness();
-  if(staleness > 0.2 && matratio > 0.5 ){
-    //if a draw is approaching and this AI doesn't have significantly fewer pieces than opponent, risk trying something new
-    if(staleness > 0.3){
-      if(staleness > 0.5){
-        value *= getRandomDouble(-6,3); //closing in on draw, think about doing something crazy
-      }
-      else value *= getRandomDouble(0.25,4); //getting close to draw, introduce bigger fluctuations
-    }
-    else value *= getRandomDouble(0.67,1.5); //plenty of time, only introduce small fuzziness
-  }
   return value;
 }
 
@@ -300,7 +289,7 @@ double CheckyrsAI::evalNode(const Game &g) const{
 moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   //this method will find optimum move based on looking depth moves ahead from current position
   //finds all possible moves then calls negamax() method for each to determine value
-  moveEval bestMove;
+  std::vector<moveEval> moves;
   double alpha = -INFINITY;
   double beta = INFINITY;
   double best = -INFINITY;
@@ -314,13 +303,30 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
       double value = -negamax(newstate, depth-1, -beta, -alpha);
       if(value>best){
         best = value;
-        bestMove = std::make_pair((*p_iter),value);
       }
+      moves.push_back(std::make_pair((*p_iter),value));
     }
   }
   catch(std::exception &e){
     throw e;
   }
+  
+  std::sort(moves.begin(),moves.end(),sortMoveEvals);
+
+  double staleness = g.getStaleness()/g.getMaxStaleness();
+  moveEval bestMove;
+  if(staleness<0.3) bestMove = moves.at(0);
+  else{    //if draw is getting close, try something new.
+    int pick;
+    if(staleness>0.6) pick=getRandomInt(0,(int)moves.size()); //try to stick to highly rated moves at first
+    else pick=getRandomInt(0,floor(moves.size()/2));
+    
+    do{
+      bestMove=moves.at(pick);
+      pick--;
+    }while(moves.at(pick).second> (-likeatrillion/2.)); //don't select an obvious losing piece
+  }
+  
   return bestMove;
 }
 

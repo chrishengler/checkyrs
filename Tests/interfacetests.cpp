@@ -144,4 +144,13 @@ TEST_CASE("display help"){
   REQUIRE_NOTHROW( interface.showMenuHelp() );
 }
 
+TEST_CASE("display game help"){
+  CLInterface interface;
+  REQUIRE_NOTHROW( interface.showGameHelp() );
+}
+
+TEST_CASE("display rules"){
+  CLInterface interface;
+  REQUIRE_NOTHROW( interface.showRules() );
+}
 

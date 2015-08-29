@@ -76,9 +76,11 @@ TEST_CASE("can look ahead"){
   g1.AddPieces(player1,player2);
   CheckyrsAI ai(1);
   ai.Initialise(false);
-  moveEval bestMove = ai.rootNegamax(g1,2);
+  moveEval bestMove = ai.rootNegamax(g1,3);
   CLInterface m_cli;
   m_cli.printBoard(g1.getBoard());
+  std::cout << "AI best move: \n";
+  m_cli.printMove(bestMove.first);
   REQUIRE( bestMove.first.size() == 2 );
   REQUIRE( bestMove.first.at(0)._x==3 );
   REQUIRE( bestMove.first.at(0)._y==3 );
