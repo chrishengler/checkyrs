@@ -64,7 +64,10 @@ void CLInterface::showMenuHelp() const{
   if(yn("Show game instructions? (y/n)")){
     showGameHelp();
   }
-  std::cout << "type 'help' at any input prompt to show this message again\n";
+  if(yn("Show game rules? (y/n)")){
+    showRules();
+  }
+  std::cout << "type 'help' at any input prompt to show this message again\n\n\n";
 }
 
 void CLInterface::showGameHelp() const{
