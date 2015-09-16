@@ -16,6 +16,15 @@ TEST_CASE("initialise AIvAI game"){
   REQUIRE_NOTHROW( gr.continueGame() );
 }
 
+TEST_CASE("Initialise game with provided AIs"){
+  CheckyrsAI ai1;
+  CheckyrsAI ai2;
+  ai1.Initialise();
+  ai2.Initialise();
+  Gamerunner gr;
+  REQUIRE_NOTHROW( gr.initialise(ai1,ai2) );
+}
+
 TEST_CASE("initialise 2 player game and play first moves"){
   Gamerunner gr;
   REQUIRE_NOTHROW( gr.initialise() );

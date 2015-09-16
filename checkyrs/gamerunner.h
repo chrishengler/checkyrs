@@ -28,6 +28,7 @@ public:
   bool playerIsAI(const int p){ if(p==1) return m_p1ai; return m_p2ai; }
   
   void initialise();
+  void initialise(const CheckyrsAI &ai1, const CheckyrsAI &ai2);
   
   std::vector<Position> getNextPlayerMove() const;
   bool continueGame();

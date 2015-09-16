@@ -39,6 +39,25 @@ void Gamerunner::initialise(){
   
 }
 
+void Gamerunner::initialise(const CheckyrsAI &ai1, const CheckyrsAI &ai2){
+  
+  m_players=0;
+  std::string input;
+  std::cout << "Setting up game\n";
+
+  m_p1ai=true;
+  m_ai1 = ai1;
+  
+  m_p2ai=true;
+  m_ai2 = ai2;
+  
+  m_game = Game();
+  m_game.PrepareBoard();
+  m_cli = CLInterface();
+  
+}
+
+
 std::vector<Position> Gamerunner::getNextPlayerMove() const{
   m_cli.printBoard(m_game.getBoard());
   try{

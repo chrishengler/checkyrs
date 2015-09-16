@@ -19,6 +19,7 @@
 		8368F87F1B7153DF00E60CDC /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
 		837041C51B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
+		837498081BA9E495008D15B8 /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
 		837A7E961B923B28004BC11A /* interfacetests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* interfacetests.cpp */; };
 		837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
@@ -296,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8335C9611B599B830017EB5F /* square.cpp in Sources */,
+				837498081BA9E495008D15B8 /* gamerunnertests.cpp in Sources */,
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,

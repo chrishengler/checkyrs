@@ -315,7 +315,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
 
   double staleness = g.getStaleness()/g.getMaxStaleness();
   moveEval bestMove;
-  if(staleness<0.3) bestMove = moves.at(0);
+  if(staleness<0.3 || (g.getNumPiecesPlayer(1)+g.getNumPiecesPlayer(-1) > 10)) bestMove = moves.at(0);
   else{    //if draw is getting close, try something new.
     int pick;
     if(staleness>0.6) pick=getRandomInt(0,(int)moves.size()); //try to stick to highly rated moves at first
