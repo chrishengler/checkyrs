@@ -131,3 +131,15 @@ bool Gamerunner::continueGame(){
 
   return true;
 }
+
+bool Gamerunner::gameOver() const{
+  return m_game.gameOver();
+}
+
+bool Gamerunner::isDraw() const{
+  return m_game.isStale();
+}
+
+int Gamerunner::getWinner() const{
+  return m_game.getWinner();
+}

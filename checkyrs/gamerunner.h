@@ -32,6 +32,10 @@ public:
   
   std::vector<Position> getNextPlayerMove() const;
   bool continueGame();
+  
+  bool gameOver() const;
+  bool isDraw() const;
+  int getWinner() const;
 };
 
 #endif /* defined(__checkyrs__gamerunner__) */
