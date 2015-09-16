@@ -80,6 +80,52 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   void randomiseDouble(double *var, const double min=-1, const double max=1);
   void randomiseDoubles(std::vector<double*> &vars, const double min=-1, const double max=1);
   
+  void gene(int *gene, const int p1, const int p2, int min, int max, const float mutate){
+    boost::uniform_int<> int_dist(0,1);
+    boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+    if(gen()<mutate){
+      randomiseInt(gene,min,max);
+      return;
+    }
+    else{
+      if(gen() > 0.5) *gene = p1;
+      else *gene = p2;
+    }
+    return;
+  }
+  
+  void gene(double *gene, const double p1, const double p2, double min, double max, const float mutate){
+    boost::uniform_int<> int_dist(0,1);
+    boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+    if(gen()<mutate){
+      randomiseDouble(gene,min,max);
+    }
+    else{
+      if(gen() < 0.5) *gene = p1;
+      else *gene = p2;
+    }
+    return;
+  }
+
+  void gene(std::pair<int*,int*> gene, const std::pair<int,int> p1, const std::pair<int,int> p2, const int min, const int max, const float mutate){
+    boost::uniform_int<> int_dist(0,1);
+    boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+    if(gen()<mutate){
+      randomOrderedIntPair(gene);
+    }
+    else{
+      if(gen() < 0.5){
+        *(gene.first) = p1.first;
+        *(gene.second) = p1.second;
+      }
+      else{
+        *(gene.first) = p2.first;
+        *(gene.second) = p2.second;
+      }
+    }
+    return;
+  }
+  
   void randomiseInt(int *var, const int min=0, const int max=7);
   void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
   void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
@@ -89,6 +135,8 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
 
 public:
   CheckyrsAI(const int player=1);
+  
+  CheckyrsAI(const CheckyrsAI &p1, const CheckyrsAI&p2, float mutate=0.05);
   
   void Initialise(bool random=false);
   

@@ -136,7 +136,7 @@ void CheckyrsAI::randomiseAI(){
   
   randomiseDoubles( ap_params, 0, 10 );
   randomiseInt(&m_pushmen,0,100);
-  randomiseDoubles(piece_weights);
+  randomiseDoubles(piece_weights,0,5000);
   
   randomiseDouble(&m_adv_offset,-1000,1000);
   randomiseDouble(&m_advweight,-1000,1000);
@@ -156,6 +156,48 @@ void CheckyrsAI::randomiseAI(){
   
   randomiseInt(&m_def_max,0,4);
   
+}
+
+CheckyrsAI::CheckyrsAI(const CheckyrsAI &p1, const CheckyrsAI &p2, float mutate){
+  //what I wouldn't have given for some proper reflection in C++ while writing this...
+  m_rng = boost_rng((uint)std::time(0));
+  
+  gene(&m_aggression, p1.m_aggression, p2.m_aggression, 0, 10, mutate);
+  gene(&m_possession, p1.m_possession, p2.m_possession, 0, 10, mutate);
+  gene(&m_pushweight, p1.m_pushweight, p2.m_pushweight, 0, 5000, mutate);
+  gene(&m_kingweight, p1.m_kingweight, p2.m_kingweight, 0, 5000, mutate);
+  
+  gene(&m_adv_offset, p1.m_adv_offset, p2.m_adv_offset, -1000, 1000, mutate);
+  gene(&m_advweight, p1.m_advweight, p2.m_advweight, -1000, 1000, mutate);
+  
+  gene(&m_push_offset, p1.m_push_offset, p2.m_push_offset, -2, 2, mutate);
+  gene(&m_side_offset, p1.m_side_offset, p2.m_side_offset, -2, 2, mutate);
+  gene(&m_end_offset, p1.m_end_offset, p2.m_end_offset, -2, 2, mutate);
+  gene(&m_corner_offset, p1.m_corner_offset, p2.m_corner_offset, -2, 2, mutate);
+  gene(&m_def_offset, p1.m_def_offset, p2.m_def_offset, -2, 2, mutate);
+  
+  gene(&m_pushweight, p1.m_pushweight, p2.m_pushweight, -1, 1, mutate);
+  gene(&m_sideweight, p1.m_sideweight, p2.m_sideweight, -1, 1, mutate);
+  gene(&m_endweight, p1.m_endweight, p2.m_endweight, -1, 1, mutate);
+  gene(&m_cornerweight, p1.m_cornerweight, p2.m_cornerweight, -1, 1, mutate);
+  gene(&m_defweight, p1.m_defweight, p2.m_defweight, -1, 1, mutate);
+  
+  gene(std::make_pair(&m_adv_min,&m_adv_max), std::make_pair(p1.m_adv_min,p1.m_adv_max), std::make_pair(p2.m_adv_min,p2.m_adv_max), 0, 8, mutate);
+  gene(std::make_pair(&m_side_min,&m_side_max), std::make_pair(p1.m_side_min,p1.m_side_max), std::make_pair(p2.m_side_min,p2.m_side_max), 0, 8, mutate);
+  gene(std::make_pair(&m_end_min,&m_end_max), std::make_pair(p1.m_end_min,p1.m_end_max), std::make_pair(p2.m_end_min,p2.m_end_max), 0, 8, mutate);
+  gene(std::make_pair(&m_corner_min,&m_corner_max), std::make_pair(p1.m_corner_min,p1.m_corner_max), std::make_pair(p2.m_corner_min,p2.m_corner_max), 0, 8, mutate);
+  
+  gene(&m_threatweight_cancapture, p1.m_threatweight_cancapture, p2.m_threatweight_cancapture, -5, 5, mutate);
+  gene(&m_threatweight_limited, p1.m_threatweight_limited, p2.m_threatweight_limited, -5, 5, mutate);
+  gene(&m_threatweight, p1.m_threatweight, p2.m_threatweight, -5, 5, mutate);
+  gene(&m_threatweight_extreme, p1.m_threatweight_extreme, p2.m_threatweight_extreme, -5, 5, mutate);
+  
+  gene(&m_captureweight, p1.m_captureweight, p2.m_captureweight, -5, 5, mutate);
+  gene(&m_crownweight, p1.m_crownweight, p2.m_crownweight, -1000, 1000, mutate);
+  gene(&m_material_bonus, p1.m_material_bonus, p2.m_material_bonus, -1000, 1000, mutate);
+  gene(&m_king_bonus, p1.m_king_bonus, p2.m_king_bonus, -1000, 1000, mutate);
+  
+  gene(&m_def_max, p1.m_def_max, p2.m_def_max, 0, 4, mutate);
 }
 
 double CheckyrsAI::eval(const Game &g) const{
