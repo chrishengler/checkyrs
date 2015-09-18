@@ -9,16 +9,6 @@
 /* Begin PBXBuildFile section */
 		8302EAC31B5BC4BF00CD0CA4 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
 		8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */; };
-		8308C7921BAC3C5D00BC041B /* CheckyrsAI.h in Headers */ = {isa = PBXBuildFile; fileRef = 8308C7911BAC3C5D00BC041B /* CheckyrsAI.h */; };
-		8308C7941BAC3C5D00BC041B /* CheckyrsAIPriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 8308C7931BAC3C5D00BC041B /* CheckyrsAIPriv.h */; };
-		8308C7961BAC3C5D00BC041B /* CheckyrsAI.cp in Sources */ = {isa = PBXBuildFile; fileRef = 8308C7951BAC3C5D00BC041B /* CheckyrsAI.cp */; };
-		8308C79A1BAC3C8100BC041B /* ai.h in Headers */ = {isa = PBXBuildFile; fileRef = 837041C01B714E58009E5A7B /* ai.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8308C79B1BAC3C8500BC041B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
-		8308C7A31BAC3D5200BC041B /* CheckyrsBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 8308C7A21BAC3D5200BC041B /* CheckyrsBase.h */; };
-		8308C7A51BAC3D5200BC041B /* CheckyrsBasePriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 8308C7A41BAC3D5200BC041B /* CheckyrsBasePriv.h */; };
-		8308C7A71BAC3D5200BC041B /* CheckyrsBase.cp in Sources */ = {isa = PBXBuildFile; fileRef = 8308C7A61BAC3D5200BC041B /* CheckyrsBase.cp */; };
-		8308C7B21BAC3D7C00BC041B /* clinterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B61E821B7517A200DBD0BB /* clinterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8308C7B31BAC3D8200BC041B /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		8335C9421B598C0A0017EB5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9411B598C0A0017EB5F /* main.cpp */; };
 		8335C9571B598FC90017EB5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9561B598FC90017EB5F /* main.cpp */; };
 		8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9581B5992F40017EB5F /* boardtests.cpp */; };
@@ -26,13 +16,19 @@
 		8335C95F1B59987B0017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
 		8335C9601B599B7E0017EB5F /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
 		8335C9611B599B830017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
-		835B33321BAC3F98008AEEEF /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
-		835B33331BAC3F9D008AEEEF /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95B1B5994130017EB5F /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33341BAC3FA3008AEEEF /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
-		835B33351BAC3FA7008AEEEF /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 8302EAC21B5BC4BF00CD0CA4 /* game.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33361BAC3FAC008AEEEF /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
-		835B33371BAC3FAF008AEEEF /* square.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95E1B59987B0017EB5F /* square.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33381BAC3FB6008AEEEF /* position.h in Headers */ = {isa = PBXBuildFile; fileRef = 837163041B5A49D1008D1D99 /* position.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B335F1BAC4845008AEEEF /* position.h in Headers */ = {isa = PBXBuildFile; fileRef = 837163041B5A49D1008D1D99 /* position.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B33601BAC4857008AEEEF /* square.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95E1B59987B0017EB5F /* square.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B33611BAC486C008AEEEF /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
+		835B33621BAC486F008AEEEF /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 8302EAC21B5BC4BF00CD0CA4 /* game.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B33631BAC4873008AEEEF /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		835B33641BAC4877008AEEEF /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95B1B5994130017EB5F /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B33651BAC487C008AEEEF /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
+		835B33661BAC487F008AEEEF /* ai.h in Headers */ = {isa = PBXBuildFile; fileRef = 837041C01B714E58009E5A7B /* ai.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B33671BAC4884008AEEEF /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
+		835B33681BAC4887008AEEEF /* clinterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B61E821B7517A200DBD0BB /* clinterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B33691BAC488B008AEEEF /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
+		835B336A1BAC488E008AEEEF /* gamerunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 837041BC1B714DC2009E5A7B /* gamerunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		835B336B1BAC4892008AEEEF /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		8368F87F1B7153DF00E60CDC /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
 		837041C51B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
@@ -88,11 +84,9 @@
 		8302EAC11B5BC4BF00CD0CA4 /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		8302EAC21B5BC4BF00CD0CA4 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gametests.cpp; sourceTree = "<group>"; };
-		8308C78F1BAC3C5D00BC041B /* libCheckyrsAI.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCheckyrsAI.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8308C7911BAC3C5D00BC041B /* CheckyrsAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsAI.h; sourceTree = "<group>"; };
 		8308C7931BAC3C5D00BC041B /* CheckyrsAIPriv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsAIPriv.h; sourceTree = "<group>"; };
 		8308C7951BAC3C5D00BC041B /* CheckyrsAI.cp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckyrsAI.cp; sourceTree = "<group>"; };
-		8308C7A01BAC3D5200BC041B /* libCheckyrsBase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCheckyrsBase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		8308C7A21BAC3D5200BC041B /* CheckyrsBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsBase.h; sourceTree = "<group>"; };
 		8308C7A41BAC3D5200BC041B /* CheckyrsBasePriv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsBasePriv.h; sourceTree = "<group>"; };
 		8308C7A61BAC3D5200BC041B /* CheckyrsBase.cp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckyrsBase.cp; sourceTree = "<group>"; };
@@ -105,6 +99,7 @@
 		8335C95B1B5994130017EB5F /* board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
 		8335C95D1B59987B0017EB5F /* square.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = square.cpp; sourceTree = "<group>"; };
 		8335C95E1B59987B0017EB5F /* square.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = square.h; sourceTree = "<group>"; };
+		835B335B1BAC481F008AEEEF /* libCheckyrs.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCheckyrs.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		837041BB1B714DC2009E5A7B /* gamerunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamerunner.cpp; sourceTree = "<group>"; };
 		837041BC1B714DC2009E5A7B /* gamerunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gamerunner.h; sourceTree = "<group>"; };
 		837041BF1B714E58009E5A7B /* ai.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ai.cpp; sourceTree = "<group>"; };
@@ -121,20 +116,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8308C78C1BAC3C5D00BC041B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8308C79D1BAC3D5200BC041B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8335C93B1B598C0A0017EB5F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -143,6 +124,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8335C94B1B598F060017EB5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		835B33581BAC481F008AEEEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -197,8 +185,7 @@
 				8335C93E1B598C0A0017EB5F /* checkyrs */,
 				8335C94E1B598F060017EB5F /* UnitTests */,
 				8387E8F01B8095B1008D26AF /* AIdebug */,
-				8308C78F1BAC3C5D00BC041B /* libCheckyrsAI.dylib */,
-				8308C7A01BAC3D5200BC041B /* libCheckyrsBase.dylib */,
+				835B335B1BAC481F008AEEEF /* libCheckyrs.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,67 +237,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		8308C78D1BAC3C5D00BC041B /* Headers */ = {
+		835B33591BAC481F008AEEEF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8308C79A1BAC3C8100BC041B /* ai.h in Headers */,
-				8308C7921BAC3C5D00BC041B /* CheckyrsAI.h in Headers */,
-				8308C7941BAC3C5D00BC041B /* CheckyrsAIPriv.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8308C79E1BAC3D5200BC041B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				835B33351BAC3FA7008AEEEF /* game.h in Headers */,
-				835B33371BAC3FAF008AEEEF /* square.h in Headers */,
-				8308C7B21BAC3D7C00BC041B /* clinterface.h in Headers */,
-				835B33381BAC3FB6008AEEEF /* position.h in Headers */,
-				835B33331BAC3F9D008AEEEF /* board.h in Headers */,
-				8308C7A51BAC3D5200BC041B /* CheckyrsBasePriv.h in Headers */,
-				8308C7A31BAC3D5200BC041B /* CheckyrsBase.h in Headers */,
+				835B335F1BAC4845008AEEEF /* position.h in Headers */,
+				835B33641BAC4877008AEEEF /* board.h in Headers */,
+				835B33621BAC486F008AEEEF /* game.h in Headers */,
+				835B336A1BAC488E008AEEEF /* gamerunner.h in Headers */,
+				835B33601BAC4857008AEEEF /* square.h in Headers */,
+				835B33661BAC487F008AEEEF /* ai.h in Headers */,
+				835B33681BAC4887008AEEEF /* clinterface.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8308C78E1BAC3C5D00BC041B /* CheckyrsAI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8308C7971BAC3C5D00BC041B /* Build configuration list for PBXNativeTarget "CheckyrsAI" */;
-			buildPhases = (
-				8308C78B1BAC3C5D00BC041B /* Sources */,
-				8308C78C1BAC3C5D00BC041B /* Frameworks */,
-				8308C78D1BAC3C5D00BC041B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CheckyrsAI;
-			productName = CheckyrsAI;
-			productReference = 8308C78F1BAC3C5D00BC041B /* libCheckyrsAI.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
-		8308C79F1BAC3D5200BC041B /* CheckyrsBase */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8308C7A81BAC3D5200BC041B /* Build configuration list for PBXNativeTarget "CheckyrsBase" */;
-			buildPhases = (
-				8308C79C1BAC3D5200BC041B /* Sources */,
-				8308C79D1BAC3D5200BC041B /* Frameworks */,
-				8308C79E1BAC3D5200BC041B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CheckyrsBase;
-			productName = CheckyrsBase;
-			productReference = 8308C7A01BAC3D5200BC041B /* libCheckyrsBase.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
 		8335C93D1B598C0A0017EB5F /* checkyrs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8335C9451B598C0A0017EB5F /* Build configuration list for PBXNativeTarget "checkyrs" */;
@@ -345,6 +288,23 @@
 			productReference = 8335C94E1B598F060017EB5F /* UnitTests */;
 			productType = "com.apple.product-type.tool";
 		};
+		835B335A1BAC481F008AEEEF /* libCheckyrs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 835B335C1BAC4820008AEEEF /* Build configuration list for PBXNativeTarget "libCheckyrs" */;
+			buildPhases = (
+				835B33571BAC481F008AEEEF /* Sources */,
+				835B33581BAC481F008AEEEF /* Frameworks */,
+				835B33591BAC481F008AEEEF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libCheckyrs;
+			productName = libCheckyrs;
+			productReference = 835B335B1BAC481F008AEEEF /* libCheckyrs.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		8387E8EF1B8095B1008D26AF /* AIdebug */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8387E8F41B8095B1008D26AF /* Build configuration list for PBXNativeTarget "AIdebug" */;
@@ -371,16 +331,13 @@
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = chrysics;
 				TargetAttributes = {
-					8308C78E1BAC3C5D00BC041B = {
-						CreatedOnToolsVersion = 6.2;
-					};
-					8308C79F1BAC3D5200BC041B = {
-						CreatedOnToolsVersion = 6.2;
-					};
 					8335C93D1B598C0A0017EB5F = {
 						CreatedOnToolsVersion = 6.2;
 					};
 					8335C94D1B598F060017EB5F = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					835B335A1BAC481F008AEEEF = {
 						CreatedOnToolsVersion = 6.2;
 					};
 					8387E8EF1B8095B1008D26AF = {
@@ -403,34 +360,12 @@
 				8335C93D1B598C0A0017EB5F /* checkyrs */,
 				8335C94D1B598F060017EB5F /* UnitTests */,
 				8387E8EF1B8095B1008D26AF /* AIdebug */,
-				8308C78E1BAC3C5D00BC041B /* CheckyrsAI */,
-				8308C79F1BAC3D5200BC041B /* CheckyrsBase */,
+				835B335A1BAC481F008AEEEF /* libCheckyrs */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8308C78B1BAC3C5D00BC041B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8308C7961BAC3C5D00BC041B /* CheckyrsAI.cp in Sources */,
-				8308C79B1BAC3C8500BC041B /* ai.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8308C79C1BAC3D5200BC041B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8308C7B31BAC3D8200BC041B /* clinterface.cpp in Sources */,
-				8308C7A71BAC3D5200BC041B /* CheckyrsBase.cp in Sources */,
-				835B33361BAC3FAC008AEEEF /* square.cpp in Sources */,
-				835B33321BAC3F98008AEEEF /* board.cpp in Sources */,
-				835B33341BAC3FA3008AEEEF /* game.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8335C93A1B598C0A0017EB5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,6 +400,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		835B33571BAC481F008AEEEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				835B33691BAC488B008AEEEF /* clinterface.cpp in Sources */,
+				835B33611BAC486C008AEEEF /* square.cpp in Sources */,
+				835B33671BAC4884008AEEEF /* ai.cpp in Sources */,
+				835B33631BAC4873008AEEEF /* game.cpp in Sources */,
+				835B33651BAC487C008AEEEF /* board.cpp in Sources */,
+				835B336B1BAC4892008AEEEF /* gamerunner.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8387E8EC1B8095B1008D26AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,70 +431,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		8308C7981BAC3C5D00BC041B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				GCC_ENABLE_CPP_EXCEPTIONS = YES;
-				GCC_ENABLE_CPP_RTTI = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-			};
-			name = Debug;
-		};
-		8308C7991BAC3C5D00BC041B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				GCC_ENABLE_CPP_EXCEPTIONS = YES;
-				GCC_ENABLE_CPP_RTTI = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = x86_64;
-			};
-			name = Release;
-		};
-		8308C7A91BAC3D5200BC041B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				GCC_ENABLE_CPP_EXCEPTIONS = YES;
-				GCC_ENABLE_CPP_RTTI = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		8308C7AA1BAC3D5200BC041B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
-				GCC_ENABLE_CPP_EXCEPTIONS = YES;
-				GCC_ENABLE_CPP_RTTI = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		8335C9431B598C0A0017EB5F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -703,6 +587,30 @@
 			};
 			name = Release;
 		};
+		835B335D1BAC4820008AEEEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		835B335E1BAC4820008AEEEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		8387E8F51B8095B1008D26AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -734,24 +642,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8308C7971BAC3C5D00BC041B /* Build configuration list for PBXNativeTarget "CheckyrsAI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8308C7981BAC3C5D00BC041B /* Debug */,
-				8308C7991BAC3C5D00BC041B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8308C7A81BAC3D5200BC041B /* Build configuration list for PBXNativeTarget "CheckyrsBase" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8308C7A91BAC3D5200BC041B /* Debug */,
-				8308C7AA1BAC3D5200BC041B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		8335C9391B598C0A0017EB5F /* Build configuration list for PBXProject "checkyrs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -778,6 +668,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		835B335C1BAC4820008AEEEF /* Build configuration list for PBXNativeTarget "libCheckyrs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				835B335D1BAC4820008AEEEF /* Debug */,
+				835B335E1BAC4820008AEEEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		8387E8F41B8095B1008D26AF /* Build configuration list for PBXNativeTarget "AIdebug" */ = {
 			isa = XCConfigurationList;

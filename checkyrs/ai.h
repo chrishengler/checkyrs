@@ -144,5 +144,8 @@ public:
   
   double eval(const Game &g) const;
   moveEval rootNegamax(const Game &g, const int depth) const;
+  
+  void setPlayer(const int player){ m_player=player; }
+  int getPlayer(){ return m_player; }
 };
 #endif /* defined(__checkyrs__ai__) */
