@@ -63,7 +63,7 @@ void CheckyrsAI::randomOrderedIntPair(std::pair<int*,int*> &vars, const int min,
   else{
     *(vars.first)=y; *(vars.second)=x;
   };
-  
+
 }
 
 
@@ -75,25 +75,25 @@ void CheckyrsAI::Initialise(bool random){
   if(!random){
     m_aggression=5;
     m_possession=5;
-    
+
     //set default values as used in initial 'hand-tuned' AI
     m_pushmen=30;
     m_push_offset=1;
     m_pushweight=0.1;
-    
+
     m_kingweight=3000;
     m_normweight=1250;
-    
+
     m_advweight=50;
     m_sideweight=0.05;
     m_endweight=0.05;
     m_cornerweight=0.05;
-    
+
     m_adv_offset=0;
     m_side_offset=0.9;
     m_end_offset=0.9;
     m_corner_offset=1;
-    
+
     m_adv_min=0;
     m_adv_max=8;
     m_side_min=1;
@@ -102,7 +102,7 @@ void CheckyrsAI::Initialise(bool random){
     m_end_max=4;
     m_corner_min=0;
     m_corner_max=4;
-    
+
     m_threatweight_cancapture=0.4;
     m_threatweight_limited=-0.5;
     m_threatweight=-1.3;
@@ -112,7 +112,7 @@ void CheckyrsAI::Initialise(bool random){
     m_defweight=0.025;
     m_def_offset=1;
     m_def_max=2;
-    
+
     m_material_bonus=200;
     m_king_bonus=200;
   }
@@ -122,93 +122,114 @@ void CheckyrsAI::Initialise(bool random){
 void CheckyrsAI::randomiseAI(){
   std::cout << "generating random AI:\n";
   m_rng = boost_rng((uint)std::time(0));
-  
-  std::vector<double*> ap_params = {&m_aggression, &m_possession};
-  std::vector<double*> piece_weights = {&m_kingweight, &m_normweight};
-  std::vector<double*> multi_offsets = {&m_push_offset, &m_side_offset, &m_end_offset, &m_corner_offset, &m_def_offset};
-  std::vector<double*> multi_weights = {&m_pushweight, &m_sideweight, &m_endweight, &m_cornerweight, &m_defweight};
-  std::vector<double*> threatened_weights = {&m_threatweight_cancapture, &m_threatweight_limited, &m_threatweight, &m_threatweight_extreme};
-  std::vector<double*> material_weights = {&m_material_bonus, &m_king_bonus};
+
+  std::vector<double*> ap_params;
+  ap_params.push_back(&m_aggression); ap_params.push_back(&m_possession);
+
+  std::vector<double*> piece_weights;
+  piece_weights.push_back(&m_kingweight); piece_weights.push_back(&m_normweight);
+
+  std::vector<double*> multi_offsets;
+  multi_offsets.push_back(&m_push_offset); multi_offsets.push_back(&m_side_offset);
+  multi_offsets.push_back(&m_end_offset); multi_offsets.push_back(&m_corner_offset);
+  multi_offsets.push_back(&m_def_offset);
+
+  std::vector<double*> multi_weights;
+  multi_weights.push_back(&m_pushweight); multi_weights.push_back(&m_sideweight);
+  multi_weights.push_back(&m_endweight); multi_weights.push_back(&m_cornerweight);
+  multi_weights.push_back(&m_defweight);
+
+  std::vector<double*> threatened_weights;
+  threatened_weights.push_back(&m_threatweight_cancapture); threatened_weights.push_back(&m_threatweight_limited);
+  threatened_weights.push_back(&m_threatweight); threatened_weights.push_back(&m_threatweight_extreme);
+
+  std::vector<double*> material_weights;
+  material_weights.push_back(&m_material_bonus); material_weights.push_back(&m_king_bonus);
+
   std::pair<int*,int*> adv_bounds = std::make_pair(&m_adv_min, &m_adv_max);
   std::pair<int*,int*> side_bounds = std::make_pair(&m_side_min, &m_side_max);
   std::pair<int*,int*> end_bounds = std::make_pair(&m_end_min, &m_end_max);
   std::pair<int*,int*> corner_bounds = std::make_pair(&m_corner_min, &m_corner_max);
-  
+
   randomiseDoubles( ap_params, 0, 10 );
   randomiseInt(&m_pushmen,0,100);
   randomiseDoubles(piece_weights,0,5000);
-  
+
   randomiseDouble(&m_adv_offset,-1000,1000);
   randomiseDouble(&m_advweight,-1000,1000);
-  
+
   randomiseDoubles(multi_offsets,-2,2);
   randomiseDoubles(multi_weights,-1,1);
-  
+
   randomOrderedIntPair(adv_bounds);
   randomOrderedIntPair(side_bounds);
   randomOrderedIntPair(end_bounds);
   randomOrderedIntPair(corner_bounds);
-  
+
   randomiseDoubles(threatened_weights,-5,5);
   randomiseDouble(&m_captureweight,-5,5);
   randomiseDouble(&m_crownweight,-1000,1000);
   randomiseDoubles(material_weights,-1000,1000);
-  
+
   randomiseInt(&m_def_max,0,4);
-  
+
 }
 
-CheckyrsAI::CheckyrsAI(const CheckyrsAI &p1, const CheckyrsAI &p2, float mutate){
+CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
   //what I wouldn't have given for some proper reflection in C++ while writing this...
   m_rng = boost_rng((uint)std::time(0));
-  
-  gene(&m_aggression, p1.m_aggression, p2.m_aggression, 0, 10, mutate);
-  gene(&m_possession, p1.m_possession, p2.m_possession, 0, 10, mutate);
-  gene(&m_pushweight, p1.m_pushweight, p2.m_pushweight, 0, 5000, mutate);
-  gene(&m_kingweight, p1.m_kingweight, p2.m_kingweight, 0, 5000, mutate);
-  
-  gene(&m_adv_offset, p1.m_adv_offset, p2.m_adv_offset, -1000, 1000, mutate);
-  gene(&m_advweight, p1.m_advweight, p2.m_advweight, -1000, 1000, mutate);
-  
-  gene(&m_push_offset, p1.m_push_offset, p2.m_push_offset, -2, 2, mutate);
-  gene(&m_side_offset, p1.m_side_offset, p2.m_side_offset, -2, 2, mutate);
-  gene(&m_end_offset, p1.m_end_offset, p2.m_end_offset, -2, 2, mutate);
-  gene(&m_corner_offset, p1.m_corner_offset, p2.m_corner_offset, -2, 2, mutate);
-  gene(&m_def_offset, p1.m_def_offset, p2.m_def_offset, -2, 2, mutate);
-  
-  gene(&m_pushweight, p1.m_pushweight, p2.m_pushweight, -1, 1, mutate);
-  gene(&m_sideweight, p1.m_sideweight, p2.m_sideweight, -1, 1, mutate);
-  gene(&m_endweight, p1.m_endweight, p2.m_endweight, -1, 1, mutate);
-  gene(&m_cornerweight, p1.m_cornerweight, p2.m_cornerweight, -1, 1, mutate);
-  gene(&m_defweight, p1.m_defweight, p2.m_defweight, -1, 1, mutate);
-  
-  gene(std::make_pair(&m_adv_min,&m_adv_max), std::make_pair(p1.m_adv_min,p1.m_adv_max), std::make_pair(p2.m_adv_min,p2.m_adv_max), 0, 8, mutate);
-  gene(std::make_pair(&m_side_min,&m_side_max), std::make_pair(p1.m_side_min,p1.m_side_max), std::make_pair(p2.m_side_min,p2.m_side_max), 0, 8, mutate);
-  gene(std::make_pair(&m_end_min,&m_end_max), std::make_pair(p1.m_end_min,p1.m_end_max), std::make_pair(p2.m_end_min,p2.m_end_max), 0, 8, mutate);
-  gene(std::make_pair(&m_corner_min,&m_corner_max), std::make_pair(p1.m_corner_min,p1.m_corner_max), std::make_pair(p2.m_corner_min,p2.m_corner_max), 0, 8, mutate);
-  
-  gene(&m_threatweight_cancapture, p1.m_threatweight_cancapture, p2.m_threatweight_cancapture, -5, 5, mutate);
-  gene(&m_threatweight_limited, p1.m_threatweight_limited, p2.m_threatweight_limited, -5, 5, mutate);
-  gene(&m_threatweight, p1.m_threatweight, p2.m_threatweight, -5, 5, mutate);
-  gene(&m_threatweight_extreme, p1.m_threatweight_extreme, p2.m_threatweight_extreme, -5, 5, mutate);
-  
-  gene(&m_captureweight, p1.m_captureweight, p2.m_captureweight, -5, 5, mutate);
-  gene(&m_crownweight, p1.m_crownweight, p2.m_crownweight, -1000, 1000, mutate);
-  gene(&m_material_bonus, p1.m_material_bonus, p2.m_material_bonus, -1000, 1000, mutate);
-  gene(&m_king_bonus, p1.m_king_bonus, p2.m_king_bonus, -1000, 1000, mutate);
-  
-  gene(&m_def_max, p1.m_def_max, p2.m_def_max, 0, 4, mutate);
+
+  CheckyrsAI offspring;
+
+  gene(&offspring.m_aggression, this->m_aggression, p2.m_aggression, 0, 10, mutate);
+  gene(&offspring.m_possession, this->m_possession, p2.m_possession, 0, 10, mutate);
+  gene(&offspring.m_pushweight, this->m_pushweight, p2.m_pushweight, 0, 5000, mutate);
+  gene(&offspring.m_kingweight, this->m_kingweight, p2.m_kingweight, 0, 5000, mutate);
+
+  gene(&offspring.m_adv_offset, this->m_adv_offset, p2.m_adv_offset, -1000, 1000, mutate);
+  gene(&offspring.m_advweight, this->m_advweight, p2.m_advweight, -1000, 1000, mutate);
+
+  gene(&offspring.m_push_offset, this->m_push_offset, p2.m_push_offset, -2, 2, mutate);
+  gene(&offspring.m_side_offset, this->m_side_offset, p2.m_side_offset, -2, 2, mutate);
+  gene(&offspring.m_end_offset, this->m_end_offset, p2.m_end_offset, -2, 2, mutate);
+  gene(&offspring.m_corner_offset, this->m_corner_offset, p2.m_corner_offset, -2, 2, mutate);
+  gene(&offspring.m_def_offset, this->m_def_offset, p2.m_def_offset, -2, 2, mutate);
+
+  gene(&offspring.m_pushweight, this->m_pushweight, p2.m_pushweight, -1, 1, mutate);
+  gene(&offspring.m_sideweight, this->m_sideweight, p2.m_sideweight, -1, 1, mutate);
+  gene(&offspring.m_endweight, this->m_endweight, p2.m_endweight, -1, 1, mutate);
+  gene(&offspring.m_cornerweight, this->m_cornerweight, p2.m_cornerweight, -1, 1, mutate);
+  gene(&offspring.m_defweight, this->m_defweight, p2.m_defweight, -1, 1, mutate);
+
+  gene(std::make_pair(&offspring.m_adv_min,&offspring.m_adv_max), std::make_pair(this->m_adv_min,this->m_adv_max), std::make_pair(p2.m_adv_min,p2.m_adv_max), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_side_min,&offspring.m_side_max), std::make_pair(this->m_side_min,this->m_side_max), std::make_pair(p2.m_side_min,p2.m_side_max), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_end_min,&offspring.m_end_max), std::make_pair(this->m_end_min,this->m_end_max), std::make_pair(p2.m_end_min,p2.m_end_max), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_corner_min,&offspring.m_corner_max), std::make_pair(this->m_corner_min,this->m_corner_max), std::make_pair(p2.m_corner_min,p2.m_corner_max), 0, 8, mutate);
+
+  gene(&offspring.m_threatweight_cancapture, this->m_threatweight_cancapture, p2.m_threatweight_cancapture, -5, 5, mutate);
+  gene(&offspring.m_threatweight_limited, this->m_threatweight_limited, p2.m_threatweight_limited, -5, 5, mutate);
+  gene(&offspring.m_threatweight, this->m_threatweight, p2.m_threatweight, -5, 5, mutate);
+  gene(&offspring.m_threatweight_extreme, this->m_threatweight_extreme, p2.m_threatweight_extreme, -5, 5, mutate);
+
+  gene(&offspring.m_captureweight, this->m_captureweight, p2.m_captureweight, -5, 5, mutate);
+  gene(&offspring.m_crownweight, this->m_crownweight, p2.m_crownweight, -1000, 1000, mutate);
+  gene(&offspring.m_material_bonus, this->m_material_bonus, p2.m_material_bonus, -1000, 1000, mutate);
+  gene(&offspring.m_king_bonus, this->m_king_bonus, p2.m_king_bonus, -1000, 1000, mutate);
+
+  gene(&offspring.m_def_max, this->m_def_max, p2.m_def_max, 0, 4, mutate);
+
+  return offspring;
 }
 
 double CheckyrsAI::eval(const Game &g) const{
   Board b=g.getBoard();
   double value = 0;
   double thissquare = 0;
-  
+
   int boardsize = b.getSize();
-  
+
   bool limitedthreat = true; //player to move doesn't need to be overly concerned if they only have one takeable piece - just move it
- 
+
   for(int ii=0;ii<boardsize;ii++){
     for(int jj=0;jj<boardsize;jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position( (boardsize-1)-ii , (boardsize-1)-jj )); //loop rows in reverse order if p2
@@ -225,22 +246,22 @@ double CheckyrsAI::eval(const Game &g) const{
         bool canCapture = g.PieceCanCapture(p);
         bool canCrown = g.PieceCanCrown(p);
         int def = g.PieceDefence(p);
-        
+
         //correct values where a min/max is set:
         if(adv>m_adv_max) adv=m_adv_max;
         else if(adv<m_adv_min) adv=m_adv_min;
-    
+
         if(def>m_def_max) def=m_def_max;
-        
+
         if(distanceToSide<m_side_min) distanceToSide=m_side_min;
         else if(distanceToSide>m_side_max) distanceToSide=m_side_max;
-        
+
         if(distanceToEnd<m_end_min) distanceToEnd=m_end_min;
         else if(distanceToEnd>m_end_max) distanceToEnd=m_end_max;
-        
+
         if(distanceToCorner<m_corner_min) distanceToCorner=m_corner_min;
         else if(distanceToCorner>m_corner_max) distanceToCorner=m_corner_max;
-        
+
         if(isCurrentPlayer){
           if(isKing) thissquare = m_possession*m_kingweight;
           else thissquare = m_possession*(m_normweight+(m_advweight*adv)) ;
@@ -287,16 +308,16 @@ double CheckyrsAI::eval(const Game &g) const{
       }
     }
   }
-  
+
   int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
   int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
-  
+
   int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
   int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
-  
+
   double matratio = opp_mat==0? ai_mat+1 : (double)ai_mat/opp_mat; //check for zero only for unit tests, method won't be called with gameover in actual usage
   double kingratio = opp_kings==0? ai_kings+1 : (double)ai_kings/opp_kings;
-  
+
   value += m_player*m_material_bonus*(matratio);
   value += m_player*m_king_bonus*(kingratio);
 
@@ -352,7 +373,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   catch(std::exception &e){
     throw e;
   }
-  
+
   std::sort(moves.begin(),moves.end(),sortMoveEvals);
 
   double staleness = g.getStaleness()/g.getMaxStaleness();
@@ -362,13 +383,13 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
     int pick;
     if(staleness>0.6) pick=getRandomInt(0,(int)moves.size()); //try to stick to highly rated moves at first
     else pick=getRandomInt(0,floor(moves.size()/2));
-    
+
     do{
       bestMove=moves.at(pick);
       pick--;
     }while(moves.at(pick).second> (-likeatrillion/2.)); //don't select an obvious losing piece
   }
-  
+
   return bestMove;
 }
 
