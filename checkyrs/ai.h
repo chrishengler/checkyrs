@@ -136,7 +136,7 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
 public:
   CheckyrsAI(const int player=1);
   
-  CheckyrsAI(const CheckyrsAI &p1, const CheckyrsAI&p2, float mutate=0.05);
+  CheckyrsAI breed(const CheckyrsAI &p2, float mutate=0.05);
   
   void Initialise(bool random=false);
   
