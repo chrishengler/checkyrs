@@ -121,7 +121,7 @@ void CheckyrsAI::Initialise(bool random){
 
 void CheckyrsAI::randomiseAI(){
   std::cout << "generating random AI:\n";
-  m_rng = boost_rng((uint)std::time(0));
+  m_rng = boost_rng((unsigned)std::time(0));
 
   std::vector<double*> ap_params;
   ap_params.push_back(&m_aggression); ap_params.push_back(&m_possession);
@@ -177,7 +177,7 @@ void CheckyrsAI::randomiseAI(){
 
 CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
   //what I wouldn't have given for some proper reflection in C++ while writing this...
-  m_rng = boost_rng((uint)std::time(0));
+  m_rng = boost_rng((unsigned)std::time(0));
 
   CheckyrsAI offspring;
 
