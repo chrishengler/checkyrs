@@ -12,6 +12,59 @@
 #include "math.h"
 #include "ai.h"
 
+template<class Archive>  void CheckyrsAI::serialize(Archive &ar, const unsigned int version){
+  //preference for attacking opponent's pieces vs maintaining own pieces
+  ar & m_aggression;
+  ar & m_possession;
+  
+  //point in game at which to encourage moving men forward/weight & offset for doing so
+  ar & m_pushmen;
+  ar & m_pushweight;
+  ar & m_push_offset;
+  ar & m_push_max; //point at which to no longer force that
+  
+  //weight for kings vs normal pieces
+  ar & m_kingweight;
+  ar & m_normweight;
+  
+  //weights for position: advancement, distance from sides/ends/corner of board
+  ar & m_advweight;
+  ar & m_sideweight;
+  ar & m_endweight;
+  ar & m_cornerweight;
+  
+  //offsets for each of the above weights
+  ar & m_adv_offset;
+  ar & m_side_offset;
+  ar & m_end_offset;
+  ar & m_corner_offset;
+  
+  //thresholds for where position bonuses are applied
+  ar & m_adv_max;
+  ar & m_adv_min;
+  ar & m_side_min;
+  ar & m_side_max;
+  ar & m_end_min;
+  ar & m_end_max;
+  ar & m_corner_min;
+  ar & m_corner_max;
+  
+  //weights for situational bonuses/maluses
+  ar & m_threatweight_cancapture;
+  ar & m_threatweight_limited;
+  ar & m_threatweight;
+  ar & m_threatweight_extreme;
+  ar & m_captureweight;
+  ar & m_crownweight;
+  ar & m_defweight;
+  ar & m_def_offset;
+  ar & m_def_max;
+  
+  ar & m_material_bonus;
+  ar & m_king_bonus;
+
+}
+
 //sort functions for moveEval
 bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
   return (lhs.second > rhs.second);

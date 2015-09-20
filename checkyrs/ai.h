@@ -10,7 +10,12 @@
 #define __checkyrs__ai__
 
 #include <stdio.h>
+#include <string>
+#include <fstream>
+
 #include "boost/random.hpp"
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 
 #include "board.h"
 #include "game.h"
@@ -20,6 +25,7 @@ typedef std::pair<std::vector<Position>,double> moveEval;
 typedef boost::mt19937 boost_rng;
 
 class CheckyrsAI { //CheckyrsArtificialIdiot
+  friend class boost::serialization::access;
   int m_player;
   
   //preference for attacking opponent's pieces vs maintaining own pieces
@@ -132,7 +138,9 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
 
   double negamax(Game g, const int depth, double alpha, double beta) const;
   double evalNode(const Game &g) const;
-
+  
+  template<class Archive>  void serialize(Archive &ar, const unsigned int version);
+  
 public:
   CheckyrsAI(const int player=1);
   
@@ -147,5 +155,16 @@ public:
   
   void setPlayer(const int player){ m_player=player; }
   int getPlayer(){ return m_player; }
+  void save(const std::string &filename){
+    std::ofstream ofs(filename);
+    boost::archive::text_oarchive oa(ofs);
+    oa << *this;
+  }
+  void load(const std::string &filename){
+    std::ifstream ifs(filename);
+    boost::archive::text_iarchive ia(ifs);
+    ia >> *this;
+  }
+
 };
 #endif /* defined(__checkyrs__ai__) */

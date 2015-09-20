@@ -121,3 +121,23 @@ TEST_CASE("create default and randomised AIs"){
   REQUIRE_NOTHROW( g1.ExecuteMove(ai1.rootNegamax(g1, 4).first) );
   REQUIRE_NOTHROW( g1.ExecuteMove(ai2.rootNegamax(g1, 4).first) );
 }
+
+TEST_CASE("serialize and deserialize AI"){
+  Game g1;
+  g1.PrepareBoard();
+  
+  CheckyrsAI ai1(1);
+  ai1.Initialise(false);
+  
+  REQUIRE_NOTHROW(ai1.save("/tmp/ai1.cai") );
+  
+  CheckyrsAI ai2(1);
+
+  std::vector<Position> ai1opener = ai1.rootNegamax(g1, 4).first;
+  std::vector<Position> ai2opener;
+  
+  REQUIRE_NOTHROW( ai2.load("/tmp/ai1.cai") );
+  REQUIRE_NOTHROW( ai2opener = ai2.rootNegamax(g1, 4).first );
+  REQUIRE( ai2opener.at(0) == ai1opener.at(0) );
+  REQUIRE( ai2opener.at(1) == ai1opener.at(1) );
+}

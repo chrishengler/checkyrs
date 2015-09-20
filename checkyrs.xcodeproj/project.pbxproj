@@ -32,8 +32,6 @@
 		8368F87F1B7153DF00E60CDC /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
 		837041C51B714EE0009E5A7B /* aitests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041C31B714EE0009E5A7B /* aitests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
-		837498081BA9E495008D15B8 /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
-		837A7E961B923B28004BC11A /* interfacetests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E851B75187300DBD0BB /* interfacetests.cpp */; };
 		837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		8387E8FC1B80991A008D26AF /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
@@ -45,6 +43,10 @@
 		8387E9021B8099F1008D26AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9561B598FC90017EB5F /* main.cpp */; };
 		838AE7711B7207310010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 		838AE7721B7207320010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
+		839C96FA1BAECA2600A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
+		839C96FB1BAECBA400A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
+		839C96FC1BAECBB600A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
+		839C96FD1BAECBC600A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
 		83AFC85A1B80A82200253C85 /* aidebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83AFC8581B80A81D00253C85 /* aidebug.cpp */; };
 		83B61E831B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
@@ -84,12 +86,6 @@
 		8302EAC11B5BC4BF00CD0CA4 /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		8302EAC21B5BC4BF00CD0CA4 /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		8302EAC51B5BC66B00CD0CA4 /* gametests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gametests.cpp; sourceTree = "<group>"; };
-		8308C7911BAC3C5D00BC041B /* CheckyrsAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsAI.h; sourceTree = "<group>"; };
-		8308C7931BAC3C5D00BC041B /* CheckyrsAIPriv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsAIPriv.h; sourceTree = "<group>"; };
-		8308C7951BAC3C5D00BC041B /* CheckyrsAI.cp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckyrsAI.cp; sourceTree = "<group>"; };
-		8308C7A21BAC3D5200BC041B /* CheckyrsBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsBase.h; sourceTree = "<group>"; };
-		8308C7A41BAC3D5200BC041B /* CheckyrsBasePriv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckyrsBasePriv.h; sourceTree = "<group>"; };
-		8308C7A61BAC3D5200BC041B /* CheckyrsBase.cp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckyrsBase.cp; sourceTree = "<group>"; };
 		8335C93E1B598C0A0017EB5F /* checkyrs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = checkyrs; sourceTree = BUILT_PRODUCTS_DIR; };
 		8335C9411B598C0A0017EB5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8335C94E1B598F060017EB5F /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +105,7 @@
 		837163051B5A99BD008D1D99 /* positiontests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = positiontests.cpp; sourceTree = "<group>"; };
 		837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamerunnertests.cpp; sourceTree = "<group>"; };
 		8387E8F01B8095B1008D26AF /* AIdebug */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AIdebug; sourceTree = BUILT_PRODUCTS_DIR; };
+		839C96F91BAECA2600A1307D /* libboost_serialization.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_serialization.dylib; path = ../../../../../usr/local/Cellar/boost/1.58.0/lib/libboost_serialization.dylib; sourceTree = "<group>"; };
 		83AFC8581B80A81D00253C85 /* aidebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = aidebug.cpp; path = Tests/aidebug.cpp; sourceTree = SOURCE_ROOT; };
 		83B61E811B7517A200DBD0BB /* clinterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clinterface.cpp; sourceTree = "<group>"; };
 		83B61E821B7517A200DBD0BB /* clinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clinterface.h; sourceTree = "<group>"; };
@@ -120,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839C96FA1BAECA2600A1307D /* libboost_serialization.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839C96FB1BAECBA400A1307D /* libboost_serialization.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839C96FD1BAECBC600A1307D /* libboost_serialization.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,40 +141,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839C96FC1BAECBB600A1307D /* libboost_serialization.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8308C7901BAC3C5D00BC041B /* CheckyrsAI */ = {
-			isa = PBXGroup;
-			children = (
-				8308C7911BAC3C5D00BC041B /* CheckyrsAI.h */,
-				8308C7931BAC3C5D00BC041B /* CheckyrsAIPriv.h */,
-				8308C7951BAC3C5D00BC041B /* CheckyrsAI.cp */,
-			);
-			path = CheckyrsAI;
-			sourceTree = "<group>";
-		};
-		8308C7A11BAC3D5200BC041B /* CheckyrsBase */ = {
-			isa = PBXGroup;
-			children = (
-				8308C7A21BAC3D5200BC041B /* CheckyrsBase.h */,
-				8308C7A41BAC3D5200BC041B /* CheckyrsBasePriv.h */,
-				8308C7A61BAC3D5200BC041B /* CheckyrsBase.cp */,
-			);
-			path = CheckyrsBase;
-			sourceTree = "<group>";
-		};
 		8335C9351B598C0A0017EB5F = {
 			isa = PBXGroup;
 			children = (
+				839C96F91BAECA2600A1307D /* libboost_serialization.dylib */,
 				8335C9551B598FB10017EB5F /* Tests */,
 				8335C9401B598C0A0017EB5F /* checkyrs */,
 				8387E8F11B8095B1008D26AF /* AIdebug */,
-				8308C7901BAC3C5D00BC041B /* CheckyrsAI */,
-				8308C7A11BAC3D5200BC041B /* CheckyrsBase */,
 				8335C93F1B598C0A0017EB5F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -385,14 +365,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8335C9611B599B830017EB5F /* square.cpp in Sources */,
-				837498081BA9E495008D15B8 /* gamerunnertests.cpp in Sources */,
 				8335C9591B5992F40017EB5F /* boardtests.cpp in Sources */,
 				8368F87F1B7153DF00E60CDC /* game.cpp in Sources */,
 				8335C9571B598FC90017EB5F /* main.cpp in Sources */,
 				8302EAC71B5BC66B00CD0CA4 /* gametests.cpp in Sources */,
 				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
-				837A7E961B923B28004BC11A /* interfacetests.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
 				83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */,
 				837041C51B714EE0009E5A7B /* aitests.cpp in Sources */,
@@ -434,7 +412,7 @@
 		8335C9431B598C0A0017EB5F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -451,6 +429,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = /usr/local/lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -471,6 +450,7 @@
 					"~/Documents/Programming/Catch/include",
 					/usr/local/cellar/boost/1.58.0/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -481,7 +461,7 @@
 		8335C9441B598C0A0017EB5F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -500,6 +480,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = /usr/local/lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -513,6 +494,7 @@
 					"~/Documents/Programming/Catch/include",
 					/usr/local/cellar/boost/1.58.0/include,
 				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -528,6 +510,10 @@
 					"~/Documents/Programming/Catch/include",
 					/usr/local/cellar/boost/1.58.0/include,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -541,6 +527,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"~/Documents/Programming/Catch/include",
 					/usr/local/cellar/boost/1.58.0/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -564,6 +554,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"~/Documents/Programming/Catch/include",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -583,6 +577,10 @@
 					"~/Documents/Programming/Catch/include",
 					/usr/local/cellar/boost/1.58.0/,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -597,6 +595,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -607,6 +609,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -623,6 +629,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"~/Documents/Programming/Catch/include",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -634,6 +644,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"~/Documents/Programming/Catch/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/boost/1.58.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -676,6 +690,7 @@
 				835B335E1BAC4820008AEEEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8387E8F41B8095B1008D26AF /* Build configuration list for PBXNativeTarget "AIdebug" */ = {
 			isa = XCConfigurationList;
