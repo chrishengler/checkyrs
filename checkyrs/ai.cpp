@@ -65,6 +65,17 @@ template<class Archive>  void CheckyrsAI::serialize(Archive &ar, const unsigned 
 
 }
 
+void CheckyrsAI::save(const std::string &filename){
+  std::ofstream ofs(filename);
+  boost::archive::text_oarchive oa(ofs);
+  oa << *this;
+}
+void CheckyrsAI::load(const std::string &filename){
+  std::ifstream ifs(filename);
+  boost::archive::text_iarchive ia(ifs);
+  ia >> *this;
+}
+
 //sort functions for moveEval
 bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
   return (lhs.second > rhs.second);

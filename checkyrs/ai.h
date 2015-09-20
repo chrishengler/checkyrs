@@ -139,8 +139,6 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   double negamax(Game g, const int depth, double alpha, double beta) const;
   double evalNode(const Game &g) const;
   
-  template<class Archive>  void serialize(Archive &ar, const unsigned int version);
-  
 public:
   CheckyrsAI(const int player=1);
   
@@ -155,16 +153,10 @@ public:
   
   void setPlayer(const int player){ m_player=player; }
   int getPlayer(){ return m_player; }
-  void save(const std::string &filename){
-    std::ofstream ofs(filename);
-    boost::archive::text_oarchive oa(ofs);
-    oa << *this;
-  }
-  void load(const std::string &filename){
-    std::ifstream ifs(filename);
-    boost::archive::text_iarchive ia(ifs);
-    ia >> *this;
-  }
 
+  
+  template<class Archive>  void serialize(Archive &ar, const unsigned int version);
+  void save(const std::string &filename);
+  void load(const std::string &filename);
 };
 #endif /* defined(__checkyrs__ai__) */
