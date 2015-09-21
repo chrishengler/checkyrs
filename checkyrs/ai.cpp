@@ -66,12 +66,12 @@ template<class Archive>  void CheckyrsAI::serialize(Archive &ar, const unsigned 
 }
 
 void CheckyrsAI::save(const std::string &filename){
-  std::ofstream ofs(filename);
+  std::ofstream ofs(filename.c_str());
   boost::archive::text_oarchive oa(ofs);
   oa << *this;
 }
 void CheckyrsAI::load(const std::string &filename){
-  std::ifstream ifs(filename);
+  std::ifstream ifs(filename.c_str());
   boost::archive::text_iarchive ia(ifs);
   ia >> *this;
 }
