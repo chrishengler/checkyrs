@@ -47,9 +47,11 @@ void Gamerunner::initialise(const CheckyrsAI &ai1, const CheckyrsAI &ai2){
 
   m_p1ai=true;
   m_ai1 = ai1;
+  m_ai1.setPlayer(1);
   
   m_p2ai=true;
   m_ai2 = ai2;
+  m_ai2.setPlayer(-1);
   
   m_game = Game();
   m_game.PrepareBoard();
