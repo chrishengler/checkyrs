@@ -28,7 +28,7 @@ public:
   bool playerIsAI(const int p){ if(p==1) return m_p1ai; return m_p2ai; }
   
   void initialise();
-  void initialise(const CheckyrsAI &ai1, const CheckyrsAI &ai2);
+  void initialise(CheckyrsAI &ai1, CheckyrsAI &ai2);
   
   std::vector<Position> getNextPlayerMove() const;
   bool continueGame();
@@ -36,6 +36,8 @@ public:
   bool gameOver() const;
   bool isDraw() const;
   int getWinner() const;
+  
+  int getPiecesPlayer(const int player=1) const;
 };
 
 #endif /* defined(__checkyrs__gamerunner__) */

@@ -39,7 +39,7 @@ void Gamerunner::initialise(){
   
 }
 
-void Gamerunner::initialise(const CheckyrsAI &ai1, const CheckyrsAI &ai2){
+void Gamerunner::initialise(CheckyrsAI &ai1, CheckyrsAI &ai2){
   
   m_players=0;
   std::string input;
@@ -144,4 +144,8 @@ bool Gamerunner::isDraw() const{
 
 int Gamerunner::getWinner() const{
   return m_game.getWinner();
+}
+
+int Gamerunner::getPiecesPlayer(const int player) const{
+  return m_game.getNumPiecesPlayer(player);
 }

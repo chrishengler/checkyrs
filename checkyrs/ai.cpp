@@ -9,6 +9,7 @@
 #define likeatrillion 1000000000000
 
 #include <iostream>
+#include <random>
 #include "math.h"
 #include "ai.h"
 
@@ -185,7 +186,8 @@ void CheckyrsAI::Initialise(bool random){
 
 void CheckyrsAI::randomiseAI(){
   std::cout << "generating random AI:\n";
-  m_rng = boost_rng((unsigned)std::time(0));
+  std::random_device rdev;
+  m_rng = boost_rng((unsigned int)rdev());
 
   std::vector<double*> ap_params;
   ap_params.push_back(&m_aggression); ap_params.push_back(&m_possession);
@@ -241,8 +243,8 @@ void CheckyrsAI::randomiseAI(){
 
 CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
   //what I wouldn't have given for some proper reflection in C++ while writing this...
-  m_rng = boost_rng((unsigned)std::time(0));
-
+  std::random_device rdev;
+  m_rng = boost_rng((unsigned int)rdev());
   CheckyrsAI offspring;
 
   gene(&offspring.m_aggression, this->m_aggression, p2.m_aggression, 0, 10, mutate);
