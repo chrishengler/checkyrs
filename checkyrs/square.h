@@ -27,5 +27,13 @@ public:
   void setKing(const bool isKing=true){ m_isKing=isKing; }
   int getPlayer() const{return m_player;}
   void removePiece(){m_isOccupied=false; m_player=0; m_isKing=false;}
+  
+  inline bool operator==(const Square &s){
+    return (m_isOccupied==s.m_isOccupied && m_isKing==s.m_isKing && m_player==s.m_player);
+  }
+  inline bool operator!=(const Square &s){
+    return !(*this==s);
+  }
+  
 };
 #endif /* defined(__checkyrs__square__) */

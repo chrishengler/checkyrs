@@ -45,6 +45,19 @@ public:
   Square getSquare(const Position &p) const;
   int getNumPiecesPlayer(const int player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
   int getNumKingsPlayer(const int player) const{return player==1 ? m_kingsp1 : m_kingsp2;}
+  
+  inline bool operator==(const Board &b){
+    for(int ii=0;ii<m_size;ii++){
+      for(int jj=0;jj<m_size;jj++){
+        if(m_board[ii][jj]!=b.m_board[ii][jj]) return false;
+      }
+    }
+    return true;
+  }
+  
+  inline bool operator!=(const Board &b){
+    return !(*this==b);
+  }
 };
 
 #endif /* defined(__checkyrs__board__) */

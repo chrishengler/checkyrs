@@ -124,3 +124,17 @@ TEST_CASE("check number of kings"){
   board.RemovePiece(p3);
   REQUIRE( board.getNumKingsPlayer(-1) == 0);
 }
+
+TEST_CASE("test equality of boards"){
+  Board b1;
+  Board b2;
+  REQUIRE( b1 == b2 );
+  REQUIRE_FALSE( b1!=b2 );
+  Position p1(0,0);
+  b1.AddPiece(p1);
+  REQUIRE_FALSE( b1==b2 );
+  REQUIRE( b1!=b2 );
+  b2.AddPiece(p1);
+  REQUIRE( b1==b2 );
+  REQUIRE_FALSE( b1!=b2 );
+}
