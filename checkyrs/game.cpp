@@ -18,26 +18,26 @@ bool sortMovesByLength(const std::vector<Position> &lhs, const std::vector<Posit
   else return ( fabs(lhs.at(0)._x - lhs.at(1)._x) > 1 );
 }
 
-void Game::AddPiece(const Position &pos, const int player, const bool isKing){
-  m_board.AddPiece(pos,player,isKing);
+void Game::addPiece(const Position &pos, const int player, const bool isKing){
+  m_board.addPiece(pos,player,isKing);
   
 }
 
-void Game::AddPieces(const std::vector<Position> &pos, const int player, const bool isKing){
-  m_board.AddPieces(pos,player,isKing);
+void Game::addPieces(const std::vector<Position> &pos, const int player, const bool isKing){
+  m_board.addPieces(pos,player,isKing);
 }
 
-void Game::AddPieces(const std::vector<Position> &p1, const std::vector<Position> &p2, const bool isKing){
-  m_board.AddPieces(p1,1,isKing);
-  m_board.AddPieces(p2,-1,isKing);
+void Game::addPieces(const std::vector<Position> &p1, const std::vector<Position> &p2, const bool isKing){
+  m_board.addPieces(p1,1,isKing);
+  m_board.addPieces(p2,-1,isKing);
 }
 
-void Game::MovePiece(const Position &oldp, const Position &newp){
-  m_board.MovePiece(oldp, newp);
+void Game::movePiece(const Position &oldp, const Position &newp){
+  m_board.movePiece(oldp, newp);
 }
 
-void Game::RemovePiece(const Position &p){
-  m_board.RemovePiece(p);
+void Game::removePiece(const Position &p){
+  m_board.removePiece(p);
 }
 
 void Game::PrepareBoard(){
@@ -50,23 +50,23 @@ void Game::PrepareBoard(){
       }
     }
   }
-  AddPieces(p1);
-  AddPieces(p2,-1);
+  addPieces(p1);
+  addPieces(p2,-1);
 }
 
 bool Game::PieceIsThreatened(const Position &p) const{
   try{
-    if(!m_board.SquareIsOccupied(p)) return false;
+    if(!m_board.squareIsOccupied(p)) return false;
     for(int yy=-1;yy<2;yy+=2){
       for(int xx=-1;xx<2;xx+=2){
         Position testpos(p._x+xx, p._y+yy);
-        if(!m_board.SquareExists(testpos)) continue;
-        if(!m_board.SquareIsOccupied(testpos)) continue;
+        if(!m_board.squareExists(testpos)) continue;
+        if(!m_board.squareIsOccupied(testpos)) continue;
         else if(m_board.getPlayer(testpos)!=m_board.getPlayer(p)){
-          if(yy/m_board.getPlayer(testpos) == -1 || m_board.SquareHasKing(testpos)){
+          if(yy/m_board.getPlayer(testpos) == -1 || m_board.squareHasKing(testpos)){
             Position jumptarget(p._x-xx,p._y-yy);
-            if(!m_board.SquareExists(jumptarget)) continue;
-            if(!m_board.SquareIsOccupied(jumptarget)) return true;
+            if(!m_board.squareExists(jumptarget)) continue;
+            if(!m_board.squareIsOccupied(jumptarget)) return true;
           }
         }
       }
@@ -82,15 +82,15 @@ bool Game::PieceIsThreatened(const Position &p) const{
 int Game::PieceDefence(const Position &p) const{
   try{
     int def=0;
-    if(!m_board.SquareIsOccupied(p)) return false;
+    if(!m_board.squareIsOccupied(p)) return false;
     for(int yy=-1;yy<2;yy+=2){
       for(int xx=-1;xx<2;xx+=2){
         Position testpos(p._x+xx, p._y+yy);
-        if(!m_board.SquareExists(testpos)){
+        if(!m_board.squareExists(testpos)){
           def++;
           continue;
         }
-        if(!m_board.SquareIsOccupied(testpos)) continue;
+        if(!m_board.squareIsOccupied(testpos)) continue;
         else if(m_board.getPlayer(testpos)==m_board.getPlayer(p)){
           def++;
         }
@@ -106,9 +106,9 @@ int Game::PieceDefence(const Position &p) const{
 
 bool Game::PieceCanCrown(const Position &p) const{
   try{
-    if(!m_board.SquareExists(p)) return false;
-    if(!m_board.SquareIsOccupied(p)) return false;
-    if(!m_board.SquareHasKing(p)) return false;
+    if(!m_board.squareExists(p)) return false;
+    if(!m_board.squareIsOccupied(p)) return false;
+    if(!m_board.squareHasKing(p)) return false;
     std::vector<std::vector<Position> > moves = getMovesFrom(p);
     for(int ii=0;ii<moves.size();ii++){
       for(int jj=0;jj<moves.at(ii).size();jj++){
@@ -124,8 +124,8 @@ bool Game::PieceCanCrown(const Position &p) const{
 
 bool Game::PieceCanCapture(const Position &p) const{
   try{
-    if(!m_board.SquareExists(p)) return false;
-    if(!m_board.SquareIsOccupied(p)) return false;
+    if(!m_board.squareExists(p)) return false;
+    if(!m_board.squareIsOccupied(p)) return false;
     std::vector<std::vector<Position> > moves = getMovesFrom(p);
     if(moves.size()!=0 && fabs(moves.at(0).at(0)._y - moves.at(0).at(1)._y)!=1) return true;
     else return false;
@@ -146,7 +146,7 @@ std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p, const 
       thismove.push_back(p);
       thismove.push_back(moveStarts.at(ii));
       Game newstate(*this);
-      newstate.ExecuteMove(thismove);
+      newstate.executeMove(thismove);
       std::vector<std::vector<Position> > extendedMoves = newstate.ExtendMove(thismove);
       possibleMoves.insert(possibleMoves.end(), extendedMoves.begin(), extendedMoves.end());
     }
@@ -174,8 +174,8 @@ std::vector<std::vector<Position> > Game::ExtendMove(const std::vector<Position>
     std::vector<Position> extended = p;
     extended.push_back(extensions.at(ii));
     Game newstate(*this);
-    newstate.RemovePiece(m_board.getJump(p.back(),extensions.at(ii)));
-    newstate.MovePiece(p.back(),extensions.at(ii));
+    newstate.removePiece(m_board.getJump(p.back(),extensions.at(ii)));
+    newstate.movePiece(p.back(),extensions.at(ii));
     std::vector<std::vector<Position> > nextstep = newstate.ExtendMove(extended);
     possibleMoves.insert(possibleMoves.end(), nextstep.begin(), nextstep.end());
   }
@@ -188,10 +188,10 @@ std::vector<Position> Game::getSingleMovesFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
-      if( (jj*m_board.getPlayer(p))<0 && !m_board.SquareHasKing(p)) continue;
+      if( (jj*m_board.getPlayer(p))<0 && !m_board.squareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj);
-      if(!m_board.SquareExists(newpos)) continue;
-      if(m_board.SquareIsOccupied(newpos)) continue;
+      if(!m_board.squareExists(newpos)) continue;
+      if(m_board.squareIsOccupied(newpos)) continue;
       else possibleMoves.push_back(newpos);
     }
   }
@@ -202,14 +202,14 @@ std::vector<Position> Game::getJumpsFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii=-1;ii<=1;ii+=2){
     for(int jj=-1;jj<=1;jj+=2){
-      if( (jj*m_board.getPlayer(p))<0 && !m_board.SquareHasKing(p)) continue;
+      if( (jj*m_board.getPlayer(p))<0 && !m_board.squareHasKing(p)) continue;
       Position newpos(p._x+ii,p._y+jj); //the square to jump over
-      if(!m_board.SquareExists(newpos)) continue;
-      else if(m_board.SquareIsOccupied(newpos)){ //can't jump over empty square
+      if(!m_board.squareExists(newpos)) continue;
+      else if(m_board.squareIsOccupied(newpos)){ //can't jump over empty square
         if(m_board.getSquare(newpos).getPlayer()==m_board.getSquare(p).getPlayer()) continue;
         newpos=Position(p._x+(2*ii),p._y+(2*jj));
-        if(!m_board.SquareExists(newpos)) continue;
-        if(m_board.SquareIsOccupied(newpos)) continue;
+        if(!m_board.squareExists(newpos)) continue;
+        if(m_board.squareIsOccupied(newpos)) continue;
         possibleMoves.push_back(newpos);
       }
     }
@@ -223,7 +223,7 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) co
   for(int ii=0;ii<m_board.getSize();ii++){
     for(int jj=0;jj<m_board.getSize();jj++){
       Position p(ii,jj);
-      if(m_board.SquareIsOccupied(p) && m_board.getPlayer(p)==player){
+      if(m_board.squareIsOccupied(p) && m_board.getPlayer(p)==player){
         std::vector<std::vector<Position> > thispiece = getMovesFrom(p);
         if(thispiece.size()==0) continue;
         if(jumpFound){
@@ -242,7 +242,7 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) co
     }
   }
   if(possibleMoves.size()==0){
-    m_gameover=true;  //if player has no legal moves, opponent has won
+    m_gameOver=true;  //if player has no legal moves, opponent has won
     m_winner = player*-1;
   }
   std::sort(possibleMoves.begin(),possibleMoves.end(),sortMovesByLength);
@@ -257,16 +257,16 @@ std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p) con
   return jumped;
 }
 
-void Game::ExecuteMove(const std::vector<Position> &move){
+void Game::executeMove(const std::vector<Position> &move){
   bool stale=true;
   for(int ii=0;ii<move.size()-1;ii++){
     if(fabs(move.at(ii)._y - move.at(ii+1)._y) != 1){
-      RemovePiece(m_board.getJump(move.at(ii),move.at(ii+1)));
+      removePiece(m_board.getJump(move.at(ii),move.at(ii+1)));
       stale = false;
     }
-    MovePiece(move.at(ii), move.at(ii+1));
-    if( !m_board.SquareHasKing(move.at(ii+1)) ){
-      if( m_currentplayer == 1 ){
+    movePiece(move.at(ii), move.at(ii+1));
+    if( !m_board.squareHasKing(move.at(ii+1)) ){
+      if( m_currentPlayer == 1 ){
         if(move.at(ii+1)._y == m_board.getSize()-1){
           m_board.setKing(move.at(ii+1));
           stale = false;
@@ -281,27 +281,27 @@ void Game::ExecuteMove(const std::vector<Position> &move){
     }
   }
   if(getNumPiecesPlayer(1)==0){
-    m_gameover = true;
+    m_gameOver = true;
     m_winner = -1;
   }
   else if(getNumPiecesPlayer(-1)==0){
-    m_gameover = true;
+    m_gameOver = true;
     m_winner = 1;
   }
   
-  m_currentplayer *= -1;
-  if(getMovesForPlayer(m_currentplayer).size()==0){
-    m_gameover = true;
-    m_winner = -1*m_currentplayer;
+  m_currentPlayer *= -1;
+  if(getMovesForPlayer(m_currentPlayer).size()==0){
+    m_gameOver = true;
+    m_winner = -1*m_currentPlayer;
   }
   if(!stale){
     m_staleness=0;
   }
-  else if(!m_gameover){
+  else if(!m_gameOver){
     m_staleness++;
   }
-  if(m_staleness>=m_maxstaleness){
-    m_gameover = true;
+  if(m_staleness>=m_maxStaleness){
+    m_gameOver = true;
     m_stale = true;
   }
   m_turn++;

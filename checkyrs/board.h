@@ -25,22 +25,22 @@ public:
   
   int getSize() const{return m_size;}
   
-  bool SquareExists(const Position &p) const;
-  bool SquareIsOccupied(const Position &p) const;
-  int DistanceToSide(const Position &p) const;
-  int DistanceToEnd(const Position &p) const;
-  int DistanceToEdge(const Position &p) const;
+  bool squareExists(const Position &p) const;
+  bool squareIsOccupied(const Position &p) const;
+  int distanceToSide(const Position &p) const;
+  int distanceToEnd(const Position &p) const;
+  int distanceToEdge(const Position &p) const;
   int getPlayer(const Position &p) const;
   bool wasJump(const Position &p1, const Position &p2) const;
   Position getJump(const Position &p1, const Position &p2) const;
   
-  bool SquareHasKing(const Position &p) const;
+  bool squareHasKing(const Position &p) const;
   void setKing(const Position &p, const bool isKing=true);
 
-  void AddPiece(const Position &p,const int player=1, const bool isKing=false);
-  void AddPieces(const std::vector<Position> &p, const int player=1, const bool isKing=false);
-  void MovePiece(const Position &oldp, const Position &newp);
-  void RemovePiece(const Position &p);
+  void addPiece(const Position &p,const int player=1, const bool isKing=false);
+  void addPieces(const std::vector<Position> &p, const int player=1, const bool isKing=false);
+  void movePiece(const Position &oldp, const Position &newp);
+  void removePiece(const Position &p);
   
   Square getSquare(const Position &p) const;
   int getNumPiecesPlayer(const int player) const{return player==1 ? m_piecesp1 : m_piecesp2;}

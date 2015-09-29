@@ -32,51 +32,51 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   double m_aggression;
   double m_possession;
 
-  //point in game at which to encourage moving men forward/weight & offset for doing so
-  int m_pushmen;
-  double m_pushweight;
-  double m_push_offset;
-  int m_push_max; //point at which to no longer force that
+  //point in game at which to encourage moving men forward/Weight & offset for doing so
+  int m_pushMen;
+  double m_pushWeight;
+  double m_pushOffset;
+  int m_pushMax; //point at which to no longer force that
   
-  //weight for kings vs normal pieces
-  double m_kingweight;
-  double m_normweight;
+  //Weight for kings vs normal pieces
+  double m_kingWeight;
+  double m_normWeight;
 
-  //weights for position: advancement, distance from sides/ends/corner of board
-  double m_advweight;
-  double m_sideweight;
-  double m_endweight;
-  double m_cornerweight;
+  //Weights for position: advancement, distance from sides/ends/corner of board
+  double m_advWeight;
+  double m_sideWeight;
+  double m_endWeight;
+  double m_cornerWeight;
   
-  //offsets for each of the above weights
-  double m_adv_offset;
-  double m_side_offset;
-  double m_end_offset;
-  double m_corner_offset;
+  //offsets for each of the above Weights
+  double m_advOffset;
+  double m_sideOffset;
+  double m_endOffset;
+  double m_cornerOffset;
   
   //thresholds for where position bonuses are applied
-  int m_adv_max;
-  int m_adv_min;
-  int m_side_min;
-  int m_side_max;
-  int m_end_min;
-  int m_end_max;
-  int m_corner_min;
-  int m_corner_max;
+  int m_advMax;
+  int m_advMin;
+  int m_sideMin;
+  int m_sideMax;
+  int m_endMin;
+  int m_endMax;
+  int m_cornerMin;
+  int m_cornerMax;
   
-  //weights for situational bonuses/maluses
-  double m_threatweight_cancapture;
-  double m_threatweight_limited;
-  double m_threatweight;
-  double m_threatweight_extreme;
-  double m_captureweight;
-  double m_crownweight;
-  double m_defweight;
-  double m_def_offset;
-  int m_def_max;
+  //Weights for situational bonuses/maluses
+  double m_threatWeight_cancapture;
+  double m_threatWeight_limited;
+  double m_threatWeight;
+  double m_threatWeight_extreme;
+  double m_captureWeight;
+  double m_crownWeight;
+  double m_defWeight;
+  double m_defOffset;
+  int m_defMax;
   
-  double m_material_bonus;
-  double m_king_bonus;
+  double m_materialBonus;
+  double m_kingBonus;
   
   mutable boost_rng m_rng;
   
@@ -144,7 +144,7 @@ public:
   
   CheckyrsAI breed(const CheckyrsAI &p2, float mutate=0.05);
   
-  void Initialise(bool random=false);
+  void initialise(bool random=false);
   
   void randomiseAI();
   

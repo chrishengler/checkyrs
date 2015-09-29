@@ -72,18 +72,18 @@ void CLInterface::showMenuHelp() const{
 
 void CLInterface::showGameHelp() const{
   Game g(5);
-  g.AddPiece(Position(0,0));
-  g.AddPiece(Position(3,1));
-  g.AddPiece(Position(4,2),-1,true);
+  g.addPiece(Position(0,0));
+  g.addPiece(Position(3,1));
+  g.addPiece(Position(4,2),-1,true);
   Board b(3);
   Position p1p(1,0);
   Position p1k(1,1);
   Position p2p(2,0);
   Position p2k(2,1);
-  b.AddPiece(p1p);
-  b.AddPiece(p1k,1,true);
-  b.AddPiece(p2p,-1);
-  b.AddPiece(p2k,-1,true);
+  b.addPiece(p1p);
+  b.addPiece(p1k,1,true);
+  b.addPiece(p2p,-1);
+  b.addPiece(p2k,-1,true);
   std::cout << "\nThe board is displayed on screen at the start of each move\n";
   std::cout << "Empty squares are displayed as blue or white dots.\n";
   std::cout << "Player 1's pieces are displayed in cyan, and player 2's pieces are displayed in red\n";
@@ -102,13 +102,13 @@ void CLInterface::showGameHelp() const{
   std::cout << "for example: \n";
   printBoard(g.getBoard());
   std::cout << "player 1: " << BOLD << "a1 b2" << RESET << "\n";
-  g.ExecuteMove(interpretMove("a1 b2"));
+  g.executeMove(interpretMove("a1 b2"));
   printBoard(g.getBoard());
   pauseDisplay();
   std::cout << "\nTo make longer moves when capturing multiple pieces, include all subsequent squares in the same single input. For example:";
   printBoard(g.getBoard());
   std::cout << "player 2: " << BOLD << "e3 c1 a3\n" << RESET;
-  g.ExecuteMove(interpretMove("e3 c1 a3"));
+  g.executeMove(interpretMove("e3 c1 a3"));
   printBoard(g.getBoard());
 }
 

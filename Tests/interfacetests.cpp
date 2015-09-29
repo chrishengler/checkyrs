@@ -19,10 +19,10 @@ TEST_CASE("print square"){
   Position p4(3,3);
   Position p5(1,0);
   Position p6(2,0);
-  g.AddPiece(p1);
-  g.AddPiece(p2,1,true);
-  g.AddPiece(p3,-1);
-  g.AddPiece(p4,-1,true);
+  g.addPiece(p1);
+  g.addPiece(p2,1,true);
+  g.addPiece(p3,-1);
+  g.addPiece(p4,-1,true);
   
   REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p1), true));
   REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p2), true));
@@ -41,10 +41,10 @@ TEST_CASE("print board"){
   Position p4(3,3);
   Position p5(1,0);
   Position p6(2,0);
-  g.AddPiece(p1);
-  g.AddPiece(p2,1,true);
-  g.AddPiece(p3,-1);
-  g.AddPiece(p4,-1,true);
+  g.addPiece(p1);
+  g.addPiece(p2,1,true);
+  g.addPiece(p3,-1);
+  g.addPiece(p4,-1,true);
   
   REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
 }
@@ -126,7 +126,7 @@ TEST_CASE("interpret validity of move"){
   std::string invalidmove("a1 a3");
   REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == true);
   REQUIRE( interface.validateMove(interface.interpretMove(invalidmove),g1) == false);
-  g1.AddPiece( Position(1,3) , -1 );
+  g1.addPiece( Position(1,3) , -1 );
   REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == false);
   REQUIRE( interface.validateMove(interface.interpretMove(jumpmove),g1) == true );
 }

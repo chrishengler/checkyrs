@@ -19,11 +19,11 @@ TEST_CASE("eval prefers advanced pieces"){
   Position p3(2,2);
   Position p4(2,0);
   CheckyrsAI ai;
-  ai.Initialise(false);
+  ai.initialise(false);
   std::vector<Position> home = {p1,p2,p4};
   std::vector<Position> advanced = {p1,p2,p3};
-  g1.AddPieces(home);
-  g2.AddPieces(advanced);
+  g1.addPieces(home);
+  g2.addPieces(advanced);
   REQUIRE( ai.eval(g1) < ai.eval(g2) );
 }
 
@@ -35,13 +35,13 @@ TEST_CASE("eval prefers fewer opposition pieces"){
   Position p3(7,7);
   Position p4(6,6);
   CheckyrsAI ai;
-  ai.Initialise(false);
+  ai.initialise(false);
   std::vector<Position> player1 = {p1,p2};
   std::vector<Position> player2 = {p3,p4};
-  g1.AddPieces(player1,player2);
+  g1.addPieces(player1,player2);
   
-  g2.AddPieces(player1);
-  g2.AddPiece(p3,-1);
+  g2.addPieces(player1);
+  g2.addPiece(p3,-1);
   REQUIRE( ai.eval(g1) < ai.eval(g2) );
 }
 
@@ -53,10 +53,10 @@ TEST_CASE("can evaluate all available moves, taking multiple pieces preferred to
   Position p4(5,3);
   Position p5(5,5);
   CheckyrsAI ai;
-  ai.Initialise(false);
+  ai.initialise(false);
   std::vector<Position> player1 = {p1,p3};
   std::vector<Position> player2 = {p2,p4,p5};
-  g1.AddPieces(player1,player2);
+  g1.addPieces(player1,player2);
   std::vector<std::vector<Position> > possibleMoves = g1.getMovesForPlayer(1);
   REQUIRE( ai.rootNegamax(g1,1).first.size()==3);
 }
@@ -73,9 +73,9 @@ TEST_CASE("can look ahead"){
   Position p8(2,4);
   std::vector<Position> player1 = {p1,p2,p3};
   std::vector<Position> player2 = {p4,p5,p6,p7,p8};
-  g1.AddPieces(player1,player2);
+  g1.addPieces(player1,player2);
   CheckyrsAI ai(1);
-  ai.Initialise(false);
+  ai.initialise(false);
   moveEval bestMove = ai.rootNegamax(g1,3);
   CLInterface m_cli;
   m_cli.printBoard(g1.getBoard());
@@ -97,11 +97,11 @@ TEST_CASE("look ahead terminates correctly when game is won"){
   Position p5(5,3);
   std::vector<Position> player1 = {p1,p2};
   std::vector<Position> player2 = {p3,p4,p5};
-  g1.AddPieces(player1,player2);
+  g1.addPieces(player1,player2);
   CheckyrsAI ai1(1);
-  ai1.Initialise(false);
+  ai1.initialise(false);
   CheckyrsAI ai2(-1);
-  ai2.Initialise(false);
+  ai2.initialise(false);
   moveEval bestMove;
   REQUIRE_NOTHROW( bestMove = ai1.rootNegamax(g1,10) ); //ensure no exceptions when iterating deeper than remaining game path
   REQUIRE( bestMove.first.at(0)._x == 4 ); //ensure early termination doesn't mess up move selection
@@ -113,10 +113,10 @@ TEST_CASE("create default and randomised AIs"){
   g1.PrepareBoard();
   
   CheckyrsAI ai1(1);
-  REQUIRE_NOTHROW( ai1.Initialise(true) );
+  REQUIRE_NOTHROW( ai1.initialise(true) );
   
   CheckyrsAI ai2(-1);
-  REQUIRE_NOTHROW( ai2.Initialise(false) );
+  REQUIRE_NOTHROW( ai2.initialise(false) );
   
   REQUIRE_NOTHROW( g1.ExecuteMove(ai1.rootNegamax(g1, 4).first) );
   REQUIRE_NOTHROW( g1.ExecuteMove(ai2.rootNegamax(g1, 4).first) );
@@ -127,7 +127,7 @@ TEST_CASE("serialize and deserialize AI"){
   g1.PrepareBoard();
   
   CheckyrsAI ai1(1);
-  ai1.Initialise(false);
+  ai1.initialise(false);
   
   REQUIRE_NOTHROW(ai1.save("/tmp/ai1.cai") );
   

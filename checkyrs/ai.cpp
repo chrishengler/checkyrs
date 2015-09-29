@@ -18,51 +18,51 @@ template<class Archive>  void CheckyrsAI::serialize(Archive &ar, const unsigned 
   ar & m_aggression;
   ar & m_possession;
   
-  //point in game at which to encourage moving men forward/weight & offset for doing so
-  ar & m_pushmen;
-  ar & m_pushweight;
-  ar & m_push_offset;
-  ar & m_push_max; //point at which to no longer force that
+  //point in game at which to encourage moving men forward/Weight & offset for doing so
+  ar & m_pushMen;
+  ar & m_pushWeight;
+  ar & m_pushOffset;
+  ar & m_pushMax; //point at which to no longer force that
   
-  //weight for kings vs normal pieces
-  ar & m_kingweight;
-  ar & m_normweight;
+  //Weight for kings vs normal pieces
+  ar & m_kingWeight;
+  ar & m_normWeight;
   
-  //weights for position: advancement, distance from sides/ends/corner of board
-  ar & m_advweight;
-  ar & m_sideweight;
-  ar & m_endweight;
-  ar & m_cornerweight;
+  //Weights for position: advancement, distance from sides/ends/corner of board
+  ar & m_advWeight;
+  ar & m_sideWeight;
+  ar & m_endWeight;
+  ar & m_cornerWeight;
   
-  //offsets for each of the above weights
-  ar & m_adv_offset;
-  ar & m_side_offset;
-  ar & m_end_offset;
-  ar & m_corner_offset;
+  //offsets for each of the above Weights
+  ar & m_advOffset;
+  ar & m_sideOffset;
+  ar & m_endOffset;
+  ar & m_cornerOffset;
   
   //thresholds for where position bonuses are applied
-  ar & m_adv_max;
-  ar & m_adv_min;
-  ar & m_side_min;
-  ar & m_side_max;
-  ar & m_end_min;
-  ar & m_end_max;
-  ar & m_corner_min;
-  ar & m_corner_max;
+  ar & m_advMax;
+  ar & m_advMin;
+  ar & m_sideMin;
+  ar & m_sideMax;
+  ar & m_endMin;
+  ar & m_endMax;
+  ar & m_cornerMin;
+  ar & m_cornerMax;
   
-  //weights for situational bonuses/maluses
-  ar & m_threatweight_cancapture;
-  ar & m_threatweight_limited;
-  ar & m_threatweight;
-  ar & m_threatweight_extreme;
-  ar & m_captureweight;
-  ar & m_crownweight;
-  ar & m_defweight;
-  ar & m_def_offset;
-  ar & m_def_max;
+  //Weights for situational bonuses/maluses
+  ar & m_threatWeight_cancapture;
+  ar & m_threatWeight_limited;
+  ar & m_threatWeight;
+  ar & m_threatWeight_extreme;
+  ar & m_captureWeight;
+  ar & m_crownWeight;
+  ar & m_defWeight;
+  ar & m_defOffset;
+  ar & m_defMax;
   
-  ar & m_material_bonus;
-  ar & m_king_bonus;
+  ar & m_materialBonus;
+  ar & m_kingBonus;
 
 }
 
@@ -136,50 +136,50 @@ CheckyrsAI::CheckyrsAI(const int player){
   m_player=player;
 }
 
-void CheckyrsAI::Initialise(bool random){
+void CheckyrsAI::initialise(bool random){
   if(!random){
     m_aggression=5;
     m_possession=5;
 
     //set default values as used in initial 'hand-tuned' AI
-    m_pushmen=30;
-    m_push_offset=1;
-    m_pushweight=0.1;
+    m_pushMen=30;
+    m_pushOffset=1;
+    m_pushWeight=0.1;
 
-    m_kingweight=3000;
-    m_normweight=1250;
+    m_kingWeight=3000;
+    m_normWeight=1250;
 
-    m_advweight=50;
-    m_sideweight=0.05;
-    m_endweight=0.05;
-    m_cornerweight=0.05;
+    m_advWeight=50;
+    m_sideWeight=0.05;
+    m_endWeight=0.05;
+    m_cornerWeight=0.05;
 
-    m_adv_offset=0;
-    m_side_offset=0.9;
-    m_end_offset=0.9;
-    m_corner_offset=1;
+    m_advOffset=0;
+    m_sideOffset=0.9;
+    m_endOffset=0.9;
+    m_cornerOffset=1;
 
-    m_adv_min=0;
-    m_adv_max=8;
-    m_side_min=1;
-    m_side_max=4;
-    m_end_min=0;
-    m_end_max=4;
-    m_corner_min=0;
-    m_corner_max=4;
+    m_advMin=0;
+    m_advMax=8;
+    m_sideMin=1;
+    m_sideMax=4;
+    m_endMin=0;
+    m_endMax=4;
+    m_cornerMin=0;
+    m_cornerMax=4;
 
-    m_threatweight_cancapture=0.4;
-    m_threatweight_limited=-0.5;
-    m_threatweight=-1.3;
-    m_threatweight_extreme=-2;
-    m_captureweight=1.5;
-    m_crownweight=500;
-    m_defweight=0.025;
-    m_def_offset=1;
-    m_def_max=2;
+    m_threatWeight_cancapture=0.4;
+    m_threatWeight_limited=-0.5;
+    m_threatWeight=-1.3;
+    m_threatWeight_extreme=-2;
+    m_captureWeight=1.5;
+    m_crownWeight=500;
+    m_defWeight=0.025;
+    m_defOffset=1;
+    m_defMax=2;
 
-    m_material_bonus=200;
-    m_king_bonus=200;
+    m_materialBonus=200;
+    m_kingBonus=200;
   }
   else randomiseAI();
 }
@@ -189,55 +189,55 @@ void CheckyrsAI::randomiseAI(){
   std::random_device rdev;
   m_rng = boost_rng((unsigned int)rdev());
 
-  std::vector<double*> ap_params;
-  ap_params.push_back(&m_aggression); ap_params.push_back(&m_possession);
+  std::vector<double*> apParams;
+  apParams.push_back(&m_aggression); apParams.push_back(&m_possession);
 
-  std::vector<double*> piece_weights;
-  piece_weights.push_back(&m_kingweight); piece_weights.push_back(&m_normweight);
+  std::vector<double*> pieceWeights;
+  pieceWeights.push_back(&m_kingWeight); pieceWeights.push_back(&m_normWeight);
 
-  std::vector<double*> multi_offsets;
-  multi_offsets.push_back(&m_push_offset); multi_offsets.push_back(&m_side_offset);
-  multi_offsets.push_back(&m_end_offset); multi_offsets.push_back(&m_corner_offset);
-  multi_offsets.push_back(&m_def_offset);
+  std::vector<double*> multiOffsets;
+  multiOffsets.push_back(&m_pushOffset); multiOffsets.push_back(&m_sideOffset);
+  multiOffsets.push_back(&m_endOffset); multiOffsets.push_back(&m_cornerOffset);
+  multiOffsets.push_back(&m_defOffset);
 
-  std::vector<double*> multi_weights;
-  multi_weights.push_back(&m_pushweight); multi_weights.push_back(&m_sideweight);
-  multi_weights.push_back(&m_endweight); multi_weights.push_back(&m_cornerweight);
-  multi_weights.push_back(&m_defweight);
+  std::vector<double*> multiWeights;
+  multiWeights.push_back(&m_pushWeight); multiWeights.push_back(&m_sideWeight);
+  multiWeights.push_back(&m_endWeight); multiWeights.push_back(&m_cornerWeight);
+  multiWeights.push_back(&m_defWeight);
 
-  std::vector<double*> threatened_weights;
-  threatened_weights.push_back(&m_threatweight_cancapture); threatened_weights.push_back(&m_threatweight_limited);
-  threatened_weights.push_back(&m_threatweight); threatened_weights.push_back(&m_threatweight_extreme);
+  std::vector<double*> threatenedWeights;
+  threatenedWeights.push_back(&m_threatWeight_cancapture); threatenedWeights.push_back(&m_threatWeight_limited);
+  threatenedWeights.push_back(&m_threatWeight); threatenedWeights.push_back(&m_threatWeight_extreme);
 
-  std::vector<double*> material_weights;
-  material_weights.push_back(&m_material_bonus); material_weights.push_back(&m_king_bonus);
+  std::vector<double*> materialWeights;
+  materialWeights.push_back(&m_materialBonus); materialWeights.push_back(&m_kingBonus);
 
-  std::pair<int*,int*> adv_bounds = std::make_pair(&m_adv_min, &m_adv_max);
-  std::pair<int*,int*> side_bounds = std::make_pair(&m_side_min, &m_side_max);
-  std::pair<int*,int*> end_bounds = std::make_pair(&m_end_min, &m_end_max);
-  std::pair<int*,int*> corner_bounds = std::make_pair(&m_corner_min, &m_corner_max);
+  std::pair<int*,int*> advBounds = std::make_pair(&m_advMin, &m_advMax);
+  std::pair<int*,int*> sideBounds = std::make_pair(&m_sideMin, &m_sideMax);
+  std::pair<int*,int*> endBounds = std::make_pair(&m_endMin, &m_endMax);
+  std::pair<int*,int*> cornerBounds = std::make_pair(&m_cornerMin, &m_cornerMax);
 
-  randomiseDoubles( ap_params, 0, 10 );
-  randomiseInt(&m_pushmen,0,100);
-  randomiseDoubles(piece_weights,0,5000);
+  randomiseDoubles( apParams, 0, 10 );
+  randomiseInt(&m_pushMen,0,100);
+  randomiseDoubles(pieceWeights,0,5000);
 
-  randomiseDouble(&m_adv_offset,-1000,1000);
-  randomiseDouble(&m_advweight,-1000,1000);
+  randomiseDouble(&m_advOffset,-1000,1000);
+  randomiseDouble(&m_advWeight,-1000,1000);
 
-  randomiseDoubles(multi_offsets,-2,2);
-  randomiseDoubles(multi_weights,-1,1);
+  randomiseDoubles(multiOffsets,-2,2);
+  randomiseDoubles(multiWeights,-1,1);
 
-  randomOrderedIntPair(adv_bounds);
-  randomOrderedIntPair(side_bounds);
-  randomOrderedIntPair(end_bounds);
-  randomOrderedIntPair(corner_bounds);
+  randomOrderedIntPair(advBounds);
+  randomOrderedIntPair(sideBounds);
+  randomOrderedIntPair(endBounds);
+  randomOrderedIntPair(cornerBounds);
 
-  randomiseDoubles(threatened_weights,-5,5);
-  randomiseDouble(&m_captureweight,-5,5);
-  randomiseDouble(&m_crownweight,-1000,1000);
-  randomiseDoubles(material_weights,-1000,1000);
+  randomiseDoubles(threatenedWeights,-5,5);
+  randomiseDouble(&m_captureWeight,-5,5);
+  randomiseDouble(&m_crownWeight,-1000,1000);
+  randomiseDoubles(materialWeights,-1000,1000);
 
-  randomiseInt(&m_def_max,0,4);
+  randomiseInt(&m_defMax,0,4);
 
 }
 
@@ -249,40 +249,40 @@ CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
 
   gene(&offspring.m_aggression, this->m_aggression, p2.m_aggression, 0, 10, mutate);
   gene(&offspring.m_possession, this->m_possession, p2.m_possession, 0, 10, mutate);
-  gene(&offspring.m_pushweight, this->m_pushweight, p2.m_pushweight, 0, 5000, mutate);
-  gene(&offspring.m_kingweight, this->m_kingweight, p2.m_kingweight, 0, 5000, mutate);
+  gene(&offspring.m_pushWeight, this->m_pushWeight, p2.m_pushWeight, 0, 5000, mutate);
+  gene(&offspring.m_kingWeight, this->m_kingWeight, p2.m_kingWeight, 0, 5000, mutate);
 
-  gene(&offspring.m_adv_offset, this->m_adv_offset, p2.m_adv_offset, -1000, 1000, mutate);
-  gene(&offspring.m_advweight, this->m_advweight, p2.m_advweight, -1000, 1000, mutate);
+  gene(&offspring.m_advOffset, this->m_advOffset, p2.m_advOffset, -1000, 1000, mutate);
+  gene(&offspring.m_advWeight, this->m_advWeight, p2.m_advWeight, -1000, 1000, mutate);
 
-  gene(&offspring.m_push_offset, this->m_push_offset, p2.m_push_offset, -2, 2, mutate);
-  gene(&offspring.m_side_offset, this->m_side_offset, p2.m_side_offset, -2, 2, mutate);
-  gene(&offspring.m_end_offset, this->m_end_offset, p2.m_end_offset, -2, 2, mutate);
-  gene(&offspring.m_corner_offset, this->m_corner_offset, p2.m_corner_offset, -2, 2, mutate);
-  gene(&offspring.m_def_offset, this->m_def_offset, p2.m_def_offset, -2, 2, mutate);
+  gene(&offspring.m_pushOffset, this->m_pushOffset, p2.m_pushOffset, -2, 2, mutate);
+  gene(&offspring.m_sideOffset, this->m_sideOffset, p2.m_sideOffset, -2, 2, mutate);
+  gene(&offspring.m_endOffset, this->m_endOffset, p2.m_endOffset, -2, 2, mutate);
+  gene(&offspring.m_cornerOffset, this->m_cornerOffset, p2.m_cornerOffset, -2, 2, mutate);
+  gene(&offspring.m_defOffset, this->m_defOffset, p2.m_defOffset, -2, 2, mutate);
 
-  gene(&offspring.m_pushweight, this->m_pushweight, p2.m_pushweight, -1, 1, mutate);
-  gene(&offspring.m_sideweight, this->m_sideweight, p2.m_sideweight, -1, 1, mutate);
-  gene(&offspring.m_endweight, this->m_endweight, p2.m_endweight, -1, 1, mutate);
-  gene(&offspring.m_cornerweight, this->m_cornerweight, p2.m_cornerweight, -1, 1, mutate);
-  gene(&offspring.m_defweight, this->m_defweight, p2.m_defweight, -1, 1, mutate);
+  gene(&offspring.m_pushWeight, this->m_pushWeight, p2.m_pushWeight, -1, 1, mutate);
+  gene(&offspring.m_sideWeight, this->m_sideWeight, p2.m_sideWeight, -1, 1, mutate);
+  gene(&offspring.m_endWeight, this->m_endWeight, p2.m_endWeight, -1, 1, mutate);
+  gene(&offspring.m_cornerWeight, this->m_cornerWeight, p2.m_cornerWeight, -1, 1, mutate);
+  gene(&offspring.m_defWeight, this->m_defWeight, p2.m_defWeight, -1, 1, mutate);
 
-  gene(std::make_pair(&offspring.m_adv_min,&offspring.m_adv_max), std::make_pair(this->m_adv_min,this->m_adv_max), std::make_pair(p2.m_adv_min,p2.m_adv_max), 0, 8, mutate);
-  gene(std::make_pair(&offspring.m_side_min,&offspring.m_side_max), std::make_pair(this->m_side_min,this->m_side_max), std::make_pair(p2.m_side_min,p2.m_side_max), 0, 8, mutate);
-  gene(std::make_pair(&offspring.m_end_min,&offspring.m_end_max), std::make_pair(this->m_end_min,this->m_end_max), std::make_pair(p2.m_end_min,p2.m_end_max), 0, 8, mutate);
-  gene(std::make_pair(&offspring.m_corner_min,&offspring.m_corner_max), std::make_pair(this->m_corner_min,this->m_corner_max), std::make_pair(p2.m_corner_min,p2.m_corner_max), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_advMin,&offspring.m_advMax), std::make_pair(this->m_advMin,this->m_advMax), std::make_pair(p2.m_advMin,p2.m_advMax), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_sideMin,&offspring.m_sideMax), std::make_pair(this->m_sideMin,this->m_sideMax), std::make_pair(p2.m_sideMin,p2.m_sideMax), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_endMin,&offspring.m_endMax), std::make_pair(this->m_endMin,this->m_endMax), std::make_pair(p2.m_endMin,p2.m_endMax), 0, 8, mutate);
+  gene(std::make_pair(&offspring.m_cornerMin,&offspring.m_cornerMax), std::make_pair(this->m_cornerMin,this->m_cornerMax), std::make_pair(p2.m_cornerMin,p2.m_cornerMax), 0, 8, mutate);
 
-  gene(&offspring.m_threatweight_cancapture, this->m_threatweight_cancapture, p2.m_threatweight_cancapture, -5, 5, mutate);
-  gene(&offspring.m_threatweight_limited, this->m_threatweight_limited, p2.m_threatweight_limited, -5, 5, mutate);
-  gene(&offspring.m_threatweight, this->m_threatweight, p2.m_threatweight, -5, 5, mutate);
-  gene(&offspring.m_threatweight_extreme, this->m_threatweight_extreme, p2.m_threatweight_extreme, -5, 5, mutate);
+  gene(&offspring.m_threatWeight_cancapture, this->m_threatWeight_cancapture, p2.m_threatWeight_cancapture, -5, 5, mutate);
+  gene(&offspring.m_threatWeight_limited, this->m_threatWeight_limited, p2.m_threatWeight_limited, -5, 5, mutate);
+  gene(&offspring.m_threatWeight, this->m_threatWeight, p2.m_threatWeight, -5, 5, mutate);
+  gene(&offspring.m_threatWeight_extreme, this->m_threatWeight_extreme, p2.m_threatWeight_extreme, -5, 5, mutate);
 
-  gene(&offspring.m_captureweight, this->m_captureweight, p2.m_captureweight, -5, 5, mutate);
-  gene(&offspring.m_crownweight, this->m_crownweight, p2.m_crownweight, -1000, 1000, mutate);
-  gene(&offspring.m_material_bonus, this->m_material_bonus, p2.m_material_bonus, -1000, 1000, mutate);
-  gene(&offspring.m_king_bonus, this->m_king_bonus, p2.m_king_bonus, -1000, 1000, mutate);
+  gene(&offspring.m_captureWeight, this->m_captureWeight, p2.m_captureWeight, -5, 5, mutate);
+  gene(&offspring.m_crownWeight, this->m_crownWeight, p2.m_crownWeight, -1000, 1000, mutate);
+  gene(&offspring.m_materialBonus, this->m_materialBonus, p2.m_materialBonus, -1000, 1000, mutate);
+  gene(&offspring.m_kingBonus, this->m_kingBonus, p2.m_kingBonus, -1000, 1000, mutate);
 
-  gene(&offspring.m_def_max, this->m_def_max, p2.m_def_max, 0, 4, mutate);
+  gene(&offspring.m_defMax, this->m_defMax, p2.m_defMax, 0, 4, mutate);
 
   return offspring;
 }
@@ -299,14 +299,14 @@ double CheckyrsAI::eval(const Game &g) const{
   for(int ii=0;ii<boardsize;ii++){
     for(int jj=0;jj<boardsize;jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position( (boardsize-1)-ii , (boardsize-1)-jj )); //loop rows in reverse order if p2
-      if(b.SquareIsOccupied(p)){
+      if(b.squareIsOccupied(p)){
         //get a bunch of values once rather than calling methods over and over
-        bool isKing = b.SquareHasKing(p);
+        bool isKing = b.squareHasKing(p);
         bool isCurrentPlayer = (b.getPlayer(p) == g.getCurrentPlayer());
         bool isAI = (b.getPlayer(p) == m_player);
         int adv = (isCurrentPlayer ? jj+1 : boardsize-jj); //how advanced an AI pawn is
-        int distanceToSide = b.DistanceToSide(p);
-        int distanceToEnd = b.DistanceToEnd(p);
+        int distanceToSide = b.distanceToSide(p);
+        int distanceToEnd = b.distanceToEnd(p);
         int distanceToCorner = (distanceToSide>distanceToEnd ? distanceToSide : distanceToEnd);
         bool isThreatened = g.PieceIsThreatened(p);
         bool canCapture = g.PieceCanCapture(p);
@@ -314,61 +314,61 @@ double CheckyrsAI::eval(const Game &g) const{
         int def = g.PieceDefence(p);
 
         //correct values where a min/max is set:
-        if(adv>m_adv_max) adv=m_adv_max;
-        else if(adv<m_adv_min) adv=m_adv_min;
+        if(adv>m_advMax) adv=m_advMax;
+        else if(adv<m_advMin) adv=m_advMin;
 
-        if(def>m_def_max) def=m_def_max;
+        if(def>m_defMax) def=m_defMax;
 
-        if(distanceToSide<m_side_min) distanceToSide=m_side_min;
-        else if(distanceToSide>m_side_max) distanceToSide=m_side_max;
+        if(distanceToSide<m_sideMin) distanceToSide=m_sideMin;
+        else if(distanceToSide>m_sideMax) distanceToSide=m_sideMax;
 
-        if(distanceToEnd<m_end_min) distanceToEnd=m_end_min;
-        else if(distanceToEnd>m_end_max) distanceToEnd=m_end_max;
+        if(distanceToEnd<m_endMin) distanceToEnd=m_endMin;
+        else if(distanceToEnd>m_endMax) distanceToEnd=m_endMax;
 
-        if(distanceToCorner<m_corner_min) distanceToCorner=m_corner_min;
-        else if(distanceToCorner>m_corner_max) distanceToCorner=m_corner_max;
+        if(distanceToCorner<m_cornerMin) distanceToCorner=m_cornerMin;
+        else if(distanceToCorner>m_cornerMax) distanceToCorner=m_cornerMax;
 
         if(isCurrentPlayer){
-          if(isKing) thissquare = m_possession*m_kingweight;
-          else thissquare = m_possession*(m_normweight+(m_advweight*adv)) ;
+          if(isKing) thissquare = m_possession*m_kingWeight;
+          else thissquare = m_possession*(m_normWeight+(m_advWeight*adv)) ;
         }
         else{
-          if(isKing) thissquare = -1*(m_aggression*m_kingweight);
-          else thissquare = -1*(m_aggression*(m_normweight+(m_advweight*adv)) );
+          if(isKing) thissquare = -1*(m_aggression*m_kingWeight);
+          else thissquare = -1*(m_aggression*(m_normWeight+(m_advWeight*adv)) );
         }
-        if( g.getCurrentTurn()>m_pushmen && !isKing && m_push_max ){
-            thissquare *= (m_push_offset - m_pushweight*adv/boardsize);
+        if( g.getCurrentTurn()>m_pushMen && !isKing && m_pushMax ){
+            thissquare *= (m_pushOffset - m_pushWeight*adv/boardsize);
         }
-        thissquare *= (m_side_offset + m_sideweight*distanceToSide);
-        thissquare *= (m_end_offset + m_endweight*distanceToEnd);
-        thissquare *= (m_corner_offset + m_cornerweight*distanceToCorner);
+        thissquare *= (m_sideOffset + m_sideWeight*distanceToSide);
+        thissquare *= (m_endOffset + m_endWeight*distanceToEnd);
+        thissquare *= (m_cornerOffset + m_cornerWeight*distanceToCorner);
         if(isThreatened){ //occasional suicidal moves with no apparent benefit, let's apply heavy penalties
           if(limitedthreat && isCurrentPlayer ){
             if(canCapture){ //under threat, but can capture another piece right now, just reduce score
               limitedthreat = false;
-              thissquare *= m_threatweight_cancapture;
+              thissquare *= m_threatWeight_cancapture;
             }
             else if(g.getMovesFrom(p).size()>0){ //can't capture but can be captured if not moved: bad thing
               limitedthreat = false;
-              thissquare *= m_threatweight_limited;
+              thissquare *= m_threatWeight_limited;
             }
-            else thissquare *= m_threatweight; //under threat, no possibility to capture or move to safety
+            else thissquare *= m_threatWeight; //under threat, no possibility to capture or move to safety
           }
           else{
             limitedthreat = false;
-            thissquare *= m_threatweight_extreme; //highly penalise multiple threatened pieces/threatened pieces when opponent to move
+            thissquare *= m_threatWeight_extreme; //highly penalise multiple threatened pieces/threatened pieces when opponent to move
           }
         }
         else if(canCapture){
           limitedthreat = false;
           if(isCurrentPlayer || !isThreatened){//no bonus for capture chance if it'll be taken before doing so
-            thissquare *= m_captureweight;
+            thissquare *= m_captureWeight;
           }
         }
         if(canCrown){
-          thissquare += (isAI ? m_crownweight : -m_crownweight);
+          thissquare += (isAI ? m_crownWeight : -m_crownWeight);
         }
-        thissquare *= m_def_offset+(m_defweight*def);
+        thissquare *= m_defOffset+(m_defWeight*def);
         value += thissquare;
         thissquare = 0;
       }
@@ -384,8 +384,8 @@ double CheckyrsAI::eval(const Game &g) const{
   double matratio = opp_mat==0? ai_mat+1 : (double)ai_mat/opp_mat; //check for zero only for unit tests, method won't be called with gameover in actual usage
   double kingratio = opp_kings==0? ai_kings+1 : (double)ai_kings/opp_kings;
 
-  value += m_player*m_material_bonus*(matratio);
-  value += m_player*m_king_bonus*(kingratio);
+  value += m_player*m_materialBonus*(matratio);
+  value += m_player*m_kingBonus*(kingratio);
 
   return value;
 }
@@ -400,9 +400,9 @@ double CheckyrsAI::evalNode(const Game &g) const{
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       double value=0;
       Game newstate(g);
-      newstate.ExecuteMove(*p_iter);
+      newstate.executeMove(*p_iter);
 
-      value=eval(newstate.getBoard());
+      value=eval(newstate);
       evals.push_back(std::make_pair(*p_iter, value));
     }
     if(g.getCurrentPlayer()!=m_player){
@@ -428,7 +428,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
     if(p.size()==1) return std::make_pair(p.at(0),likeatrillion); //don't waste time evaluating tree if there's only one branch
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
-      newstate.ExecuteMove((*p_iter));
+      newstate.executeMove((*p_iter));
       double value = -negamax(newstate, depth-1, -beta, -alpha);
       if(value>best){
         best = value;
@@ -465,6 +465,12 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
   try{
     if(depth<=0){
       if(g.gameOver()){
+        if(g.isStale()){
+          double matWeight = g.getNumPiecesPlayer(m_player)*m_normWeight + g.getNumKingsPlayer(m_player)*m_kingWeight;
+          double oppMatWeight = g.getNumPiecesPlayer(m_player*-1)*m_normWeight + g.getNumKingsPlayer(m_player*-1)*m_kingWeight;
+          if(matWeight/oppMatWeight > 0.8) return -0.5*likeatrillion;
+          else return 0;
+        }
         return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
       }
       else return evalNode(g);
@@ -475,7 +481,7 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
-      newstate.ExecuteMove(*p_iter);
+      newstate.executeMove(*p_iter);
       alpha = fmax(alpha,-negamax(newstate,depth-1, -beta, -alpha));
       if(alpha>=beta) break;
     }

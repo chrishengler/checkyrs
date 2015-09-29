@@ -23,8 +23,8 @@ TEST_CASE("Board has correct size"){
 TEST_CASE("Piece can be placed on board"){
   Board board;
   Position p(0,0);
-  board.AddPiece(p);
-  REQUIRE(board.SquareIsOccupied(p));
+  board.addPiece(p);
+  REQUIRE(board.squareIsOccupied(p));
 }
 
 TEST_CASE("Can add multiple pieces at once"){
@@ -32,62 +32,62 @@ TEST_CASE("Can add multiple pieces at once"){
   Position p(0,0);
   Position p2(1,1);
   std::vector<Position> pieces = {p,p2};
-  board.AddPieces(pieces);
-  REQUIRE(board.SquareIsOccupied(p));
-  REQUIRE(board.SquareIsOccupied(p2));
+  board.addPieces(pieces);
+  REQUIRE(board.squareIsOccupied(p));
+  REQUIRE(board.squareIsOccupied(p2));
 }
 
 TEST_CASE("Piece can be moved"){
   Board board;
   Position initial(0,0);
   Position destination(1,1);
-  board.AddPiece(initial);
-  board.MovePiece(initial,destination);
-  REQUIRE(board.SquareIsOccupied(destination) == true);
-  REQUIRE(board.SquareIsOccupied(initial) == false);
+  board.addPiece(initial);
+  board.movePiece(initial,destination);
+  REQUIRE(board.squareIsOccupied(destination) == true);
+  REQUIRE(board.squareIsOccupied(initial) == false);
 }
 
 TEST_CASE("Exception thrown if piece added off board"){
   Board board;
-  REQUIRE_THROWS_AS(board.AddPiece(Position(-2,-2)),std::out_of_range);
+  REQUIRE_THROWS_AS(board.addPiece(Position(-2,-2)),std::out_of_range);
 }
 
 TEST_CASE("Out of range exception thrown if piece moved off board"){
   Board board;
   Position initial(0,0);
-  board.AddPiece(initial);
+  board.addPiece(initial);
   Position destination(-2,-2);
-  REQUIRE_THROWS_AS(board.MovePiece(initial,destination), std::out_of_range);
+  REQUIRE_THROWS_AS(board.movePiece(initial,destination), std::out_of_range);
 }
 
 TEST_CASE("Can check for occupation of square"){
   Board board;
   Position p(0,0);
-  board.AddPiece(p);
-  REQUIRE(board.SquareIsOccupied(p) == true);
+  board.addPiece(p);
+  REQUIRE(board.squareIsOccupied(p) == true);
 }
 
 TEST_CASE("Cannot add piece to occupied square"){
   Board board;
   Position p(0,0);
-  board.AddPiece(p);
-  REQUIRE_THROWS_AS(board.AddPiece(p),std::runtime_error);
+  board.addPiece(p);
+  REQUIRE_THROWS_AS(board.addPiece(p),std::runtime_error);
 }
 
 TEST_CASE("Cannot move piece that does not exist"){
   Board board;
   Position initial(0,0);
   Position destination(1,1);
-  REQUIRE_THROWS_AS(board.MovePiece(initial,destination),std::runtime_error);
+  REQUIRE_THROWS_AS(board.movePiece(initial,destination),std::runtime_error);
 }
 
 TEST_CASE("Cannot move piece to occupied square"){
   Board board;
   Position firstpiece(0,0);
-  board.AddPiece(firstpiece);
+  board.addPiece(firstpiece);
   Position secondpiece(1,1);
-  board.AddPiece(secondpiece);
-  REQUIRE_THROWS_AS(board.MovePiece(firstpiece,secondpiece),std::runtime_error);
+  board.addPiece(secondpiece);
+  REQUIRE_THROWS_AS(board.movePiece(firstpiece,secondpiece),std::runtime_error);
 }
 
 TEST_CASE("Can check if move involves jump"){
@@ -116,12 +116,12 @@ TEST_CASE("check number of kings"){
   Position p1(0,0);
   Position p2(2,2);
   Position p3(4,6);
-  board.AddPiece(p1);
-  board.AddPiece(p2,1,true);
-  board.AddPiece(p3,-1,true);
+  board.addPiece(p1);
+  board.addPiece(p2,1,true);
+  board.addPiece(p3,-1,true);
   REQUIRE( board.getNumKingsPlayer(1) == 1 );
   REQUIRE( board.getNumKingsPlayer(-1) == 1);
-  board.RemovePiece(p3);
+  board.removePiece(p3);
   REQUIRE( board.getNumKingsPlayer(-1) == 0);
 }
 
@@ -131,10 +131,10 @@ TEST_CASE("test equality of boards"){
   REQUIRE( b1 == b2 );
   REQUIRE_FALSE( b1!=b2 );
   Position p1(0,0);
-  b1.AddPiece(p1);
+  b1.addPiece(p1);
   REQUIRE_FALSE( b1==b2 );
   REQUIRE( b1!=b2 );
-  b2.AddPiece(p1);
+  b2.addPiece(p1);
   REQUIRE( b1==b2 );
   REQUIRE_FALSE( b1!=b2 );
 }
