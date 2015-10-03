@@ -14,23 +14,23 @@
 #include <math.h>
 
 struct Position {
-  int _x;
-  int _y;
+  int m_x;
+  int m_y;
   
-  Position(int x,int y){ _x = x; _y = y;}
+  Position(int x,int y){ m_x = x; m_y = y;}
 
   std::string toString() const{
     //would rather use the std::to_string method but g++ doesn't seem to find it when compiling extension
     //for python3 via swig and python distutils, even with -std=c++11 specified
     //std::string str( ("abcdefghijklmnopqrstuvwxyz"[_x]+std::to_string(_y+1)) );
     std::ostringstream str("");
-    str<<("abcdefghijklmnopqrstuvwxyz"[_x]);
-    str<<(_y+1);
+    str<<("abcdefghijklmnopqrstuvwxyz"[m_x]);
+    str<<(m_y+1);
     return str.str();
   }
   
   bool operator==(const Position &p) const{
-    return (_x == p._x && _y == p._y);
+    return (m_x == p.m_x && m_y == p.m_y);
   }
   
   bool operator!=(const Position &p) const{

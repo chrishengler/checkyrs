@@ -308,10 +308,10 @@ double CheckyrsAI::eval(const Game &g) const{
         int distanceToSide = b.distanceToSide(p);
         int distanceToEnd = b.distanceToEnd(p);
         int distanceToCorner = (distanceToSide>distanceToEnd ? distanceToSide : distanceToEnd);
-        bool isThreatened = g.PieceIsThreatened(p);
-        bool canCapture = g.PieceCanCapture(p);
-        bool canCrown = g.PieceCanCrown(p);
-        int def = g.PieceDefence(p);
+        bool isThreatened = g.pieceIsThreatened(p);
+        bool canCapture = g.pieceCanCapture(p);
+        bool canCrown = g.pieceCanCrown(p);
+        int def = g.pieceDefence(p);
 
         //correct values where a min/max is set:
         if(adv>m_advMax) adv=m_advMax;

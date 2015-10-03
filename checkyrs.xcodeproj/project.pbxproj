@@ -28,6 +28,7 @@
 		835B336A1BAC488E008AEEEF /* gamerunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 837041BC1B714DC2009E5A7B /* gamerunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		835B336B1BAC4892008AEEEF /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		8368F87F1B7153DF00E60CDC /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		836E1F761BC04091008ABAF2 /* gamerunnertests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837BCE7A1B77D8D000DCA768 /* gamerunnertests.cpp */; };
 		837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837163051B5A99BD008D1D99 /* positiontests.cpp */; };
 		837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
 		837BCE791B77D7B500DCA768 /* gamerunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BB1B714DC2009E5A7B /* gamerunner.cpp */; };
@@ -371,6 +372,7 @@
 				838AE7721B7207320010107B /* ai.cpp in Sources */,
 				8335C9601B599B7E0017EB5F /* board.cpp in Sources */,
 				837163071B5AA51D008D1D99 /* positiontests.cpp in Sources */,
+				836E1F761BC04091008ABAF2 /* gamerunnertests.cpp in Sources */,
 				83B61E841B7517A200DBD0BB /* clinterface.cpp in Sources */,
 				837BCE781B77D7B500DCA768 /* gamerunner.cpp in Sources */,
 			);

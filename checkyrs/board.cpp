@@ -45,11 +45,11 @@ Board::Board(const Board &board){
 }
 
 bool Board::squareExists(const Position &p) const{
-  return (p._x >= 0 && p._x < m_size && p._y >=0 && p._y < m_size);
+  return (p.m_x >= 0 && p.m_x < m_size && p.m_y >=0 && p.m_y < m_size);
 }
 
 bool Board::wasJump(const Position &p1, const Position &p2) const{
-  return ( fabs(p1._x - p2._x) == 2 && fabs(p1._y - p2._y) == 2 );
+  return ( fabs(p1.m_x - p2.m_x) == 2 && fabs(p1.m_y - p2.m_y) == 2 );
 }
 
 Position Board::getJump(const Position &p1, const Position &p2) const{
@@ -68,7 +68,7 @@ Position Board::getJump(const Position &p1, const Position &p2) const{
     errmsg+=p1.toString(); errmsg+=" to "; errmsg+=p2.toString();
     throw std::runtime_error(errmsg);
   }
-  return Position( (p1._x+p2._x)/2 , (p1._y+p2._y)/2 );
+  return Position( (p1.m_x+p2.m_x)/2 , (p1.m_y+p2.m_y)/2 );
 }
 
 void Board::setKing(const Position &p, const bool isKing){
@@ -80,7 +80,7 @@ void Board::setKing(const Position &p, const bool isKing){
   if(isKing == squareHasKing(p)){
     return;
   }
-  m_board[p._x][p._y].setKing();
+  m_board[p.m_x][p.m_y].setKing();
   if(isKing){
     getPlayer(p) == 1 ? m_kingsp1++ : m_kingsp2++;
   }
@@ -96,7 +96,7 @@ bool Board::squareIsOccupied(const Position &p) const{
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  else return (m_board[p._x][p._y].isOccupied());
+  else return (m_board[p.m_x][p.m_y].isOccupied());
 }
 
 bool Board::squareHasKing(const Position &p) const{
@@ -110,7 +110,7 @@ bool Board::squareHasKing(const Position &p) const{
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  return m_board[p._x][p._y].isKing();
+  return m_board[p.m_x][p.m_y].isKing();
 }
 
 int Board::distanceToSide(const Position &p) const{
@@ -119,8 +119,8 @@ int Board::distanceToSide(const Position &p) const{
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  int left = p._x;
-  int right = (m_size-1)-p._x;
+  int left = p.m_x;
+  int right = (m_size-1)-p.m_x;
   return ( left>right ? right : left );
 }
 
@@ -130,8 +130,8 @@ int Board::distanceToEnd(const Position &p) const{
     errmsg+=p.toString();
     throw std::out_of_range(errmsg);
   }
-  int bottom = p._x;
-  int top = (m_size-1)-p._y;
+  int bottom = p.m_x;
+  int top = (m_size-1)-p.m_y;
   return ( top>bottom ? bottom : top );
 }
 
@@ -152,7 +152,7 @@ int Board::getPlayer(const Position &p) const{
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  return m_board[p._x][p._y].getPlayer();
+  return m_board[p.m_x][p.m_y].getPlayer();
 }
 
 void Board::addPiece(const Position &pos,const int player, const bool isKing){
@@ -167,7 +167,7 @@ void Board::addPiece(const Position &pos,const int player, const bool isKing){
     throw std::runtime_error(errmsg);
   }
   Square newpiece(player,isKing);
-  m_board[pos._x][pos._y] = newpiece;
+  m_board[pos.m_x][pos.m_y] = newpiece;
   player==1 ? m_piecesp1++ : m_piecesp2++;
   if(isKing) player==1 ? m_kingsp1++ : m_kingsp2++;
 }
@@ -190,8 +190,8 @@ void Board::movePiece(const Position &oldp, const Position &newp){
     throw std::runtime_error(errmsg);
   }
   else{
-    m_board[newp._x][newp._y]=m_board[oldp._x][oldp._y];
-    m_board[oldp._x][oldp._y]=Square::Square();
+    m_board[newp.m_x][newp.m_y]=m_board[oldp.m_x][oldp.m_y];
+    m_board[oldp.m_x][oldp.m_y]=Square::Square();
   }
 }
 
@@ -206,7 +206,7 @@ Square Board::getSquare(const Position &p) const{
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }*/
-  return m_board[p._x][p._y];
+  return m_board[p.m_x][p.m_y];
 }
 
 void Board::removePiece(const Position &p){
@@ -224,6 +224,6 @@ void Board::removePiece(const Position &p){
   if(squareHasKing(p)){
     getPlayer(p) == 1 ? m_kingsp1-- : m_kingsp2--;
   }
-  m_board[p._x][p._y].removePiece();
+  m_board[p.m_x][p.m_y].removePiece();
 }
 

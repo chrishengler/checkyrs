@@ -110,7 +110,7 @@ TEST_CASE("look ahead terminates correctly when game is won"){
 
 TEST_CASE("create default and randomised AIs"){
   Game g1;
-  g1.PrepareBoard();
+  g1.prepareBoard();
   
   CheckyrsAI ai1(1);
   REQUIRE_NOTHROW( ai1.initialise(true) );
@@ -124,7 +124,7 @@ TEST_CASE("create default and randomised AIs"){
 
 TEST_CASE("serialize and deserialize AI"){
   Game g1;
-  g1.PrepareBoard();
+  g1.prepareBoard();
   
   CheckyrsAI ai1(1);
   ai1.initialise(false);

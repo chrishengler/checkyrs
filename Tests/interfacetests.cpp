@@ -52,14 +52,14 @@ TEST_CASE("print board"){
 TEST_CASE("print board at game start"){
   CLInterface interface;
   Game g;
-  g.PrepareBoard();
+  g.prepareBoard();
   REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
 }
 
 TEST_CASE("correctly print oversized board"){
   CLInterface interface;
   Game g(12);
-  g.PrepareBoard();
+  g.prepareBoard();
   
   REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
 }
@@ -67,14 +67,14 @@ TEST_CASE("correctly print oversized board"){
 TEST_CASE("print move"){
   CLInterface interface;
   Game g;
-  g.PrepareBoard();
+  g.prepareBoard();
   REQUIRE_NOTHROW( interface.printMove( g.getMovesForPlayer(1).at(0)));
 }
 
 TEST_CASE("print all possible moves for piece/player"){
   CLInterface interface;
   Game g;
-  g.PrepareBoard();
+  g.prepareBoard();
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesFrom(Position(0,2))));
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesForPlayer(1)));
 }
@@ -120,7 +120,7 @@ TEST_CASE("interpret single move"){
 TEST_CASE("interpret validity of move"){
   CLInterface interface;
   Game g1;
-  g1.PrepareBoard();
+  g1.prepareBoard();
   std::string singlemove("a3 b4");
   std::string jumpmove("a3 c5");
   std::string invalidmove("a1 a3");
@@ -134,7 +134,7 @@ TEST_CASE("interpret validity of move"){
 TEST_CASE("get user input for move"){
   CLInterface interface;
   Game g1;
-  g1.PrepareBoard();
+  g1.prepareBoard();
   interface.printBoard(g1.getBoard());
   REQUIRE_NOTHROW( interface.getMove(g1) );
 }

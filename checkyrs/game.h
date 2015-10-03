@@ -27,7 +27,7 @@ class Game {
   
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
-  std::vector<std::vector<Position> > ExtendMove(const std::vector<Position> &p) const;
+  std::vector<std::vector<Position> > extendMove(const std::vector<Position> &p) const;
   void removePiece(const Position &p);
   
 public:
@@ -78,7 +78,7 @@ public:
   void addPieces(const std::vector<Position> &pos, const int player=1, const bool isKing=false);
   void addPieces(const std::vector<Position> &p1, const std::vector<Position> &p2, const bool isKing=false);
   void movePiece(const Position &oldp, const Position &newp);
-  void PrepareBoard();
+  void prepareBoard();
   void executeMove(const std::vector<Position> &move);
   
   bool gameOver() const{ return m_gameOver; }
@@ -93,10 +93,10 @@ public:
   int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
   int getNumKingsPlayer(const int player) const{ return m_board.getNumKingsPlayer(player); }
   
-  bool PieceIsThreatened(const Position &p) const;
-  int PieceDefence(const Position &p) const;
-  bool PieceCanCapture(const Position &p) const;
-  bool PieceCanCrown(const Position &p) const;
+  bool pieceIsThreatened(const Position &p) const;
+  int pieceDefence(const Position &p) const;
+  bool pieceCanCapture(const Position &p) const;
+  bool pieceCanCrown(const Position &p) const;
 
   std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool alreadyMoved=false) const;
   std::vector<std::vector<Position> > getMovesForPlayer(const int player) const;

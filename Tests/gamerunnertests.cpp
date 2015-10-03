@@ -19,8 +19,8 @@ TEST_CASE("initialise AIvAI game"){
 TEST_CASE("Initialise game with provided AIs"){
   CheckyrsAI ai1;
   CheckyrsAI ai2;
-  ai1.Initialise();
-  ai2.Initialise();
+  ai1.initialise();
+  ai2.initialise();
   Gamerunner gr;
   REQUIRE_NOTHROW( gr.initialise(ai1,ai2) );
 }

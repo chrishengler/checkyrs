@@ -34,7 +34,7 @@ void Gamerunner::initialise(){
   }
   
   m_game = Game();
-  m_game.PrepareBoard();
+  m_game.prepareBoard();
   m_cli = CLInterface();
   
 }
@@ -54,7 +54,7 @@ void Gamerunner::initialise(CheckyrsAI &ai1, CheckyrsAI &ai2){
   m_ai2.setPlayer(-1);
   
   m_game = Game();
-  m_game.PrepareBoard();
+  m_game.prepareBoard();
   m_cli = CLInterface();
   
 }

@@ -67,7 +67,7 @@ TEST_CASE("player 2 pieces move opposite direction"){
   game.addPiece(p1);
   Position p2(6,6);
   game.addPiece(p2,-1);
-  REQUIRE( game.getMovesFrom(p2).at(0).at(1)._y==5);
+  REQUIRE( game.getMovesFrom(p2).at(0).at(1).m_y==5);
 }
 
 TEST_CASE("Get a player's move options for multiple pieces"){
@@ -129,7 +129,7 @@ TEST_CASE("Get all moves for player 2"){
   Position p4(2,6);
   game.addPiece(p4,-1);
   REQUIRE(game.getMovesForPlayer(-1).size()==2);
-  REQUIRE(game.getMovesForPlayer(-1).at(0).at(1)._y == 4);
+  REQUIRE(game.getMovesForPlayer(-1).at(0).at(1).m_y == 4);
 }
 
 TEST_CASE("pieces reaching final rank get kinged"){
@@ -165,7 +165,7 @@ TEST_CASE("mid-move king promotion"){
 
 TEST_CASE("prepare board"){
   Game game;
-  game.PrepareBoard();
+  game.prepareBoard();
   REQUIRE( game.getBoard().squareIsOccupied(Position(1,1)) == true );
   REQUIRE( game.getBoard().getPlayer(Position(1,1)) == 1 );
   REQUIRE( game.getBoard().squareIsOccupied(Position(6,6)) == true );
@@ -176,7 +176,7 @@ TEST_CASE("prepare board"){
 TEST_CASE("make and prepare game nonstandard size"){
   Game game(12);
   REQUIRE_NOTHROW( game.getBoard().getSquare(Position(10,10)) );
-  game.PrepareBoard();
+  game.prepareBoard();
   REQUIRE( game.getBoard().squareIsOccupied(Position(11,11)) == true );
 }
 
@@ -189,13 +189,13 @@ TEST_CASE("check if piece is threatened"){
   game.addPiece(Position(2,2));
   game.addPiece(Position(3,3),-1,true);
   game.addPiece(Position(2,4));
-  REQUIRE( game.PieceIsThreatened(Position(0,0)) == false );
-  REQUIRE( game.PieceIsThreatened(Position(1,1)) == false );
-  REQUIRE( game.PieceIsThreatened(Position(2,0)) == false );
-  REQUIRE( game.PieceIsThreatened(Position(0,2)) == false );
-  REQUIRE( game.PieceIsThreatened(Position(2,2)) == false );
-  REQUIRE( game.PieceIsThreatened(Position(3,3)) == true  );
-  REQUIRE( game.PieceIsThreatened(Position(2,4)) == true  );
+  REQUIRE( game.pieceIsThreatened(Position(0,0)) == false );
+  REQUIRE( game.pieceIsThreatened(Position(1,1)) == false );
+  REQUIRE( game.pieceIsThreatened(Position(2,0)) == false );
+  REQUIRE( game.pieceIsThreatened(Position(0,2)) == false );
+  REQUIRE( game.pieceIsThreatened(Position(2,2)) == false );
+  REQUIRE( game.pieceIsThreatened(Position(3,3)) == true  );
+  REQUIRE( game.pieceIsThreatened(Position(2,4)) == true  );
 }
 
 TEST_CASE("check piece defence"){
@@ -206,9 +206,9 @@ TEST_CASE("check piece defence"){
   game.addPiece(Position(0,2));
   game.addPiece(Position(6,6));
   game.addPiece(Position(3,3),-1);
-  REQUIRE( game.PieceDefence(Position(0,0)) == 4 );
-  REQUIRE( game.PieceDefence(Position(1,1)) == 3 );
-  REQUIRE( game.PieceDefence(Position(2,2)) == 1 );
-  REQUIRE( game.PieceDefence(Position(0,2)) == 3 );
-  REQUIRE( game.PieceDefence(Position(6,6)) == 0 );
+  REQUIRE( game.pieceDefence(Position(0,0)) == 4 );
+  REQUIRE( game.pieceDefence(Position(1,1)) == 3 );
+  REQUIRE( game.pieceDefence(Position(2,2)) == 1 );
+  REQUIRE( game.pieceDefence(Position(0,2)) == 3 );
+  REQUIRE( game.pieceDefence(Position(6,6)) == 0 );
 }
