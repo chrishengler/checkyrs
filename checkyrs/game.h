@@ -102,6 +102,20 @@ public:
   std::vector<std::vector<Position> > getMovesForPlayer(const int player) const;
   
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p) const;
+  
+  inline bool operator==(const Game &g){
+    if(m_currentPlayer != g.m_currentPlayer) return false;
+    for(int ii=0;ii<m_board.getSize();ii++){
+      for(int jj=( (ii%2)==0 ? 0 : 1 ) ;jj<m_board.getSize();jj+=2){
+        Position p(ii,jj);
+        if(m_board.getSquare(p)!=g.m_board.getSquare(p)) return false;
+      }
+    }
+    return true;
+  }
+  inline bool operator!=(const Game &g){
+    return !(*this==g);
+  }
 };
 
 

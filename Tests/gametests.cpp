@@ -18,6 +18,20 @@ TEST_CASE("Can copy game"){
   REQUIRE(copy.getBoard().squareIsOccupied(p1));
 }
 
+TEST_CASE("test for game equality"){
+  Game g1;
+  g1.prepareBoard();
+  Game g2;
+  g2.prepareBoard();
+  Game g3;
+  REQUIRE( g1 == g1 );
+  REQUIRE_FALSE( g1 != g1 );
+  REQUIRE( g1 == g2 );
+  REQUIRE_FALSE( g1 != g2 );
+  REQUIRE( g1 != g3 );
+  REQUIRE_FALSE( g1 == g3 );
+}
+
 TEST_CASE("Can get list of possible moves"){
   Game game;
   Position firstpiece(0,0);
