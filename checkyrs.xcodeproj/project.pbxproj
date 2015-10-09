@@ -16,13 +16,6 @@
 		8335C95F1B59987B0017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
 		8335C9601B599B7E0017EB5F /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
 		8335C9611B599B830017EB5F /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
-		835B335F1BAC4845008AEEEF /* position.h in Headers */ = {isa = PBXBuildFile; fileRef = 837163041B5A49D1008D1D99 /* position.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33601BAC4857008AEEEF /* square.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95E1B59987B0017EB5F /* square.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33611BAC486C008AEEEF /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
-		835B33621BAC486F008AEEEF /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 8302EAC21B5BC4BF00CD0CA4 /* game.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33631BAC4873008AEEEF /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
-		835B33641BAC4877008AEEEF /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95B1B5994130017EB5F /* board.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		835B33651BAC487C008AEEEF /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
 		835B33681BAC4887008AEEEF /* clinterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B61E821B7517A200DBD0BB /* clinterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		835B33691BAC488B008AEEEF /* clinterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 83B61E811B7517A200DBD0BB /* clinterface.cpp */; };
 		835B336A1BAC488E008AEEEF /* gamerunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 837041BC1B714DC2009E5A7B /* gamerunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +34,13 @@
 		8387E9021B8099F1008D26AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C9561B598FC90017EB5F /* main.cpp */; };
 		838AE7711B7207310010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
 		838AE7721B7207320010107B /* ai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 837041BF1B714E58009E5A7B /* ai.cpp */; };
+		839922FD1BC80328001B4091 /* board.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95B1B5994130017EB5F /* board.h */; };
+		839922FE1BC8032C001B4091 /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 8302EAC21B5BC4BF00CD0CA4 /* game.h */; };
+		839922FF1BC8032E001B4091 /* square.h in Headers */ = {isa = PBXBuildFile; fileRef = 8335C95E1B59987B0017EB5F /* square.h */; };
+		839923001BC80330001B4091 /* position.h in Headers */ = {isa = PBXBuildFile; fileRef = 837163041B5A49D1008D1D99 /* position.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		839923011BC80348001B4091 /* square.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95D1B59987B0017EB5F /* square.cpp */; };
+		839923021BC8034B001B4091 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8302EAC11B5BC4BF00CD0CA4 /* game.cpp */; };
+		839923031BC8034D001B4091 /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8335C95A1B5994130017EB5F /* board.cpp */; };
 		839C96FA1BAECA2600A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
 		839C96FB1BAECBA400A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
 		839C96FC1BAECBB600A1307D /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 839C96F91BAECA2600A1307D /* libboost_serialization.dylib */; };
@@ -221,12 +221,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				835B335F1BAC4845008AEEEF /* position.h in Headers */,
+				839922FE1BC8032C001B4091 /* game.h in Headers */,
+				839922FF1BC8032E001B4091 /* square.h in Headers */,
 				839C96FF1BAED64700A1307D /* ai.h in Headers */,
-				835B33641BAC4877008AEEEF /* board.h in Headers */,
-				835B33621BAC486F008AEEEF /* game.h in Headers */,
+				839923001BC80330001B4091 /* position.h in Headers */,
+				839922FD1BC80328001B4091 /* board.h in Headers */,
 				835B336A1BAC488E008AEEEF /* gamerunner.h in Headers */,
-				835B33601BAC4857008AEEEF /* square.h in Headers */,
 				835B33681BAC4887008AEEEF /* clinterface.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,11 +382,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839923011BC80348001B4091 /* square.cpp in Sources */,
 				835B33691BAC488B008AEEEF /* clinterface.cpp in Sources */,
-				835B33611BAC486C008AEEEF /* square.cpp in Sources */,
-				835B33631BAC4873008AEEEF /* game.cpp in Sources */,
-				835B33651BAC487C008AEEEF /* board.cpp in Sources */,
+				839923031BC8034D001B4091 /* board.cpp in Sources */,
 				835B336B1BAC4892008AEEEF /* gamerunner.cpp in Sources */,
+				839923021BC8034B001B4091 /* game.cpp in Sources */,
 				839C96FE1BAED64400A1307D /* ai.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,8 @@
 #define __checkyrs__square__
 
 #include <stdio.h>
+#include <functional>
+
 class Square {
   
   bool m_isOccupied;
@@ -36,4 +38,17 @@ public:
   }
   
 };
+
+namespace std{
+  template<> struct hash<Square>{
+    size_t operator()(const Square &s) const{
+      int bits=0;
+      //use bits as bitmask
+      if(s.isOccupied()) bits|=1;
+      if(s.isKing()) bits|=2;
+      if(s.getPlayer()==1) bits|=4;
+      return hash<int>()(bits);
+    }
+  };
+}
 #endif /* defined(__checkyrs__square__) */

@@ -103,20 +103,20 @@ public:
   
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p) const;
   
-  inline bool operator==(const Game &g){
+  inline bool operator==(const Game &g) const{
     if(m_currentPlayer != g.m_currentPlayer) return false;
-    for(int ii=0;ii<m_board.getSize();ii++){
-      for(int jj=( (ii%2)==0 ? 0 : 1 ) ;jj<m_board.getSize();jj+=2){
-        Position p(ii,jj);
-        if(m_board.getSquare(p)!=g.m_board.getSquare(p)) return false;
-      }
-    }
-    return true;
+    else return m_board==g.m_board;
   }
-  inline bool operator!=(const Game &g){
+  inline bool operator!=(const Game &g) const{
     return !(*this==g);
   }
 };
 
-
+namespace std{
+  template<> struct hash<Game>{
+    size_t operator()(const Game &g) const{
+      return ( hash<int>()(g.getCurrentPlayer()) ^ hash<Board>()(g.getBoard()));
+    }
+  };
+}
 #endif /* defined(__checkyrs__game__) */

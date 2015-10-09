@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <vector>
+
 #include "square.h"
 #include "position.h"
 
@@ -46,18 +47,35 @@ public:
   int getNumPiecesPlayer(const int player) const{return player==1 ? m_piecesp1 : m_piecesp2;}
   int getNumKingsPlayer(const int player) const{return player==1 ? m_kingsp1 : m_kingsp2;}
   
-  inline bool operator==(const Board &b){
+  inline bool operator==(const Board &b) const{
     for(int ii=0;ii<m_size;ii++){
-      for(int jj=0;jj<m_size;jj++){
-        if(m_board[ii][jj]!=b.m_board[ii][jj]) return false;
+      for(int jj=( ii%2 == 0 ? 0 : 1); jj<m_size;jj++){
+        Position p(ii,jj);
+        if(this->getSquare(p)!=b.getSquare(p)) return false;
       }
     }
     return true;
   }
   
-  inline bool operator!=(const Board &b){
+  inline bool operator!=(const Board &b) const{
     return !(*this==b);
   }
 };
+
+namespace std{
+
+  template<> struct hash<Board>{
+    size_t operator()(const Board &b) const{
+      size_t h=0;
+      for(int ii=0;ii<b.getSize();ii++){
+        for(int jj=( (ii%2)== 0 ? 0 : 1); jj<b.getSize();jj++){
+          Position p(ii,jj);
+          h |= (hash<Position>()(p) ^ hash<Square>()(b.getSquare(p)));
+        }
+      }
+      return h;
+    }
+  };
+}
 
 #endif /* defined(__checkyrs__board__) */

@@ -38,5 +38,14 @@ struct Position {
   }
   
 };
+
+namespace std{
+  template<> struct hash<Position>{
+    size_t operator()(const Position &p) const{
+      return (hash<int>()(p.m_x) ^ hash<int>()(p.m_y));
+    }
+  };
+}
+
   
 #endif

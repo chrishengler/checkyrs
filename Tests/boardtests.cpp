@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
+#include <unordered_map>
+
 #include "catch.hpp"
 #include "board.h"
 
@@ -105,8 +107,8 @@ TEST_CASE("Can check which square was jumped"){
   Position p2(1,1);
   Position p3(2,2);
   REQUIRE_THROWS(board.getJump(p1,p2));
-  REQUIRE(board.getJump(p1,p3)._x == 1);
-  REQUIRE(board.getJump(p1,p3)._y ==1);
+  REQUIRE(board.getJump(p1,p3).m_x == 1);
+  REQUIRE(board.getJump(p1,p3).m_y ==1);
 }
 
 TEST_CASE("check number of kings"){
@@ -137,4 +139,25 @@ TEST_CASE("test equality of boards"){
   b2.addPiece(p1);
   REQUIRE( b1==b2 );
   REQUIRE_FALSE( b1!=b2 );
+}
+
+
+TEST_CASE("create/fill/examine unordered map of games"){
+  Board b1;
+  Board b2;
+  Board b3;
+  Board b4;
+  Position p1(0,0);
+  Position p2(2,2);
+  Position p3(3,3);
+  b1.addPiece(p1);
+  b2.addPiece(p2);
+  b3.addPiece(p3);
+  b4.addPiece(p1);
+  std::unordered_map<Board, int> boards;
+  REQUIRE_NOTHROW( boards.emplace(b1,1) );
+  REQUIRE_NOTHROW( boards.emplace(b2,1) );
+  REQUIRE( boards.find(b3) == boards.end() );
+  REQUIRE( boards.find(b1) != boards.find(b2) );
+  REQUIRE( boards.find(b4) == boards.find(b1) );
 }
