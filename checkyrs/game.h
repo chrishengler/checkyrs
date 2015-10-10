@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <functional>
 #include <unordered_map>
 #include "board.h"
 
@@ -25,24 +26,14 @@ class Game {
   
   int m_turn;
   
+  std::unordered_map<Board,int> m_paststates;
+  
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
   std::vector<std::vector<Position> > extendMove(const std::vector<Position> &p) const;
   void removePiece(const Position &p);
   
-public:
-  Game(){
-    m_board=Board::Board();
-    m_gameOver=false;
-    m_winner=0;
-    m_currentPlayer=1;
-    m_staleness=0;
-    m_maxStaleness=50;
-    m_stale=false;
-    m_turn=0;
-  }
-  Game(const int size){
-    m_board=Board::Board(size);
+  void initMembers(){
     m_gameOver=false;
     m_winner=0;
     m_currentPlayer=1;
@@ -50,16 +41,17 @@ public:
     m_maxStaleness=50;
     m_stale = false;
     m_turn = 0;
+    m_paststates = {};
+  }
+  
+public:
+  Game(const int size=8){
+    initMembers();
+    m_board=Board::Board(size);
   }
   Game(const Board &board){
+    initMembers();
     m_board=board;
-    m_gameOver=false;
-    m_winner=0;
-    m_currentPlayer=1;
-    m_staleness=0;
-    m_maxStaleness=50;
-    m_stale = false;
-    m_turn = 0;
   };
   Game(const Game &g){
     m_board         = g.m_board;
@@ -111,12 +103,4 @@ public:
     return !(*this==g);
   }
 };
-
-namespace std{
-  template<> struct hash<Game>{
-    size_t operator()(const Game &g) const{
-      return ( hash<int>()(g.getCurrentPlayer()) ^ hash<Board>()(g.getBoard()));
-    }
-  };
-}
 #endif /* defined(__checkyrs__game__) */

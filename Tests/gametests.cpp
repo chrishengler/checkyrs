@@ -35,19 +35,6 @@ TEST_CASE("test for game equality"){
   REQUIRE_FALSE( g1 == g3 );
 }
 
-TEST_CASE("create/fill/examine unordered map of games"){
-  Game g1;
-  g1.prepareBoard();
-  std::unordered_map<Game,int> games;
-  REQUIRE_NOTHROW( games.emplace(g1,0) );
-  Position p1(0,0);
-  Position p2(1,2);
-  g1.movePiece(p1, p2);
-  REQUIRE( games.find(g1) == games.end() );
-  g1.movePiece(p2,p1);
-  REQUIRE( games.find(g1) != games.end() );
-}
-
 TEST_CASE("Can get list of possible moves"){
   Game game;
   Position firstpiece(0,0);

@@ -133,6 +133,7 @@ void CLInterface::showRules() const{
   std::cout << "If a player captures all opposing pieces, they win the game\n";
   std::cout << "If the current player has no legal moves available, they lose the game\n";
   std::cout << "If no pieces are taken and no pieces are crowned for 50 turns, the game is declared a draw\n";
+  std::cout << "A draw is also declared on the 4th repetition of the same game state\n";
 }
 
 void CLInterface::printSquare(const Square &s, const bool bs) const{

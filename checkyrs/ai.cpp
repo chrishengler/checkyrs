@@ -379,7 +379,7 @@ double CheckyrsAI::eval(const Game &g) const{
   int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
 
   int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
-  int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
+  int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer()*-1);
 
   double matratio = opp_mat==0? ai_mat+1 : (double)ai_mat/opp_mat; //check for zero only for unit tests, method won't be called with gameover in actual usage
   double kingratio = opp_kings==0? ai_kings+1 : (double)ai_kings/opp_kings;
@@ -390,11 +390,26 @@ double CheckyrsAI::eval(const Game &g) const{
   return value;
 }
 
+double CheckyrsAI::evaluateDraw(const Game &g) const{
+  int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
+  int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
+  
+  int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
+  int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer()*-1);
+  
+  int materialadv = ((ai_mat-opp_mat)*m_materialBonus + (ai_kings-opp_kings)*m_kingBonus);
+  if( materialadv < 0 ) return likeatrillion;
+  else return -1*likeatrillion;
+}
+
 double CheckyrsAI::evalNode(const Game &g) const{
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     std::vector<moveEval> evals;
     if(g.gameOver()){
+      if(g.getWinner()==0){
+        return evaluateDraw(g);
+      }
       return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
@@ -421,7 +436,6 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   std::vector<moveEval> moves;
   double alpha = -INFINITY;
   double beta = INFINITY;
-  double best = -INFINITY;
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
     std::cout << "AI player " << (m_player==1? "1" : "2") << " is thinking: " << p.size() << " initial moves from this point\n";
@@ -430,9 +444,6 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
       Game newstate(g);
       newstate.executeMove((*p_iter));
       double value = -negamax(newstate, depth-1, -beta, -alpha);
-      if(value>best){
-        best = value;
-      }
       moves.push_back(std::make_pair((*p_iter),value));
     }
   }
@@ -442,21 +453,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
 
   std::sort(moves.begin(),moves.end(),sortMoveEvals);
 
-  double staleness = g.getStaleness()/g.getMaxStaleness();
-  moveEval bestMove;
-  if(staleness<0.3 || (g.getNumPiecesPlayer(1)+g.getNumPiecesPlayer(-1) > 10)) bestMove = moves.at(0);
-  else{    //if draw is getting close, try something new.
-    int pick;
-    if(staleness>0.6) pick=getRandomInt(0,(int)moves.size()); //try to stick to highly rated moves at first
-    else pick=getRandomInt(0,floor(moves.size()/2));
-
-    do{
-      bestMove=moves.at(pick);
-      pick--;
-    }while(moves.at(pick).second> (-likeatrillion/2.)); //don't select an obvious losing piece
-  }
-
-  return bestMove;
+  return moves.at(0);
 }
 
 double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) const{
@@ -464,20 +461,12 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
   //find path with best outcome for AI, assuming opponent always chooses their best move
   try{
     if(depth<=0){
-      if(g.gameOver()){
-        if(g.isStale()){
-          double matWeight = g.getNumPiecesPlayer(m_player)*m_normWeight + g.getNumKingsPlayer(m_player)*m_kingWeight;
-          double oppMatWeight = g.getNumPiecesPlayer(m_player*-1)*m_normWeight + g.getNumKingsPlayer(m_player*-1)*m_kingWeight;
-          if(matWeight/oppMatWeight > 0.8) return -0.5*likeatrillion;
-          else return 0;
-        }
-        return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
-      }
-      else return evalNode(g);
+      return evalNode(g);
     }
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     if(g.gameOver()){
-      return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion+depth : -(likeatrillion+depth);
+      if(g.getWinner()==0) return evaluateDraw(g);
+      else return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion+depth : -(likeatrillion+depth);
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);

@@ -296,13 +296,26 @@ void Game::executeMove(const std::vector<Position> &move){
   }
   if(!stale){
     m_staleness=0;
+    m_paststates.clear();
   }
-  else if(!m_gameOver){
-    m_staleness++;
-  }
-  if(m_staleness>=m_maxStaleness){
-    m_gameOver = true;
-    m_stale = true;
+  else{
+    if(m_paststates.size()!=0 && m_paststates.find(m_board)!=m_paststates.end()){
+      m_paststates[m_board]++;
+    }
+    else{
+      m_paststates.emplace(m_board,1);
+    }
+    
+    if(!m_gameOver){
+      m_staleness++;
+    }
+    if(m_staleness>=m_maxStaleness){
+      m_gameOver = true;
+      m_stale = true;
+    }
+    else if(m_paststates[m_board]>3){
+      m_gameOver = true;
+    }
   }
   m_turn++;
 }

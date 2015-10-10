@@ -22,7 +22,7 @@ int main(int argc, const char * argv[]) {
     try{
       Gamerunner gr;
       gr.initialise();
-      while(gr.continueGame()){};
+      while(gr.continueGame()){      };
       play = cli.yn("\n\nnew game? (y/n)");
     }
     catch(std::exception &e){

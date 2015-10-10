@@ -107,6 +107,7 @@ bool Gamerunner::continueGame(){
       if(m_game.isStale()){
         std::cout << "draw declared due to no pieces being taken or crowned in last " << m_game.getMaxStaleness() << " moves\n";
       }
+      else std::cout << "draw declared due to position repetition\n" << std::endl;
       std::cout << "draw\n";
     }
     else std::cout << "player " << (m_game.getWinner()==1 ? "1" : "2") << " won\n";
