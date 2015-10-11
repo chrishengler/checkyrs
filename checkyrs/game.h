@@ -62,6 +62,7 @@ public:
     m_maxStaleness  = g.m_maxStaleness;
     m_stale         = g.m_stale;
     m_turn          = g.m_turn;
+    m_paststates    = g.m_paststates;
   };
   
   Board getBoard() const{return m_board;}

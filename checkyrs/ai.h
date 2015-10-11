@@ -137,6 +137,7 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   double negamax(Game g, const int depth, double alpha, double beta) const;
   double evalNode(const Game &g) const;
   
+  double evaluateGameOver(const Game &g) const;
   double evaluateDraw(const Game &g) const;
   
 public:

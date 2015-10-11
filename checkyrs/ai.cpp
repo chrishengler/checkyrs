@@ -288,6 +288,9 @@ CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
 }
 
 double CheckyrsAI::eval(const Game &g) const{
+  if(g.gameOver()){
+    return evaluateGameOver(g);
+  }
   Board b=g.getBoard();
   double value = 0;
   double thissquare = 0;
@@ -390,6 +393,13 @@ double CheckyrsAI::eval(const Game &g) const{
   return value;
 }
 
+double CheckyrsAI::evaluateGameOver(const Game &g) const{
+  if(g.getWinner()==0){
+    return evaluateDraw(g);
+  }
+  return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
+}
+
 double CheckyrsAI::evaluateDraw(const Game &g) const{
   int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
   int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
@@ -398,7 +408,7 @@ double CheckyrsAI::evaluateDraw(const Game &g) const{
   int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer()*-1);
   
   int materialadv = ((ai_mat-opp_mat)*m_materialBonus + (ai_kings-opp_kings)*m_kingBonus);
-  if( materialadv < 0 ) return likeatrillion;
+  if( materialadv < 0 ) return likeatrillion/2.;
   else return -1*likeatrillion;
 }
 
@@ -443,7 +453,9 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
       newstate.executeMove((*p_iter));
-      double value = -negamax(newstate, depth-1, -beta, -alpha);
+      double value;
+      if(newstate.gameOver()) value = -evaluateGameOver(newstate);
+      else value = -negamax(newstate, depth-1, -beta, -alpha);
       moves.push_back(std::make_pair((*p_iter),value));
     }
   }
@@ -465,8 +477,7 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
     }
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     if(g.gameOver()){
-      if(g.getWinner()==0) return evaluateDraw(g);
-      else return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion+depth : -(likeatrillion+depth);
+      return evaluateDraw(g);
     }
     for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
       Game newstate(g);
