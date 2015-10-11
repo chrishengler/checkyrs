@@ -41,7 +41,6 @@ class Game {
     m_maxStaleness=50;
     m_stale = false;
     m_turn = 0;
-    m_paststates = {};
   }
   
 public:
