@@ -60,6 +60,22 @@ public:
   inline bool operator!=(const Board &b) const{
     return !(*this==b);
   }
+  
+  inline bool operator<(const Board &b) const{
+    //actual ordering arbitrary, just needed some comparison to be able to use in std::map
+    //test size, if no difference then loop through each square and return comparison of
+    //first square where boards differ
+    if(m_size!=b.getSize()) return (m_size<b.getSize());
+    for(int ii=0;ii<m_size;ii++){
+      for(int jj=0; jj<m_size;jj++){
+        Position p(ii,jj);
+        if(getSquare(p) == b.getSquare(p)) continue;
+        else return (getSquare(p) < b.getSquare(p));
+      }
+    }
+    return false;
+  }
+  
 };
 
 namespace std{
@@ -68,7 +84,7 @@ namespace std{
     size_t operator()(const Board &b) const{
       size_t h=0;
       for(int ii=0;ii<b.getSize();ii++){
-        for(int jj=( (ii%2)== 0 ? 0 : 1); jj<b.getSize();jj++){
+        for(int jj=0; jj<b.getSize();jj++){
           Position p(ii,jj);
           h |= (hash<Position>()(p) ^ hash<Square>()(b.getSquare(p)));
         }
@@ -76,6 +92,7 @@ namespace std{
       return h;
     }
   };
+  
 }
 
 #endif /* defined(__checkyrs__board__) */

@@ -30,11 +30,23 @@ public:
   int getPlayer() const{return m_player;}
   void removePiece(){m_isOccupied=false; m_player=0; m_isKing=false;}
   
+  inline int asBits() const{
+    int bits=0;
+    //use bits as bitmask
+    if(m_isOccupied) bits|=1;
+    if(m_isKing) bits|=2;
+    if(m_player==1) bits|=4;
+    return bits;
+  }
+  
   inline bool operator==(const Square &s){
     return (m_isOccupied==s.m_isOccupied && m_isKing==s.m_isKing && m_player==s.m_player);
   }
   inline bool operator!=(const Square &s){
     return !(*this==s);
+  }
+  inline bool operator<(const Square &s){
+    return (asBits()<s.asBits());
   }
   
 };
@@ -42,12 +54,7 @@ public:
 namespace std{
   template<> struct hash<Square>{
     size_t operator()(const Square &s) const{
-      int bits=0;
-      //use bits as bitmask
-      if(s.isOccupied()) bits|=1;
-      if(s.isKing()) bits|=2;
-      if(s.getPlayer()==1) bits|=4;
-      return hash<int>()(bits);
+      return hash<int>()(s.asBits());
     }
   };
 }

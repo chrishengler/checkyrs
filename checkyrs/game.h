@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include <functional>
-#include <unordered_map>
+#include <map>
 #include "board.h"
 
 class Game {
@@ -26,7 +26,7 @@ class Game {
   
   int m_turn;
   
-  std::unordered_map<Board,int> m_paststates;
+  std::map<Board,int> m_paststates;
   
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
