@@ -112,14 +112,14 @@ $(document).ready(function(){initNavTree('class_gamerunner.html','');});
 <div class="title">Gamerunner Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="gamerunner_8h_source.html">gamerunner.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af5156925a0dcf6b9a09298e8745ee956"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5156925a0dcf6b9a09298e8745ee956"></a>
-const <a class="el" href="class_game.html">Game</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getGame</b> () const</td></tr>
+<tr class="memitem:af5156925a0dcf6b9a09298e8745ee956"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_game.html">Game</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamerunner.html#af5156925a0dcf6b9a09298e8745ee956">getGame</a> () const</td></tr>
 <tr class="separator:af5156925a0dcf6b9a09298e8745ee956"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6428963cb40fec2e9f246c1034375bba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6428963cb40fec2e9f246c1034375bba"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>playerIsAI</b> (const int p)</td></tr>
+<tr class="memitem:a6428963cb40fec2e9f246c1034375bba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamerunner.html#a6428963cb40fec2e9f246c1034375bba">playerIsAI</a> (const int p)</td></tr>
 <tr class="separator:a6428963cb40fec2e9f246c1034375bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ebe29904797c3d4142ffe3695a092aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamerunner.html#a0ebe29904797c3d4142ffe3695a092aa">initialise</a> ()</td></tr>
 <tr class="separator:a0ebe29904797c3d4142ffe3695a092aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,7 +138,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>playerIsAI</b> (const
 <tr class="memitem:a37e1376ac6b5ba406a3b935f30a1ec61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamerunner.html#a37e1376ac6b5ba406a3b935f30a1ec61">getPiecesPlayer</a> (const int player=1) const</td></tr>
 <tr class="separator:a37e1376ac6b5ba406a3b935f30a1ec61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_gamerunner.html">Gamerunner</a> class</p>
+<p>Instances of this class contain a <a class="el" href="class_game.html">Game</a>, <a class="el" href="class_c_l_interface.html">CLInterface</a>, and potentially <a class="el" href="class_checkyrs_a_i.html">CheckyrsAI</a> objects<br />
+Class creates CheckysAIs as needed, controls user interaction, manages game progress </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a15b20f3ada68faf4b86785496dddfb62"></a>
 <div class="memitem">
 <div class="memproto">
@@ -171,6 +175,31 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>playerIsAI</b> (const
 </div><div class="memdoc">
 <p>Is <a class="el" href="class_game.html">Game</a> over?</p>
 <dl class="section return"><dt>Returns</dt><dd>true if <a class="el" href="class_game.html">Game</a> over, false otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af5156925a0dcf6b9a09298e8745ee956"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_game.html">Game</a> Gamerunner::getGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the <a class="el" href="class_game.html">Game</a> object</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_game.html">Game</a> managed by this <a class="el" href="class_gamerunner.html">Gamerunner</a> </dd></dl>
 
 </div>
 </div>
@@ -280,7 +309,7 @@ Creates CheckyrsAIs if needed </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ai1</td><td><a class="el" href="class_checkyrs_a_i.html">CheckyrsAI</a> to move first </td></tr>
-    <tr><td class="paramname">ai3</td><td><a class="el" href="class_checkyrs_a_i.html">CheckyrsAI</a> to move second </td></tr>
+    <tr><td class="paramname">ai2</td><td><a class="el" href="class_checkyrs_a_i.html">CheckyrsAI</a> to move second </td></tr>
   </table>
   </dd>
 </dl>
@@ -301,6 +330,39 @@ Creates CheckyrsAIs if needed </p>
 </div><div class="memdoc">
 <p>Is <a class="el" href="class_game.html">Game</a> in a draw state?</p>
 <dl class="section return"><dt>Returns</dt><dd>true if <a class="el" href="class_game.html">Game</a> drawn, false otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6428963cb40fec2e9f246c1034375bba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Gamerunner::playerIsAI </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if player is AI</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>which player to check<br />
+'1' is first player, anything else is second player </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the player is AI </dd></dl>
 
 </div>
 </div>
