@@ -113,20 +113,18 @@ $(document).ready(function(){initNavTree('struct_position.html','');});
 <div class="title">Position Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="position_8h_source.html">position.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6e36cf0fee251e74cfedb86f4e99558d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e36cf0fee251e74cfedb86f4e99558d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Position</b> (int x, int y)</td></tr>
+<tr class="memitem:a6e36cf0fee251e74cfedb86f4e99558d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_position.html#a6e36cf0fee251e74cfedb86f4e99558d">Position</a> (int x, int y)</td></tr>
 <tr class="separator:a6e36cf0fee251e74cfedb86f4e99558d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60b87a1543cf16ea87dfe7885e5dbdef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60b87a1543cf16ea87dfe7885e5dbdef"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>toString</b> () const</td></tr>
+<tr class="memitem:a60b87a1543cf16ea87dfe7885e5dbdef"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_position.html#a60b87a1543cf16ea87dfe7885e5dbdef">toString</a> () const</td></tr>
 <tr class="separator:a60b87a1543cf16ea87dfe7885e5dbdef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2853571fea1d2591ffb1a74cd352c67f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2853571fea1d2591ffb1a74cd352c67f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
+<tr class="memitem:a2853571fea1d2591ffb1a74cd352c67f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_position.html#a2853571fea1d2591ffb1a74cd352c67f">operator==</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
 <tr class="separator:a2853571fea1d2591ffb1a74cd352c67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6358e7bd1a99e5f033f08bc0d364d790"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6358e7bd1a99e5f033f08bc0d364d790"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
+<tr class="memitem:a6358e7bd1a99e5f033f08bc0d364d790"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_position.html#a6358e7bd1a99e5f033f08bc0d364d790">operator!=</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
 <tr class="separator:a6358e7bd1a99e5f033f08bc0d364d790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -138,6 +136,142 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>m_x</b></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>m_y</b></td></tr>
 <tr class="separator:aa8329db9473b0735954340fe7b9f0377"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="struct_position.html">Position</a> struct</p>
+<p>Doesn't do too much, just holds x,y values and provides readable string </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6e36cf0fee251e74cfedb86f4e99558d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Position::Position </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Constructor</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>column </td></tr>
+    <tr><td class="paramname">y</td><td>row </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6358e7bd1a99e5f033f08bc0d364d790"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Position::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Not-equal operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td><a class="el" href="struct_position.html">Position</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>opposite of == </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2853571fea1d2591ffb1a74cd352c67f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Position::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td><a class="el" href="struct_position.html">Position</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if x and y values of each are equal </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a60b87a1543cf16ea87dfe7885e5dbdef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Position::toString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Turn zero-indexed x,y into more intuitive coordinates</p>
+<dl class="section return"><dt>Returns</dt><dd>readable position </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>checkyrs/<a class="el" href="position_8h_source.html">position.h</a></li>
 </ul>
