@@ -9,6 +9,14 @@
 #include <iostream>
 #include "gamerunner.h"
 
+
+/**
+ *  Initialise Gamerunner
+ *
+ *  Gamerunner created, no args.\n
+ *  Will ask whether each player is human or CheckyrsAI\n
+ *  Creates CheckyrsAIs if needed
+ */
 void Gamerunner::initialise(){
 
   m_players=0;
@@ -39,6 +47,12 @@ void Gamerunner::initialise(){
   
 }
 
+/**
+ * initialise Gamerunner for CheckyrsAI vs CheckyrsAI
+ *
+ * @param ai1 CheckyrsAI to move first
+ * @param ai3 CheckyrsAI to move second
+ */
 void Gamerunner::initialise(CheckyrsAI &ai1, CheckyrsAI &ai2){
   
   m_players=0;
@@ -59,7 +73,13 @@ void Gamerunner::initialise(CheckyrsAI &ai1, CheckyrsAI &ai2){
   
 }
 
-
+/**
+ *  Gets next move
+ *
+ *  Gets next move for current player\n
+ *  From player input via CLInterface if current player human\n
+ *  Otherwise CheckyrsAI decides move
+ */
 std::vector<Position> Gamerunner::getNextPlayerMove() const{
   m_cli.printBoard(m_game.getBoard());
   try{
@@ -100,6 +120,13 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
   }
 }
 
+/**
+ *  Continue game
+ *
+ *  Checks whether game is over, prints current board
+ *
+ *  @return true if game can continue, false if game complete
+ */
 bool Gamerunner::continueGame(){
   if(m_game.gameOver()){
     std::cout << "\n\nGame over after " << m_game.getCurrentTurn() << " turns\nResult: ";
@@ -135,18 +162,39 @@ bool Gamerunner::continueGame(){
   return true;
 }
 
+/**
+ *  Is Game over?
+ *
+ * @return true if Game over, false otherwise
+ */
 bool Gamerunner::gameOver() const{
   return m_game.gameOver();
 }
 
+/**
+ *  Is Game in a draw state?
+ *
+ *  @return true if Game drawn, false otherwise
+ */
 bool Gamerunner::isDraw() const{
   return m_game.isStale();
 }
 
+/**
+ *  Get winner of Game
+ *
+ *  @return winning player
+ */
 int Gamerunner::getWinner() const{
   return m_game.getWinner();
 }
 
+/**
+ *  Get number of pieces player has on board
+ *
+ *  @param player which player's pieces should be counted
+ *  @return number of pieces player has on board
+ */
 int Gamerunner::getPiecesPlayer(const int player) const{
   return m_game.getNumPiecesPlayer(player);
 }
