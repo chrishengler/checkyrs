@@ -112,6 +112,8 @@ $(document).ready(function(){initNavTree('class_c_l_interface.html','');});
 <div class="title">CLInterface Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="clinterface_8h_source.html">clinterface.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -125,8 +127,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3a75707e08eee0a80c11dbd091e67ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a308448971b3423e65fc3b43b25a3a274"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_l_interface.html#a308448971b3423e65fc3b43b25a3a274">pauseDisplay</a> () const</td></tr>
 <tr class="separator:a308448971b3423e65fc3b43b25a3a274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbd5ca9eb56696ce2fb3a9853324f047"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbd5ca9eb56696ce2fb3a9853324f047"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printSquare</b> (const <a class="el" href="class_square.html">Square</a> &amp;s, const bool bs=true) const</td></tr>
+<tr class="memitem:acbd5ca9eb56696ce2fb3a9853324f047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_l_interface.html#acbd5ca9eb56696ce2fb3a9853324f047">printSquare</a> (const <a class="el" href="class_square.html">Square</a> &amp;s, const bool bs=true) const</td></tr>
 <tr class="separator:acbd5ca9eb56696ce2fb3a9853324f047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d9233530e08e46ccea54ed1b22bdf67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_l_interface.html#a2d9233530e08e46ccea54ed1b22bdf67">printBoard</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:a2d9233530e08e46ccea54ed1b22bdf67"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,7 +144,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>printSquare</b> (cons
 <tr class="memitem:a8f02110f59eeae357387652cf1c8d606"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_l_interface.html#a8f02110f59eeae357387652cf1c8d606">getMove</a> (const <a class="el" href="class_game.html">Game</a> &amp;g) const</td></tr>
 <tr class="separator:a8f02110f59eeae357387652cf1c8d606"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_c_l_interface.html">CLInterface</a> class</p>
+<p>provides command line interface for displaying games, related info, and getting input </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a8f02110f59eeae357387652cf1c8d606"></a>
 <div class="memitem">
 <div class="memproto">
@@ -318,6 +322,41 @@ Includes start, end, and any intermediate positions</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">p</td><td>vector of vectors defining moves </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="acbd5ca9eb56696ce2fb3a9853324f047"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLInterface::printSquare </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_square.html">Square</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>bs</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Print the <a class="el" href="class_square.html">Square</a></p>
+<p>prints the <a class="el" href="class_square.html">Square</a> (either appropriate piece or empty)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td><a class="el" href="class_square.html">Square</a> to be printed </td></tr>
+    <tr><td class="paramname">bs</td><td>bool indicating dark (blue) or light (white) square </td></tr>
   </table>
   </dd>
 </dl>

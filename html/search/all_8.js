@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yn',['yn',['../class_c_l_interface.html#ab99d6cc4580d4fb9b796993d35cdcf63',1,'CLInterface']]]
+  ['validatemove',['validateMove',['../class_c_l_interface.html#aeb853a4419c74aa7a3e1c4a582dba281',1,'CLInterface']]]
 ];

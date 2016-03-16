@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['validatemove',['validateMove',['../class_c_l_interface.html#aeb853a4419c74aa7a3e1c4a582dba281',1,'CLInterface']]]
+  ['showgamehelp',['showGameHelp',['../class_c_l_interface.html#ab75d83c54c458dcc8a5e11a5dfa3b85e',1,'CLInterface']]],
+  ['showmenuhelp',['showMenuHelp',['../class_c_l_interface.html#abfbeb93c9cda233fc1443df237b7a0f8',1,'CLInterface']]],
+  ['showrules',['showRules',['../class_c_l_interface.html#a3a75707e08eee0a80c11dbd091e67ce3',1,'CLInterface']]]
 ];

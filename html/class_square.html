@@ -139,16 +139,114 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>removePiece</b> ()</t
 <tr class="memitem:ac6eb668fad42d6673cd7708923f705f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6eb668fad42d6673cd7708923f705f7"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>asBits</b> () const</td></tr>
 <tr class="separator:ac6eb668fad42d6673cd7708923f705f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09f9857e399d6363e7aa53acdf707683"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09f9857e399d6363e7aa53acdf707683"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_square.html">Square</a> &amp;s)</td></tr>
+<tr class="memitem:a09f9857e399d6363e7aa53acdf707683"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_square.html#a09f9857e399d6363e7aa53acdf707683">operator==</a> (const <a class="el" href="class_square.html">Square</a> &amp;s)</td></tr>
 <tr class="separator:a09f9857e399d6363e7aa53acdf707683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc9806a0634bd9ff33219e93dc20d667"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc9806a0634bd9ff33219e93dc20d667"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_square.html">Square</a> &amp;s)</td></tr>
+<tr class="memitem:abc9806a0634bd9ff33219e93dc20d667"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_square.html#abc9806a0634bd9ff33219e93dc20d667">operator!=</a> (const <a class="el" href="class_square.html">Square</a> &amp;s)</td></tr>
 <tr class="separator:abc9806a0634bd9ff33219e93dc20d667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc9d4330ad660d2a71fe3bc08488ebc9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc9d4330ad660d2a71fe3bc08488ebc9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="class_square.html">Square</a> &amp;s)</td></tr>
+<tr class="memitem:acc9d4330ad660d2a71fe3bc08488ebc9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_square.html#acc9d4330ad660d2a71fe3bc08488ebc9">operator&lt;</a> (const <a class="el" href="class_square.html">Square</a> &amp;s)</td></tr>
 <tr class="separator:acc9d4330ad660d2a71fe3bc08488ebc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="abc9806a0634bd9ff33219e93dc20d667"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Square::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_square.html">Square</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Not-equal operator for <a class="el" href="class_square.html">Square</a></p>
+<p>Returns opposite of Equals operator</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td><a class="el" href="class_square.html">Square</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>!(this==s) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acc9d4330ad660d2a71fe3bc08488ebc9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Square::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_square.html">Square</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Less than operator for <a class="el" href="class_square.html">Square</a></p>
+<p>Not really meaningful? Required for hash implementation<br />
+Comparison of Square.asBits()</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td><a class="el" href="class_square.html">Square</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if s.asBits() &lt; this-&gt;asBits() </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a09f9857e399d6363e7aa53acdf707683"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Square::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_square.html">Square</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Equals operator for <a class="el" href="class_square.html">Square</a></p>
+<p>Compares occupation status, piece type, and player Does not require position on board to be the same</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_square.html">Square</a></td><td>for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if equal </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>checkyrs/<a class="el" href="square_8h_source.html">square.h</a></li>
 <li>checkyrs/square.cpp</li>
