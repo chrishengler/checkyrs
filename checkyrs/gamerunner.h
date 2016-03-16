@@ -14,6 +14,12 @@
 #include "ai.h"
 #include "clinterface.h"
 
+/**
+ *  Gamerunner class
+ *
+ *  Instances of this class contain a Game, CLInterface, and potentially CheckyrsAI objects\n
+ *  Class creates CheckysAIs as needed, controls user interaction, manages game progress
+ */
 class Gamerunner {
   Game m_game;
   int m_players;
@@ -24,7 +30,19 @@ class Gamerunner {
   CLInterface m_cli;
   
 public:
+  /** 
+   *  Get the Game object
+   *
+   *  @return Game managed by this Gamerunner
+   */
   const Game getGame() const{return m_game;}
+  
+  /**
+   *  Check if player is AI
+   *
+   *  @param p which player to check\n'1' is first player, anything else is second player
+   *  @return whether the player is AI
+   */
   bool playerIsAI(const int p){ if(p==1) return m_p1ai; return m_p2ai; }
   
   void initialise();

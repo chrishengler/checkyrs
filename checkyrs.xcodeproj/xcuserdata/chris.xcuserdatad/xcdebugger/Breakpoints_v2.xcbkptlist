@@ -173,7 +173,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "268"
             endingLineNumber = "268"
-            landmarkName = "CLInterface::validateMove(const std::vector&lt;Position&gt; &amp;p, const Game &amp;g)"
+            landmarkName = "CLInterface::interpretSquare(std::string &amp;s)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -189,7 +189,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "262"
             endingLineNumber = "262"
-            landmarkName = "CLInterface::interpretMove(const std::string &amp;s)"
+            landmarkName = "CLInterface::interpretSquare(std::string &amp;s)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,7 +205,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "208"
             endingLineNumber = "208"
-            landmarkName = "CLInterface::interpretSquare(std::string &amp;s)"
+            landmarkName = "CLInterface::printBoard(const Board &amp;b)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -220,9 +220,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "Gamerunner::getPiecesPlayer(const int player)"
-            landmarkType = "5">
+            endingLineNumber = "167">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -236,9 +234,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "Gamerunner::getPiecesPlayer(const int player)"
-            landmarkType = "5">
+            endingLineNumber = "173">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -252,7 +248,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
-            endingLineNumber = "149">
+            endingLineNumber = "149"
+            landmarkName = "Gamerunner::continueGame()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,9 +328,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "CLInterface::interpretSquare(std::string &amp;s)"
-            landmarkType = "5">
+            endingLineNumber = "230">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

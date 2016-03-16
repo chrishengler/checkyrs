@@ -51,7 +51,7 @@ void Gamerunner::initialise(){
  * initialise Gamerunner for CheckyrsAI vs CheckyrsAI
  *
  * @param ai1 CheckyrsAI to move first
- * @param ai3 CheckyrsAI to move second
+ * @param ai2 CheckyrsAI to move second
  */
 void Gamerunner::initialise(CheckyrsAI &ai1, CheckyrsAI &ai2){
   
