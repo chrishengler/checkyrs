@@ -1,0 +1,163 @@
+//
+//  ai.h
+//  checkyrs
+//
+//  Created by Chris Hengler on 04/08/2015.
+//  Copyright (c) 2015 chrysics. All rights reserved.
+//
+
+#ifndef __checkyrs__ai__
+#define __checkyrs__ai__
+
+#include <stdio.h>
+#include <string>
+#include <fstream>
+
+#include "boost/random.hpp"
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+
+#include "game.h"
+
+typedef std::pair<std::vector<Position>,double> moveEval;
+typedef boost::mt19937 boost_rng;
+
+class CheckyrsAI { //CheckyrsArtificialIdiot
+  friend class boost::serialization::access;
+  int m_player;
+  
+  //preference for attacking opponent's pieces vs maintaining own pieces
+  double m_aggression;
+  double m_possession;
+
+  //point in game at which to encourage moving men forward/Weight & offset for doing so
+  int m_pushMen;
+  double m_pushWeight;
+  double m_pushOffset;
+  int m_pushMax; //point at which to no longer force that
+  
+  //Weight for kings vs normal pieces
+  double m_kingWeight;
+  double m_normWeight;
+
+  //Weights for position: advancement, distance from sides/ends/corner of board
+  double m_advWeight;
+  double m_sideWeight;
+  double m_endWeight;
+  double m_cornerWeight;
+  
+  //offsets for each of the above Weights
+  double m_advOffset;
+  double m_sideOffset;
+  double m_endOffset;
+  double m_cornerOffset;
+  
+  //thresholds for where position bonuses are applied
+  int m_advMax;
+  int m_advMin;
+  int m_sideMin;
+  int m_sideMax;
+  int m_endMin;
+  int m_endMax;
+  int m_cornerMin;
+  int m_cornerMax;
+  
+  //Weights for situational bonuses/maluses
+  double m_threatWeight_cancapture;
+  double m_threatWeight_limited;
+  double m_threatWeight;
+  double m_threatWeight_extreme;
+  double m_captureWeight;
+  double m_crownWeight;
+  double m_defWeight;
+  double m_defOffset;
+  int m_defMax;
+  
+  double m_materialBonus;
+  double m_kingBonus;
+  
+  mutable boost_rng m_rng;
+  
+  double getRandomDouble(const double min=-1, const double max=1) const;
+  int getRandomInt(const int min=0, const int max=8) const;
+  
+  void randomiseDouble(double *var, const double min=-1, const double max=1);
+  void randomiseDoubles(std::vector<double*> &vars, const double min=-1, const double max=1);
+  
+  void gene(int *gene, const int p1, const int p2, int min, int max, const float mutate){
+    boost::uniform_int<> int_dist(0,1);
+    boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+    if(gen()<mutate){
+      randomiseInt(gene,min,max);
+      return;
+    }
+    else{
+      if(gen() > 0.5) *gene = p1;
+      else *gene = p2;
+    }
+    return;
+  }
+  
+  void gene(double *gene, const double p1, const double p2, double min, double max, const float mutate){
+    boost::uniform_int<> int_dist(0,1);
+    boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+    if(gen()<mutate){
+      randomiseDouble(gene,min,max);
+    }
+    else{
+      if(gen() < 0.5) *gene = p1;
+      else *gene = p2;
+    }
+    return;
+  }
+
+  void gene(std::pair<int*,int*> gene, const std::pair<int,int> p1, const std::pair<int,int> p2, const int min, const int max, const float mutate){
+    boost::uniform_int<> int_dist(0,1);
+    boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
+    if(gen()<mutate){
+      randomOrderedIntPair(gene);
+    }
+    else{
+      if(gen() < 0.5){
+        *(gene.first) = p1.first;
+        *(gene.second) = p1.second;
+      }
+      else{
+        *(gene.first) = p2.first;
+        *(gene.second) = p2.second;
+      }
+    }
+    return;
+  }
+  
+  void randomiseInt(int *var, const int min=0, const int max=7);
+  void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
+  void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
+
+  double negamax(Game g, const int depth, double alpha, double beta) const;
+  double evalNode(const Game &g) const;
+  
+  double evaluateGameOver(const Game &g) const;
+  double evaluateDraw(const Game &g) const;
+  
+public:
+  CheckyrsAI(const int player=1);
+  
+  CheckyrsAI breed(const CheckyrsAI &p2, float mutate=0.05);
+  
+  void initialise(bool random=false);
+  
+  void randomiseAI();
+  
+  double eval(const Game &g) const;
+  moveEval rootNegamax(const Game &g, const int depth) const;
+  
+  void setPlayer(const int player){ m_player=player; }
+  int getPlayer(){ return m_player; }
+
+  
+  template<class Archive>  void serialize(Archive &ar, const unsigned int version);
+  void save(const std::string &filename);
+  void load(const std::string &filename);
+};
+#endif /* defined(__checkyrs__ai__) */
