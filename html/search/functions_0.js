@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['continuegame',['continueGame',['../class_gamerunner.html#a15b20f3ada68faf4b86785496dddfb62',1,'Gamerunner']]]
+  ['asbits',['asBits',['../class_square.html#ac6eb668fad42d6673cd7708923f705f7',1,'Square']]]
 ];

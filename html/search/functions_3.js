@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../class_square.html#abc9806a0634bd9ff33219e93dc20d667',1,'Square']]],
-  ['operator_28_29',['operator()',['../structstd_1_1hash_3_01_square_01_4.html#a7016a8d1952954ea92884688bbff9df7',1,'std::hash&lt; Square &gt;']]],
-  ['operator_3c',['operator&lt;',['../class_square.html#acc9d4330ad660d2a71fe3bc08488ebc9',1,'Square']]],
-  ['operator_3d_3d',['operator==',['../class_square.html#a09f9857e399d6363e7aa53acdf707683',1,'Square']]]
+  ['initialise',['initialise',['../class_gamerunner.html#a0ebe29904797c3d4142ffe3695a092aa',1,'Gamerunner::initialise()'],['../class_gamerunner.html#a2400f8e182692b033973db92de0502b8',1,'Gamerunner::initialise(CheckyrsAI &amp;ai1, CheckyrsAI &amp;ai2)']]],
+  ['interpretmove',['interpretMove',['../class_c_l_interface.html#af0c1124cdad79796f991b6ced67423b2',1,'CLInterface']]],
+  ['interpretsquare',['interpretSquare',['../class_c_l_interface.html#ad0c18baac4a81b982c5869c4808e784d',1,'CLInterface']]],
+  ['isdraw',['isDraw',['../class_gamerunner.html#af824b34fd7c1d1d959782cc851456b7b',1,'Gamerunner']]],
+  ['isking',['isKing',['../class_square.html#a6c15189bece2f6b0ec5be5168eff30ad',1,'Square']]],
+  ['isoccupied',['isOccupied',['../class_square.html#ac36a72179614062e9b6ffa395f505621',1,'Square']]]
 ];

@@ -112,6 +112,8 @@ $(document).ready(function(){initNavTree('class_board.html','');});
 <div class="title">Board Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="board_8h_source.html">board.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -169,22 +171,187 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>removePiece</b> (cons
 <tr class="memitem:a9210baefce763630c0a21c556758072c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9210baefce763630c0a21c556758072c"></a>
 <a class="el" href="class_square.html">Square</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSquare</b> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
 <tr class="separator:a9210baefce763630c0a21c556758072c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73ce5805ae92c25255021d4a712a5f97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73ce5805ae92c25255021d4a712a5f97"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumPiecesPlayer</b> (const int player) const</td></tr>
+<tr class="memitem:a73ce5805ae92c25255021d4a712a5f97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a73ce5805ae92c25255021d4a712a5f97">getNumPiecesPlayer</a> (const int player) const</td></tr>
 <tr class="separator:a73ce5805ae92c25255021d4a712a5f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab685df20d4f443e918f22f1d96f20e3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab685df20d4f443e918f22f1d96f20e3d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getNumKingsPlayer</b> (const int player) const</td></tr>
+<tr class="memitem:ab685df20d4f443e918f22f1d96f20e3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ab685df20d4f443e918f22f1d96f20e3d">getNumKingsPlayer</a> (const int player) const</td></tr>
 <tr class="separator:ab685df20d4f443e918f22f1d96f20e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1183a7d72b226c0ec9befdcbcaed205b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1183a7d72b226c0ec9befdcbcaed205b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
+<tr class="memitem:a1183a7d72b226c0ec9befdcbcaed205b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a1183a7d72b226c0ec9befdcbcaed205b">operator==</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:a1183a7d72b226c0ec9befdcbcaed205b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2015aa3bbd5c7ba19f37ac2049a4d647"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2015aa3bbd5c7ba19f37ac2049a4d647"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
+<tr class="memitem:a2015aa3bbd5c7ba19f37ac2049a4d647"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a2015aa3bbd5c7ba19f37ac2049a4d647">operator!=</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:a2015aa3bbd5c7ba19f37ac2049a4d647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe00b9988a6da41aea04a18c05cadd9a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe00b9988a6da41aea04a18c05cadd9a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
+<tr class="memitem:abe00b9988a6da41aea04a18c05cadd9a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#abe00b9988a6da41aea04a18c05cadd9a">operator&lt;</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:abe00b9988a6da41aea04a18c05cadd9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_board.html">Board</a> object</p>
+<p><a class="el" href="class_board.html">Board</a> object contains 2D vector of Squares, representing board<br />
+Also tracks number of pieces and number of kings held by each player </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab685df20d4f443e918f22f1d96f20e3d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::getNumKingsPlayer </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get number of kings player has on board</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>which player to check<br />
+'1' is first player, any other value 2nd player </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of kings that player has on board </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a73ce5805ae92c25255021d4a712a5f97"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Board::getNumPiecesPlayer </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>player</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get number of pieces player has on board</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>which player to check<br />
+'1' is first player, any other value 2nd player </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of pieces that player has on board </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2015aa3bbd5c7ba19f37ac2049a4d647"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Not-quals operator for <a class="el" href="class_board.html">Board</a> objects</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td><a class="el" href="class_board.html">Board</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if Boards are not the same </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abe00b9988a6da41aea04a18c05cadd9a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Less than operator for Boards</p>
+<p>Actual ordering is arbitrary, but some comparison needed to be able to use in std::map<br />
+Test size, smaller board considered smaller.<br />
+If no difference in size then loop through each square and return comparison of first square where boards differ</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td><a class="el" href="class_board.html">Board</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>according to description above </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1183a7d72b226c0ec9befdcbcaed205b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Board::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Equals operator for <a class="el" href="class_board.html">Board</a> objects</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td><a class="el" href="class_board.html">Board</a> for comparison </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if Boards are the same </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>checkyrs/<a class="el" href="board_8h_source.html">board.h</a></li>
 <li>checkyrs/board.cpp</li>

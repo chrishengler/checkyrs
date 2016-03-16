@@ -1,6 +1,14 @@
 var searchData=
 [
-  ['hash_3c_20board_20_3e',['hash&lt; Board &gt;',['../structstd_1_1hash_3_01_board_01_4.html',1,'std']]],
-  ['hash_3c_20position_20_3e',['hash&lt; Position &gt;',['../structstd_1_1hash_3_01_position_01_4.html',1,'std']]],
-  ['hash_3c_20square_20_3e',['hash&lt; Square &gt;',['../structstd_1_1hash_3_01_square_01_4.html',1,'std']]]
+  ['game',['Game',['../class_game.html',1,'']]],
+  ['gameover',['gameOver',['../class_gamerunner.html#a3930e1e6659d8933f3bc82911c01d7a5',1,'Gamerunner']]],
+  ['gamerunner',['Gamerunner',['../class_gamerunner.html',1,'']]],
+  ['getgame',['getGame',['../class_gamerunner.html#af5156925a0dcf6b9a09298e8745ee956',1,'Gamerunner']]],
+  ['getmove',['getMove',['../class_c_l_interface.html#a8f02110f59eeae357387652cf1c8d606',1,'CLInterface']]],
+  ['getnextplayermove',['getNextPlayerMove',['../class_gamerunner.html#ac587d78e03e41a7060a8551fb09e52f9',1,'Gamerunner']]],
+  ['getnumkingsplayer',['getNumKingsPlayer',['../class_board.html#ab685df20d4f443e918f22f1d96f20e3d',1,'Board']]],
+  ['getnumpiecesplayer',['getNumPiecesPlayer',['../class_board.html#a73ce5805ae92c25255021d4a712a5f97',1,'Board']]],
+  ['getpiecesplayer',['getPiecesPlayer',['../class_gamerunner.html#a37e1376ac6b5ba406a3b935f30a1ec61',1,'Gamerunner']]],
+  ['getplayer',['getPlayer',['../class_square.html#a0bcb29ee9365f19b8394cbfbe5c109af',1,'Square']]],
+  ['getwinner',['getWinner',['../class_gamerunner.html#a780790f841c68d14f8d6714dc71474b2',1,'Gamerunner']]]
 ];
