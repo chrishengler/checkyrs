@@ -161,6 +161,14 @@ void CLInterface::showRules() const{
   std::cout << "A draw is also declared on the 4th repetition of the same game state\n";
 }
 
+/**
+ *  Print the Square
+ *  
+ *  prints the Square (either appropriate piece or empty)
+ *
+ *  @param s Square to be printed
+ *  @param bs bool indicating dark (blue) or light (white) square
+ */
 void CLInterface::printSquare(const Square &s, const bool bs) const{
   std::string col;
   if(s.isOccupied()){

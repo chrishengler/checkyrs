@@ -15,6 +15,13 @@
 #include <map>
 #include "board.h"
 
+/**
+ *  Game class
+ *
+ *  Each instance holds a board for the current game, and tracks relevant 
+ *  variables such as whether the game is over, which player's turn is next,
+ *  how close the game is to a draw being forced
+ */
 class Game {
   Board m_board;
   mutable bool m_gameOver;
@@ -33,6 +40,9 @@ class Game {
   std::vector<std::vector<Position> > extendMove(const std::vector<Position> &p) const;
   void removePiece(const Position &p);
   
+  /**
+   *  Initialise member variables tracking game state
+   */
   void initMembers(){
     m_gameOver=false;
     m_winner=0;
@@ -44,14 +54,29 @@ class Game {
   }
   
 public:
+  /**
+   *  Default constructor
+   *
+   *  @param size size of board
+   */
   Game(const int size=8){
     initMembers();
     m_board=Board::Board(size);
   }
+  /**
+   *  Constructor copying board
+   *
+   *  @param board the Board object will be copied as the initial board state at game start
+   */
   Game(const Board &board){
     initMembers();
     m_board=board;
   };
+  /**
+   *  Copy constructor
+   *
+   *  @Param g Game object to be copied
+   */
   Game(const Game &g){
     m_board         = g.m_board;
     m_gameOver      = g.m_gameOver;
@@ -64,6 +89,11 @@ public:
     m_paststates    = g.m_paststates;
   };
   
+  /**
+   *  Get board
+   *
+   *  @return the Board
+   */
   Board getBoard() const{return m_board;}
   
   void addPiece(const Position &pos,const int player=1, const bool isKing=false);
@@ -73,16 +103,71 @@ public:
   void prepareBoard();
   void executeMove(const std::vector<Position> &move);
   
+  /**
+   *  Check if game over state reached
+   *
+   *  @return true if game is over
+   */
   bool gameOver() const{ return m_gameOver; }
+  /**
+   *  Get winning player
+   *
+   *  @return 1 if first player has won,\n -1 if second player has won\n0 if no winner
+   */
   int getWinner() const{ return m_winner; }
+  /**
+   *  Get current player
+   *
+   *  @return 1 if first player, -1 if second player
+   */
   int getCurrentPlayer() const{ return m_currentPlayer; }
+  /**
+   *  Get current turn
+   *
+   *  @return which turn the game is on
+   */
   int getCurrentTurn() const{ return m_turn; }
   
+  /**
+   *  get staleness
+   *
+   *  'staleness' tracks how close the Game is to a draw 
+   *  being forced due to no pieces  being promoted or taken
+   *
+   *  @return current staleness
+   */
   int getStaleness() const{ return m_staleness; }
+
+  /**
+   *  get max staleness
+   *
+   *  @return value of staleness when draw will be declared
+   */
   int getMaxStaleness() const{ return m_maxStaleness; }
+  /**
+   *  Check if game is 'stale'
+   *
+   *  @return true if staleness ≥ max staleness
+   */
   bool isStale() const{ return m_stale; }
   
+  /**
+   *  get number of pieces on board for player
+   *
+   *  Simply calls Board.getNumPiecesPlayer(player)
+   *
+   *  @param player which player to check
+   *  @return number of pieces player has
+   */
   int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
+  /**
+   *  get number of kings on board for player
+   *
+   *  Simply calls Board.getNumKingsPlayer(player)
+   *
+   *  @param player which player to check
+   *  @return number of kings player has
+   */
   int getNumKingsPlayer(const int player) const{ return m_board.getNumKingsPlayer(player); }
   
   bool pieceIsThreatened(const Position &p) const;
@@ -95,10 +180,24 @@ public:
   
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p) const;
   
+  /**
+   *  Equals operator for Game objects
+   *
+   *  Only checks board positions and current player
+   *
+   *  @param g Game for comparison
+   *  @return true if Games are equal as defined above, false otherwise
+   */
   inline bool operator==(const Game &g) const{
     if(m_currentPlayer != g.m_currentPlayer) return false;
     else return m_board==g.m_board;
   }
+  /**
+   *  Not equal operator for Game objects
+   *
+   *  @param g Game for comparison
+   *  @return opposite of ==
+   */
   inline bool operator!=(const Game &g) const{
     return !(*this==g);
   }

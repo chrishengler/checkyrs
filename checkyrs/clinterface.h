@@ -13,6 +13,11 @@
 #include <boost/tokenizer.hpp>
 #include "game.h"
 
+/**
+ *  CLInterface class
+ *
+ *  provides command line interface for displaying games, related info, and getting input
+ */
 class CLInterface {
   
 public:
