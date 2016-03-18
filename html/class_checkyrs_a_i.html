@@ -113,6 +113,8 @@ $(document).ready(function(){initNavTree('class_checkyrs_a_i.html','');});
 <div class="title">CheckyrsAI Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="ai_8h_source.html">ai.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -137,8 +139,7 @@ moveEval&#160;</td><td class="memItemRight" valign="bottom"><b>rootNegamax</b> (
 <tr class="memitem:a1f63ee1d9d1909a8fc333ba85105af88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f63ee1d9d1909a8fc333ba85105af88"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPlayer</b> (const int player)</td></tr>
 <tr class="separator:a1f63ee1d9d1909a8fc333ba85105af88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73cf6ce1d0c6fe9f28882f36838e53fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73cf6ce1d0c6fe9f28882f36838e53fb"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayer</b> ()</td></tr>
+<tr class="memitem:a73cf6ce1d0c6fe9f28882f36838e53fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_checkyrs_a_i.html#a73cf6ce1d0c6fe9f28882f36838e53fb">getPlayer</a> ()</td></tr>
 <tr class="separator:a73cf6ce1d0c6fe9f28882f36838e53fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac04325e693f22eb3e9898238ca524db0"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac04325e693f22eb3e9898238ca524db0"></a>
 template&lt;class Archive &gt; </td></tr>
@@ -157,6 +158,36 @@ Friends</h2></td></tr>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>boost::serialization::access</b></td></tr>
 <tr class="separator:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_checkyrs_a_i.html">CheckyrsAI</a> class</p>
+<p>AI that plays Checkyrs. Can generate new AIs with random parameters, this often produces Artificial Idiots. Chooses move based on Negamax algorithm with alpha-beta pruning of decision tree. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a73cf6ce1d0c6fe9f28882f36838e53fb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CheckyrsAI::getPlayer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get Player</p>
+<p>Which player is this AI?</p>
+<dl class="section return"><dt>Returns</dt><dd>'1' if first player, '-1' if second player </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>checkyrs/<a class="el" href="ai_8h_source.html">ai.h</a></li>
 <li>checkyrs/ai.cpp</li>

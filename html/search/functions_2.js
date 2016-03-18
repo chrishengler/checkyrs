@@ -12,7 +12,7 @@ var searchData=
   ['getnumkingsplayer',['getNumKingsPlayer',['../class_board.html#ab685df20d4f443e918f22f1d96f20e3d',1,'Board::getNumKingsPlayer()'],['../class_game.html#a1db427f7ed3a16fe55ab8d2bba01f660',1,'Game::getNumKingsPlayer()']]],
   ['getnumpiecesplayer',['getNumPiecesPlayer',['../class_board.html#a73ce5805ae92c25255021d4a712a5f97',1,'Board::getNumPiecesPlayer()'],['../class_game.html#ab934446b1988e539d2eda12bebb71ad0',1,'Game::getNumPiecesPlayer()']]],
   ['getpiecesplayer',['getPiecesPlayer',['../class_gamerunner.html#a37e1376ac6b5ba406a3b935f30a1ec61',1,'Gamerunner']]],
-  ['getplayer',['getPlayer',['../class_square.html#a0bcb29ee9365f19b8394cbfbe5c109af',1,'Square']]],
+  ['getplayer',['getPlayer',['../class_checkyrs_a_i.html#a73cf6ce1d0c6fe9f28882f36838e53fb',1,'CheckyrsAI::getPlayer()'],['../class_square.html#a0bcb29ee9365f19b8394cbfbe5c109af',1,'Square::getPlayer()']]],
   ['getstaleness',['getStaleness',['../class_game.html#ae786f6b6d068a456471c003df6096317',1,'Game']]],
   ['getwinner',['getWinner',['../class_game.html#a12b17e4fdf15c0d166184874bff97d3c',1,'Game::getWinner()'],['../class_gamerunner.html#a780790f841c68d14f8d6714dc71474b2',1,'Gamerunner::getWinner()']]]
 ];
