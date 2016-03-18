@@ -1,4 +1,5 @@
-Build/
-html/
-checkyrs.doxyfile
+./Build/
+./html/
+./checkyrs.doxyfile
 *.swp
+./checkyrs.xcodeproj/
