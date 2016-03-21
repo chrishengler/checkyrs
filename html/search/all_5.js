@@ -10,6 +10,7 @@ var searchData=
   ['getjump',['getJump',['../class_board.html#a241dec72d5b2a403de2ae7f1faa597fb',1,'Board']]],
   ['getmaxstaleness',['getMaxStaleness',['../class_game.html#a09c8458e50559608eefa673c74edde6d',1,'Game']]],
   ['getmove',['getMove',['../class_c_l_interface.html#a8f02110f59eeae357387652cf1c8d606',1,'CLInterface']]],
+  ['getmovesfrom',['getMovesFrom',['../class_game.html#a4d1455a322e3a087bc2fc9a1dec39447',1,'Game']]],
   ['getnextplayermove',['getNextPlayerMove',['../class_gamerunner.html#ac587d78e03e41a7060a8551fb09e52f9',1,'Gamerunner']]],
   ['getnumkingsplayer',['getNumKingsPlayer',['../class_board.html#ab685df20d4f443e918f22f1d96f20e3d',1,'Board::getNumKingsPlayer()'],['../class_game.html#a1db427f7ed3a16fe55ab8d2bba01f660',1,'Game::getNumKingsPlayer()']]],
   ['getnumpiecesplayer',['getNumPiecesPlayer',['../class_board.html#a73ce5805ae92c25255021d4a712a5f97',1,'Board::getNumPiecesPlayer()'],['../class_game.html#ab934446b1988e539d2eda12bebb71ad0',1,'Game::getNumPiecesPlayer()']]],

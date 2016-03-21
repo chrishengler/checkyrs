@@ -67,7 +67,7 @@ var NAVTREEINDEX0 =
 "class_game.html#a36ad672be4cb19e72cfc6c33bffc2fae":[0,0,4,23],
 "class_game.html#a3859b57192d557b772960bbe66e4ee1d":[0,0,4,4],
 "class_game.html#a3e626c608a1a0881348adfd2d18596d1":[0,0,4,5],
-"class_game.html#a49252298352d59c05273732e7993c1e9":[0,0,4,14],
+"class_game.html#a4d1455a322e3a087bc2fc9a1dec39447":[0,0,4,14],
 "class_game.html#a4db83a8aaf9743aa8f15d6e3c03d9e40":[0,0,4,1],
 "class_game.html#a549cde73db32c59d91f6e7f4fe673d2c":[0,0,4,7],
 "class_game.html#a564f68b49a9f74bca1243efb088b7dba":[0,0,4,20],

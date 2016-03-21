@@ -14,7 +14,7 @@ var class_game =
     [ "getJumpedSquares", "class_game.html#a13dca1eaaf902763088a105e27fa2478", null ],
     [ "getMaxStaleness", "class_game.html#a09c8458e50559608eefa673c74edde6d", null ],
     [ "getMovesForPlayer", "class_game.html#a7ddbadba0effecefbdfd34dd39c487e7", null ],
-    [ "getMovesFrom", "class_game.html#a49252298352d59c05273732e7993c1e9", null ],
+    [ "getMovesFrom", "class_game.html#a4d1455a322e3a087bc2fc9a1dec39447", null ],
     [ "getNumKingsPlayer", "class_game.html#a1db427f7ed3a16fe55ab8d2bba01f660", null ],
     [ "getNumPiecesPlayer", "class_game.html#ab934446b1988e539d2eda12bebb71ad0", null ],
     [ "getStaleness", "class_game.html#ae786f6b6d068a456471c003df6096317", null ],
