@@ -30,6 +30,11 @@ public:
   Board(const Board &board);
   Board(const int &size=8); //default 8x8 board, but let's leave the prospect of other sizes available
   
+  /**
+   *  Return the size of the Board
+   *
+   *  @return the size of the board
+   */
   int getSize() const{return m_size;}
   
   bool squareExists(const Position &p) const;

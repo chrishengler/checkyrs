@@ -13,6 +13,14 @@
 #include "math.h"
 #include "ai.h"
 
+/**
+ *  serialize for Boost library Archive
+ *
+ *  Holds all of the various weights for use in AI position evaluation
+ *
+ *  @param ar the Archive for serializing
+ *  @param version the version being serialized (currently unused)
+ */
 template<class Archive>  void CheckyrsAI::serialize(Archive &ar, const unsigned int version){
   //preference for attacking opponent's pieces vs maintaining own pieces
   ar & m_aggression;
@@ -66,58 +74,144 @@ template<class Archive>  void CheckyrsAI::serialize(Archive &ar, const unsigned 
 
 }
 
+/**
+ *  Save to file
+ *
+ *  @param filename the file to save to
+ */
 void CheckyrsAI::save(const std::string &filename){
   std::ofstream ofs(filename.c_str());
   boost::archive::text_oarchive oa(ofs);
   oa << *this;
 }
+/**
+ *  Load from file
+ *
+ *  @param filename the file to load from
+ */
 void CheckyrsAI::load(const std::string &filename){
   std::ifstream ifs(filename.c_str());
   boost::archive::text_iarchive ia(ifs);
   ia >> *this;
 }
 
-//sort functions for moveEval
+/**
+ *  Sort for moveEval
+ *
+ *  @param lhs first of the moveEvals to sort
+ *  @param rhs second of the moveEvals to sort
+ *  @return lhs > rhs
+ */
 bool sortMoveEvals(const moveEval &lhs, const moveEval &rhs){
   return (lhs.second > rhs.second);
 }
 
+/**
+ *  Reverse sort for moveEval
+ *
+ *  @param lhs first of the moveEvals to sort
+ *  @param rhs second of the moveEvals to sort
+ *  @return lhs < rhs
+ */
 bool sortMoveEvalsReverse(const moveEval &lhs, const moveEval &rhs){
   return (lhs.second < rhs.second);
 }
 
+/**
+ *  Get random double within range
+ *
+ *  Get a random double within a given range. Uses boost random library for generation.
+ *
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ *  @return chosen random double
+ */
 double CheckyrsAI::getRandomDouble(const double min, const double max) const{
   boost::uniform_real<> real_dist(min,max);
   boost::variate_generator<boost_rng&, boost::uniform_real<> > gen(m_rng,real_dist);
   return gen();
 }
 
+/**
+ *  Get random int within range
+ *
+ *  Get a random int within a given range. Uses boost random library for generation.
+ *
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ *  @return chosen random int
+ */
 int CheckyrsAI::getRandomInt(const int min, const int max) const{
   boost::uniform_int<> int_dist(min,max);
   boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
   return gen();
 }
 
+/**
+ *  Randomise double
+ *
+ *  Randomises existing double in-place, using getRandomDouble(min,max)
+ *
+ *  @param var pointer to the double to be randomised
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ */
 void CheckyrsAI::randomiseDouble(double *var, const double min, const double max){
   *var = getRandomDouble(min, max);
 }
 
+/**
+ *  Randomise multiple doubles
+ *
+ *  Randomises multiple existing doubles in-place, using randomiseDouble() on each
+ *
+ *  @param vars vector of pointers to the doubles to be randomised
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ */
 void CheckyrsAI::randomiseDoubles(std::vector<double*> &vars, const double min, const double max){
   for(int ii=0;ii<vars.size();ii++){
     randomiseDouble(vars.at(ii),min,max);
   }
 }
 
+/**
+ *  Randomise int
+ *
+ *  Randomises existing int in-place, using getRandomInt(min,max)
+ *
+ *  @param var pointer to the int to be randomised
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ */
 void CheckyrsAI::randomiseInt(int *var, const int min, const int max){
   *var = getRandomInt(min,max);
 }
 
+/**
+ *  Randomise multiple ints
+ *
+ *  Randomises multiple existing ints in-place, using randomiseInt() on each
+ *
+ *  @param vars vector of pointers to the ints to be randomised
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ */
 void CheckyrsAI::randomiseInts(std::vector<int*> &vars, const int min, const int max){
   for(int ii=0;ii<vars.size();ii++){
     randomiseInt(vars.at(ii),min,max);
   }
 }
 
+/**
+ *  Gets a random ordered int pair
+ *
+ *  Randomises existing ints in-place, using results of getRandomInt(min,max) and ensuring ordering
+ *
+ *  @param vars pair of pointers to the ints to be randomised
+ *  @param min the minimum possible value
+ *  @param max the maximum possible value
+ */
 void CheckyrsAI::randomOrderedIntPair(std::pair<int*,int*> &vars, const int min, const int max){
   int x,y;
   randomiseInt(&x,min,max);
@@ -131,11 +225,22 @@ void CheckyrsAI::randomOrderedIntPair(std::pair<int*,int*> &vars, const int min,
 
 }
 
-
+/**
+ *  CheckyrsAI constructor
+ *  
+ *  @param player is this AI taking the first turn ('1') or second turn ('-1')
+ */
 CheckyrsAI::CheckyrsAI(const int player){
   m_player=player;
 }
 
+/**
+ *  Initialise AI parameters
+ *
+ *  Either with default (not particularly optimised) values, or random
+ *
+ *  @param random whether AI parameters should be randomised rather than taking default
+ */
 void CheckyrsAI::initialise(bool random){
   if(!random){
     m_aggression=5;
@@ -184,6 +289,11 @@ void CheckyrsAI::initialise(bool random){
   else randomiseAI();
 }
 
+/**
+ *  Generate random AI parameters
+ *
+ *  Minimal restrictions, even in sign. Capable of creating genuine AI (artificial idiot)
+ */
 void CheckyrsAI::randomiseAI(){
   std::cout << "generating random AI:\n";
   std::random_device rdev;
@@ -241,6 +351,16 @@ void CheckyrsAI::randomiseAI(){
 
 }
 
+/**
+ *  Breed this AI with another
+ *
+ *  For each AI parameter, select randomly either this AI's value or the value from p2.\n
+ *  Additionally, each parameter has some chance of 'mutating' (randomly generating entirely new value).
+ *
+ *  @param p2 CheckyrsAI to breed with
+ *  @param mutate each parameter's chance of mutating
+ *  @return the 'child' CheckyrsAI
+ */
 CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
   //what I wouldn't have given for some proper reflection in C++ while writing this...
   std::random_device rdev;
@@ -287,6 +407,14 @@ CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
   return offspring;
 }
 
+/**
+ *  Evaluate game position
+ *
+ *  Evaluates how favourable the current position is
+ *
+ *  @param g the Game which is to be evaluated
+ *  @return evaluation of this position
+ */
 double CheckyrsAI::eval(const Game &g) const{
   if(g.gameOver()){
     return evaluateGameOver(g);
@@ -393,6 +521,15 @@ double CheckyrsAI::eval(const Game &g) const{
   return value;
 }
 
+/**
+ *  Evaluate whether a 'game over' state is good or bad
+ *
+ *  Winning is very good, losing is very bad.\n 
+ *  Opinion of draw decided by evaluateDraw(g)
+ *
+ *  @param g the Game to be evaluated
+ *  @return the evaluation of this game over state
+ */
 double CheckyrsAI::evaluateGameOver(const Game &g) const{
   if(g.getWinner()==0){
     return evaluateDraw(g);
@@ -400,6 +537,15 @@ double CheckyrsAI::evaluateGameOver(const Game &g) const{
   return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
 }
 
+/**
+ *  Evaluate whether a 'draw' state is good or bad
+ *
+ *  Consider number of pieces, number of kings, and try to determine relative strength of players.\n
+ *  If opponent seems stronger, draw is good. Otherwise, draw is bad.
+ *
+ *  @param g the Game to be evaluated
+ *  @return the evaluation of this draw
+ */
 double CheckyrsAI::evaluateDraw(const Game &g) const{
   int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
   int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
@@ -412,6 +558,15 @@ double CheckyrsAI::evaluateDraw(const Game &g) const{
   else return -1*likeatrillion;
 }
 
+/**
+ *  Evaluate this node of tree
+ *
+ *  Determines which evaluation method is appropriate for this game's state, and performs any required actions
+ *  before returning the eval value for this node on game tree
+ *
+ *  @param g the Game to be evaluated
+ *  @return the evaluation of this node
+ */
 double CheckyrsAI::evalNode(const Game &g) const{
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
@@ -440,9 +595,21 @@ double CheckyrsAI::evalNode(const Game &g) const{
   }
 }
 
+/**
+ *  Start negamax search for best move
+ *
+ *  Searches ahead for the best available move, some moves ahead of current position.
+ *  Negamax is essentially a special case of minimax, moves are chosen to minimize the worst-case loss.
+ *  Alpha-Beta pruning is implemented to speed up search.
+ *  \n\n Starts the tree, calls negamax() method which recursivel calls itself to produce evaluation
+ *  of favourability of each move.
+ *  Returns whichever move is considered best.
+ *
+ *  @param g the Game to be evaluated
+ *  @param depth how many moves ahead to look
+ *  @return the chosen move and its score
+ */
 moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
-  //this method will find optimum move based on looking depth moves ahead from current position
-  //finds all possible moves then calls negamax() method for each to determine value
   std::vector<moveEval> moves;
   double alpha = -INFINITY;
   double beta = INFINITY;
@@ -468,9 +635,19 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
   return moves.at(0);
 }
 
+/**
+ *  Extend negamax search
+ *
+ *  Recursively calls itself, iterating a tree of all possible game paths for the chosen depth.
+ *  Finds path with best outcome for this AI, assuming opponent always chooses their best move.
+ *
+ *  @param g the Game to be evaluated
+ *  @param depth how many moves ahead to search
+ *  @param alpha parameter for alpha-beta pruning
+ *  @param beta parameter for alpha-beta pruning
+ *  @return ultimate evaluation of this node
+ */
 double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) const{
-  //negamax recursively calls itself, iterating a tree of all possible game paths for the next depth moves
-  //find path with best outcome for AI, assuming opponent always chooses their best move
   try{
     if(depth<=0){
       return evalNode(g);

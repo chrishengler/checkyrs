@@ -75,7 +75,7 @@ public:
   /**
    *  Copy constructor
    *
-   *  @Param g Game object to be copied
+   *  @param g Game object to be copied
    */
   Game(const Game &g){
     m_board         = g.m_board;
@@ -112,7 +112,7 @@ public:
   /**
    *  Get winning player
    *
-   *  @return 1 if first player has won,\n -1 if second player has won\n0 if no winner
+   *  @return 1 if first player has won,\n -1 if second player has won\n 0 if no winner
    */
   int getWinner() const{ return m_winner; }
   /**

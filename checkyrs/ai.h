@@ -22,7 +22,13 @@
 typedef std::pair<std::vector<Position>,double> moveEval;
 typedef boost::mt19937 boost_rng;
 
-class CheckyrsAI { //CheckyrsArtificialIdiot
+/**
+ *  CheckyrsAI class
+ *
+ *  AI that plays Checkyrs. Can generate new AIs with random parameters, this often produces Artificial Idiots.
+ *  Chooses move based on Negamax algorithm with alpha-beta pruning of decision tree.
+ */
+class CheckyrsAI {
   friend class boost::serialization::access;
   int m_player;
   
@@ -84,6 +90,16 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
   void randomiseDouble(double *var, const double min=-1, const double max=1);
   void randomiseDoubles(std::vector<double*> &vars, const double min=-1, const double max=1);
   
+  /**
+   *  Evolves an int gene from two parents
+   *
+   *  @param gene pointer to where this gene will be held
+   *  @param p1 this gene in the first parent
+   *  @param p2 this gene in the second parent
+   *  @param min minimum value
+   *  @param max maximum value
+   *  @param mutate chance of mutating (i.e. taking random value rather than either parent)
+   */
   void gene(int *gene, const int p1, const int p2, int min, int max, const float mutate){
     boost::uniform_int<> int_dist(0,1);
     boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
@@ -98,6 +114,16 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
     return;
   }
   
+  /**
+   *  Evolves a double gene from two parents
+   *
+   *  @param gene pointer to where this gene will be held
+   *  @param p1 this gene in the first parent
+   *  @param p2 this gene in the second parent
+   *  @param min minimum value
+   *  @param max maximum value
+   *  @param mutate chance of mutating (i.e. taking random value rather than either parent)
+   */
   void gene(double *gene, const double p1, const double p2, double min, double max, const float mutate){
     boost::uniform_int<> int_dist(0,1);
     boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
@@ -111,6 +137,16 @@ class CheckyrsAI { //CheckyrsArtificialIdiot
     return;
   }
 
+  /**
+   *  Evolves an std::pair<int,int> gene from two parents
+   *
+   *  @param gene pointer to where this gene will be held
+   *  @param p1 this gene in the first parent
+   *  @param p2 this gene in the second parent
+   *  @param min minimum value
+   *  @param max maximum value
+   *  @param mutate chance of mutating (i.e. taking random value rather than either parent)
+   */
   void gene(std::pair<int*,int*> gene, const std::pair<int,int> p1, const std::pair<int,int> p2, const int min, const int max, const float mutate){
     boost::uniform_int<> int_dist(0,1);
     boost::variate_generator<boost_rng&, boost::uniform_int<> > gen(m_rng,int_dist);
@@ -152,10 +188,24 @@ public:
   double eval(const Game &g) const;
   moveEval rootNegamax(const Game &g, const int depth) const;
   
+  /**
+   *  Set Player
+   *
+   *  Which player this AI should be.
+   *
+   *  @param player '1' if first player, '-1' if second player
+   */
   void setPlayer(const int player){ m_player=player; }
+  
+  /**
+   *  Get Player
+   *
+   *  Which player is this AI?
+   *
+   *  @return '1' if first player, '-1' if second player
+   */
   int getPlayer(){ return m_player; }
 
-  
   template<class Archive>  void serialize(Archive &ar, const unsigned int version);
   void save(const std::string &filename);
   void load(const std::string &filename);
