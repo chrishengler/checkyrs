@@ -114,6 +114,7 @@ var NAVTREEINDEX0 =
 "files.html":[1,0],
 "functions.html":[0,2,0],
 "functions_func.html":[0,2,1],
+"functions_vars.html":[0,2,2],
 "game_8h_source.html":[1,0,0,3],
 "gamerunner_8h_source.html":[1,0,0,4],
 "index.html":[],
