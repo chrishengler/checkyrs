@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['save',['save',['../class_checkyrs_a_i.html#a0e952c9d2aa6f1fc91a3c1969baa2b90',1,'CheckyrsAI']]],
-  ['serialize',['serialize',['../class_checkyrs_a_i.html#ac04325e693f22eb3e9898238ca524db0',1,'CheckyrsAI']]],
-  ['setking',['setKing',['../class_square.html#abe35cdc2d4d854c30fa966dc8e714f1d',1,'Square']]],
-  ['setplayer',['setPlayer',['../class_checkyrs_a_i.html#a1f63ee1d9d1909a8fc333ba85105af88',1,'CheckyrsAI']]],
-  ['showgamehelp',['showGameHelp',['../class_c_l_interface.html#ab75d83c54c458dcc8a5e11a5dfa3b85e',1,'CLInterface']]],
-  ['showmenuhelp',['showMenuHelp',['../class_c_l_interface.html#abfbeb93c9cda233fc1443df237b7a0f8',1,'CLInterface']]],
-  ['showrules',['showRules',['../class_c_l_interface.html#a3a75707e08eee0a80c11dbd091e67ce3',1,'CLInterface']]]
+  ['pausedisplay',['pauseDisplay',['../class_c_l_interface.html#a308448971b3423e65fc3b43b25a3a274',1,'CLInterface']]],
+  ['playerisai',['playerIsAI',['../class_gamerunner.html#a6428963cb40fec2e9f246c1034375bba',1,'Gamerunner']]],
+  ['position',['Position',['../struct_position.html#a6e36cf0fee251e74cfedb86f4e99558d',1,'Position']]],
+  ['printboard',['printBoard',['../class_c_l_interface.html#a2d9233530e08e46ccea54ed1b22bdf67',1,'CLInterface']]],
+  ['printmove',['printMove',['../class_c_l_interface.html#a5b5d99a0c216ca9f77aacb2a157d3f59',1,'CLInterface']]],
+  ['printmoves',['printMoves',['../class_c_l_interface.html#a4d883cf0081d28acb3c1604bfd20de59',1,'CLInterface']]],
+  ['printsquare',['printSquare',['../class_c_l_interface.html#acbd5ca9eb56696ce2fb3a9853324f047',1,'CLInterface']]]
 ];
