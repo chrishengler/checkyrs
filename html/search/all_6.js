@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../class_board.html#a2015aa3bbd5c7ba19f37ac2049a4d647',1,'Board::operator!=()'],['../class_game.html#a205973c1b5e2f73e6c17fbaff8ee44af',1,'Game::operator!=()'],['../struct_position.html#a6358e7bd1a99e5f033f08bc0d364d790',1,'Position::operator!=()'],['../class_square.html#abc9806a0634bd9ff33219e93dc20d667',1,'Square::operator!=()']]],
-  ['operator_28_29',['operator()',['../structstd_1_1hash_3_01_board_01_4.html#a7fa3b8e8e6064795dcf313bb691ff1c3',1,'std::hash&lt; Board &gt;::operator()()'],['../structstd_1_1hash_3_01_position_01_4.html#ac84fd633542bd7007d73cb6a73808555',1,'std::hash&lt; Position &gt;::operator()()'],['../structstd_1_1hash_3_01_square_01_4.html#a7016a8d1952954ea92884688bbff9df7',1,'std::hash&lt; Square &gt;::operator()()']]],
-  ['operator_3c',['operator&lt;',['../class_board.html#abe00b9988a6da41aea04a18c05cadd9a',1,'Board::operator&lt;()'],['../class_square.html#acc9d4330ad660d2a71fe3bc08488ebc9',1,'Square::operator&lt;()']]],
-  ['operator_3d_3d',['operator==',['../class_board.html#a1183a7d72b226c0ec9befdcbcaed205b',1,'Board::operator==()'],['../class_game.html#ae0190178e2610f44c0a604fc9ea583ce',1,'Game::operator==()'],['../struct_position.html#a2853571fea1d2591ffb1a74cd352c67f',1,'Position::operator==()'],['../class_square.html#a09f9857e399d6363e7aa53acdf707683',1,'Square::operator==()']]]
+  ['initialise',['initialise',['../class_checkyrs_a_i.html#aed93c4f6617d34b65f3b78558918292c',1,'CheckyrsAI::initialise()'],['../class_gamerunner.html#a0ebe29904797c3d4142ffe3695a092aa',1,'Gamerunner::initialise()'],['../class_gamerunner.html#a2400f8e182692b033973db92de0502b8',1,'Gamerunner::initialise(CheckyrsAI &amp;ai1, CheckyrsAI &amp;ai2)']]],
+  ['interpretmove',['interpretMove',['../class_c_l_interface.html#af0c1124cdad79796f991b6ced67423b2',1,'CLInterface']]],
+  ['interpretsquare',['interpretSquare',['../class_c_l_interface.html#ad0c18baac4a81b982c5869c4808e784d',1,'CLInterface']]],
+  ['isdraw',['isDraw',['../class_gamerunner.html#af824b34fd7c1d1d959782cc851456b7b',1,'Gamerunner']]],
+  ['isking',['isKing',['../class_square.html#a6c15189bece2f6b0ec5be5168eff30ad',1,'Square']]],
+  ['isoccupied',['isOccupied',['../class_square.html#ac36a72179614062e9b6ffa395f505621',1,'Square']]],
+  ['isstale',['isStale',['../class_game.html#a8e52d0e22be4c644e68acb5e02fec5f3',1,'Game']]]
 ];

@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['pausedisplay',['pauseDisplay',['../class_c_l_interface.html#a308448971b3423e65fc3b43b25a3a274',1,'CLInterface']]],
-  ['playerisai',['playerIsAI',['../class_gamerunner.html#a6428963cb40fec2e9f246c1034375bba',1,'Gamerunner']]],
-  ['position',['Position',['../struct_position.html#a6e36cf0fee251e74cfedb86f4e99558d',1,'Position']]],
-  ['printboard',['printBoard',['../class_c_l_interface.html#a2d9233530e08e46ccea54ed1b22bdf67',1,'CLInterface']]],
-  ['printmove',['printMove',['../class_c_l_interface.html#a5b5d99a0c216ca9f77aacb2a157d3f59',1,'CLInterface']]],
-  ['printmoves',['printMoves',['../class_c_l_interface.html#a4d883cf0081d28acb3c1604bfd20de59',1,'CLInterface']]],
-  ['printsquare',['printSquare',['../class_c_l_interface.html#acbd5ca9eb56696ce2fb3a9853324f047',1,'CLInterface']]]
+  ['initialise',['initialise',['../class_checkyrs_a_i.html#aed93c4f6617d34b65f3b78558918292c',1,'CheckyrsAI::initialise()'],['../class_gamerunner.html#a0ebe29904797c3d4142ffe3695a092aa',1,'Gamerunner::initialise()'],['../class_gamerunner.html#a2400f8e182692b033973db92de0502b8',1,'Gamerunner::initialise(CheckyrsAI &amp;ai1, CheckyrsAI &amp;ai2)']]],
+  ['interpretmove',['interpretMove',['../class_c_l_interface.html#af0c1124cdad79796f991b6ced67423b2',1,'CLInterface']]],
+  ['interpretsquare',['interpretSquare',['../class_c_l_interface.html#ad0c18baac4a81b982c5869c4808e784d',1,'CLInterface']]],
+  ['isdraw',['isDraw',['../class_gamerunner.html#af824b34fd7c1d1d959782cc851456b7b',1,'Gamerunner']]],
+  ['isking',['isKing',['../class_square.html#a6c15189bece2f6b0ec5be5168eff30ad',1,'Square']]],
+  ['isoccupied',['isOccupied',['../class_square.html#ac36a72179614062e9b6ffa395f505621',1,'Square']]],
+  ['isstale',['isStale',['../class_game.html#a8e52d0e22be4c644e68acb5e02fec5f3',1,'Game']]]
 ];
