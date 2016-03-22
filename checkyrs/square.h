@@ -23,7 +23,17 @@ class Square {
   bool m_isKing;
 
 public:
+  /**
+   *  default constructor, empty square
+   */
   Square(){m_isOccupied=false; m_player=0; m_isKing=false;}
+  
+  /**
+   * construct an occupied square
+   *
+   *  @param p which player the piece belongs to
+   *  @param k whether the piece is a king
+   */
   Square(const int p, const bool k=false){m_isOccupied=true; m_player=p; m_isKing=k;}
   Square(const Square &s);
   
@@ -56,6 +66,10 @@ public:
    *  @return which player has piece on this Square
    */
   int getPlayer() const{return m_player;}
+  
+  /**
+   *  Remove the piece from this square
+   */
   void removePiece(){m_isOccupied=false; m_player=0; m_isKing=false;}
   
   /**
@@ -81,7 +95,7 @@ public:
    *  Compares occupation status, piece type, and player
    *  Does not require position on board to be the same
    *
-   *  @param Square for comparison
+   *  @param s Square for comparison
    *  @return true if equal
    */
   inline bool operator==(const Square &s){

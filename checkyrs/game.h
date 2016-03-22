@@ -38,7 +38,6 @@ class Game {
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
   std::vector<std::vector<Position> > extendMove(const std::vector<Position> &p) const;
-  void removePiece(const Position &p);
   
   /**
    *  Initialise member variables tracking game state
@@ -96,10 +95,6 @@ public:
    */
   Board getBoard() const{return m_board;}
   
-  void addPiece(const Position &pos,const int player=1, const bool isKing=false);
-  void addPieces(const std::vector<Position> &pos, const int player=1, const bool isKing=false);
-  void addPieces(const std::vector<Position> &p1, const std::vector<Position> &p2, const bool isKing=false);
-  void movePiece(const Position &oldp, const Position &newp);
   void prepareBoard();
   void executeMove(const std::vector<Position> &move);
   
@@ -175,7 +170,7 @@ public:
   bool pieceCanCapture(const Position &p) const;
   bool pieceCanCrown(const Position &p) const;
 
-  std::vector<std::vector<Position> > getMovesFrom(const Position &p, const bool alreadyMoved=false) const;
+  std::vector<std::vector<Position> > getMovesFrom(const Position &p) const;
   std::vector<std::vector<Position> > getMovesForPlayer(const int player) const;
   
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p) const;

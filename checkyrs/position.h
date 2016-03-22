@@ -19,7 +19,9 @@
  *  Doesn't do too much, just holds x,y values and provides readable string
  */
 struct Position {
+  /** x-location */
   int m_x;
+  /** y-location */
   int m_y;
   
   /**

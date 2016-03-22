@@ -8,6 +8,11 @@
 
 #include "square.h"
 
+/**
+ *  Copy-constructor
+ *
+ *  @param s the Square to copy
+ */
 Square::Square(const Square &s){
   m_isKing = s.m_isKing;
   m_isOccupied = s.m_isOccupied;

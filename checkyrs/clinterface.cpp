@@ -90,10 +90,6 @@ void CLInterface::showMenuHelp() const{
  *  Show help for game
  */
 void CLInterface::showGameHelp() const{
-  Game g(5);
-  g.addPiece(Position(0,0));
-  g.addPiece(Position(3,1));
-  g.addPiece(Position(4,2),-1,true);
   Board b(3);
   Position p1p(1,0);
   Position p1k(1,1);
@@ -119,6 +115,12 @@ void CLInterface::showGameHelp() const{
   std::cout << "\nMoves are input in the following format:\n";
   std::cout << BOLD << "<current square> <target square>\n" << RESET;
   std::cout << "for example: \n";
+
+  Board example(5);
+  example.addPiece(Position(0,0));
+  example.addPiece(Position(3,1));
+  example.addPiece(Position(4,2),-1,true);
+  Game g(example);
   printBoard(g.getBoard());
   std::cout << "player 1: " << BOLD << "a1 b2" << RESET << "\n";
   g.executeMove(interpretMove("a1 b2"));
