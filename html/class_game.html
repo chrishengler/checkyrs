@@ -125,14 +125,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a328bec04d1a81b002b588a3b8e8e5fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a315e8c5e42a5c317f90608734270c971"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a315e8c5e42a5c317f90608734270c971">getBoard</a> () const</td></tr>
 <tr class="separator:a315e8c5e42a5c317f90608734270c971"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe2eedf50935d991f933057febd567c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#afe2eedf50935d991f933057febd567c6">addPiece</a> (const <a class="el" href="struct_position.html">Position</a> &amp;pos, const int player=1, const bool isKing=false)</td></tr>
-<tr class="separator:afe2eedf50935d991f933057febd567c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3859b57192d557b772960bbe66e4ee1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a3859b57192d557b772960bbe66e4ee1d">addPieces</a> (const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;pos, const int player=1, const bool isKing=false)</td></tr>
-<tr class="separator:a3859b57192d557b772960bbe66e4ee1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e626c608a1a0881348adfd2d18596d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a3e626c608a1a0881348adfd2d18596d1">addPieces</a> (const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;p1, const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;p2, const bool isKing=false)</td></tr>
-<tr class="separator:a3e626c608a1a0881348adfd2d18596d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a564f68b49a9f74bca1243efb088b7dba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a564f68b49a9f74bca1243efb088b7dba">movePiece</a> (const <a class="el" href="struct_position.html">Position</a> &amp;oldp, const <a class="el" href="struct_position.html">Position</a> &amp;newp)</td></tr>
-<tr class="separator:a564f68b49a9f74bca1243efb088b7dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85fecf85bbe0d135884bfeaee57f550b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a85fecf85bbe0d135884bfeaee57f550b">prepareBoard</a> ()</td></tr>
 <tr class="separator:a85fecf85bbe0d135884bfeaee57f550b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ec982435e05011e717ae58d6f18af05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8ec982435e05011e717ae58d6f18af05">executeMove</a> (const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;move)</td></tr>
@@ -272,130 +264,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="afe2eedf50935d991f933057febd567c6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Game::addPiece </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>isKing</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add a piece to the <a class="el" href="class_board.html">Board</a></p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pos</td><td>where to add the piece </td></tr>
-    <tr><td class="paramname">player</td><td>which player the piece belongs to </td></tr>
-    <tr><td class="paramname">isKing</td><td>whether the piece is a king </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a3859b57192d557b772960bbe66e4ee1d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Game::addPieces </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>isKing</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add several pieces to the board</p>
-<p>Player and kingness are the same for all pieces</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pos</td><td>vector of locations to add the pieces </td></tr>
-    <tr><td class="paramname">player</td><td>which player the pieces belong to </td></tr>
-    <tr><td class="paramname">isKing</td><td>whether the pieces are kings </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a3e626c608a1a0881348adfd2d18596d1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Game::addPieces </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>p1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>p2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>isKing</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add pieces for both players</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p1</td><td>where to add pieces for first player </td></tr>
-    <tr><td class="paramname">p2</td><td>where to add pieces for second player </td></tr>
-    <tr><td class="paramname">isKing</td><td>whether the pieces are kings </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a8ec982435e05011e717ae58d6f18af05"></a>
 <div class="memitem">
 <div class="memproto">
@@ -759,40 +627,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Check if game is 'stale'</p>
 <dl class="section return"><dt>Returns</dt><dd>true if staleness ≥ max staleness </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a564f68b49a9f74bca1243efb088b7dba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Game::movePiece </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>oldp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>newp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Move piece</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">oldp</td><td>starting position </td></tr>
-    <tr><td class="paramname">newp</td><td>ending position </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
