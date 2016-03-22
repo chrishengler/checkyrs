@@ -111,13 +111,13 @@ TEST_CASE("Executing move removes taken pieces"){
   Position p2(1,1);
   b.addPiece(p2,-1);
   Game game(b);
-  REQUIRE( game.getNumPiecesPlayer(1)==1);
-  REQUIRE( game.getNumPiecesPlayer(-1)==1);
+  REQUIRE( game.getBoard().getNumPiecesPlayer(1)==1);
+  REQUIRE( game.getBoard().getNumPiecesPlayer(-1)==1);
   std::vector<std::vector<Position> > possibleMoves = game.getMovesForPlayer(1);
   REQUIRE( game.getMovesForPlayer(1).size()==1);
   game.executeMove( possibleMoves.at(0) );
-  REQUIRE( game.getNumPiecesPlayer(1)==1);
-  REQUIRE( game.getNumPiecesPlayer(-1)==0);
+  REQUIRE( game.getBoard().getNumPiecesPlayer(1)==1);
+  REQUIRE( game.getBoard().getNumPiecesPlayer(-1)==0);
 }
 
 TEST_CASE("Game ends when team has no pieces left"){

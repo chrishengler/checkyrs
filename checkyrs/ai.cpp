@@ -506,11 +506,11 @@ double CheckyrsAI::eval(const Game &g) const{
     }
   }
 
-  int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
-  int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
+  int ai_mat = g.getBoard().getNumPiecesPlayer(g.getCurrentPlayer());
+  int opp_mat = g.getBoard().getNumPiecesPlayer(g.getCurrentPlayer()*-1);
 
-  int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
-  int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer()*-1);
+  int ai_kings = g.getBoard().getNumKingsPlayer(g.getCurrentPlayer());
+  int opp_kings = g.getBoard().getNumKingsPlayer(g.getCurrentPlayer()*-1);
 
   double matratio = opp_mat==0? ai_mat+1 : (double)ai_mat/opp_mat; //check for zero only for unit tests, method won't be called with gameover in actual usage
   double kingratio = opp_kings==0? ai_kings+1 : (double)ai_kings/opp_kings;
@@ -547,11 +547,11 @@ double CheckyrsAI::evaluateGameOver(const Game &g) const{
  *  @return the evaluation of this draw
  */
 double CheckyrsAI::evaluateDraw(const Game &g) const{
-  int ai_mat = g.getNumPiecesPlayer(g.getCurrentPlayer());
-  int opp_mat = g.getNumPiecesPlayer(g.getCurrentPlayer()*-1);
+  int ai_mat = g.getBoard().getNumPiecesPlayer(g.getCurrentPlayer());
+  int opp_mat = g.getBoard().getNumPiecesPlayer(g.getCurrentPlayer()*-1);
   
-  int ai_kings = g.getNumKingsPlayer(g.getCurrentPlayer());
-  int opp_kings = g.getNumKingsPlayer(g.getCurrentPlayer()*-1);
+  int ai_kings = g.getBoard().getNumKingsPlayer(g.getCurrentPlayer());
+  int opp_kings = g.getBoard().getNumKingsPlayer(g.getCurrentPlayer()*-1);
   
   int materialadv = ((ai_mat-opp_mat)*m_materialBonus + (ai_kings-opp_kings)*m_kingBonus);
   if( materialadv < 0 ) return likeatrillion/2.;

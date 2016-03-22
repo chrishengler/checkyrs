@@ -347,11 +347,11 @@ void Game::executeMove(const std::vector<Position> &move){
       }
     }
   }
-  if(getNumPiecesPlayer(1)==0){
+  if(m_board.getNumPiecesPlayer(1)==0){
     m_gameOver = true;
     m_winner = -1;
   }
-  else if(getNumPiecesPlayer(-1)==0){
+  else if(m_board.getNumPiecesPlayer(-1)==0){
     m_gameOver = true;
     m_winner = 1;
   }

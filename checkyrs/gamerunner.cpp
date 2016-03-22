@@ -84,7 +84,7 @@ std::vector<Position> Gamerunner::getNextPlayerMove() const{
   m_cli.printBoard(m_game.getBoard());
   try{
     int evaldepth;
-    int piecesremaining = m_game.getNumPiecesPlayer(m_game.getCurrentPlayer());
+    int piecesremaining = m_game.getBoard().getNumPiecesPlayer(m_game.getCurrentPlayer());
     if(piecesremaining < 5) evaldepth=6;
     else if(piecesremaining < 10) evaldepth=5;
     else evaldepth=4;
@@ -196,5 +196,5 @@ int Gamerunner::getWinner() const{
  *  @return number of pieces player has on board
  */
 int Gamerunner::getPiecesPlayer(const int player) const{
-  return m_game.getNumPiecesPlayer(player);
+  return m_game.getBoard().getNumPiecesPlayer(player);
 }

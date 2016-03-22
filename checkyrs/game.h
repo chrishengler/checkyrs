@@ -146,25 +146,6 @@ public:
    */
   bool isStale() const{ return m_stale; }
   
-  /**
-   *  get number of pieces on board for player
-   *
-   *  Simply calls Board.getNumPiecesPlayer(player)
-   *
-   *  @param player which player to check
-   *  @return number of pieces player has
-   */
-  int getNumPiecesPlayer(const int player) const{ return m_board.getNumPiecesPlayer(player); }
-  /**
-   *  get number of kings on board for player
-   *
-   *  Simply calls Board.getNumKingsPlayer(player)
-   *
-   *  @param player which player to check
-   *  @return number of kings player has
-   */
-  int getNumKingsPlayer(const int player) const{ return m_board.getNumKingsPlayer(player); }
-  
   bool pieceIsThreatened(const Position &p) const;
   int pieceDefence(const Position &p) const;
   bool pieceCanCapture(const Position &p) const;
