@@ -143,10 +143,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a09c8458e50559608eefa673c74edde6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e52d0e22be4c644e68acb5e02fec5f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8e52d0e22be4c644e68acb5e02fec5f3">isStale</a> () const</td></tr>
 <tr class="separator:a8e52d0e22be4c644e68acb5e02fec5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab934446b1988e539d2eda12bebb71ad0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ab934446b1988e539d2eda12bebb71ad0">getNumPiecesPlayer</a> (const int player) const</td></tr>
-<tr class="separator:ab934446b1988e539d2eda12bebb71ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db427f7ed3a16fe55ab8d2bba01f660"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a1db427f7ed3a16fe55ab8d2bba01f660">getNumKingsPlayer</a> (const int player) const</td></tr>
-<tr class="separator:a1db427f7ed3a16fe55ab8d2bba01f660"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8e8beff839d35e8a251f80618eed6bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ae8e8beff839d35e8a251f80618eed6bb">pieceIsThreatened</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
 <tr class="separator:ae8e8beff839d35e8a251f80618eed6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7b0227a8cb1f373b9613277067dcd65"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ad7b0227a8cb1f373b9613277067dcd65">pieceDefence</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
@@ -483,72 +479,6 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vector of all possible moves </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1db427f7ed3a16fe55ab8d2bba01f660"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Game::getNumKingsPlayer </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>get number of kings on board for player</p>
-<p>Simply calls Board.getNumKingsPlayer(player)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">player</td><td>which player to check </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>number of kings player has </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ab934446b1988e539d2eda12bebb71ad0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Game::getNumPiecesPlayer </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>get number of pieces on board for player</p>
-<p>Simply calls Board.getNumPiecesPlayer(player)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">player</td><td>which player to check </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>number of pieces player has </dd></dl>
 
 </div>
 </div>
