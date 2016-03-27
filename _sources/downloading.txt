@@ -1,0 +1,13 @@
+********************
+Downloading Checkyrs
+********************
+
+Checkyrs source code is made available via `a public github repository
+<https://github.com/chrishengler/checkyrs>`_. It can be downloaded through
+the command line:
+
+  ``$ git clone https://github.com/chrishengler/checkyrs ./checkyrs``
+
+Currently there is no Makefile included, but the folder structure containing
+the code is very simple and compiling should not be difficult. Be aware of
+the external dependencies from the Boost library.

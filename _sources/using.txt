@@ -1,0 +1,11 @@
+**************
+Using Checkyrs
+**************
+
+Once checkyrs is installed, simply call it from the command line:
+
+  ``$ ./checkyrs``
+
+It will ask a series of yes or no questions to set up the game correctly.
+
+Type ``help`` at any time for a full description of how to play.

@@ -1,0 +1,5 @@
+Doxygen Documentation
+=====================
+
+Doxygen documentation of the checkyrs code is available
+`here <https://chrishengler.github.io/checkyrs/html>`_.
