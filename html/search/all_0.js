@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['addpiece',['addPiece',['../class_board.html#a40fc96f7033829effc428b4a52276d2b',1,'Board']]],
-  ['addpieces',['addPieces',['../class_board.html#ae75cd20aef9280da9f345e7c63a506b5',1,'Board']]],
+  ['addpiece',['addPiece',['../class_draughts_board.html#ac75dd27b85d101004a00f3fdaf0c1ea2',1,'DraughtsBoard']]],
+  ['addpieces',['addPieces',['../class_draughts_board.html#a2b1407e8125107898c462c17f05e5878',1,'DraughtsBoard']]],
   ['asbits',['asBits',['../class_square.html#ac6eb668fad42d6673cd7708923f705f7',1,'Square']]]
 ];

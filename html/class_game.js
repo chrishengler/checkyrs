@@ -1,11 +1,11 @@
 var class_game =
 [
     [ "Game", "class_game.html#a851382f1a661ffa331897ec69e97d562", null ],
-    [ "Game", "class_game.html#a4db83a8aaf9743aa8f15d6e3c03d9e40", null ],
+    [ "Game", "class_game.html#acc7769b4d69390a3f41c716999a55a63", null ],
     [ "Game", "class_game.html#a328bec04d1a81b002b588a3b8e8e5fb2", null ],
     [ "executeMove", "class_game.html#a8ec982435e05011e717ae58d6f18af05", null ],
     [ "gameOver", "class_game.html#a549cde73db32c59d91f6e7f4fe673d2c", null ],
-    [ "getBoard", "class_game.html#a315e8c5e42a5c317f90608734270c971", null ],
+    [ "getBoard", "class_game.html#a4c5bd214fbd39b7b3158aa62a4380b96", null ],
     [ "getCurrentPlayer", "class_game.html#a742082b6d6afd2864408eb07f8885e76", null ],
     [ "getCurrentTurn", "class_game.html#aed763781d92e458110f9e1cd0b1f39df", null ],
     [ "getJumpedSquares", "class_game.html#a13dca1eaaf902763088a105e27fa2478", null ],

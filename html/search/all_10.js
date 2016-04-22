@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wasjump',['wasJump',['../class_board.html#ac40fca1463c2ddc16ba7571e3426b8f2',1,'Board']]]
+  ['wasjump',['wasJump',['../class_draughts_board.html#a42963f7eab7c9c5f5424742d4a45d9cf',1,'DraughtsBoard']]]
 ];

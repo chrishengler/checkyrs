@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('class_board.html','');});
+$(document).ready(function(){initNavTree('class_draughts_board.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -107,19 +107,23 @@ $(document).ready(function(){initNavTree('class_board.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Board Member List</div>  </div>
+<div class="title">DraughtsBoard Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="class_board.html">Board</a>, including all inherited members.</p>
+<p>This is the complete list of members for <a class="el" href="class_draughts_board.html">DraughtsBoard</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addPiece</b>(const Position &amp;p, const int player=1, const int &amp;type=0) (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>addPieces</b>(const std::vector&lt; Position &gt; &amp;p, const int player=1, const int &amp;type=0) (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_draughts_board.html#ac75dd27b85d101004a00f3fdaf0c1ea2">addPiece</a>(const Position &amp;p, const int player=1, const int &amp;type=0)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_draughts_board.html#a2b1407e8125107898c462c17f05e5878">addPieces</a>(const std::vector&lt; Position &gt; &amp;p, const int player=1, const int &amp;type=0)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Board</b>(const int &amp;size) (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>Board</b>(const Board &amp;board) (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_board.html#a3f4ced6f268efa213d63fb1b18968014">distanceToEdge</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_board.html#ae2187436329833df3c82bf7d0e74ee95">distanceToEnd</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_board.html#aecb3cbad9018e6e186d9c27d6ef1734f">distanceToSide</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_draughts_board.html#a7c043bedd71bd492494d1ae1d22b70be">DraughtsBoard</a>(const DraughtsBoard &amp;board)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_draughts_board.html#a46efcc0370537b4bd2463fdc48f45ecf">DraughtsBoard</a>(const int &amp;size=8)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_draughts_board.html#a9c8459c041208479b4fb84371ff79bc8">getJump</a>(const Position &amp;p1, const Position &amp;p2) const</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_draughts_board.html#aa2c89d46d4279c8c67abc669b56e5816">getNumKingsPlayer</a>(const int player) const</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_board.html#a73ce5805ae92c25255021d4a712a5f97">getNumPiecesPlayer</a>(const int player) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_board.html#a61f540f5fce53c44e59ec039656bc5b0">getPlayer</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_board.html#a72fbd999c7411d051ff3bf4d568f8244">getSize</a>() const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
@@ -128,14 +132,18 @@ $(document).ready(function(){initNavTree('class_board.html','');});
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>m_piecesp1</b> (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>m_piecesp2</b> (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>m_size</b> (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>movePiece</b>(const Position &amp;oldp, const Position &amp;newp) (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_draughts_board.html#a87b662401de85a2dd2a10e0faeaa59ef">movePiece</a>(const Position &amp;oldp, const Position &amp;newp)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_board.html#a2015aa3bbd5c7ba19f37ac2049a4d647">operator!=</a>(const Board &amp;b) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_board.html#abe00b9988a6da41aea04a18c05cadd9a">operator&lt;</a>(const Board &amp;b) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_board.html#a1183a7d72b226c0ec9befdcbcaed205b">operator==</a>(const Board &amp;b) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>removePiece</b>(const Position &amp;p) (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_board.html#a41323325c4bf7068de52b4012c900041">squareExists</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_draughts_board.html#afb0617f18762f93ec50ff53a1426c13a">removePiece</a>(const Position &amp;p)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_draughts_board.html#ad64f8d254ded927a89efec7e5d515862">setKing</a>(const Position &amp;p, const bool isKing=true)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_board.html#a41323325c4bf7068de52b4012c900041">squareExists</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_draughts_board.html#a2635512ad5d6bf6d47000d57c38efc3a">squareHasKing</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_board.html#a4c9789a0bcccb2438c4ae017aea94184">squareIsOccupied</a>(const Position &amp;p) const</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Board</b>() (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_draughts_board.html#a42963f7eab7c9c5f5424742d4a45d9cf">wasJump</a>(const Position &amp;p1, const Position &amp;p2) const</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~Board</b>() (defined in <a class="el" href="class_board.html">Board</a>)</td><td class="entry"><a class="el" href="class_board.html">Board</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~DraughtsBoard</b>() (defined in <a class="el" href="class_draughts_board.html">DraughtsBoard</a>)</td><td class="entry"><a class="el" href="class_draughts_board.html">DraughtsBoard</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

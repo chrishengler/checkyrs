@@ -72,6 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -107,20 +108,30 @@ $(document).ready(function(){initNavTree('class_board.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_board-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Board Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="board_8h_source.html">board.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Board:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_board.png" usemap="#Board_map" alt=""/>
+  <map id="Board_map" name="Board_map">
+<area href="class_draughts_board.html" alt="DraughtsBoard" shape="rect" coords="0,56,97,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a80ecb92c1fca312fda215651d29112d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a80ecb92c1fca312fda215651d29112d3">Board</a> (const <a class="el" href="class_board.html">Board</a> &amp;board)</td></tr>
+<tr class="memitem:ac9803f3d0848606bd9880a74a0c0b737"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9803f3d0848606bd9880a74a0c0b737"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Board</b> (const int &amp;size)</td></tr>
+<tr class="separator:ac9803f3d0848606bd9880a74a0c0b737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ecb92c1fca312fda215651d29112d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80ecb92c1fca312fda215651d29112d3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Board</b> (const <a class="el" href="class_board.html">Board</a> &amp;board)</td></tr>
 <tr class="separator:a80ecb92c1fca312fda215651d29112d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4e7308dbf647cb8f55ec8807088edf1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ae4e7308dbf647cb8f55ec8807088edf1">Board</a> (const int &amp;size=8)</td></tr>
-<tr class="separator:ae4e7308dbf647cb8f55ec8807088edf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72fbd999c7411d051ff3bf4d568f8244"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a72fbd999c7411d051ff3bf4d568f8244">getSize</a> () const</td></tr>
 <tr class="separator:a72fbd999c7411d051ff3bf4d568f8244"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41323325c4bf7068de52b4012c900041"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a41323325c4bf7068de52b4012c900041">squareExists</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
@@ -135,178 +146,45 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3f4ced6f268efa213d63fb1b18968014"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61f540f5fce53c44e59ec039656bc5b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a61f540f5fce53c44e59ec039656bc5b0">getPlayer</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
 <tr class="separator:a61f540f5fce53c44e59ec039656bc5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac40fca1463c2ddc16ba7571e3426b8f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ac40fca1463c2ddc16ba7571e3426b8f2">wasJump</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p1, const <a class="el" href="struct_position.html">Position</a> &amp;p2) const</td></tr>
-<tr class="separator:ac40fca1463c2ddc16ba7571e3426b8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a241dec72d5b2a403de2ae7f1faa597fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_position.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a241dec72d5b2a403de2ae7f1faa597fb">getJump</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p1, const <a class="el" href="struct_position.html">Position</a> &amp;p2) const</td></tr>
-<tr class="separator:a241dec72d5b2a403de2ae7f1faa597fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27006734cc10f555beec8fa4aa8e5a60"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a27006734cc10f555beec8fa4aa8e5a60">squareHasKing</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
-<tr class="separator:a27006734cc10f555beec8fa4aa8e5a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08e580f85b84de2bc37abca7cee26471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a08e580f85b84de2bc37abca7cee26471">setKing</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p, const bool isKing=true)</td></tr>
-<tr class="separator:a08e580f85b84de2bc37abca7cee26471"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40fc96f7033829effc428b4a52276d2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a40fc96f7033829effc428b4a52276d2b">addPiece</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p, const int player=1, const bool isKing=false)</td></tr>
-<tr class="separator:a40fc96f7033829effc428b4a52276d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae75cd20aef9280da9f345e7c63a506b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ae75cd20aef9280da9f345e7c63a506b5">addPieces</a> (const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;p, const int player=1, const bool isKing=false)</td></tr>
-<tr class="separator:ae75cd20aef9280da9f345e7c63a506b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14d9da323898779deecb2b7bfccb2e10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a14d9da323898779deecb2b7bfccb2e10">movePiece</a> (const <a class="el" href="struct_position.html">Position</a> &amp;oldp, const <a class="el" href="struct_position.html">Position</a> &amp;newp)</td></tr>
-<tr class="separator:a14d9da323898779deecb2b7bfccb2e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9647654852f861b104e94686bd28ac1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ab9647654852f861b104e94686bd28ac1">removePiece</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p)</td></tr>
-<tr class="separator:ab9647654852f861b104e94686bd28ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab7c617d60418456a5833b40e8910e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ab7c617d60418456a5833b40e8910e9"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addPiece</b> (const <a class="el" href="struct_position.html">Position</a> &amp;p, const int player=1, const int &amp;type=0)</td></tr>
+<tr class="separator:a0ab7c617d60418456a5833b40e8910e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a252a456daa9f07d7fd90c31ecb1aaafb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a252a456daa9f07d7fd90c31ecb1aaafb"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>addPieces</b> (const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;p, const int player=1, const int &amp;type=0)</td></tr>
+<tr class="separator:a252a456daa9f07d7fd90c31ecb1aaafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61f4510b7e392683697288785ad23df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab61f4510b7e392683697288785ad23df"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>movePiece</b> (const <a class="el" href="struct_position.html">Position</a> &amp;oldp, const <a class="el" href="struct_position.html">Position</a> &amp;newp)</td></tr>
+<tr class="separator:ab61f4510b7e392683697288785ad23df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07c2697c5b0a8e673bf8552f63cd5682"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07c2697c5b0a8e673bf8552f63cd5682"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>removePiece</b> (const <a class="el" href="struct_position.html">Position</a> &amp;p)</td></tr>
+<tr class="separator:a07c2697c5b0a8e673bf8552f63cd5682"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9210baefce763630c0a21c556758072c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_square.html">Square</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a9210baefce763630c0a21c556758072c">getSquare</a> (const <a class="el" href="struct_position.html">Position</a> &amp;p) const</td></tr>
 <tr class="separator:a9210baefce763630c0a21c556758072c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73ce5805ae92c25255021d4a712a5f97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a73ce5805ae92c25255021d4a712a5f97">getNumPiecesPlayer</a> (const int player) const</td></tr>
 <tr class="separator:a73ce5805ae92c25255021d4a712a5f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab685df20d4f443e918f22f1d96f20e3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ab685df20d4f443e918f22f1d96f20e3d">getNumKingsPlayer</a> (const int player) const</td></tr>
-<tr class="separator:ab685df20d4f443e918f22f1d96f20e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1183a7d72b226c0ec9befdcbcaed205b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a1183a7d72b226c0ec9befdcbcaed205b">operator==</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:a1183a7d72b226c0ec9befdcbcaed205b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2015aa3bbd5c7ba19f37ac2049a4d647"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a2015aa3bbd5c7ba19f37ac2049a4d647">operator!=</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:a2015aa3bbd5c7ba19f37ac2049a4d647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe00b9988a6da41aea04a18c05cadd9a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#abe00b9988a6da41aea04a18c05cadd9a">operator&lt;</a> (const <a class="el" href="class_board.html">Board</a> &amp;b) const</td></tr>
 <tr class="separator:abe00b9988a6da41aea04a18c05cadd9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a5644bdc0d08b82f81767c0084cacb87a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5644bdc0d08b82f81767c0084cacb87a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_size</b></td></tr>
+<tr class="separator:a5644bdc0d08b82f81767c0084cacb87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a770e9c315594b321843e60072ff187e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a770e9c315594b321843e60072ff187e2"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_piecesp1</b></td></tr>
+<tr class="separator:a770e9c315594b321843e60072ff187e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedebb8746a247b27f6ee3593eba45a89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedebb8746a247b27f6ee3593eba45a89"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_piecesp2</b></td></tr>
+<tr class="separator:aedebb8746a247b27f6ee3593eba45a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23146cc3dc11adb8fc5078c6b103dba7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23146cc3dc11adb8fc5078c6b103dba7"></a>
+std::vector&lt; std::vector&lt; <a class="el" href="class_square.html">Square</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_board</b></td></tr>
+<tr class="separator:a23146cc3dc11adb8fc5078c6b103dba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_board.html">Board</a> object</p>
-<p><a class="el" href="class_board.html">Board</a> object contains 2D vector of Squares, representing board<br />
-Also tracks number of pieces and number of kings held by each player </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a80ecb92c1fca312fda215651d29112d3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Board::Board </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td>
-          <td class="paramname"><em>board</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Copy constructor</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">board</td><td>the board to copy </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ae4e7308dbf647cb8f55ec8807088edf1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Board::Board </td>
-          <td>(</td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>size</em> = <code>8</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructor for a <a class="el" href="class_board.html">Board</a></p>
-<p>Boards are always square</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">size</td><td>number of columns &amp; rows for this board </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a40fc96f7033829effc428b4a52276d2b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Board::addPiece </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>isKing</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add a piece to a square</p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::out_of_range</td><td>if not a valid <a class="el" href="struct_position.html">Position</a> </td></tr>
-    <tr><td class="paramname">std::runtime_error</td><td>if square is already occupied </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pos</td><td>where to add the piece </td></tr>
-    <tr><td class="paramname">player</td><td>which player this piece should belong to </td></tr>
-    <tr><td class="paramname">isKing</td><td>whether the piece is a king </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ae75cd20aef9280da9f345e7c63a506b5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Board::addPieces </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em> = <code>1</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>isKing</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Add several pieces</p>
-<p>Player and Kingness the same for all added pieces</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p</td><td>vector of Positions to add </td></tr>
-    <tr><td class="paramname">player</td><td>which player these pieces belong to </td></tr>
-    <tr><td class="paramname">isKing</td><td>whether these pieces are kings </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a3f4ced6f268efa213d63fb1b18968014"></a>
 <div class="memitem">
 <div class="memproto">
@@ -376,75 +254,6 @@ Also tracks number of pieces and number of kings held by each player </p>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>how far this square is from the side of the board </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a241dec72d5b2a403de2ae7f1faa597fb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_position.html">Position</a> Board::getJump </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Get the <a class="el" href="struct_position.html">Position</a> of a square jumped over</p>
-<p>Checks that positions are valid and that move is a legitimate jump, then returns the square which was jumped over.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p1</td><td>starting point of move </td></tr>
-    <tr><td class="paramname">p2</td><td>ending point of move </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_position.html">Position</a> of square jumped over </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ab685df20d4f443e918f22f1d96f20e3d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Board::getNumKingsPlayer </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>player</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Get number of kings player has on board</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">player</td><td>which player to check<br />
-'1' is first player, any other value 2nd player </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>number of kings that player has on board </dd></dl>
 
 </div>
 </div>
@@ -567,47 +376,6 @@ Also tracks number of pieces and number of kings held by each player </p>
 
 </div>
 </div>
-<a class="anchor" id="a14d9da323898779deecb2b7bfccb2e10"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Board::movePiece </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>oldp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>newp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Move a piece</p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>if no such piece exists </td></tr>
-    <tr><td class="paramname">std::runtime_error</td><td>if destination is already occupied </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">oldp</td><td>starting position </td></tr>
-    <tr><td class="paramname">newp</td><td>new position </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a2015aa3bbd5c7ba19f37ac2049a4d647"></a>
 <div class="memitem">
 <div class="memproto">
@@ -707,70 +475,6 @@ If no difference in size then loop through each square and return comparison of 
 
 </div>
 </div>
-<a class="anchor" id="ab9647654852f861b104e94686bd28ac1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Board::removePiece </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Remove a piece from the <a class="el" href="class_board.html">Board</a></p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>if square does not exist </td></tr>
-    <tr><td class="paramname">std::runtime_error</td><td>if no piece to remove </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p</td><td>the <a class="el" href="struct_position.html">Position</a> to remove a piece from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a08e580f85b84de2bc37abca7cee26471"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Board::setKing </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>isKing</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Set Kingness of piece on this <a class="el" href="struct_position.html">Position</a></p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p</td><td><a class="el" href="struct_position.html">Position</a> of piece </td></tr>
-    <tr><td class="paramname">isKing</td><td>should the piece be a king? </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a41323325c4bf7068de52b4012c900041"></a>
 <div class="memitem">
 <div class="memproto">
@@ -796,30 +500,6 @@ If no difference in size then loop through each square and return comparison of 
 
 </div>
 </div>
-<a class="anchor" id="a27006734cc10f555beec8fa4aa8e5a60"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Board::squareHasKing </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Check if a square has a king on it</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p</td><td>the <a class="el" href="struct_position.html">Position</a> to check </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if is occupied by a king </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a4c9789a0bcccb2438c4ae017aea94184"></a>
 <div class="memitem">
 <div class="memproto">
@@ -841,41 +521,6 @@ If no difference in size then loop through each square and return comparison of 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if occupied </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ac40fca1463c2ddc16ba7571e3426b8f2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Board::wasJump </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct_position.html">Position</a> &amp;&#160;</td>
-          <td class="paramname"><em>p2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Check if a move was a jump</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p1</td><td>starting point </td></tr>
-    <tr><td class="paramname">p2</td><td>ending point </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if move requires jumping </dd></dl>
 
 </div>
 </div>

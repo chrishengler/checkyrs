@@ -72,6 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -113,18 +114,18 @@ $(document).ready(function(){initNavTree('class_game.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="game_8h_source.html">game.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="draughts_8h_source.html">draughts.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a851382f1a661ffa331897ec69e97d562"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a851382f1a661ffa331897ec69e97d562">Game</a> (const int size=8)</td></tr>
 <tr class="separator:a851382f1a661ffa331897ec69e97d562"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4db83a8aaf9743aa8f15d6e3c03d9e40"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a4db83a8aaf9743aa8f15d6e3c03d9e40">Game</a> (const <a class="el" href="class_board.html">Board</a> &amp;board)</td></tr>
-<tr class="separator:a4db83a8aaf9743aa8f15d6e3c03d9e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc7769b4d69390a3f41c716999a55a63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#acc7769b4d69390a3f41c716999a55a63">Game</a> (const <a class="el" href="class_draughts_board.html">DraughtsBoard</a> &amp;board)</td></tr>
+<tr class="separator:acc7769b4d69390a3f41c716999a55a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a328bec04d1a81b002b588a3b8e8e5fb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a328bec04d1a81b002b588a3b8e8e5fb2">Game</a> (const <a class="el" href="class_game.html">Game</a> &amp;g)</td></tr>
 <tr class="separator:a328bec04d1a81b002b588a3b8e8e5fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a315e8c5e42a5c317f90608734270c971"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a315e8c5e42a5c317f90608734270c971">getBoard</a> () const</td></tr>
-<tr class="separator:a315e8c5e42a5c317f90608734270c971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c5bd214fbd39b7b3158aa62a4380b96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_draughts_board.html">DraughtsBoard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a4c5bd214fbd39b7b3158aa62a4380b96">getBoard</a> () const</td></tr>
+<tr class="separator:a4c5bd214fbd39b7b3158aa62a4380b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85fecf85bbe0d135884bfeaee57f550b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a85fecf85bbe0d135884bfeaee57f550b">prepareBoard</a> ()</td></tr>
 <tr class="separator:a85fecf85bbe0d135884bfeaee57f550b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ec982435e05011e717ae58d6f18af05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8ec982435e05011e717ae58d6f18af05">executeMove</a> (const std::vector&lt; <a class="el" href="struct_position.html">Position</a> &gt; &amp;move)</td></tr>
@@ -197,7 +198,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4db83a8aaf9743aa8f15d6e3c03d9e40"></a>
+<a class="anchor" id="acc7769b4d69390a3f41c716999a55a63"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -207,7 +208,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Game::Game </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_draughts_board.html">DraughtsBoard</a> &amp;&#160;</td>
           <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
         </tr>
@@ -309,7 +310,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a315e8c5e42a5c317f90608734270c971"></a>
+<a class="anchor" id="a4c5bd214fbd39b7b3158aa62a4380b96"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -317,7 +318,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_board.html">Board</a> Game::getBoard </td>
+          <td class="memname"><a class="el" href="class_draughts_board.html">DraughtsBoard</a> Game::getBoard </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -741,8 +742,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>checkyrs/<a class="el" href="game_8h_source.html">game.h</a></li>
-<li>checkyrs/game.cpp</li>
+<li>checkyrs/<a class="el" href="draughts_8h_source.html">draughts.h</a></li>
+<li>checkyrs/draughts.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
