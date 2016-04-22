@@ -13,7 +13,7 @@
 #include <vector>
 #include <functional>
 #include <map>
-#include "board.h"
+#include "draughtsboard.h"
 
 /**
  *  Game class

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <boost/tokenizer.hpp>
-#include "game.h"
+#include "draughts.h"
 
 /**
  *  CLInterface class

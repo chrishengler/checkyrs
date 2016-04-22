@@ -9,7 +9,7 @@
 #include <iostream>
 #include <math.h>
 
-#include "game.h"
+#include "draughts.h"
 
 /**
  *  Sort function to order moves by number of pieces taken

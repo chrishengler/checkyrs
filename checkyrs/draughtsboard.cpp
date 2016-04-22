@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 #include <math.h>
-#include "board.h"
+#include "draughtsboard.h"
 
 /**
  *  Constructor for a Board

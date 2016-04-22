@@ -11,7 +11,7 @@
 #include <iostream>
 #include <random>
 #include "math.h"
-#include "ai.h"
+#include "draughtsai.h"
 
 /**
  *  serialize for Boost library Archive

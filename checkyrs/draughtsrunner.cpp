@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include "gamerunner.h"
+#include "draughtsrunner.h"
 
 
 /**

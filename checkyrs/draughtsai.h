@@ -17,7 +17,7 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 
-#include "game.h"
+#include "draughts.h"
 
 typedef std::pair<std::vector<Position>,double> moveEval;
 typedef boost::mt19937 boost_rng;

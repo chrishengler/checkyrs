@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 #include "game.h"
-#include "ai.h"
-#include "clinterface.h"
+#include "draughtsai.h"
+#include "draughtsclinterface.h"
 
 /**
  *  Gamerunner class

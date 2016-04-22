@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include "boost/algorithm/string.hpp"
-#include "clinterface.h"
+#include "draughtsclinterface.h"
 
 #define KNRM   "\x1B[0m"
 #define KRED   "\x1B[31m"
