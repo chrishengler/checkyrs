@@ -8,13 +8,7 @@
 
 #include <stdio.h>
 #include "catch.hpp"
-#include "gamerunner.h"
-
-TEST_CASE("initialise AIvAI game"){
-  Gamerunner gr;
-  REQUIRE_NOTHROW( gr.initialise() );
-  REQUIRE_NOTHROW( gr.continueGame() );
-}
+#include "draughtsrunner.h"
 
 TEST_CASE("Initialise game with provided AIs"){
   CheckyrsAI ai1;

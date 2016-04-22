@@ -10,11 +10,11 @@
 
 #include <unordered_map>
 
-#include "ai.h"
-#include "game.h"
+#include "draughtsai.h"
+#include "draughts.h"
 
 TEST_CASE("Can copy game"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Game game(b);
@@ -37,7 +37,7 @@ TEST_CASE("test for game equality"){
 }
 
 TEST_CASE("Can get list of possible moves"){
-  Board b;
+  DraughtsBoard b;
   Position firstpiece(0,0);
   b.addPiece(firstpiece);
   Game game(b);
@@ -45,7 +45,7 @@ TEST_CASE("Can get list of possible moves"){
 }
 
 TEST_CASE("List only includes positions on board"){
-  Board b;
+  DraughtsBoard b;
   Position firstpiece(0,0);
   b.addPiece(firstpiece);
   Game game(b);
@@ -53,7 +53,7 @@ TEST_CASE("List only includes positions on board"){
 }
 
 TEST_CASE("Can jump over neighbouring pieces"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2(1,1);
@@ -63,7 +63,7 @@ TEST_CASE("Can jump over neighbouring pieces"){
 }
 
 TEST_CASE("Cannot jump over own pieces"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2(1,1);
@@ -73,7 +73,7 @@ TEST_CASE("Cannot jump over own pieces"){
 }
 
 TEST_CASE("Can make multiple jumps in one move"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2_1(1,1);
@@ -85,7 +85,7 @@ TEST_CASE("Can make multiple jumps in one move"){
 }
 
 TEST_CASE("player 2 pieces move opposite direction"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2(6,6);
@@ -95,7 +95,7 @@ TEST_CASE("player 2 pieces move opposite direction"){
 }
 
 TEST_CASE("Get a player's move options for multiple pieces"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2(2,0);
@@ -105,7 +105,7 @@ TEST_CASE("Get a player's move options for multiple pieces"){
 }
 
 TEST_CASE("Executing move removes taken pieces"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2(1,1);
@@ -121,7 +121,7 @@ TEST_CASE("Executing move removes taken pieces"){
 }
 
 TEST_CASE("Game ends when team has no pieces left"){
-  Board b;
+  DraughtsBoard b;
   Position p1(0,0);
   b.addPiece(p1);
   Position p2(1,1);
@@ -134,7 +134,7 @@ TEST_CASE("Game ends when team has no pieces left"){
 }
 
 TEST_CASE("If jumps available, non-jumping moves not possible"){
-  Board b;
+  DraughtsBoard b;
   Position p1(2,2);
   b.addPiece(p1);
   Position p2(3,3);
@@ -147,7 +147,7 @@ TEST_CASE("If jumps available, non-jumping moves not possible"){
 }
 
 TEST_CASE("Get all moves for player 2"){
-  Board b;
+  DraughtsBoard b;
   Position p1(6,6);
   b.addPiece(p1,-1);
   Position p2(4,6);
@@ -162,7 +162,7 @@ TEST_CASE("Get all moves for player 2"){
 }
 
 TEST_CASE("pieces reaching final rank get kinged"){
-  Board b;
+  DraughtsBoard b;
   Position p1(6,6);
   Position p1target(7,7);
   Position p2(1,1);
@@ -179,7 +179,7 @@ TEST_CASE("pieces reaching final rank get kinged"){
 }
 
 TEST_CASE("mid-move king promotion"){
-  Board b;
+  DraughtsBoard b;
   Position p1(5,5);
   Position p2(4,6);
   Position p3(2,6);
@@ -212,7 +212,7 @@ TEST_CASE("make and prepare game nonstandard size"){
 }
 
 TEST_CASE("check if piece is threatened"){
-  Board b;
+  DraughtsBoard b;
   b.addPiece(Position(0,0));
   b.addPiece(Position(1,1),-1);
   b.addPiece(Position(2,0));
@@ -231,7 +231,7 @@ TEST_CASE("check if piece is threatened"){
 }
 
 TEST_CASE("check piece defence"){
-  Board b;
+  DraughtsBoard b;
   b.addPiece(Position(0,0));
   b.addPiece(Position(1,1));
   b.addPiece(Position(2,2));

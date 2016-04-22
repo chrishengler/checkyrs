@@ -419,9 +419,9 @@ double CheckyrsAI::eval(const Game &g) const{
   if(g.gameOver()){
     return evaluateGameOver(g);
   }
-  Board b=g.getBoard();
+  DraughtsBoard b=g.getBoard();
   double value = 0;
-  double thissquare = 0;
+  double thissquare;
 
   int boardsize = b.getSize();
 
@@ -431,6 +431,7 @@ double CheckyrsAI::eval(const Game &g) const{
     for(int jj=0;jj<boardsize;jj++){
       Position p = (m_player==1 ? Position(ii,jj) : Position( (boardsize-1)-ii , (boardsize-1)-jj )); //loop rows in reverse order if p2
       if(b.squareIsOccupied(p)){
+        thissquare = 0;
         //get a bunch of values once rather than calling methods over and over
         bool isKing = b.squareHasKing(p);
         bool isCurrentPlayer = (b.getPlayer(p) == g.getCurrentPlayer());
@@ -501,7 +502,6 @@ double CheckyrsAI::eval(const Game &g) const{
         }
         thissquare *= m_defOffset+(m_defWeight*def);
         value += thissquare;
-        thissquare = 0;
       }
     }
   }

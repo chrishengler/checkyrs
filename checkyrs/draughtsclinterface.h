@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#ifndef __checkyrs__clinterface__
-#define __checkyrs__clinterface__
+#ifndef __checkyrs__draughtsclinterface__
+#define __checkyrs__draughtsclinterface__
 
 #include <stdio.h>
 #include <boost/tokenizer.hpp>
@@ -40,4 +40,4 @@ public:
   
   std::vector<Position> getMove(const Game &g) const;
 };
-#endif /* defined(__checkyrs__clinterface__) */
+#endif /* defined(__checkyrs__draughtsclinterface__) */

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#ifndef __checkyrs__ai__
-#define __checkyrs__ai__
+#ifndef __checkyrs__draughtsai__
+#define __checkyrs__draughtsai__
 
 #include <stdio.h>
 #include <string>
@@ -210,4 +210,4 @@ public:
   void save(const std::string &filename);
   void load(const std::string &filename);
 };
-#endif /* defined(__checkyrs__ai__) */
+#endif /* defined(__checkyrs__draughtsai__) */

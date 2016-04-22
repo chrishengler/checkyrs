@@ -90,7 +90,7 @@ void CLInterface::showMenuHelp() const{
  *  Show help for game
  */
 void CLInterface::showGameHelp() const{
-  Board b(3);
+  DraughtsBoard b(3);
   Position p1p(1,0);
   Position p1k(1,1);
   Position p2p(2,0);
@@ -116,7 +116,7 @@ void CLInterface::showGameHelp() const{
   std::cout << BOLD << "<current square> <target square>\n" << RESET;
   std::cout << "for example: \n";
 
-  Board example(5);
+  DraughtsBoard example(5);
   example.addPiece(Position(0,0));
   example.addPiece(Position(3,1));
   example.addPiece(Position(4,2),-1,true);

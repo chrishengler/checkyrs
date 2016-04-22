@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#ifndef __checkyrs__gamerunner__
-#define __checkyrs__gamerunner__
+#ifndef __checkyrs__draughtsrunner__
+#define __checkyrs__draughtsrunner__
 
 #include <stdio.h>
-#include "game.h"
+#include "draughts.h"
 #include "draughtsai.h"
 #include "draughtsclinterface.h"
 
@@ -58,4 +58,4 @@ public:
   int getPiecesPlayer(const int player=1) const;
 };
 
-#endif /* defined(__checkyrs__gamerunner__) */
+#endif /* defined(__checkyrs__draughtsrunner__) */

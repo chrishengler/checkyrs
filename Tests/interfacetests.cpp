@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include "catch.hpp"
-#include "clinterface.h"
+#include "draughtsclinterface.h"
 
 TEST_CASE("print square"){
   CLInterface interface;

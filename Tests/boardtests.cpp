@@ -9,28 +9,28 @@
 #include <unordered_map>
 
 #include "catch.hpp"
-#include "board.h"
+#include "draughtsboard.h"
 
 TEST_CASE("Board can be created"){
   
-  Board board;
+  DraughtsBoard board;
   REQUIRE(&board!=0);
 }
 
 TEST_CASE("Board has correct size"){
-  Board board(6);
+  DraughtsBoard board(6);
   REQUIRE(board.getSize()==6);
 }
 
 TEST_CASE("Piece can be placed on board"){
-  Board board;
+  DraughtsBoard board;
   Position p(0,0);
   board.addPiece(p);
   REQUIRE(board.squareIsOccupied(p));
 }
 
 TEST_CASE("Can add multiple pieces at once"){
-  Board board;
+  DraughtsBoard board;
   Position p(0,0);
   Position p2(1,1);
   std::vector<Position> pieces = {p,p2};
@@ -40,7 +40,7 @@ TEST_CASE("Can add multiple pieces at once"){
 }
 
 TEST_CASE("Piece can be moved"){
-  Board board;
+  DraughtsBoard board;
   Position initial(0,0);
   Position destination(1,1);
   board.addPiece(initial);
@@ -50,12 +50,12 @@ TEST_CASE("Piece can be moved"){
 }
 
 TEST_CASE("Exception thrown if piece added off board"){
-  Board board;
+  DraughtsBoard board;
   REQUIRE_THROWS_AS(board.addPiece(Position(-2,-2)),std::out_of_range);
 }
 
 TEST_CASE("Out of range exception thrown if piece moved off board"){
-  Board board;
+  DraughtsBoard board;
   Position initial(0,0);
   board.addPiece(initial);
   Position destination(-2,-2);
@@ -63,28 +63,28 @@ TEST_CASE("Out of range exception thrown if piece moved off board"){
 }
 
 TEST_CASE("Can check for occupation of square"){
-  Board board;
+  DraughtsBoard board;
   Position p(0,0);
   board.addPiece(p);
   REQUIRE(board.squareIsOccupied(p) == true);
 }
 
 TEST_CASE("Cannot add piece to occupied square"){
-  Board board;
+  DraughtsBoard board;
   Position p(0,0);
   board.addPiece(p);
   REQUIRE_THROWS_AS(board.addPiece(p),std::runtime_error);
 }
 
 TEST_CASE("Cannot move piece that does not exist"){
-  Board board;
+  DraughtsBoard board;
   Position initial(0,0);
   Position destination(1,1);
   REQUIRE_THROWS_AS(board.movePiece(initial,destination),std::runtime_error);
 }
 
 TEST_CASE("Cannot move piece to occupied square"){
-  Board board;
+  DraughtsBoard board;
   Position firstpiece(0,0);
   board.addPiece(firstpiece);
   Position secondpiece(1,1);
@@ -93,7 +93,7 @@ TEST_CASE("Cannot move piece to occupied square"){
 }
 
 TEST_CASE("Can check if move involves jump"){
-  Board board;
+  DraughtsBoard board;
   Position p1(0,0);
   Position p2(1,1);
   Position p3(2,2);
@@ -102,7 +102,7 @@ TEST_CASE("Can check if move involves jump"){
 }
 
 TEST_CASE("Can check which square was jumped"){
-  Board board;
+  DraughtsBoard board;
   Position p1(0,0);
   Position p2(1,1);
   Position p3(2,2);
@@ -112,7 +112,7 @@ TEST_CASE("Can check which square was jumped"){
 }
 
 TEST_CASE("check number of kings"){
-  Board board;
+  DraughtsBoard board;
   REQUIRE( board.getNumKingsPlayer(1) == 0 );
   REQUIRE( board.getNumKingsPlayer(-1) == 0);
   Position p1(0,0);
@@ -128,8 +128,8 @@ TEST_CASE("check number of kings"){
 }
 
 TEST_CASE("test equality of boards"){
-  Board b1;
-  Board b2;
+  DraughtsBoard b1;
+  DraughtsBoard b2;
   REQUIRE( b1 == b2 );
   REQUIRE_FALSE( b1!=b2 );
   Position p1(0,0);
@@ -143,10 +143,10 @@ TEST_CASE("test equality of boards"){
 
 
 TEST_CASE("create/fill/examine unordered map of games"){
-  Board b1;
-  Board b2;
-  Board b3;
-  Board b4;
+  DraughtsBoard b1;
+  DraughtsBoard b2;
+  DraughtsBoard b3;
+  DraughtsBoard b4;
   Position p1(0,0);
   Position p2(2,2);
   Position p3(3,3);
@@ -154,7 +154,7 @@ TEST_CASE("create/fill/examine unordered map of games"){
   b2.addPiece(p2);
   b3.addPiece(p3);
   b4.addPiece(p1);
-  std::unordered_map<Board, int> boards;
+  std::unordered_map<DraughtsBoard, int> boards;
   REQUIRE_NOTHROW( boards.emplace(b1,1) );
   REQUIRE_NOTHROW( boards.emplace(b2,1) );
   REQUIRE( boards.find(b3) == boards.end() );

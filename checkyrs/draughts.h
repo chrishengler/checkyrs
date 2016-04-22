@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 chrysics. All rights reserved.
 //
 
-#ifndef __checkyrs__game__
-#define __checkyrs__game__
+#ifndef __checkyrs__draughts__
+#define __checkyrs__draughts__
 
 #include <stdio.h>
 #include <vector>
@@ -23,7 +23,7 @@
  *  how close the game is to a draw being forced
  */
 class Game {
-  Board m_board;
+  DraughtsBoard m_board;
   mutable bool m_gameOver;
   mutable int m_winner;
   int m_currentPlayer;
@@ -60,14 +60,14 @@ public:
    */
   Game(const int size=8){
     initMembers();
-    m_board=Board::Board(size);
+    m_board=DraughtsBoard::DraughtsBoard(size);
   }
   /**
    *  Constructor copying board
    *
    *  @param board the Board object will be copied as the initial board state at game start
    */
-  Game(const Board &board){
+  Game(const DraughtsBoard &board){
     initMembers();
     m_board=board;
   };
@@ -93,7 +93,7 @@ public:
    *
    *  @return the Board
    */
-  Board getBoard() const{return m_board;}
+  DraughtsBoard getBoard() const{return m_board;}
   
   void prepareBoard();
   void executeMove(const std::vector<Position> &move);
@@ -178,4 +178,4 @@ public:
     return !(*this==g);
   }
 };
-#endif /* defined(__checkyrs__game__) */
+#endif /* defined(__checkyrs__draughts__) */
