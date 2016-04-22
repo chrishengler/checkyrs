@@ -170,8 +170,8 @@ void CheckyrsAI::randomiseDouble(double *var, const double min, const double max
  *  @param max the maximum possible value
  */
 void CheckyrsAI::randomiseDoubles(std::vector<double*> &vars, const double min, const double max){
-  for(int ii=0;ii<vars.size();ii++){
-    randomiseDouble(vars.at(ii),min,max);
+  for(auto ii: vars){
+    randomiseDouble(ii,min,max);
   }
 }
 
@@ -198,8 +198,8 @@ void CheckyrsAI::randomiseInt(int *var, const int min, const int max){
  *  @param max the maximum possible value
  */
 void CheckyrsAI::randomiseInts(std::vector<int*> &vars, const int min, const int max){
-  for(int ii=0;ii<vars.size();ii++){
-    randomiseInt(vars.at(ii),min,max);
+  for(auto ii: vars){
+    randomiseInt(ii,min,max);
   }
 }
 
@@ -577,13 +577,13 @@ double CheckyrsAI::evalNode(const Game &g) const{
       }
       return (g.getWinner()==g.getCurrentPlayer()) ? likeatrillion : -likeatrillion;
     }
-    for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+    for(auto pos: p){
       double value=0;
       Game newstate(g);
-      newstate.executeMove(*p_iter);
+      newstate.executeMove(pos);
 
       value=eval(newstate);
-      evals.push_back(std::make_pair(*p_iter, value));
+      evals.push_back(std::make_pair(pos, value));
     }
     if(g.getCurrentPlayer()!=m_player){
       std::sort(evals.begin(),evals.end(),sortMoveEvalsReverse); //sort reverse, assume opponent makes best move
@@ -617,13 +617,13 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer(m_player);
     std::cout << "AI player " << (m_player==1? "1" : "2") << " is thinking: " << p.size() << " initial moves from this point\n";
     if(p.size()==1) return std::make_pair(p.at(0),likeatrillion); //don't waste time evaluating tree if there's only one branch
-    for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+    for(auto move: p){
       Game newstate(g);
-      newstate.executeMove((*p_iter));
+      newstate.executeMove(move);
       double value;
       if(newstate.gameOver()) value = -evaluateGameOver(newstate);
       else value = -negamax(newstate, depth-1, -beta, -alpha);
-      moves.push_back(std::make_pair((*p_iter),value));
+      moves.push_back(std::make_pair(move,value));
     }
   }
   catch(std::exception &e){
@@ -656,9 +656,9 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
     if(g.gameOver()){
       return evaluateDraw(g);
     }
-    for(std::vector<std::vector<Position> >::iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
+    for(auto pos: p){
       Game newstate(g);
-      newstate.executeMove(*p_iter);
+      newstate.executeMove(pos);
       alpha = fmax(alpha,-negamax(newstate,depth-1, -beta, -alpha));
       if(alpha>=beta) break;
     }

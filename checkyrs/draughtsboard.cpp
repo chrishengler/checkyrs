@@ -12,11 +12,11 @@
 #include "draughtsboard.h"
 
 /**
- *  Constructor for a Board
+ *  Constructor for a DraughtsBoard
  *  
- *  Boards are always square
+ *  DraughtsBoards are always square
  *
- *  @param size number of columns & rows for this board
+ *  @param size number of columns & rows for this DraughtsBoard
  */
 DraughtsBoard::DraughtsBoard(const int &size) : Board(size){
   
@@ -28,7 +28,7 @@ DraughtsBoard::DraughtsBoard(const int &size) : Board(size){
 /**
  *  Copy constructor
  *
- *  @param board the board to copy
+ *  @param board the DraughtsBoard to copy
  */
 DraughtsBoard::DraughtsBoard(const DraughtsBoard &board) : Board(board){
   m_size=board.m_size;
@@ -162,8 +162,8 @@ void DraughtsBoard::addPiece(const Position &pos,const int player, const int &ty
  *  @param isKing whether these pieces are kings
  */
 void DraughtsBoard::addPieces(const std::vector<Position> &p,const int player, const int &type){
-  for(std::vector<Position>::const_iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
-    addPiece(*p_iter,player,type);
+  for(auto pos: p){
+    addPiece(pos,player,type);
   }
 }
 
@@ -195,7 +195,7 @@ void DraughtsBoard::movePiece(const Position &oldp, const Position &newp){
 
 
 /**
- *  Remove a piece from the Board
+ *  Remove a piece from the DraughtsBoard
  *
  *  @throw std::runtime_error if square does not exist
  *  @throw std::runtime_error if no piece to remove

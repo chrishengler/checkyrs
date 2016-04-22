@@ -30,13 +30,6 @@ public:
   DraughtsBoard(const DraughtsBoard &board);
   DraughtsBoard(const int &size=8); //default 8x8 board, but let's leave the prospect of other sizes available
   
-  /**
-   *  Return the size of the Board
-   *
-   *  @return the size of the board
-   */
-  int getSize() const{return m_size;}
-  
   bool wasJump(const Position &p1, const Position &p2) const;
   Position getJump(const Position &p1, const Position &p2) const;
   
@@ -70,7 +63,7 @@ namespace std{
     /**
      * () operator for hash
      *
-     *  @param b Board to be hashed
+     *  @param b DraughtsBoard to be hashed
      *  @return hash
      */
     size_t operator()(const DraughtsBoard &b) const{

@@ -64,6 +64,7 @@ public:
    */
   inline bool operator==(const Board &b) const{
     for(int ii=0;ii<m_size;ii++){
+      //only even-even and odd-odd positions are valid, don't bother checking others
       for(int jj=( ii%2 == 0 ? 0 : 1); jj<m_size;jj++){
         Position p(ii,jj);
         if(this->getSquare(p)!=b.getSquare(p)) return false;
@@ -73,24 +74,24 @@ public:
   }
   
   /**
-   *  Not-quals operator for DraughtsBoard objects
+   *  Not-quals operator for Board objects
    *
-   *  @param b DraughtsBoard for comparison
-   *  @return true if DraughtsBoards are not the same
+   *  @param b Board for comparison
+   *  @return true if Boards are not the same
    */
   inline bool operator!=(const Board &b) const{
     return !(*this==b);
   }
   
   /**
-   *  Less than operator for DraughtsBoards
+   *  Less than operator for Boards
    *
    *  Actual ordering is arbitrary, but some comparison needed to be able to use in std::map\n
    *  Test size, smaller board considered smaller.\n
    *  If no difference in size then loop through each square and return comparison of
    *  first square where boards differ
    *
-   *  @param b DraughtsBoard for comparison
+   *  @param b Board for comparison
    *  @return according to description above
    */
   inline bool operator<(const Board &b) const{
