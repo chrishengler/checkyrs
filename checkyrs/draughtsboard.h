@@ -24,6 +24,7 @@
  *  Also tracks number of pieces and number of kings held by each player
  */
 class DraughtsBoard : public Board {
+  
   int m_kingsp1, m_kingsp2;
   
 public:
@@ -38,7 +39,6 @@ public:
 
   void addPiece(const Position &p,const int player=1, const int &type=0);
   void addPieces(const std::vector<Position> &p, const int player=1, const int &type=0);
-  void movePiece(const Position &oldp, const Position &newp);
   void removePiece(const Position &p);
 
   /**

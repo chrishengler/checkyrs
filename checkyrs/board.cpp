@@ -8,6 +8,13 @@
 
 #include "board.h"
 
+/**
+ *  Constructor for new board with given size
+ *
+ *  Boards are always square
+ *
+ *  @param size the number of rows & columns this board should have
+ */
 Board::Board(const int &size){
 
   m_size=size;
@@ -25,6 +32,11 @@ Board::Board(const int &size){
   
 }
 
+/**
+ *  Board copy-constructor
+ *
+ *  @param board the Board to copy
+ */
 Board::Board(const Board &board){
   
   m_size=board.m_size;
@@ -139,8 +151,6 @@ int Board::getPlayer(const Position &p) const{
   return m_board[p.m_x][p.m_y].getPlayer();
 }
 
-
-
 /**
  *  Return a square from the board
  *
@@ -160,4 +170,31 @@ Square Board::getSquare(const Position &p) const{
    throw std::runtime_error(errmsg);
    }*/
   return m_board[p.m_x][p.m_y];
+}
+
+
+
+/**
+ *  Move a piece
+ *
+ *  @throw std::runtime_error if no such piece exists
+ *  @throw std::runtime_error if destination is already occupied
+ *  @param oldp starting position
+ *  @param newp new position
+ */
+void Board::movePiece(const Position &oldp, const Position &newp){
+  if(!(squareIsOccupied(oldp))){
+    std::string errmsg("Tried to move non-existent piece:");
+    errmsg+=oldp.toString();
+    throw std::runtime_error(errmsg);
+  }
+  else if(squareIsOccupied(newp)){
+    std::string errmsg("Tried to move to occupied square:");
+    errmsg+=newp.toString();
+    throw std::runtime_error(errmsg);
+  }
+  else{
+    m_board[newp.m_x][newp.m_y]=m_board[oldp.m_x][oldp.m_y];
+    m_board[oldp.m_x][oldp.m_y]=Square::Square();
+  }
 }

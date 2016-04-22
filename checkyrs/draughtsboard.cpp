@@ -133,7 +133,7 @@ bool DraughtsBoard::squareHasKing(const Position &p) const{
  *  @throw std::runtime_error if square is already occupied
  *  @param pos where to add the piece
  *  @param player which player this piece should belong to
- *  @param isKing whether the piece is a king
+ *  @param type whether the piece is a king
  */
 void DraughtsBoard::addPiece(const Position &pos,const int player, const int &type){
   if(!squareExists(pos) || !squareExists(pos)){
@@ -159,40 +159,13 @@ void DraughtsBoard::addPiece(const Position &pos,const int player, const int &ty
  *
  *  @param p vector of Positions to add
  *  @param player which player these pieces belong to
- *  @param isKing whether these pieces are kings
+ *  @param type whether these pieces are kings
  */
 void DraughtsBoard::addPieces(const std::vector<Position> &p,const int player, const int &type){
   for(auto pos: p){
     addPiece(pos,player,type);
   }
 }
-
-
-/**
- *  Move a piece
- *
- *  @throw std::runtime_error if no such piece exists
- *  @throw std::runtime_error if destination is already occupied
- *  @param oldp starting position
- *  @param newp new position
- */
-void DraughtsBoard::movePiece(const Position &oldp, const Position &newp){
-  if(!(squareIsOccupied(oldp))){
-    std::string errmsg("Tried to move non-existent piece:");
-    errmsg+=oldp.toString();
-    throw std::runtime_error(errmsg);
-  }
-  else if(squareIsOccupied(newp)){
-    std::string errmsg("Tried to move to occupied square:");
-    errmsg+=newp.toString();
-    throw std::runtime_error(errmsg);
-  }
-  else{
-    m_board[newp.m_x][newp.m_y]=m_board[oldp.m_x][oldp.m_y];
-    m_board[oldp.m_x][oldp.m_y]=Square::Square();
-  }
-}
-
 
 /**
  *  Remove a piece from the DraughtsBoard
