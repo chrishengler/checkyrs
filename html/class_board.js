@@ -12,7 +12,7 @@ var class_board =
     [ "getPlayer", "class_board.html#a61f540f5fce53c44e59ec039656bc5b0", null ],
     [ "getSize", "class_board.html#a72fbd999c7411d051ff3bf4d568f8244", null ],
     [ "getSquare", "class_board.html#a9210baefce763630c0a21c556758072c", null ],
-    [ "movePiece", "class_board.html#ab61f4510b7e392683697288785ad23df", null ],
+    [ "movePiece", "class_board.html#a14d9da323898779deecb2b7bfccb2e10", null ],
     [ "operator!=", "class_board.html#a2015aa3bbd5c7ba19f37ac2049a4d647", null ],
     [ "operator<", "class_board.html#abe00b9988a6da41aea04a18c05cadd9a", null ],
     [ "operator==", "class_board.html#a1183a7d72b226c0ec9befdcbcaed205b", null ],
