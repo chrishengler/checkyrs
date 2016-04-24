@@ -20,9 +20,9 @@ int main(int argc, const char * argv[]) {
   }
   while(play){
     try{
-      Gamerunner gr;
-      gr.initialise();
-      while(gr.continueGame()){      };
+      DraughtsRunner runner;
+      runner.initialise();
+      while(runner.continueGame()){      };
       play = cli.yn("\n\nnew game? (y/n)");
     }
     catch(std::exception &e){

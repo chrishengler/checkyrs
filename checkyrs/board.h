@@ -63,7 +63,7 @@ public:
    *  @param player which player the piece belongs to
    *  @param type int form of enum representing the type of piece
    */
-  virtual void addPiece(const Position &p,const int player=1, const int &type=0);
+  virtual void addPiece(const Position &p,const int player=1, const int &type=0) {};
   
   /**
    *  Add several pieces
@@ -76,7 +76,7 @@ public:
    *  @param player which player these pieces belong to
    *  @param type whether these pieces are kings
    */
-  virtual void addPieces(const std::vector<Position> &p, const int player=1, const int &type=0);
+  virtual void addPieces(const std::vector<Position> &p, const int player=1, const int &type=0) {};
   
   /**
    *  Remove a piece from the Board
@@ -88,7 +88,7 @@ public:
    *  @throw std::runtime_error if no piece to remove
    *  @param p the Position to remove a piece from
    */
-  virtual void removePiece(const Position &p);
+  virtual void removePiece(const Position &p) {};
   
   Square getSquare(const Position &p) const;
   
