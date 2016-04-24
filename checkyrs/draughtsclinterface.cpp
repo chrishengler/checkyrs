@@ -120,7 +120,7 @@ void CLInterface::showGameHelp() const{
   example.addPiece(Position(0,0));
   example.addPiece(Position(3,1));
   example.addPiece(Position(4,2),-1,true);
-  Game g(example);
+  Draughts g(example);
   printBoard(g.getBoard());
   std::cout << "player 1: " << BOLD << "a1 b2" << RESET << "\n";
   g.executeMove(interpretMove("a1 b2"));
@@ -350,7 +350,7 @@ std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
  *  @param g Game in which move is to be played
  *  @return true if move is legal, false otherwise
  */
-bool CLInterface::validateMove(const std::vector<Position> &p, const Game &g) const{
+bool CLInterface::validateMove(const std::vector<Position> &p, const Draughts &g) const{
   std::vector<std::vector<Position> > legalmoves = g.getMovesForPlayer(g.getCurrentPlayer());
   if(legalmoves.size()==0){
     std::string errmsg("no legal moves!\n");
@@ -371,7 +371,7 @@ bool CLInterface::validateMove(const std::vector<Position> &p, const Game &g) co
  *  @param g Game for which move is being requested
  *  @return valid move
  */
-std::vector<Position> CLInterface::getMove(const Game &g) const{
+std::vector<Position> CLInterface::getMove(const Draughts &g) const{
   std::string input;
   std::vector<Position> move;
   bool valid=false;

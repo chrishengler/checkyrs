@@ -164,11 +164,6 @@ Square Board::getSquare(const Position &p) const{
     errmsg+=p.toString();
     throw std::runtime_error(errmsg);
   }
-  /*if(!squareIsOccupied(p)){
-   std::string errmsg("Tried to get piece from empty square");
-   errmsg+=p.toString();
-   throw std::runtime_error(errmsg);
-   }*/
   return m_board[p.m_x][p.m_y];
 }
 

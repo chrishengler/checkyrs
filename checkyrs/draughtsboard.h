@@ -49,6 +49,58 @@ public:
    */
   int getNumKingsPlayer(const int player) const{return player==1 ? m_kingsp1 : m_kingsp2;}
   
+  /**
+   *  Equals operator for DraughtsBoard objects
+   *
+   *  @param b DraughtsBoard for comparison
+   *  @return true if DraughtsBoards are the same
+   */
+  inline bool operator==(const DraughtsBoard &b) const{
+    for(int ii=0;ii<m_size;ii++){
+      //only even-even and odd-odd positions are valid, don't bother checking others
+      for(int jj=( ii%2 == 0 ? 0 : 1); jj<m_size;jj++){
+        Position p(ii,jj);
+        if(this->getSquare(p)!=b.getSquare(p)){
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  
+  /**
+   *  Not-equals operator for DraughtsBoard objects
+   *
+   *  @param b DraughtsBoard for comparison
+   *  @return true if DraughtsBoards are not the same
+   */
+  inline bool operator!=(const DraughtsBoard &b) const{
+    return !(*this==b);
+  }
+  
+  /**
+   *  Less than operator for DraughtsBoards
+   *
+   *  Actual ordering is arbitrary, but some comparison needed to be able to use in std::map\n
+   *  Test size, smaller board considered smaller.\n
+   *  If no difference in size then loop through each square and return comparison of
+   *  first square where boards differ
+   *
+   *  @param b DraughtsBoard for comparison
+   *  @return according to description above
+   */
+   inline bool operator<(const DraughtsBoard &b) const{
+    
+    if(m_size!=b.getSize()) return (m_size<b.getSize());
+    for(int ii=0;ii<m_size;ii++){
+      for(int jj=0; jj<m_size;jj++){
+        Position p(ii,jj);
+        if(getSquare(p) == b.getSquare(p)) continue;
+        else return (getSquare(p) < b.getSquare(p));
+      }
+    }
+    return false;
+  }
   
   virtual ~DraughtsBoard(){};
   

@@ -13,7 +13,11 @@
 #include <vector>
 #include <functional>
 #include <map>
+
+#include "game.h"
+
 #include "draughtsboard.h"
+
 
 /**
  *  Game class
@@ -22,22 +26,15 @@
  *  variables such as whether the game is over, which player's turn is next,
  *  how close the game is to a draw being forced
  */
-class Game {
+class Draughts: public Game {
+protected:
   DraughtsBoard m_board;
-  mutable bool m_gameOver;
-  mutable int m_winner;
-  int m_currentPlayer;
-  int m_staleness;
-  int m_maxStaleness;
-  bool m_stale;
-  
-  int m_turn;
-  
-  std::map<Board,int> m_paststates;
   
   std::vector<Position> getJumpsFrom(const Position &p) const;
   std::vector<Position> getSingleMovesFrom(const Position &p) const;
   std::vector<std::vector<Position> > extendMove(const std::vector<Position> &p) const;
+  
+  std::map<DraughtsBoard,int> m_paststates;
   
   /**
    *  Initialise member variables tracking game state
@@ -58,25 +55,25 @@ public:
    *
    *  @param size size of board
    */
-  Game(const int size=8){
-    initMembers();
-    m_board=DraughtsBoard::DraughtsBoard(size);
+  Draughts(const int size=8): Game(size){
+    m_board = DraughtsBoard(size);
   }
   /**
    *  Constructor copying board
    *
    *  @param board the Board object will be copied as the initial board state at game start
    */
-  Game(const DraughtsBoard &board){
+  Draughts(const DraughtsBoard &board): Game( board.getSize() ){
+    m_board = DraughtsBoard(board);
     initMembers();
-    m_board=board;
   };
+  
   /**
    *  Copy constructor
    *
    *  @param g Game object to be copied
    */
-  Game(const Game &g){
+  Draughts(const Draughts &g) : Game( g.m_board.getSize() ){
     m_board         = g.m_board;
     m_gameOver      = g.m_gameOver;
     m_winner        = g.m_winner;
@@ -91,7 +88,7 @@ public:
   /**
    *  Get board
    *
-   *  @return the Board
+   *  @return the DraughtsBoard
    */
   DraughtsBoard getBoard() const{return m_board;}
   
@@ -157,6 +154,18 @@ public:
   std::vector<Position> getJumpedSquares(const std::vector<Position> &p) const;
   
   /**
+   *  Returns the number of pieces held by the player
+   *
+   *  Virtual, should be implemented by inheriting class
+   *
+   *  @param player which player to check
+   *  @return number of pieces player has on board
+   */
+  int getNumPiecesPlayer(const int &player) const{
+    return m_board.getNumPiecesPlayer(player);
+  }
+
+  /**
    *  Equals operator for Game objects
    *
    *  Only checks board positions and current player
@@ -164,7 +173,7 @@ public:
    *  @param g Game for comparison
    *  @return true if Games are equal as defined above, false otherwise
    */
-  inline bool operator==(const Game &g) const{
+  inline bool operator==(const Draughts &g) const{
     if(m_currentPlayer != g.m_currentPlayer) return false;
     else return m_board==g.m_board;
   }
@@ -174,8 +183,10 @@ public:
    *  @param g Game for comparison
    *  @return opposite of ==
    */
-  inline bool operator!=(const Game &g) const{
+  inline bool operator!=(const Draughts &g) const{
     return !(*this==g);
   }
+  
+  virtual ~Draughts() { };
 };
 #endif /* defined(__checkyrs__draughts__) */

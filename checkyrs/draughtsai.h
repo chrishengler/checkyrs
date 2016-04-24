@@ -170,11 +170,11 @@ class CheckyrsAI {
   void randomiseInts(std::vector<int*> &vars, const int min=0, const int max=7);
   void randomOrderedIntPair(std::pair<int*,int*> &vars, const int min=0, const int max=7);
 
-  double negamax(Game g, const int depth, double alpha, double beta) const;
-  double evalNode(const Game &g) const;
+  double negamax(Draughts g, const int depth, double alpha, double beta) const;
+  double evalNode(const Draughts &g) const;
   
-  double evaluateGameOver(const Game &g) const;
-  double evaluateDraw(const Game &g) const;
+  double evaluateGameOver(const Draughts &g) const;
+  double evaluateDraw(const Draughts &g) const;
   
 public:
   CheckyrsAI(const int player=1);
@@ -185,8 +185,8 @@ public:
   
   void randomiseAI();
   
-  double eval(const Game &g) const;
-  moveEval rootNegamax(const Game &g, const int depth) const;
+  double eval(const Draughts &g) const;
+  moveEval rootNegamax(const Draughts &g, const int depth) const;
   
   /**
    *  Set Player

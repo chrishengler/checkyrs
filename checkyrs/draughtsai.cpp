@@ -415,11 +415,11 @@ CheckyrsAI CheckyrsAI::breed(const CheckyrsAI &p2, float mutate){
  *  @param g the Game which is to be evaluated
  *  @return evaluation of this position
  */
-double CheckyrsAI::eval(const Game &g) const{
+double CheckyrsAI::eval(const Draughts &g) const{
   if(g.gameOver()){
     return evaluateGameOver(g);
   }
-  DraughtsBoard b=g.getBoard();
+  DraughtsBoard b = g.getBoard();
   double value = 0;
   double thissquare;
 
@@ -530,7 +530,7 @@ double CheckyrsAI::eval(const Game &g) const{
  *  @param g the Game to be evaluated
  *  @return the evaluation of this game over state
  */
-double CheckyrsAI::evaluateGameOver(const Game &g) const{
+double CheckyrsAI::evaluateGameOver(const Draughts &g) const{
   if(g.getWinner()==0){
     return evaluateDraw(g);
   }
@@ -546,7 +546,7 @@ double CheckyrsAI::evaluateGameOver(const Game &g) const{
  *  @param g the Game to be evaluated
  *  @return the evaluation of this draw
  */
-double CheckyrsAI::evaluateDraw(const Game &g) const{
+double CheckyrsAI::evaluateDraw(const Draughts &g) const{
   int ai_mat = g.getBoard().getNumPiecesPlayer(g.getCurrentPlayer());
   int opp_mat = g.getBoard().getNumPiecesPlayer(g.getCurrentPlayer()*-1);
   
@@ -567,7 +567,7 @@ double CheckyrsAI::evaluateDraw(const Game &g) const{
  *  @param g the Game to be evaluated
  *  @return the evaluation of this node
  */
-double CheckyrsAI::evalNode(const Game &g) const{
+double CheckyrsAI::evalNode(const Draughts &g) const{
   try{
     std::vector<std::vector<Position> > p = g.getMovesForPlayer( g.getCurrentPlayer() );
     std::vector<moveEval> evals;
@@ -579,7 +579,7 @@ double CheckyrsAI::evalNode(const Game &g) const{
     }
     for(auto pos: p){
       double value=0;
-      Game newstate(g);
+      Draughts newstate(g);
       newstate.executeMove(pos);
 
       value=eval(newstate);
@@ -605,11 +605,11 @@ double CheckyrsAI::evalNode(const Game &g) const{
  *  of favourability of each move.
  *  Returns whichever move is considered best.
  *
- *  @param g the Game to be evaluated
+ *  @param g the Draughts game to be evaluated
  *  @param depth how many moves ahead to look
  *  @return the chosen move and its score
  */
-moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
+moveEval CheckyrsAI::rootNegamax(const Draughts &g, const int depth) const{
   std::vector<moveEval> moves;
   double alpha = -INFINITY;
   double beta = INFINITY;
@@ -618,7 +618,7 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
     std::cout << "AI player " << (m_player==1? "1" : "2") << " is thinking: " << p.size() << " initial moves from this point\n";
     if(p.size()==1) return std::make_pair(p.at(0),likeatrillion); //don't waste time evaluating tree if there's only one branch
     for(auto move: p){
-      Game newstate(g);
+      Draughts newstate(g);
       newstate.executeMove(move);
       double value;
       if(newstate.gameOver()) value = -evaluateGameOver(newstate);
@@ -641,13 +641,13 @@ moveEval CheckyrsAI::rootNegamax(const Game &g, const int depth) const{
  *  Recursively calls itself, iterating a tree of all possible game paths for the chosen depth.
  *  Finds path with best outcome for this AI, assuming opponent always chooses their best move.
  *
- *  @param g the Game to be evaluated
+ *  @param g the Draughts g to be evaluated
  *  @param depth how many moves ahead to search
  *  @param alpha parameter for alpha-beta pruning
  *  @param beta parameter for alpha-beta pruning
  *  @return ultimate evaluation of this node
  */
-double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) const{
+double CheckyrsAI::negamax(Draughts g, const int depth, double alpha, double beta) const{
   try{
     if(depth<=0){
       return evalNode(g);
@@ -657,7 +657,7 @@ double CheckyrsAI::negamax(Game g, const int depth, double alpha, double beta) c
       return evaluateDraw(g);
     }
     for(auto pos: p){
-      Game newstate(g);
+      Draughts newstate(g);
       newstate.executeMove(pos);
       alpha = fmax(alpha,-negamax(newstate,depth-1, -beta, -alpha));
       if(alpha>=beta) break;

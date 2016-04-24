@@ -20,6 +20,7 @@
  */
 DraughtsBoard::DraughtsBoard(const int &size) : Board(size){
   
+  m_size=size;
   m_kingsp1=0;
   m_kingsp2=0;
 
@@ -191,4 +192,9 @@ void DraughtsBoard::removePiece(const Position &p){
   }
   m_board[p.m_x][p.m_y].removePiece();
 }
+
+/*Board* DraughtsBoard::getCopy() const{
+  DraughtsBoard* copy = new DraughtsBoard(*this);
+  return copy;
+}*/
 

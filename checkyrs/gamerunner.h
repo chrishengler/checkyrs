@@ -20,7 +20,6 @@
 
 class Gamerunner {
 protected:
-  Game m_game;
   int m_players;
   CheckyrsAI m_ai1;
   CheckyrsAI m_ai2;
@@ -31,16 +30,17 @@ protected:
 public:
   Gamerunner() {};
   
-  virtual std::vector<Position> getNextPlayerMove() const;
-  virtual CheckyrsAI createAI(const int &player=1);
-  virtual void prepareGame();
+  virtual std::vector<Position> getNextPlayerMove() const = 0;
+  virtual bool continueGame() = 0;
+  virtual CheckyrsAI createAI(const int &player=1) = 0;
+  virtual void prepareGame() = 0;
   
   /**
    *  Get the Game object
    *
    *  @return Game managed by this Gamerunner
    */
-  const Game getGame() const{return m_game;}
+  //virtual const Game* getGame() const = 0;
   
   /**
    *  Check if player is AI
@@ -52,13 +52,13 @@ public:
   
   void initialise();
   void initialise(CheckyrsAI &ai1, CheckyrsAI &ai2);
+
+  virtual int getCurrentPlayer() const  = 0;
+  virtual bool gameOver() const         = 0;
+  virtual bool isDraw() const           = 0;
+  virtual int getWinner() const         = 0;
   
-  bool continueGame();
-  bool gameOver() const;
-  bool isDraw() const;
-  int getWinner() const;
-  
-  int getPiecesPlayer(const int player=1) const;
+  virtual int getPiecesPlayer(const int &player=1) const = 0;
 
   virtual ~Gamerunner() {};
 };

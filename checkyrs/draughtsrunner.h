@@ -24,10 +24,26 @@
  *  Class creates CheckysAIs as needed, controls user interaction, manages game progress
  */
 class DraughtsRunner : public Gamerunner {
+protected:
+  Draughts m_game;
   
+public:
   CheckyrsAI createAI(const int &player=1);
-  
   void prepareGame();
+  bool continueGame();
+  std::vector<Position> getNextPlayerMove() const;
+  
+  int getCurrentPlayer() const;
+  bool gameOver() const;
+  bool isDraw() const;
+  int getWinner() const;
+  
+  int getPiecesPlayer(const int &player=1) const;
+  
+  virtual ~DraughtsRunner(){
+    //delete m_game;
+  }
+
 };
 
 #endif /* defined(__checkyrs__draughtsrunner__) */

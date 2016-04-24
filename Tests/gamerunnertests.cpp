@@ -17,13 +17,17 @@ TEST_CASE("Initialise game with provided AIs"){
   ai2.initialise();
   DraughtsRunner gr;
   REQUIRE_NOTHROW( gr.initialise(ai1,ai2) );
+  REQUIRE( gr.getCurrentPlayer() == 1 );
+  REQUIRE_NOTHROW( gr.continueGame() );
+  REQUIRE( gr.getCurrentPlayer() == -1 );
+
 }
 
 TEST_CASE("initialise 2 player game and play first moves"){
   DraughtsRunner gr;
   REQUIRE_NOTHROW( gr.initialise() );
   REQUIRE_NOTHROW( gr.continueGame() );
-  REQUIRE( gr.getGame().getCurrentPlayer() == -1 );
+  REQUIRE( gr.getCurrentPlayer() == -1 );
   REQUIRE_NOTHROW( gr.continueGame() );
-  REQUIRE( gr.getGame().getCurrentPlayer() == 1 );
+  REQUIRE( gr.getCurrentPlayer() == 1 );
 }

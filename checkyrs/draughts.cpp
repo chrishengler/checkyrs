@@ -29,7 +29,7 @@ bool sortMovesByLength(const std::vector<Position> &lhs, const std::vector<Posit
  *
  *  Adds all of the pieces for each player
  */
-void Game::prepareBoard(){
+void Draughts::prepareBoard(){
   std::vector<Position> p1, p2;
   for(int ii=0;ii<m_board.getSize();ii++){
     for(int jj=0;jj<3;jj++){
@@ -52,7 +52,7 @@ void Game::prepareBoard(){
  *  @param p the location to test
  *  @return true if threatened
  */
-bool Game::pieceIsThreatened(const Position &p) const{
+bool Draughts::pieceIsThreatened(const Position &p) const{
   try{
     if(!m_board.squareIsOccupied(p)) return false;
     for(int yy: {-1,1} ){
@@ -86,7 +86,7 @@ bool Game::pieceIsThreatened(const Position &p) const{
  *  @param p the Position to test
  *  @return the number of friendly pieces surrounding the piece at p
  */
-int Game::pieceDefence(const Position &p) const{
+int Draughts::pieceDefence(const Position &p) const{
   try{
     int def=0;
     if(!m_board.squareIsOccupied(p)) return false;
@@ -117,7 +117,7 @@ int Game::pieceDefence(const Position &p) const{
  *  @param p the Position to test
  *  @return true if this piece can be promoted on its next move
  */
-bool Game::pieceCanCrown(const Position &p) const{
+bool Draughts::pieceCanCrown(const Position &p) const{
   try{
     if(!m_board.squareExists(p)) return false;
     if(!m_board.squareIsOccupied(p)) return false;
@@ -141,7 +141,7 @@ bool Game::pieceCanCrown(const Position &p) const{
  *  @param p the Position to test
  *  @return true if the piece can capture another
  */
-bool Game::pieceCanCapture(const Position &p) const{
+bool Draughts::pieceCanCapture(const Position &p) const{
   try{
     if(!m_board.squareExists(p)) return false;
     if(!m_board.squareIsOccupied(p)) return false;
@@ -163,7 +163,7 @@ bool Game::pieceCanCapture(const Position &p) const{
  *  @param p Position of the piece to move
  *  @return vector of all possible moves
  */
-std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p) const{
+std::vector<std::vector<Position> > Draughts::getMovesFrom(const Position &p) const{
   std::vector<std::vector<Position> > possibleMoves;
   
   std::vector<Position> moveStarts = getJumpsFrom(p);
@@ -172,7 +172,7 @@ std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p) const{
       std::vector<Position> thismove;
       thismove.push_back(p);
       thismove.push_back(move);
-      Game newstate(*this);
+      Draughts newstate(*this);
       newstate.executeMove(thismove);
       std::vector<std::vector<Position> > extendedMoves = newstate.extendMove(thismove);
       possibleMoves.insert(possibleMoves.end(), extendedMoves.begin(), extendedMoves.end());
@@ -198,7 +198,7 @@ std::vector<std::vector<Position> > Game::getMovesFrom(const Position &p) const{
  *  @param p the current Position of the piece being moved
  *  @return vector of possible move extensions
  */
-std::vector<std::vector<Position> > Game::extendMove(const std::vector<Position> &p) const{
+std::vector<std::vector<Position> > Draughts::extendMove(const std::vector<Position> &p) const{
   std::vector<std::vector<Position> > possibleMoves;
   std::vector<Position> extensions = getJumpsFrom(p.back());
   if(extensions.size()==0){
@@ -208,7 +208,7 @@ std::vector<std::vector<Position> > Game::extendMove(const std::vector<Position>
   for(auto ext: extensions){
     std::vector<Position> extended = p;
     extended.push_back(ext);
-    Game newstate(*this);
+    Draughts newstate(*this);
     newstate.m_board.removePiece(m_board.getJump(p.back(),ext));
     newstate.m_board.movePiece(p.back(),ext);
     std::vector<std::vector<Position> > nextstep = newstate.extendMove(extended);
@@ -224,7 +224,7 @@ std::vector<std::vector<Position> > Game::extendMove(const std::vector<Position>
  *  @param p the Position to test
  *  @return the positions to which that piece can move without jumping
  */
-std::vector<Position> Game::getSingleMovesFrom(const Position &p) const{
+std::vector<Position> Draughts::getSingleMovesFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii: {-1,1} ){
     for(int jj: {-1,1} ){
@@ -244,7 +244,7 @@ std::vector<Position> Game::getSingleMovesFrom(const Position &p) const{
  *  @param p the Position to test
  *  @return the positions to which that piece can move by capturing
  */
-std::vector<Position> Game::getJumpsFrom(const Position &p) const{
+std::vector<Position> Draughts::getJumpsFrom(const Position &p) const{
   std::vector<Position> possibleMoves;
   for(int ii: {-1,1} ){
     for(int jj: {-1,1} ){
@@ -269,7 +269,7 @@ std::vector<Position> Game::getJumpsFrom(const Position &p) const{
  *  @param player which player's moves to search for
  *  @return vector of all possible moves
  */
-std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) const{
+std::vector<std::vector<Position> > Draughts::getMovesForPlayer(const int player) const{
   std::vector<std::vector<Position> > possibleMoves;
   bool jumpFound = false;
   for(int ii=0;ii<m_board.getSize();ii++){
@@ -307,7 +307,7 @@ std::vector<std::vector<Position> > Game::getMovesForPlayer(const int player) co
  *  @param p the starting point and all successive locations in the move
  *  @return vector of the squares which were jumped over
  */
-std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p) const{
+std::vector<Position> Draughts::getJumpedSquares(const std::vector<Position> &p) const{
   std::vector<Position> jumped;
   for(int ii=0;ii<p.size()-1;ii++){
     jumped.push_back(m_board.getJump(p.at(ii), p.at(ii+1)));
@@ -324,7 +324,7 @@ std::vector<Position> Game::getJumpedSquares(const std::vector<Position> &p) con
  *  
  *  @param move vector the starting point of the piece to move, and all its subsequent locations
  */
-void Game::executeMove(const std::vector<Position> &move){
+void Draughts::executeMove(const std::vector<Position> &move){
   bool stale=true;
   for(int ii=0;ii<move.size()-1;ii++){
     if(fabs(move.at(ii).m_y - move.at(ii+1).m_y) != 1){

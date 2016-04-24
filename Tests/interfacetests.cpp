@@ -12,68 +12,65 @@
 
 TEST_CASE("print square"){
   CLInterface interface;
-  Game g;
+  Draughts d;
+  d.prepareBoard();
   Position p1(0,0);
   Position p2(1,1);
-  Position p3(2,2);
-  Position p4(3,3);
+  Position p3(7,7);
+  Position p4(5,5);
   Position p5(1,0);
-  Position p6(2,0);
-  g.addPiece(p1);
-  g.addPiece(p2,1,true);
-  g.addPiece(p3,-1);
-  g.addPiece(p4,-1,true);
+  Position p6(6,6);
   
-  REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p1), true));
-  REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p2), true));
-  REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p3), true));
-  REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p4), true));
-  REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p5), false));
-  REQUIRE_NOTHROW( interface.printSquare(g.getBoard().getSquare(p6), true));
+  REQUIRE_NOTHROW( interface.printSquare(d.getBoard().getSquare(p1), true)  );
+  REQUIRE_NOTHROW( interface.printSquare(d.getBoard().getSquare(p2), true)  );
+  REQUIRE_NOTHROW( interface.printSquare(d.getBoard().getSquare(p3), true)  );
+  REQUIRE_NOTHROW( interface.printSquare(d.getBoard().getSquare(p4), true)  );
+  REQUIRE_NOTHROW( interface.printSquare(d.getBoard().getSquare(p5), false) );
+  REQUIRE_NOTHROW( interface.printSquare(d.getBoard().getSquare(p6), true)  );
 }
 
 TEST_CASE("print board"){
   CLInterface interface;
-  Game g;
+  Draughts d;
   Position p1(0,0);
   Position p2(1,1);
   Position p3(2,2);
   Position p4(3,3);
   Position p5(1,0);
   Position p6(2,0);
-  g.addPiece(p1);
-  g.addPiece(p2,1,true);
-  g.addPiece(p3,-1);
-  g.addPiece(p4,-1,true);
+  d.getBoard().addPiece(p1);
+  d.getBoard().addPiece(p2,1,true);
+  d.getBoard().addPiece(p3,-1);
+  d.getBoard().addPiece(p4,-1,true);
   
-  REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
+  REQUIRE_NOTHROW( interface.printBoard( d.getBoard() ) );
 }
 
 TEST_CASE("print board at game start"){
   CLInterface interface;
-  Game g;
+  Draughts g;
   g.prepareBoard();
-  REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
+  REQUIRE_NOTHROW( interface.printBoard( g.getBoard() ) );
 }
 
 TEST_CASE("correctly print oversized board"){
   CLInterface interface;
-  Game g(12);
+  Draughts g(12);
   g.prepareBoard();
   
-  REQUIRE_NOTHROW( interface.printBoard(g.getBoard()) );
+  REQUIRE_NOTHROW( interface.printBoard( g.getBoard() ) );
 }
 
 TEST_CASE("print move"){
   CLInterface interface;
-  Game g;
+  Draughts g;
   g.prepareBoard();
   REQUIRE_NOTHROW( interface.printMove( g.getMovesForPlayer(1).at(0)));
 }
 
 TEST_CASE("print all possible moves for piece/player"){
   CLInterface interface;
-  Game g;
+  Draughts g;
   g.prepareBoard();
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesFrom(Position(0,2))));
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesForPlayer(1)));
@@ -119,23 +116,25 @@ TEST_CASE("interpret single move"){
 
 TEST_CASE("interpret validity of move"){
   CLInterface interface;
-  Game g1;
+  Draughts g1;
   g1.prepareBoard();
   std::string singlemove("a3 b4");
   std::string jumpmove("a3 c5");
   std::string invalidmove("a1 a3");
   REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == true);
   REQUIRE( interface.validateMove(interface.interpretMove(invalidmove),g1) == false);
-  g1.addPiece( Position(1,3) , -1 );
+  g1.executeMove(interface.interpretMove(singlemove));
+  interface.printBoard(g1.getBoard());
+  g1.executeMove(interface.interpretMove("d6 c5"));
   REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == false);
-  REQUIRE( interface.validateMove(interface.interpretMove(jumpmove),g1) == true );
+  REQUIRE( interface.validateMove(interface.interpretMove("b4 d6"),g1) == true );
 }
 
 TEST_CASE("get user input for move"){
   CLInterface interface;
-  Game g1;
+  Draughts g1;
   g1.prepareBoard();
-  interface.printBoard(g1.getBoard());
+  interface.printBoard( g1.getBoard() );
   REQUIRE_NOTHROW( interface.getMove(g1) );
 }
 

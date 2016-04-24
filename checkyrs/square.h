@@ -98,8 +98,14 @@ public:
    *  @param s Square for comparison
    *  @return true if equal
    */
-  inline bool operator==(const Square &s){
-    return (m_isOccupied==s.m_isOccupied && m_isKing==s.m_isKing && m_player==s.m_player);
+  bool operator==(const Square &s){
+    int lhs = this->asBits();
+    int rhs = s.asBits();
+    if(lhs!=rhs){
+      printf("%i : %i",lhs,rhs);
+      return false;
+    }
+    else return true;
   }
   
   /**
