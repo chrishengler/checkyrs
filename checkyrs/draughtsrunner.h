@@ -40,9 +40,7 @@ public:
   
   int getPiecesPlayer(const int &player=1) const;
   
-  virtual ~DraughtsRunner(){
-    //delete m_game;
-  }
+  virtual ~DraughtsRunner(){ }
 
 };
 

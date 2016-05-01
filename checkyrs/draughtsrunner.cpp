@@ -9,12 +9,24 @@
 #include <iostream>
 #include "draughtsrunner.h"
 
+/**
+ *  Create AI
+ *
+ *  Creates a CheckyrsAI object, asks user whether or not to randomise AI
+ *
+ *  @param player which player the AI should control
+ */
 CheckyrsAI DraughtsRunner::createAI(const int &player) {
   CheckyrsAI ai(player);
   ai.initialise(m_cli.yn("use random AI? (y/n)"));
   return ai;
 }
 
+/**
+ *  Prepare the game
+ *
+ *  Creates the Draughts object, prepares board, starts interface
+ */
 void DraughtsRunner::prepareGame(){
     m_game = Draughts();
     m_game.prepareBoard();
@@ -107,22 +119,51 @@ std::vector<Position> DraughtsRunner::getNextPlayerMove() const{
   
 }
 
+/**
+ *  Returns the current player
+ *
+ *  @return the current player
+ */
 int DraughtsRunner::getCurrentPlayer() const{
   return m_game.getCurrentPlayer();
 }
 
+/** 
+ *  Check if game is over
+ *
+ *  Check whether or not the game is over. 
+ *  Does not specify which type of game over (p1 win/p2 win/draw) has been reached
+ *
+ *  @return true if game over
+ */
 bool DraughtsRunner::gameOver() const{
   return m_game.gameOver();
 }
 
+/**
+ *  Check if the game is a draw
+ *
+ *  @return true if the game is a draw
+ */
 bool DraughtsRunner::isDraw() const{
   return m_game.isStale();
 }
 
+/**
+ *  Get which player won
+ *
+ *  @return the winning player
+ */
 int DraughtsRunner::getWinner() const{
   return m_game.Game::getWinner();
 }
 
+/**
+ *  Get the number of pieces a player has on the board
+ *
+ *  @param player which player's pieces to count
+ *  @return the number of pieces that player has
+ */
 int DraughtsRunner::getPiecesPlayer(const int &player) const{
   return m_game.getNumPiecesPlayer(player);
 }
