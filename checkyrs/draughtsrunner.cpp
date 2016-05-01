@@ -18,7 +18,7 @@
  */
 CheckyrsAI DraughtsRunner::createAI(const int &player) {
   CheckyrsAI ai(player);
-  ai.initialise(m_cli.yn("use random AI? (y/n)"));
+  ai.initialise(m_cli->yn("use random AI? (y/n)"));
   return ai;
 }
 
@@ -30,7 +30,7 @@ CheckyrsAI DraughtsRunner::createAI(const int &player) {
 void DraughtsRunner::prepareGame(){
     m_game = Draughts();
     m_game.prepareBoard();
-    m_cli = CLInterface();
+    m_cli = new DraughtsCLInterface();
 }
 
 /**
@@ -52,7 +52,7 @@ bool DraughtsRunner::continueGame(){
     }
     else std::cout << "player " << (m_game.getWinner()==1 ? "1" : "2") << " won\n";
     std::cout << "final board:\n";
-    m_cli.printBoard( (m_game.getBoard()) );
+    m_cli->printBoard( (m_game.getBoard()) );
     return false;
   }
   std::cout << " - - - - - - - - - - - - - - -";
@@ -83,29 +83,29 @@ bool DraughtsRunner::continueGame(){
  *  Otherwise CheckyrsAI decides move
  */
 std::vector<Position> DraughtsRunner::getNextPlayerMove() const{
-  m_cli.printBoard( (m_game.getBoard()) );
+  m_cli->printBoard( (m_game.getBoard()) );
   try{
     int evaldepth=5;
     if(m_game.getCurrentPlayer() == 1){
       if(m_p1ai){
         std::vector<Position> move = m_ai1.rootNegamax(m_game, evaldepth).first;
         std::cout << "AI player 1 move:\n";
-        m_cli.printMove(move);
+        m_cli->printMove(move);
         return move;
       }
       else{
-        return m_cli.getMove(m_game);
+        return m_cli->getMove( (Game*)&m_game );
       }
     }
     else if(m_game.getCurrentPlayer() == -1){
       if(m_p2ai){
         std::vector<Position> move = m_ai2.rootNegamax(m_game, evaldepth).first;
         std::cout << "AI player 2 move:\n";
-        m_cli.printMove(move);
+        m_cli->printMove(move);
         return move;
       }
       else{
-        return m_cli.getMove(m_game);
+        return m_cli->getMove( (Game*)&m_game );
       }
     }
     else{

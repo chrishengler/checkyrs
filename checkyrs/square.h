@@ -102,7 +102,6 @@ public:
     int lhs = this->asBits();
     int rhs = s.asBits();
     if(lhs!=rhs){
-      printf("%i : %i",lhs,rhs);
       return false;
     }
     else return true;

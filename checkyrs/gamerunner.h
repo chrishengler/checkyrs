@@ -25,7 +25,7 @@ protected:
   CheckyrsAI m_ai2;
   bool m_p1ai;
   bool m_p2ai;
-  CLInterface m_cli;
+  CLInterface *m_cli;
   
 public:
   Gamerunner() {};
@@ -34,14 +34,7 @@ public:
   virtual bool continueGame() = 0;
   virtual CheckyrsAI createAI(const int &player=1) = 0;
   virtual void prepareGame() = 0;
-  
-  /**
-   *  Get the Game object
-   *
-   *  @return Game managed by this Gamerunner
-   */
-  //virtual const Game* getGame() const = 0;
-  
+    
   /**
    *  Check if player is AI
    *

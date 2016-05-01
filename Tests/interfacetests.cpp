@@ -11,7 +11,7 @@
 #include "draughtsclinterface.h"
 
 TEST_CASE("print square"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts d;
   d.prepareBoard();
   Position p1(0,0);
@@ -30,7 +30,7 @@ TEST_CASE("print square"){
 }
 
 TEST_CASE("print board"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts d;
   Position p1(0,0);
   Position p2(1,1);
@@ -47,14 +47,14 @@ TEST_CASE("print board"){
 }
 
 TEST_CASE("print board at game start"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts g;
   g.prepareBoard();
   REQUIRE_NOTHROW( interface.printBoard( g.getBoard() ) );
 }
 
 TEST_CASE("correctly print oversized board"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts g(12);
   g.prepareBoard();
   
@@ -62,14 +62,14 @@ TEST_CASE("correctly print oversized board"){
 }
 
 TEST_CASE("print move"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts g;
   g.prepareBoard();
   REQUIRE_NOTHROW( interface.printMove( g.getMovesForPlayer(1).at(0)));
 }
 
 TEST_CASE("print all possible moves for piece/player"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts g;
   g.prepareBoard();
   REQUIRE_NOTHROW( interface.printMoves(g.getMovesFrom(Position(0,2))));
@@ -77,7 +77,7 @@ TEST_CASE("print all possible moves for piece/player"){
 }
 
 TEST_CASE("interpret square"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   std::string a2("a2");
   std::string a2upper("A2");
   std::string e5("e5");
@@ -93,7 +93,7 @@ TEST_CASE("interpret square"){
 }
 
 TEST_CASE("interpret single move"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   std::string validmove("a1 b2");
   std::string comma("a1, b2");
   std::string nospace("a1b2");
@@ -115,41 +115,41 @@ TEST_CASE("interpret single move"){
 }
 
 TEST_CASE("interpret validity of move"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts g1;
   g1.prepareBoard();
   std::string singlemove("a3 b4");
   std::string jumpmove("a3 c5");
   std::string invalidmove("a1 a3");
-  REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == true);
-  REQUIRE( interface.validateMove(interface.interpretMove(invalidmove),g1) == false);
+  REQUIRE( interface.validateMove(interface.interpretMove(singlemove),(Game*)&g1) == true);
+  REQUIRE( interface.validateMove(interface.interpretMove(invalidmove),(Game*)&g1) == false);
   g1.executeMove(interface.interpretMove(singlemove));
   interface.printBoard(g1.getBoard());
   g1.executeMove(interface.interpretMove("d6 c5"));
-  REQUIRE( interface.validateMove(interface.interpretMove(singlemove),g1) == false);
-  REQUIRE( interface.validateMove(interface.interpretMove("b4 d6"),g1) == true );
+  REQUIRE( interface.validateMove(interface.interpretMove(singlemove),(Game*)&g1) == false);
+  REQUIRE( interface.validateMove(interface.interpretMove("b4 d6"),(Game*)&g1) == true );
 }
 
 TEST_CASE("get user input for move"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   Draughts g1;
   g1.prepareBoard();
   interface.printBoard( g1.getBoard() );
-  REQUIRE_NOTHROW( interface.getMove(g1) );
+  REQUIRE_NOTHROW( interface.getMove( (Game*)&g1) );
 }
 
 TEST_CASE("display help"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   REQUIRE_NOTHROW( interface.showMenuHelp() );
 }
 
 TEST_CASE("display game help"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   REQUIRE_NOTHROW( interface.showGameHelp() );
 }
 
 TEST_CASE("display rules"){
-  CLInterface interface;
+  DraughtsCLInterface interface;
   REQUIRE_NOTHROW( interface.showRules() );
 }
 

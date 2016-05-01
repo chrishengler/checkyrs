@@ -22,74 +22,20 @@
 #define RESET  "\033[0m"
 
 /**
- *  Get yes/no from player
- *
- *  Asks player a yes/no question until receiving a valid answer\n
- *
- *  @param s Question for player
- *  @return true if yes, false if no
- */
-bool CLInterface::yn(const std::string &s) const{
-  std::cout << s << "\n> ";
-  bool valid = false;
-  bool retval = false;
-  try{
-    while(!valid){
-      std::string input;
-      std::cin >> input;
-      std::cin.ignore();
-      boost::algorithm::to_lower(input);
-      if(!strncmp(input.c_str(),"help",4)){
-        showMenuHelp();
-        std::cout << s << "\n> ";
-        continue;
-      }
-      if(!strncmp(input.c_str(),"y",1)){
-        return true;
-      }
-      else if(!strncmp(input.c_str(),"n",1)){
-        valid = true;
-      }
-      if(!valid) std::cout << "invalid response, provide \"y\" or \"n\"\n> ";
-    }
-  }
-  catch(std::exception &e){
-    std::cout << "unexpected exception while trying to get answer to y/n question: " << e.what() << "\n";
-  }
-  return retval;
-}
-
-/**
  *  Pause display
  *
  *  Waits for keyboard input
  */
-void CLInterface::pauseDisplay() const{
+void DraughtsCLInterface::pauseDisplay() const{
   std::cout << "\npush enter to continue";
   std::cin.get();
   return;
 }
 
 /**
- *  Show help for menus
- */
-void CLInterface::showMenuHelp() const{
-  std::cout << "\n\nHelp for Checkyrs menu screens:\n\n";
-  std::cout << "Follow the instructions on screen to set up a game.\n";
-  std::cout << "Type 'y' or 'n' for yes/no questions, and input numbers with the number keys.\n\n";
-  if(yn("Show game instructions? (y/n)")){
-    showGameHelp();
-  }
-  if(yn("Show game rules? (y/n)")){
-    showRules();
-  }
-  std::cout << "type 'help' at any input prompt to show this message again\n\n\n";
-}
-
-/**
  *  Show help for game
  */
-void CLInterface::showGameHelp() const{
+void DraughtsCLInterface::showGameHelp() const{
   DraughtsBoard b(3);
   Position p1p(1,0);
   Position p1k(1,1);
@@ -139,7 +85,7 @@ void CLInterface::showGameHelp() const{
  *  There are a surprising number of variations on this game\n
  *  Version played in Checkyrs detailed here.
  */
-void CLInterface::showRules() const{
+void DraughtsCLInterface::showRules() const{
   std::cout << "\n\nRules\n\n";
   std::cout << "There are many variations on draughts/checkers.\n";
   std::cout << "The rules used by Checkyrs are detailed here\n";
@@ -171,7 +117,7 @@ void CLInterface::showRules() const{
  *  @param s Square to be printed
  *  @param bs bool indicating dark (blue) or light (white) square
  */
-void CLInterface::printSquare(const Square &s, const bool bs) const{
+void DraughtsCLInterface::printSquare(const Square &s, const bool bs) const{
   std::string col;
   if(s.isOccupied()){
     col = (s.getPlayer() == 1 ? KCYN : KRED );
@@ -198,7 +144,7 @@ void CLInterface::printSquare(const Square &s, const bool bs) const{
  *
  *  @param b Board object to print
  */
-void CLInterface::printBoard(const Board &b) const{
+void DraughtsCLInterface::printBoard(const Board &b) const{
   printf("\n\n"); //make sure we have a little clear space
   for(int ii=b.getSize()-1;ii>=0;ii--){ // prefer player 1 to have home at bottom of board
     std::cout << (ii+1) << (ii>=9 ? "    " : "     ");
@@ -226,7 +172,7 @@ void CLInterface::printBoard(const Board &b) const{
  *
  *  @param p vector of Position objects, defining move
  */
-void CLInterface::printMove(const std::vector<Position> &p) const{
+void DraughtsCLInterface::printMove(const std::vector<Position> &p) const{
   for(std::vector<Position>::const_iterator p_iter=p.begin();p_iter!=p.end();p_iter++){
     std::cout << (*p_iter).toString() << " ";
   }
@@ -241,7 +187,7 @@ void CLInterface::printMove(const std::vector<Position> &p) const{
  *
  *  @param p vector of vectors defining moves
  */
-void CLInterface::printMoves(const std::vector<std::vector<Position> > &p) const{
+void DraughtsCLInterface::printMoves(const std::vector<std::vector<Position> > &p) const{
   if(p.size()==0){
     std::cout << "No possible moves!\n";
     return;
@@ -252,57 +198,6 @@ void CLInterface::printMoves(const std::vector<std::vector<Position> > &p) const
   }
   return;
 }
-
-/**
- *  Interpret string as board position
- *
- *  Take user input (e.g. a3) and return corresponding Position
- *
- *  @throw runtime_error if string is too short
- *  @throw invalid_argument if interpreted Position is invalid
- *  @param s user input to be interpreted as Position
- *  @return Position corresponding to user input
- */
-Position CLInterface::interpretSquare(std::string &s) const{
-  int x=-1;
-  int y;
-  if(s.size()==0){
-    std::string err("trying to intepret string as square, but string is empty!");
-    throw std::runtime_error(err);
-  }
-  else if(s.size()==1){
-    std::string err("trying to interpret string as square, but string only has one character!");
-    throw std::runtime_error(err);
-  }
-  for(int ii=0;ii<26;ii++){
-    if(std::tolower(s.at(0)) == "abcdefghijklmnopqrstuvwxyz"[ii]){
-      x = ii;
-      break;
-    }
-  }
-  if(x==-1){
-    std::string err("could not understand \"");
-    err+=s.at(0);
-    err+="\" as column\n";
-    throw std::invalid_argument(err);
-  }
-  s.erase(0,1);
-  try{
-    y = (std::stoi(s) - 1);
-    if(y<0) throw std::invalid_argument(std::string("invalid position: negative rank"));
-  }
-  catch(std::invalid_argument){
-    std::string errmsg("could not understand \"");
-    errmsg+=s;
-    errmsg+="\" as row number\n";
-    throw std::invalid_argument(errmsg);
-  }
-  catch(std::exception &e){
-    throw e;
-  }
-  return Position(x,y);
-}
-
 /**
  *  Interprets move input
  *  
@@ -312,7 +207,7 @@ Position CLInterface::interpretSquare(std::string &s) const{
  *  @param s string detailing intended move
  *  @return std::vector<Position> giving each Position occupied in move, in order
  */
-std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
+std::vector<Position> DraughtsCLInterface::interpretMove(const std::string &s) const{
   std::vector<Position> move;
   
   boost::tokenizer<> tok(s);
@@ -350,8 +245,8 @@ std::vector<Position> CLInterface::interpretMove(const std::string &s) const{
  *  @param g Game in which move is to be played
  *  @return true if move is legal, false otherwise
  */
-bool CLInterface::validateMove(const std::vector<Position> &p, const Draughts &g) const{
-  std::vector<std::vector<Position> > legalmoves = g.getMovesForPlayer(g.getCurrentPlayer());
+bool DraughtsCLInterface::validateMove(const std::vector<Position> &p, Game *g) const{
+  std::vector<std::vector<Position> > legalmoves = g->getMovesForPlayer(g->getCurrentPlayer());
   if(legalmoves.size()==0){
     std::string errmsg("no legal moves!\n");
     throw std::runtime_error(errmsg);
@@ -371,17 +266,17 @@ bool CLInterface::validateMove(const std::vector<Position> &p, const Draughts &g
  *  @param g Game for which move is being requested
  *  @return valid move
  */
-std::vector<Position> CLInterface::getMove(const Draughts &g) const{
+std::vector<Position> DraughtsCLInterface::getMove(Game *g) const{
   std::string input;
   std::vector<Position> move;
   bool valid=false;
   do{
     try{
-      std::cout << "Input move for player " << (g.getCurrentPlayer()==1 ? "1" : "2" ) << "\n:> ";
+      std::cout << "Input move for player " << (g->getCurrentPlayer()==1 ? "1" : "2" ) << "\n:> ";
       std::getline(std::cin,input);
       boost::algorithm::to_lower(input);
       if(!strncmp(input.c_str(),"help",4)){
-        showMenuHelp();
+        CLInterface::showMenuHelp();
         std::cout << "\n";
         continue;
       }

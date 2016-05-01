@@ -10,7 +10,7 @@
 
 CheckyrsAI Gamerunner::createAI(const int &player){
   CheckyrsAI ai(player);
-  ai.initialise(m_cli.yn("use random AI?"));
+  ai.initialise(CLInterface::yn("use random AI?"));
   return ai;
 }
 
@@ -27,7 +27,7 @@ void Gamerunner::initialise(){
   std::string input;
   std::cout << "Setting up game\n";
   
-  if(m_cli.yn("player one human? (y/n)")){
+  if(CLInterface::yn("player one human? (y/n)")){
     m_p1ai=false;
     m_players++;
   }
@@ -36,7 +36,7 @@ void Gamerunner::initialise(){
     m_ai1=this->createAI(1);
   }
   
-  if(m_cli.yn("player two human? (y/n)")){
+  if(CLInterface::yn("player two human? (y/n)")){
     m_p2ai=false;
     m_players++;
   }

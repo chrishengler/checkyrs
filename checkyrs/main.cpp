@@ -13,17 +13,17 @@ int main(int argc, const char * argv[]) {
 
   std::cout << "\n\n\n\n C H E C K Y R S \n\n\n\n";
   
-  CLInterface cli;
+  //CLInterface cli;
   bool play=true;
-  if(cli.yn("Display help? (y/n)")){
-    cli.showMenuHelp();
+  if(CLInterface::yn("Display help? (y/n)")){
+    CLInterface::showMenuHelp();
   }
   while(play){
     try{
       DraughtsRunner runner;
       runner.initialise();
       while(runner.continueGame()){      };
-      play = cli.yn("\n\nnew game? (y/n)");
+      play = CLInterface::yn("\n\nnew game? (y/n)");
     }
     catch(std::exception &e){
       std::cout << "unexpected exception in main: " << e.what();
